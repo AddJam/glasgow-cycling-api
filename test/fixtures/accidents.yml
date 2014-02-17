@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 2014-02-17
+  time: 2014-02-17 13:48:04
+  severity: 1
+  police_response: 1
+  casualities: 1
+
+two:
+  date: 2014-02-17
+  time: 2014-02-17 13:48:04
+  severity: 1
+  police_response: 1
+  casualities: 1
