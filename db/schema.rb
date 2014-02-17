@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140217144243) do
+ActiveRecord::Schema.define(version: 20140217150430) do
 
   create_table "accidents", force: true do |t|
     t.date     "date"
@@ -68,7 +68,6 @@ ActiveRecord::Schema.define(version: 20140217144243) do
     t.integer  "preceding_route_point_id"
     t.integer  "next_route_point_id"
     t.float    "altitude"
-    t.float    "incline"
     t.boolean  "on_road"
     t.string   "street_name"
     t.string   "street_postcode"
