@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  created_by: 1
+  name: MyString
+  start_lat: 1.5
+  start_long: 1.5
+  end_lat: 1.5
+  end_long: 1.5
+  calculated_total_time: 1
+  total_distance: 1.5
+  last_used: 2014-02-17 10:51:01
+  mode: 1
+  safety: 1
+  difficulty: 1
+  start_picture_id: 1
+  end_picture_id: 1
+
+two:
+  created_by: 1
+  name: MyString
+  start_lat: 1.5
+  start_long: 1.5
+  end_lat: 1.5
+  end_long: 1.5
+  calculated_total_time: 1
+  total_distance: 1.5
+  last_used: 2014-02-17 10:51:01
+  mode: 1
+  safety: 1
+  difficulty: 1
+  start_picture_id: 1
+  end_picture_id: 1
