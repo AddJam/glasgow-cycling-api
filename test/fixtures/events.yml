@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  type: 1
+  attraction_id: 1
+  name: MyString
+  description: MyText
+  start_time: 2014-02-17 13:23:32
+  end_time: 2014-02-17 13:23:32
+  road_closure_details: MyText
+
+two:
+  type: 1
+  attraction_id: 1
+  name: MyString
+  description: MyText
+  start_time: 2014-02-17 13:23:32
+  end_time: 2014-02-17 13:23:32
+  road_closure_details: MyText

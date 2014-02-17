@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140217105511) do
+ActiveRecord::Schema.define(version: 20140217132332) do
+
+  create_table "events", force: true do |t|
+    t.integer  "type"
+    t.integer  "attraction_id"
+    t.string   "name"
+    t.text     "description"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.text     "road_closure_details"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "route_reviews", force: true do |t|
     t.integer  "route_id"
@@ -20,6 +32,22 @@ ActiveRecord::Schema.define(version: 20140217105511) do
     t.integer  "safety_rating"
     t.integer  "difficulty_rating"
     t.integer  "environment_rating"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "routepoints", force: true do |t|
+    t.integer  "route_id"
+    t.float    "lat"
+    t.float    "long"
+    t.integer  "preceding_route_point_id"
+    t.integer  "next_route_point_id"
+    t.float    "altitude"
+    t.float    "incline"
+    t.integer  "time_from_preceding"
+    t.boolean  "on_road"
+    t.string   "street_name"
+    t.string   "street_postcode"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
