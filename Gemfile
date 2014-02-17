@@ -46,3 +46,10 @@ end
 
 # Users
 gem 'devise'
+
+# Development
+group :development do
+	gem 'better_errors'
+	gem 'binding_of_caller'
+	gem 'annotate', ">=2.6.0"
+end
