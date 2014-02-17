@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  route_id: 1
+  date: 2014-02-17
+  start_time: 2014-02-17 14:14:40
+  end_time: 2014-02-17 14:14:40
+  rating: 1
+  captured_total_time: 1
+
+two:
+  user_id: 1
+  route_id: 1
+  date: 2014-02-17
+  start_time: 2014-02-17 14:14:40
+  end_time: 2014-02-17 14:14:40
+  rating: 1
+  captured_total_time: 1
