@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140217140953) do
+ActiveRecord::Schema.define(version: 20140217141440) do
 
   create_table "accidents", force: true do |t|
     t.date     "date"
@@ -119,6 +119,27 @@ ActiveRecord::Schema.define(version: 20140217140953) do
     t.integer  "difficulty"
     t.integer  "start_picture_id"
     t.integer  "end_picture_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_responses", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "usage_per_week"
+    t.integer  "usage_type"
+    t.integer  "usage_reason"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_routes", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "route_id"
+    t.date     "date"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.integer  "rating"
+    t.integer  "captured_total_time"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
