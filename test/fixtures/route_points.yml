@@ -26,7 +26,6 @@ one:
   preceding_route_point_id: 1
   next_route_point_id: 1
   altitude: 1.5
-  incline: 1.5
   time_from_preceding: 1
   on_road: false
   street_name: MyString
@@ -39,7 +38,6 @@ two:
   preceding_route_point_id: 1
   next_route_point_id: 1
   altitude: 1.5
-  incline: 1.5
   time_from_preceding: 1
   on_road: false
   street_name: MyString
