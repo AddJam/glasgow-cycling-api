@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 2014-02-17 13:45:30
+  sunset: 2014-02-17 13:45:30
+  sunrise: 2014-02-17 13:45:30
+
+two:
+  date: 2014-02-17 13:45:30
+  sunset: 2014-02-17 13:45:30
+  sunrise: 2014-02-17 13:45:30

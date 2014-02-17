@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140217132332) do
+ActiveRecord::Schema.define(version: 20140217134722) do
 
   create_table "events", force: true do |t|
     t.integer  "type"
@@ -67,6 +67,28 @@ ActiveRecord::Schema.define(version: 20140217132332) do
     t.integer  "difficulty"
     t.integer  "start_picture_id"
     t.integer  "end_picture_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "weather_periods", force: true do |t|
+    t.integer  "weather_id"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.integer  "precipitation_type"
+    t.integer  "precipitation_level"
+    t.integer  "wind_speed"
+    t.integer  "wind_direction"
+    t.integer  "pollen_count"
+    t.integer  "uv_level"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "weathers", force: true do |t|
+    t.datetime "date"
+    t.datetime "sunset"
+    t.datetime "sunrise"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
