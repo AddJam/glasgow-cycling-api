@@ -22,8 +22,26 @@
 #
 
 class Route < ActiveRecord::Base
-	has_many :route_reviews
-	has_many :route_points
+	has_many :reviews, :foreign_key => 'route_id', :class_name => "RouteReview"
+	has_many :points, :foreign_key => 'route_id', :class_name => "RoutePoint"
 	has_many :user_routes
 	has_many :users, through: :user_routes
+
+	def self.record(points)
+		return if points.blank?
+
+		route = Route.create name: "New Route" #TODO name properly
+		points.each do |point|
+			route_point = RoutePoint.create do |rp|
+				rp.lat = point[:lat]
+				rp.long = point[:long]
+				rp.altitude = point[:altitude]
+				rp.time = point[:time]
+			end
+			route.points << route_point
+		end
+		route.save
+
+		route
+	end
 end
