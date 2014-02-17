@@ -54,4 +54,5 @@ class Route < ActiveRecord::Base
 		end
 		self.reviews << review
 		self.save
+	end
 end

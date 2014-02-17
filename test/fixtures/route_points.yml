@@ -26,7 +26,7 @@ one:
   preceding_route_point_id: 1
   next_route_point_id: 1
   altitude: 1.5
-  time_from_preceding: 1
+  time: <%= 5.days.ago.to_s(:db) %>
   on_road: false
   street_name: MyString
   street_postcode: MyString
@@ -38,7 +38,7 @@ two:
   preceding_route_point_id: 1
   next_route_point_id: 1
   altitude: 1.5
-  time_from_preceding: 1
+  time: <%= 5.days.ago.to_s(:db) %>
   on_road: false
   street_name: MyString
   street_postcode: MyString
