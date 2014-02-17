@@ -11,7 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140217134722) do
+ActiveRecord::Schema.define(version: 20140217135026) do
+
+  create_table "accidents", force: true do |t|
+    t.date     "date"
+    t.datetime "time"
+    t.integer  "severity"
+    t.integer  "police_response"
+    t.integer  "casualities"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "attractions", force: true do |t|
+    t.integer  "type"
+    t.float    "lat"
+    t.float    "long"
+    t.string   "name"
+    t.text     "description"
+    t.string   "contact_tel"
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "town"
+    t.string   "postcode"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "events", force: true do |t|
     t.integer  "type"
@@ -21,6 +46,17 @@ ActiveRecord::Schema.define(version: 20140217134722) do
     t.datetime "start_time"
     t.datetime "end_time"
     t.text     "road_closure_details"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "pictures", force: true do |t|
+    t.string   "url"
+    t.string   "label"
+    t.float    "lat"
+    t.float    "long"
+    t.string   "credit_label"
+    t.string   "credit_url"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
