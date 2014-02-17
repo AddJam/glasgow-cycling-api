@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140217105101) do
+ActiveRecord::Schema.define(version: 20140217105511) do
+
+  create_table "route_reviews", force: true do |t|
+    t.integer  "route_id"
+    t.text     "comment"
+    t.integer  "user_id"
+    t.integer  "safety_rating"
+    t.integer  "difficulty_rating"
+    t.integer  "environment_rating"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "routes", force: true do |t|
     t.integer  "created_by"
