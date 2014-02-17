@@ -61,6 +61,22 @@ ActiveRecord::Schema.define(version: 20140217140425) do
     t.datetime "updated_at"
   end
 
+  create_table "route_points", force: true do |t|
+    t.integer  "route_id"
+    t.float    "lat"
+    t.float    "long"
+    t.integer  "preceding_route_point_id"
+    t.integer  "next_route_point_id"
+    t.float    "altitude"
+    t.float    "incline"
+    t.integer  "time_from_preceding"
+    t.boolean  "on_road"
+    t.string   "street_name"
+    t.string   "street_postcode"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "route_reviews", force: true do |t|
     t.integer  "route_id"
     t.text     "comment"
