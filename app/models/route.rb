@@ -46,10 +46,10 @@ class Route < ActiveRecord::Base
 	end
 
 	def review(review_data) #TODO check review exists
-		review = Review.create do |review_instance|
+		review = RouteReview.create do |review_instance|
 			review_instance.safety_rating = review_data[:safety_rating]
 			review_instance.difficulty_rating = review_data[:difficulty_rating]
-			review_instance.environmental_rating = review_data[:environmental_rating]
+			review_instance.environment_rating = review_data[:environment_rating]
 			review_instance.comment = review_data[:comment]
 		end
 		self.reviews << review
