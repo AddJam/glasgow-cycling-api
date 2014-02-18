@@ -46,7 +46,7 @@ gem 'pg', '~> 0.17.1'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-# Users
+# Users + Auth
 gem 'devise'
 
 # Development

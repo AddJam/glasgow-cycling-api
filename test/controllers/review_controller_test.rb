@@ -1,6 +1,29 @@
 require 'test_helper'
 
 class ReviewControllerTest < ActionController::TestCase
+  def setup
+    sign_in User.first
+    Rails.logger.info "User #{User.first.inspect}"
+  end
+
+  test "can't create review when logged out" do
+    sign_out User.first
+
+    route = Route.first
+    review = {
+      safety_rating: 5,
+      difficulty_rating: 3,
+      environment_rating: 4,
+      comment: "Great route, A+++++"
+    }
+
+    review_count = route.reviews.count
+    post :create, format: :json, route_id: route.id, review: review
+
+    # Shouldn't work for unauthenticated request
+    assert_response :unauthorized
+  end
+
   test "should create review" do
     route = Route.first
     review = {

@@ -1,6 +1,31 @@
 require 'test_helper'
 
 class RouteControllerTest < ActionController::TestCase
+  def setup
+    sign_in User.first
+  end
+
+  test "can't record route when logged out" do
+    sign_out User.first
+
+    points = [
+      {
+      lat: (rand * 100),
+      long: (rand * 50),
+      altitude: (rand * 500),
+      time: Time.now.to_i
+      },
+      {
+        lat: (rand * 100),
+        long: (rand * 50),
+        altitude: (rand * 500),
+        time: Time.now.to_i
+      }
+    ]
+    post :record, format: :json, points: points
+    assert_response :unauthorized
+  end
+
   test "should fail to record route with no params" do
     post :record
     assert_response :bad_request
