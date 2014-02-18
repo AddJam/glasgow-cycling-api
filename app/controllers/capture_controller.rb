@@ -1,8 +1,15 @@
 class CaptureController < ApplicationController
   def route
-  	return unless params[:points] # TODO bad status code
-  	route = Route.record(params[:points])
-  	render json: {route_id: route.id}
+  	unless params[:points]
+      render status: :bad_request
+    else
+      route = Route.record(params[:points])
+      if route
+        render json: {route_id: route.id}
+      else
+        render status: :internal_server_error
+      end
+    end
   end
 
   def review #TODO check save

@@ -36,13 +36,16 @@ class Route < ActiveRecord::Base
 				rp.lat = point[:lat]
 				rp.long = point[:long]
 				rp.altitude = point[:altitude]
-				rp.time = point[:time]
+				rp.time = Time.at(point[:time].to_i)
 			end
 			route.points << route_point
 		end
-		route.save
 
-		route
+		if route.save
+			return route
+		else
+			return nil
+		end
 	end
 
 	def review(review_data) #TODO check review exists

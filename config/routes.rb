@@ -1,5 +1,5 @@
 JourneyAPI::Application.routes.draw do
-  get "capture/route"
+  post "capture/route"
   get "capture/review"
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
