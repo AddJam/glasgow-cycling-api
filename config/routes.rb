@@ -1,6 +1,17 @@
 JourneyAPI::Application.routes.draw do
-  post "capture/route"
-  get "capture/review"
+  # Reviews
+  get "/reviews", to: "review#all", as: 'all_reviews'
+  get "/reviews/:id", to: "review#find", as: 'find_review'
+  post "/reviews", to: "review#create", as: 'create_review'
+  delete "/reviews/:id", to: "review#delete", as: 'delete_review'
+  put "/reviews/:id", to: "review#edit", as: 'edit_review'
+
+  # Routes
+  get "/routes", to: "route#all", as: 'all_routes'
+  get "/routes/:id", to: "route#find", as: 'find_routes'
+  post "/routes", to: "route#record", as: 'record_route'
+  get "/routes/nearby", to: "route#nearby", as: 'nearby_routes'
+
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
