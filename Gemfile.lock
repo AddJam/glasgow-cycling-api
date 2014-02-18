@@ -72,6 +72,9 @@ GEM
       minitest (>= 3.0)
     guard-rails (0.5.0)
       guard (>= 2.0.0)
+    guard-zeus (2.0.0)
+      guard (~> 2.0)
+      zeus (~> 0)
     hike (1.2.3)
     i18n (0.6.9)
     jbuilder (1.5.3)
@@ -160,6 +163,8 @@ GEM
       json (>= 1.8.0)
     warden (1.2.3)
       rack (>= 1.0)
+    zeus (0.13.3)
+      method_source (>= 0.6.7)
 
 PLATFORMS
   ruby
@@ -173,6 +178,7 @@ DEPENDENCIES
   guard
   guard-minitest
   guard-rails
+  guard-zeus
   jbuilder (~> 1.2)
   jquery-rails
   pg (~> 0.17.1)

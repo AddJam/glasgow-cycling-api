@@ -60,4 +60,5 @@ group :development do
 	gem 'guard-rails' # Auto restart rails
 	gem 'guard-minitest' # Auto test
 	gem 'terminal-notifier-guard'
+	gem 'guard-zeus'
 end
