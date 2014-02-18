@@ -54,4 +54,10 @@ group :development do
 	gem 'better_errors'
 	gem 'binding_of_caller'
 	gem 'annotate', ">=2.6.0"
+
+	# Automation
+	gem 'guard'
+	gem 'guard-rails' # Auto restart rails
+	gem 'guard-minitest' # Auto test
+	gem 'terminal-notifier-guard'
 end
