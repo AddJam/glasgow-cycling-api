@@ -49,6 +49,9 @@ class Route < ActiveRecord::Base
 	end
 
 	def review(review_data) #TODO check review exists
+		return unless review_data[:safety_rating] and review_data[:difficulty_rating] and
+			review_data[:environment_rating] and review_data[:comment]
+
 		review = RouteReview.create do |review_instance|
 			review_instance.safety_rating = review_data[:safety_rating]
 			review_instance.difficulty_rating = review_data[:difficulty_rating]
