@@ -56,6 +56,10 @@ class Route < ActiveRecord::Base
 			review_instance.comment = review_data[:comment]
 		end
 		self.reviews << review
-		self.save
+		if self.save
+			return review
+		else
+			return nil
+		end
 	end
 end
