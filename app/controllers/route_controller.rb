@@ -8,7 +8,14 @@ class RouteController < ApplicationController
 		unless params[:points]
 			render status: :bad_request
 		else
-			route = Route.record(current_user, params[:points])
+			if params[:original_route_id]
+				original_route = Route.where(id: params[:original_route_id]).first
+				if original_route
+					route = original_route.record_use(current_user, params[:points])
+				end
+			else
+				route = Route.record(current_user, params[:points])
+			end
 			if route
 				render json: {route_id: route.id}
 			else
