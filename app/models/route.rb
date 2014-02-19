@@ -32,7 +32,7 @@ class Route < ActiveRecord::Base
 	has_many :points, :foreign_key => 'route_id', :class_name => "RoutePoint"
 	belongs_to :user
 	has_many :uses, :foreign_key => 'route_id', :class_name => "Route"
-	belongs_to :original, :class_name => "Route"
+	belongs_to :original, :foreign_key => 'route_id', :class_name => "Route"
 
 	def self.record(user, points)
 		return if points.blank? or user.blank?
@@ -58,9 +58,21 @@ class Route < ActiveRecord::Base
 		route.total_time = route.end_time - route.start_time
 
 		if route.save
-			return route
+			route
 		else
-			return nil
+			nil
+		end
+	end
+
+	def record_use(user, points)
+		route_use = Route.record(user, points)
+		Rails.logger.info "Route_use #{route_use}"
+		route_use.route_id = self.id
+		Rails.logger.info "original #{route_use.original}"
+		if route_use.save
+			route_use
+		else
+			nil
 		end
 	end
 
@@ -76,9 +88,9 @@ class Route < ActiveRecord::Base
 		end
 		self.reviews << review
 		if self.save
-			return review
+			review
 		else
-			return nil
+			nil
 		end
 	end
 end

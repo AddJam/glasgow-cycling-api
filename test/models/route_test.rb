@@ -21,7 +21,7 @@ class RouteTest < ActiveSupport::TestCase
   	route = Route.record(User.first, points)
 
   	assert_not_nil route, "Route created by record"
-    assert_equal route.points.count, points.count, "all points recorded in route"
+    assert_equal route.points.count, points.count, "all points should be recorded in route"
   end
 
   test "recording a route should add it to the users routes" do
@@ -37,5 +37,20 @@ class RouteTest < ActiveSupport::TestCase
     route = Route.record(user, points)
     total_time_seconds = points.last[:time] - points.first[:time]
     assert_equal total_time_seconds, route.total_time, "store route time in user history"
+  end
+
+  test "can add route use to existing route" do
+    user = User.first
+    points = route_points
+    original = Route.record(user, points)
+    points = route_points
+    route_use = original.record_use(user, points)
+
+    assert_not_nil route_use, "route should exist"
+    assert_equal route_use.points.count, points.count, "all points should be recorded in route"
+    assert_equal original, route_use.original, "original route should be set on route use"
+
+    second_use = original.record_use(user, points)
+    assert_equal original.uses.count, 2, "all uses should be stored against original route"
   end
 end
