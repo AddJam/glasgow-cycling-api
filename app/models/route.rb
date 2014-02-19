@@ -66,9 +66,7 @@ class Route < ActiveRecord::Base
 
 	def record_use(user, points)
 		route_use = Route.record(user, points)
-		Rails.logger.info "Route_use #{route_use}"
 		route_use.route_id = self.id
-		Rails.logger.info "original #{route_use.original}"
 		if route_use.save
 			route_use
 		else
