@@ -35,6 +35,31 @@ class User < ActiveRecord::Base
   has_many :user_routes
   has_many :routes, through: :user_routes
 
+  validates :email, presence: true, uniqueness: true
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :dob, presence: true
+  validates :gender, presence: true
+
+  def self.register(user_data)
+  	return unless user_data['password']
+  	user = User.new
+		user.email = user_data['email']
+		user.password = user_data['password']
+		user.first_name = user_data['first_name']
+		user.last_name = user_data['last_name']
+		user.dob = user_data['dob']
+		user.gender = user_data['gender']
+		user.profile_picture = user_data['profile_picture']
+
+  	if user.save
+  		Rails.logger.debug "Stored user #{user.inspect}"
+  		return user
+  	else
+  		Rails.logger.debug "Didn't store user #{user.inspect}"
+  		return nil
+  	end
+  end
 
   def ensure_authentication_token
   	Rails.logger.info "Creating auth token"
@@ -50,5 +75,8 @@ class User < ActiveRecord::Base
       token = Devise.friendly_token
       break token unless User.where(authentication_token: token).first
     end
+  end
+
+  def user_params
   end
 end

@@ -1,4 +1,8 @@
 JourneyAPI::Application.routes.draw do
+  # User
+  post "/signup", to: "user#signup", as: 'signup'
+  get "/signin", to: "user#signin", as: 'signin'
+
   # Reviews
   get "/reviews", to: "review#all", as: 'all_reviews'
   get "/reviews/:id", to: "review#find", as: 'find_review'
