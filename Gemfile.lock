@@ -61,6 +61,7 @@ GEM
     execjs (2.0.2)
     ffi (1.9.3)
     formatador (0.2.4)
+    geocoder (1.1.9)
     guard (2.4.0)
       formatador (>= 0.2.4)
       listen (~> 2.1)
@@ -175,6 +176,7 @@ DEPENDENCIES
   binding_of_caller
   coffee-rails (~> 4.0.0)
   devise
+  geocoder
   guard
   guard-minitest
   guard-rails

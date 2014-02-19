@@ -49,6 +49,9 @@ gem 'pg', '~> 0.17.1'
 # Users + Auth
 gem 'devise'
 
+#Geocoding
+gem 'geocoder'
+
 # Development
 group :development do
 	gem 'better_errors'
