@@ -57,6 +57,10 @@ class Route < ActiveRecord::Base
 		route.end_time = route.points.last.time
 		route.total_time = route.end_time - route.start_time
 
+		route.points.first.is_important = true
+		route.points.last.is_important = true
+
+
 		if route.save
 			route
 		else
@@ -91,4 +95,10 @@ class Route < ActiveRecord::Base
 			nil
 		end
 	end
+
+	def nameroute ()
+		return nil
+	end
+
 end
+

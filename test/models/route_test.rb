@@ -53,4 +53,5 @@ class RouteTest < ActiveSupport::TestCase
     second_use = original.record_use(user, points)
     assert_equal original.uses.count, 2, "all uses should be stored against original route"
   end
+
 end
