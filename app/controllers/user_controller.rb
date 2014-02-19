@@ -24,4 +24,8 @@ class UserController < ApplicationController
   		render status: :unauthorized
   	end
   end
+
+  def save_responses
+
+  end
 end

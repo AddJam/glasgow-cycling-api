@@ -1,4 +1,4 @@
-# == Schema Information
+	# == Schema Information
 #
 # Table name: route_points
 #
@@ -15,8 +15,24 @@
 #  created_at               :datetime
 #  updated_at               :datetime
 #  time                     :datetime
+#  is_important             :boolean
 #
 
 class RoutePoint < ActiveRecord::Base
 	belongs_to :route
+
+	reverse_geocoded_by :lat, :long do |obj, results|
+		if geo = results.first
+			Rails.logger.info "geo #{geo.inspect}"
+			obj.street_name = geo.data['address']['road']
+		end
+	end
+
+	after_validation :get_street
+
+	def get_street
+		unless street_name
+			reverse_geocode if is_important
+		end
+	end
 end

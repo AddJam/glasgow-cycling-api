@@ -49,6 +49,11 @@ gem 'pg', '~> 0.17.1'
 # Users + Auth
 gem 'devise'
 
+#Geocoding
+gem 'geocoder'
+gem 'redis' #cache
+
+# Development
 group :development do
 	gem 'better_errors'
 	gem 'binding_of_caller'
@@ -62,6 +67,7 @@ group :development do
 	gem 'guard-zeus' # Faster start times
 end
 
+# Test
 group :test do
 	gem "factory_girl_rails", "~> 4.0"
 	gem "stepford"

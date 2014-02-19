@@ -69,4 +69,8 @@ class UserControllerTest < ActionController::TestCase
 
 		assert_equal user.authentication_token, user_token, "auth token returned by signin should be for the signed in user"
 	end
+
+	test "valid users responses stored correctly" do
+
+	end
 end
