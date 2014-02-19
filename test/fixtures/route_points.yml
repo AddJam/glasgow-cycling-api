@@ -29,7 +29,6 @@ one:
   time: <%= 5.days.ago.to_s(:db) %>
   on_road: false
   street_name: MyString
-  street_postcode: MyString
 
 two:
   route_id: 1
@@ -41,4 +40,3 @@ two:
   time: <%= 5.days.ago.to_s(:db) %>
   on_road: false
   street_name: MyString
-  street_postcode: MyString

@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20140219143139) do
-=======
 ActiveRecord::Schema.define(version: 20140219160251) do
->>>>>>> geocode
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
