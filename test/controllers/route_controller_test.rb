@@ -58,14 +58,30 @@ class RouteControllerTest < ActionController::TestCase
     assert_not_nil Route.where(id: route_id).first
   end
 
-  # test "should get retrieve" do
-  #   get :find
-  #   assert_response :success
-  # end
+  test "should record route use" do
+    points = [
+      {
+      lat: (rand * 100),
+      long: (rand * 50),
+      altitude: (rand * 500),
+      time: Time.now.to_i
+      },
+      {
+        lat: (rand * 100),
+        long: (rand * 50),
+        altitude: (rand * 500),
+        time: Time.now.to_i
+      }
+    ]
+    original = Route.first
+    post(:record, points: points, original_route_id: original.id)
+    assert_response :success
 
-  # test "should get nearby" do
-  #   get :nearby
-  #   assert_response :success
-  # end
+    route_data = JSON.parse response.body
+    route_id = route_data['route_id']
+    route_use = Route.where(id: route_id).first
+    assert_not_nil route_use, "route use should be created"
+    assert_equal original, route_use.original, "route use should have correct original route"
+  end
 
 end
