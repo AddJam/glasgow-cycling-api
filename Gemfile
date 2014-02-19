@@ -52,6 +52,8 @@ gem 'devise'
 #Geocoding
 gem 'geocoder'
 
+gem 'redis' #cache
+
 # Development
 group :development do
 	gem 'better_errors'

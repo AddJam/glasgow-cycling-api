@@ -11,7 +11,6 @@
 #  altitude                 :float
 #  on_road                  :boolean
 #  street_name              :string(255)
-#  street_postcode          :string(255)
 #  created_at               :datetime
 #  updated_at               :datetime
 #  time                     :datetime

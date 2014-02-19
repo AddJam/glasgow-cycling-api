@@ -19,4 +19,5 @@ class RouteTest < ActiveSupport::TestCase
   	assert_not_nil route, "Route created by record"
     assert_equal route.points.count, points.count, "All points recorded in route"
   end
+
 end

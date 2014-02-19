@@ -41,6 +41,9 @@ class Route < ActiveRecord::Base
 			route.points << route_point
 		end
 
+		route.points.first.is_important = true
+		route.points.last.is_important = true
+
 		if route.save
 			return route
 		else
@@ -66,7 +69,7 @@ class Route < ActiveRecord::Base
 		end
 	end
 
-	def nameroute (start_lat, start_long, end_lat, end_long)
+	def nameroute ()
 		return nil
 	end
 
