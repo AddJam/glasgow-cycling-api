@@ -14,7 +14,7 @@
 #  updated_at          :datetime
 #
 
-class UserRoutes < ActiveRecord::Base
+class UserRoute < ActiveRecord::Base
 	belongs_to :user
 	belongs_to :route
 end
