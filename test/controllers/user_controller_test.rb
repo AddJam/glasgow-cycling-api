@@ -34,13 +34,27 @@ class UserControllerTest < ActionController::TestCase
 		assert_response :error
 	end
 
-  # test "signin successful with correct details" do
-  #   get :signin
-  #   assert_response :success
-  # end
+	test "signin should return auth token" do
+		user = User.first
+		sign_in user
 
-  # test "signin unsuccessful with incorrect details" do
-  #   get :signin
-  #   assert_response :error
-  # end
+		get :signin
+		assert_response :success, "signin should be successful for logged in user"
+
+		json_response = JSON.parse response.body
+		assert_not_nil json_response, "json should be returned by signin"
+
+		auth_token = json_response['auth_token']
+		assert_not_nil auth_token, "auth token should be included in successful user signin response"
+
+		assert_equal user.authentication_token, auth_token, "auth token returned by signin should be for the signed in user"
+	end
+
+	test "signin should return unauthorized when unsuccessful" do
+		get :signin
+		assert_response :unauthorized
+	end
+
+	test "signin should work with auth_token and email provided" do
+	end
 end

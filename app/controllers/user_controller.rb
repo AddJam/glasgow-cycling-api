@@ -13,5 +13,10 @@ class UserController < ApplicationController
   end
 
   def signin
+  	if user_signed_in?
+  		render json: {auth_token: current_user.authentication_token}
+  	else
+  		render status: :unauthorized
+  	end
   end
 end
