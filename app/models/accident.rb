@@ -10,6 +10,8 @@
 #  casualities     :integer
 #  created_at      :datetime
 #  updated_at      :datetime
+#  lat             :float
+#  long            :float
 #
 
 class Accident < ActiveRecord::Base
