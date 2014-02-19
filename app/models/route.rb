@@ -65,4 +65,10 @@ class Route < ActiveRecord::Base
 			return nil
 		end
 	end
+
+	def nameroute (start_lat, start_long, end_lat, end_long)
+		return nil
+	end
+
 end
+

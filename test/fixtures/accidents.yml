@@ -10,6 +10,8 @@
 #  casualities     :integer
 #  created_at      :datetime
 #  updated_at      :datetime
+#  lat             :float
+#  long            :float
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

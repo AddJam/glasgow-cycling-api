@@ -15,6 +15,7 @@
 #  created_at               :datetime
 #  updated_at               :datetime
 #  time                     :datetime
+#  is_important             :boolean
 #
 
 class RoutePoint < ActiveRecord::Base
