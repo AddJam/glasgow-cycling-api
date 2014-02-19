@@ -49,7 +49,6 @@ gem 'pg', '~> 0.17.1'
 # Users + Auth
 gem 'devise'
 
-# Development
 group :development do
 	gem 'better_errors'
 	gem 'binding_of_caller'
@@ -60,5 +59,10 @@ group :development do
 	gem 'guard-rails' # Auto restart rails
 	gem 'guard-minitest' # Auto test
 	gem 'terminal-notifier-guard'
-	gem 'guard-zeus'
+	gem 'guard-zeus' # Faster start times
+end
+
+group :test do
+	gem "factory_girl_rails", "~> 4.0"
+	gem "stepford"
 end
