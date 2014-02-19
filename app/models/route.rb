@@ -27,9 +27,10 @@ class Route < ActiveRecord::Base
 	has_many :user_routes
 	has_many :users, through: :user_routes
 
-	def self.record(points)
-		return if points.blank?
+	def self.record(user, points)
+		return if points.blank? or user.blank?
 
+		# Create the route
 		route = Route.create name: "New Route" #TODO name properly
 		points.each do |point|
 			route_point = RoutePoint.create do |rp|
@@ -40,6 +41,10 @@ class Route < ActiveRecord::Base
 			end
 			route.points << route_point
 		end
+
+		# Associate with user
+		user.routes << route
+		route.users << user
 
 		if route.save
 			return route
