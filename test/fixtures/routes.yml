@@ -19,6 +19,12 @@
 #  end_picture_id        :integer
 #  created_at            :datetime
 #  updated_at            :datetime
+#  start_time            :datetime
+#  end_time              :datetime
+#  rating                :integer
+#  total_time            :integer
+#  route_id              :integer
+#  user_id               :integer
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

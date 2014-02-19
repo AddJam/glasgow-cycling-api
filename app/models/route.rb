@@ -19,13 +19,20 @@
 #  end_picture_id        :integer
 #  created_at            :datetime
 #  updated_at            :datetime
+#  start_time            :datetime
+#  end_time              :datetime
+#  rating                :integer
+#  total_time            :integer
+#  route_id              :integer
+#  user_id               :integer
 #
 
 class Route < ActiveRecord::Base
 	has_many :reviews, :foreign_key => 'route_id', :class_name => "RouteReview"
 	has_many :points, :foreign_key => 'route_id', :class_name => "RoutePoint"
-	has_many :user_routes
-	has_many :users, through: :user_routes
+	belongs_to :user
+	has_many :uses, :foreign_key => 'route_id', :class_name => "Route"
+	belongs_to :original, :class_name => "Route"
 
 	def self.record(user, points)
 		return if points.blank? or user.blank?
@@ -43,20 +50,12 @@ class Route < ActiveRecord::Base
 		end
 
 		# Associate with user
-		user_route = route.user_routes.create do |user_route|
-			user_route.user_id = user.id
-			user_route.route_id = route.id
-		end
+		user.routes << route
 
 		# Calculate user route data
-		total_time_seconds = 0
-		(0..route.points.length-2).each do |index|
-			route_point = route.points[index]
-			next_point = route.points[index+1]
-			time_diff_seconds = next_point.time - route_point.time
-			total_time_seconds += time_diff_seconds
-		end
-		user_route.captured_total_time = total_time_seconds
+		route.start_time = route.points.first.time
+		route.end_time = route.points.last.time
+		route.total_time = route.end_time - route.start_time
 
 		if route.save
 			return route

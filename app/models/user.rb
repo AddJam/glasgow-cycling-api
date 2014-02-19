@@ -32,8 +32,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :route_reviews
-  has_many :user_routes
-  has_many :routes, through: :user_routes
+  has_many :routes
 
   validates :email, presence: true, uniqueness: true
   validates :first_name, presence: true
