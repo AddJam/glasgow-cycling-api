@@ -50,9 +50,9 @@ FactoryGirl.define do
 
   factory :route do
     # after(:create) do |user, evaluator|; FactoryGirl.create_list :route, 2; end # commented to avoid circular reference
-    after(:create) do |user, evaluator|; FactoryGirl.create_list :route_point, 2; end # commented to avoid circular reference
-    after(:create) do |user, evaluator|; FactoryGirl.create_list :route_review, 2; end # commented to avoid circular reference
-    association :original, factory: :route
+    # after(:create) do |user, evaluator|; FactoryGirl.create_list :route_point, 2; end # commented to avoid circular reference
+    # after(:create) do |user, evaluator|; FactoryGirl.create_list :route_review, 2; end # commented to avoid circular reference
+    # association :original, factory: :route
     user
     sequence(:id)
     created_by 123
@@ -100,12 +100,13 @@ FactoryGirl.define do
   end
 
   factory :user do
-    after(:create) do |user, evaluator|; FactoryGirl.create_list :route, 2; end # commented to avoid circular reference
-    after(:create) do |user, evaluator|; FactoryGirl.create_list :route_review, 2; end # commented to avoid circular reference
+    # after(:create) do |user, evaluator|; FactoryGirl.create_list :route, 2; end # commented to avoid circular reference
+    # after(:create) do |user, evaluator|; FactoryGirl.create_list :route_review, 2; end # commented to avoid circular reference
     sequence(:id)
     sequence(:email) do |n|; "person#{n}@example.com"; end
-    encrypted_password ''
-    reset_password_token 'Test Reset Password Token'
+    password 'blasfasf'
+    encrypted_password 'sadjasdasjkdaksldjaslkdjaslkdajslaksd'
+    sequence(:reset_password_token)
     reset_password_sent_at { 2.weeks.ago }
     remember_created_at { 2.weeks.ago }
     sign_in_count 0
@@ -118,7 +119,7 @@ FactoryGirl.define do
     profile_picture 'Test Profile Picture'
     gender 123
     dob { 2.weeks.ago }
-    authentication_token 'Test Authentication Token'
+    sequence(:authentication_token)
   end
 
   factory :user_response do
