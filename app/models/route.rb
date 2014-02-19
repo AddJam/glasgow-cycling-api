@@ -43,8 +43,20 @@ class Route < ActiveRecord::Base
 		end
 
 		# Associate with user
-		user.routes << route
-		route.users << user
+		user_route = route.user_routes.create do |user_route|
+			user_route.user_id = user.id
+			user_route.route_id = route.id
+		end
+
+		# Calculate user route data
+		total_time_seconds = 0
+		(0..route.points.length-2).each do |index|
+			route_point = route.points[index]
+			next_point = route.points[index+1]
+			time_diff_seconds = next_point.time - route_point.time
+			total_time_seconds += time_diff_seconds
+		end
+		user_route.captured_total_time = total_time_seconds
 
 		if route.save
 			return route
