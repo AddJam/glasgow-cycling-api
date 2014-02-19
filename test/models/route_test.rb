@@ -27,7 +27,9 @@ class RouteTest < ActiveSupport::TestCase
   test "recording a route should add it to the user route log" do
     user = User.first
     route = Route.record(user, route_points)
-    assert user.routes.include? route, "route should be added to user routes after recording"
-    assert route.users.include? user, "user should be added to route users after recording"
+    route_added_to_user = user.routes.include? route
+    user_added_to_route = route.users.include? user
+    assert route_added_to_user, "route should be added to user routes after recording"
+    assert user_added_to_route, "user should be added to route users after recording"
   end
 end
