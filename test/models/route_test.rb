@@ -4,7 +4,7 @@ class RouteTest < ActiveSupport::TestCase
   def route_points
     points = []
     num_points = 3
-    (0..num_points).each do
+    (0..num_points-1).each do
       point = {
         lat: (rand * 100),
         long: (rand * 50),
@@ -52,6 +52,22 @@ class RouteTest < ActiveSupport::TestCase
 
     second_use = original.record_use(user, points)
     assert_equal original.uses.count, 2, "all uses should be stored against original route"
+  end
+
+
+  test "distance calculated correctly" do
+    user = User.first
+    points = route_points
+    points[0][:lat] = 0.0
+    points[0][:long] = 0.0
+    points[1][:lat] = 1.0
+    points[1][:long] = 1.0
+    points[2][:lat] = 2.0
+    points[2][:long] = 2.0
+    expected_distance = 314.4748133100169
+    route = Route.record(user, points)
+    assert_not_nil route.distance, "recorded route should have a distance"
+    assert_equal expected_distance, route.distance, "route distance should be"
   end
 
 end
