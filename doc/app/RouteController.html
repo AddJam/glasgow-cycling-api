@@ -134,7 +134,7 @@
 
           
           <div class="method-source-code" id="all-source">
-            <pre><span class="ruby-comment"># File app/controllers/route_controller.rb, line 30</span>
+            <pre><span class="ruby-comment"># File app/controllers/route_controller.rb, line 55</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">all</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -166,7 +166,7 @@
 
           
           <div class="method-source-code" id="find-source">
-            <pre><span class="ruby-comment"># File app/controllers/route_controller.rb, line 27</span>
+            <pre><span class="ruby-comment"># File app/controllers/route_controller.rb, line 52</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">find</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -198,7 +198,7 @@
 
           
           <div class="method-source-code" id="nearby-source">
-            <pre><span class="ruby-comment"># File app/controllers/route_controller.rb, line 33</span>
+            <pre><span class="ruby-comment"># File app/controllers/route_controller.rb, line 58</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">nearby</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -224,13 +224,50 @@
 
         <div class="method-description">
           
-          
+          <p><strong>POST</strong> /routes</p>
+
+<p>Records a route for the logged in user</p>
+
+<p><strong>Requires:</strong> logged in user (provide <code>user_email</code>
+and <code>user_token</code> parameters)</p>
+
+<h4 id="method-i-record-label-Parameters">Parameters<span><a href="#method-i-record-label-Parameters">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
+<dl class="rdoc-list label-list"><dt><code>points</code>
+<dd>
+<p>Required. A JSON array containing points. Each point contains data for a
+point in the route.</p>
+</dd><dt><code>original_route_id</code>
+<dd>
+<p>Optional. The route which this route recording is based upon.</p>
+</dd></dl>
+
+<h6 id="method-i-record-label-Point+example">Point example<span><a href="#method-i-record-label-Point+example">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<p>Each element in the points parameter array should be constructed as follows</p>
+
+<pre>{
+  lat: 55.5,
+  long: -4.29,
+  altitude: 150,
+  time: 1392894545
+}</pre>
+
+<p><code>time</code> is the current unix timestamp and <code>altitude</code>
+is in metres.</p>
+
+<h4 id="method-i-record-label-Returns">Returns<span><a href="#method-i-record-label-Returns">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
+
+<p>The ID of the route that was stored</p>
+
+<pre>{
+  route_id: 10
+}</pre>
           
           
 
           
           <div class="method-source-code" id="record-source">
-            <pre><span class="ruby-comment"># File app/controllers/route_controller.rb, line 7</span>
+            <pre><span class="ruby-comment"># File app/controllers/route_controller.rb, line 32</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">record</span>
         <span class="ruby-keyword">unless</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:points</span>]
                 <span class="ruby-identifier">render</span> <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:bad_request</span>

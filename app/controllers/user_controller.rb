@@ -8,7 +8,7 @@ class UserController < ApplicationController
   #
   # Registers a new user based on the given details.
   #
-  # === Parameters
+  # ==== Parameters
   # +user+ - JSON object containing user details to be registered. See example for all fields.
   # +user.email+:: must be an unregistered email address
   # +user.password+:: must be at least 8 characters long
@@ -18,7 +18,7 @@ class UserController < ApplicationController
   # +user.gender+:: Required. 0: female, 1: male, 2: not disclosed
   # +user.profile_picture+:: Optional. URL of profile picture
   #
-  # === Example +user+ object
+  # ==== Example +user+ object
   #  {
   #    email: 'user@email.com',
   #    password: 'user_password',
@@ -29,7 +29,7 @@ class UserController < ApplicationController
   #    profile_picture: 'http://example.com/example.jpg'
   #  }
   #
-  # === Returns
+  # ==== Returns
   # Successful registration:
   #  {
   #    user_token: 'authentication_token'
@@ -51,7 +51,7 @@ class UserController < ApplicationController
   #
   # Returns the authentication token for an existing user
   #
-  # === Parameters
+  # ==== Parameters
   # Takes a user email address and EITHER a password OR an authentication token.
   #
   # *Note:* If possible, the authentication token should always be used. This means that a user password
@@ -63,7 +63,7 @@ class UserController < ApplicationController
   # OR
   # [+user_token+] authentication token for a user
   #
-  # === Returns
+  # ==== Returns
   # Successful signin:
   #  {
   #    user_token: 'authentication_token'

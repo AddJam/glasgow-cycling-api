@@ -78,7 +78,7 @@ class Route < ActiveRecord::Base
 		end
 	end
 
-	def review(review_data) #TODO check review exists
+	def review(review_data)
 		return unless review_data[:safety_rating] and review_data[:difficulty_rating] and
 			review_data[:environment_rating] and review_data[:comment]
 

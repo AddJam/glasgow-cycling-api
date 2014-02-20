@@ -136,7 +136,7 @@
 
           
           <div class="method-source-code" id="all-source">
-            <pre><span class="ruby-comment"># File app/controllers/review_controller.rb, line 26</span>
+            <pre><span class="ruby-comment"># File app/controllers/review_controller.rb, line 45</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">all</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -162,13 +162,47 @@
 
         <div class="method-description">
           
-          
+          <p><strong>POST</strong> /reviews</p>
+
+<p>Records a review of a route for the logged in user.</p>
+
+<p><strong>Requires:</strong> logged in user (provide <code>user_email</code>
+and <code>user_token</code> parameters)</p>
+
+<h4 id="method-i-create-label-Parameters">Parameters<span><a href="#method-i-create-label-Parameters">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
+<dl class="rdoc-list label-list"><dt><code>review</code>
+<dd>
+<p>JSON object containing review details</p>
+</dd><dt><code>review.safety_rating</code>
+<dd>
+<p>Integer, 1-5, rating of the route safety</p>
+</dd><dt><code>review.difficulty_rating</code>
+<dd>
+<p>Integer, 1-5, rating of the route difficulty</p>
+</dd><dt><code>review.environment_rating</code>
+<dd>
+<p>Integer, 1-5, rating of the route environment</p>
+</dd><dt><code>review.comment</code>
+<dd>
+<p>String, comment user has made with the review</p>
+</dd><dt><code>route_id</code>
+<dd>
+<p>Integer. The ID of the route being reviewed</p>
+</dd></dl>
+
+<h4 id="method-i-create-label-Returns">Returns<span><a href="#method-i-create-label-Returns">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
+
+<p>The ID of the review which was saved</p>
+
+<pre>{
+  review_id: 10
+}</pre>
           
           
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/review_controller.rb, line 7</span>
+            <pre><span class="ruby-comment"># File app/controllers/review_controller.rb, line 26</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-identifier">review</span>  = <span class="ruby-identifier">params</span>[<span class="ruby-value">:review</span>]
   <span class="ruby-identifier">route_id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:route_id</span>]
@@ -213,7 +247,7 @@
 
           
           <div class="method-source-code" id="delete-source">
-            <pre><span class="ruby-comment"># File app/controllers/review_controller.rb, line 29</span>
+            <pre><span class="ruby-comment"># File app/controllers/review_controller.rb, line 48</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">delete</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -245,7 +279,7 @@
 
           
           <div class="method-source-code" id="edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/review_controller.rb, line 32</span>
+            <pre><span class="ruby-comment"># File app/controllers/review_controller.rb, line 51</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -277,7 +311,7 @@
 
           
           <div class="method-source-code" id="find-source">
-            <pre><span class="ruby-comment"># File app/controllers/review_controller.rb, line 23</span>
+            <pre><span class="ruby-comment"># File app/controllers/review_controller.rb, line 42</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">find</span>
 <span class="ruby-keyword">end</span></pre>
           </div>

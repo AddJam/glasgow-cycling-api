@@ -306,7 +306,7 @@ user_id               :integer</pre>
           
           <div class="method-source-code" id="review-source">
             <pre><span class="ruby-comment"># File app/models/route.rb, line 81</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">review</span>(<span class="ruby-identifier">review_data</span>) <span class="ruby-comment">#TODO check review exists</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">review</span>(<span class="ruby-identifier">review_data</span>)
         <span class="ruby-keyword">return</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">review_data</span>[<span class="ruby-value">:safety_rating</span>] <span class="ruby-keyword">and</span> <span class="ruby-identifier">review_data</span>[<span class="ruby-value">:difficulty_rating</span>] <span class="ruby-keyword">and</span>
                 <span class="ruby-identifier">review_data</span>[<span class="ruby-value">:environment_rating</span>] <span class="ruby-keyword">and</span> <span class="ruby-identifier">review_data</span>[<span class="ruby-value">:comment</span>]
 
