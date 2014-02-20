@@ -77,6 +77,14 @@ class UserController < ApplicationController
   end
 
   def save_responses
-
+    unless params[:responses] and params[:user_id]
+      render status: :bad_request
+    else
+      response = UserResponse.store(:responses, :user_id)
+      if response
+        render status: :success
+      else
+        render status: :internal_server_error
+    end
   end
 end

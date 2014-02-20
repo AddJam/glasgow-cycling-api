@@ -12,4 +12,19 @@
 #
 
 class UserResponse < ActiveRecord::Base
+
+	belongs_to :user
+
+	def self.store(responses, user_id)
+		response = UserResponse.new
+
+		response.user_id = user_id
+		response.usage_per_week = responses['usage_per_week']
+		response.usage_type = responses['usage_type']
+		response.usage_reason = response['usage_reason']
+
+		response.save
+
+		return response
+	end
 end
