@@ -96,9 +96,5 @@ class Route < ActiveRecord::Base
 		end
 	end
 
-	def nameroute ()
-		return nil
-	end
-
 end
 
