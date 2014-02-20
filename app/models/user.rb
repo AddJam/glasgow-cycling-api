@@ -41,6 +41,13 @@ class User < ActiveRecord::Base
   validates :dob, presence: true
   validates :gender, presence: true
 
+  # Registers a new user with the provided details
+  #
+  # ==== Parameters
+  # [+user_data+] Details of the user to be created
+  #
+  # ==== Returns
+  # The user which was registered, or nil if no user could be registered.
   def self.register(user_data)
   	return unless user_data['password']
   	user = User.new
@@ -61,14 +68,14 @@ class User < ActiveRecord::Base
   	end
   end
 
+  private
+
   def ensure_authentication_token
-  	Rails.logger.info "Creating auth token"
+    Rails.logger.info "Creating auth token"
     if authentication_token.blank?
       self.authentication_token = generate_authentication_token
     end
   end
-
-  private
 
   def generate_authentication_token
     loop do

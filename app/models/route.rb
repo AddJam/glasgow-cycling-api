@@ -34,6 +34,14 @@ class Route < ActiveRecord::Base
 	has_many :uses, :foreign_key => 'route_id', :class_name => "Route"
 	belongs_to :original, :foreign_key => 'route_id', :class_name => "Route"
 
+	# Records a new route for the given user
+	#
+	# ==== Parameters
+	# [+user+] the user who the route is being recorded against
+	# [+points+] an array of points to be created as RoutePoints
+	#
+	# ==== Returns
+	# The recorded route
 	def self.record(user, points)
 		return if points.blank? or user.blank?
 
@@ -68,6 +76,17 @@ class Route < ActiveRecord::Base
 		end
 	end
 
+	# Records a new route for the given user, with the route being called upon
+	# being the original.
+	#
+	#  original_route.record_use(user, points)
+	#
+	# ==== Parameters
+	# [+user+] the user who the route is being recorded against
+	# [+points+] an array of points to be created as RoutePoints
+	#
+	# ==== Returns
+	# The recorded route, a child of the original route.
 	def record_use(user, points)
 		route_use = Route.record(user, points)
 		route_use.route_id = self.id
@@ -78,7 +97,14 @@ class Route < ActiveRecord::Base
 		end
 	end
 
-	def review(review_data) #TODO check review exists
+	# Records a new review against the route and the provided user
+	#
+	# ==== Parameters
+	# [+review_data+] data needed to create the review
+	#
+	# ==== Returns
+	# The recorded review
+	def review(review_data)
 		return unless review_data[:safety_rating] and review_data[:difficulty_rating] and
 			review_data[:environment_rating] and review_data[:comment]
 
@@ -94,10 +120,6 @@ class Route < ActiveRecord::Base
 		else
 			nil
 		end
-	end
-
-	def nameroute ()
-		return nil
 	end
 
 end

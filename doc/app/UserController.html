@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="utf-8">
+
+<title>class UserController - Rails Application Documentation</title>
+
+<link href="./fonts.css" rel="stylesheet">
+<link href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/navigation.js"></script>
+<script src="./js/search_index.js"></script>
+<script src="./js/search.js"></script>
+<script src="./js/searcher.js"></script>
+<script src="./js/darkfish.js"></script>
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="ApplicationController.html">ApplicationController</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-save_responses">#save_responses</a>
+    
+    <li ><a href="#method-i-signin">#signin</a>
+    
+    <li ><a href="#method-i-signup">#signup</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-UserController">
+  <h1 id="class-UserController" class="class">
+    class UserController
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-save_responses" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">save_responses</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="save_responses-source">
+            <pre><span class="ruby-comment"># File app/controllers/user_controller.rb, line 79</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">save_responses</span>
+
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-signin" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">signin</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p><strong>GET</strong> /signin</p>
+
+<p>Returns the authentication token for an existing user</p>
+
+<h4 id="method-i-signin-label-Parameters">Parameters<span><a href="#method-i-signin-label-Parameters">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
+
+<p>Takes a user email address and EITHER a password OR an authentication
+token.</p>
+
+<p><strong>Note:</strong> If possible, the authentication token should always
+be used. This means that a user password should not have to be stored by
+the client.</p>
+<dl class="rdoc-list label-list"><dt><code>user_email</code>
+<dd>
+<p>Email address of a user.</p>
+</dd></dl>
+
+<p>AND</p>
+<dl class="rdoc-list label-list"><dt><code>user_password</code>
+<dd>
+<p>password of a user</p>
+</dd></dl>
+
+<p>OR</p>
+<dl class="rdoc-list label-list"><dt><code>user_token</code>
+<dd>
+<p>authentication token for a user</p>
+</dd></dl>
+
+<h4 id="method-i-signin-label-Returns">Returns<span><a href="#method-i-signin-label-Returns">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
+
+<p>Successful signin:</p>
+
+<pre>{
+  user_token: &#39;authentication_token&#39;
+}</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="signin-source">
+            <pre><span class="ruby-comment"># File app/controllers/user_controller.rb, line 71</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">signin</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">user_signed_in?</span>
+              <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> {<span class="ruby-identifier">user_token</span><span class="ruby-operator">:</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">authentication_token</span>}
+      <span class="ruby-keyword">else</span>
+              <span class="ruby-identifier">render</span> <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:unauthorized</span>
+      <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-signup" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">signup</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p><strong>POST</strong> /signup</p>
+
+<p>Registers a new user based on the given details.</p>
+
+<h4 id="method-i-signup-label-Parameters">Parameters<span><a href="#method-i-signup-label-Parameters">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
+
+<p><code>user</code> - JSON object containing user details to be registered.
+See example for all fields.</p>
+<dl class="rdoc-list note-list"><dt><code>user.email</code>
+<dd>
+<p>must be an unregistered email address</p>
+</dd><dt><code>user.password</code>
+<dd>
+<p>must be at least 8 characters long</p>
+</dd><dt><code>user.first_name</code>
+<dd>
+<p>Required. String</p>
+</dd><dt><code>user.last_name</code>
+<dd>
+<p>Required. String</p>
+</dd><dt><code>user.dob</code>
+<dd>
+<p>Required. Unix timestamp</p>
+</dd><dt><code>user.gender</code>
+<dd>
+<p>Required. 0: female, 1: male, 2: not disclosed</p>
+</dd><dt><code>user.profile_picture</code>
+<dd>
+<p>Optional. URL of profile picture</p>
+</dd></dl>
+
+<h4 id="method-i-signup-label-Example+user+object">Example <code>user</code> object<span><a href="#method-i-signup-label-Example+user+object">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
+
+<pre>{
+  email: &#39;user@email.com&#39;,
+  password: &#39;user_password&#39;,
+  first_name: &#39;John&#39;,
+  last_name: &#39;Doe&#39;,
+  dob: 1392891658,
+  gender: 0,
+  profile_picture: &#39;http://example.com/example.jpg&#39;
+}</pre>
+
+<h4 id="method-i-signup-label-Returns">Returns<span><a href="#method-i-signup-label-Returns">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
+
+<p>Successful registration:</p>
+
+<pre>{
+  user_token: &#39;authentication_token&#39;
+}</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="signup-source">
+            <pre><span class="ruby-comment"># File app/controllers/user_controller.rb, line 37</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">signup</span>
+      <span class="ruby-keyword">unless</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:user</span>]
+              <span class="ruby-identifier">render</span> <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:bad_request</span>
+      <span class="ruby-keyword">else</span>
+              <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">register</span> <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:user</span>])
+              <span class="ruby-keyword">if</span> <span class="ruby-identifier">user</span>
+                      <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> {<span class="ruby-identifier">user_token</span><span class="ruby-operator">:</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">authentication_token</span>}
+              <span class="ruby-keyword">else</span>
+                      <span class="ruby-identifier">render</span> <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:internal_server_error</span>
+              <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

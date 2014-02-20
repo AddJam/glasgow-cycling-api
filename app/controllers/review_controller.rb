@@ -4,6 +4,25 @@ class ReviewController < ApplicationController
   # This is Devise's authentication
   before_filter :authenticate_user!
 
+  # *POST* /reviews
+  #
+  # Records a review of a route for the logged in user.
+  #
+  # *Requires:* logged in user (provide +user_email+ and +user_token+ parameters)
+  #
+  # ==== Parameters
+  # [+review+] JSON object containing review details
+  # [+review.safety_rating+] Integer, 1-5, rating of the route safety
+  # [+review.difficulty_rating+] Integer, 1-5, rating of the route difficulty
+  # [+review.environment_rating+] Integer, 1-5, rating of the route environment
+  # [+review.comment+] String, comment user has made with the review
+  #
+  # [+route_id+] Integer. The ID of the route being reviewed
+  # ==== Returns
+  # The ID of the review which was saved
+  #  {
+  #    review_id: 10
+  #  }
   def create
     review  = params[:review]
     route_id = params[:route_id]
