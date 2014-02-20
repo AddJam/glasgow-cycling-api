@@ -4,6 +4,8 @@ class UserController < ApplicationController
 	# This is Devise's authentication
 	before_filter :authenticate_user!, except: [:signup]
 
+  # *POST* /signup
+  #
   # Registers a new user based on the given details.
   #
   # === Parameters
@@ -45,6 +47,8 @@ class UserController < ApplicationController
   	end
   end
 
+  # *GET* /signin
+  #
   # Returns the authentication token for an existing user
   #
   # === Parameters

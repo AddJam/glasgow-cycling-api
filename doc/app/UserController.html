@@ -132,7 +132,7 @@
 
           
           <div class="method-source-code" id="save_responses-source">
-            <pre><span class="ruby-comment"># File app/controllers/user_controller.rb, line 75</span>
+            <pre><span class="ruby-comment"># File app/controllers/user_controller.rb, line 79</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">save_responses</span>
 
 <span class="ruby-keyword">end</span></pre>
@@ -159,7 +159,9 @@
 
         <div class="method-description">
           
-          <p>Returns the authentication token for an existing user</p>
+          <p><strong>GET</strong> /signin</p>
+
+<p>Returns the authentication token for an existing user</p>
 
 <h3 id="method-i-signin-label-Parameters">Parameters<span><a href="#method-i-signin-label-Parameters">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 
@@ -198,7 +200,7 @@ the client.</p>
 
           
           <div class="method-source-code" id="signin-source">
-            <pre><span class="ruby-comment"># File app/controllers/user_controller.rb, line 67</span>
+            <pre><span class="ruby-comment"># File app/controllers/user_controller.rb, line 71</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">signin</span>
       <span class="ruby-keyword">if</span> <span class="ruby-identifier">user_signed_in?</span>
               <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> {<span class="ruby-identifier">user_token</span><span class="ruby-operator">:</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">authentication_token</span>}
@@ -229,7 +231,9 @@ the client.</p>
 
         <div class="method-description">
           
-          <p>Registers a new user based on the given details.</p>
+          <p><strong>POST</strong> /signup</p>
+
+<p>Registers a new user based on the given details.</p>
 
 <h3 id="method-i-signup-label-Parameters">Parameters<span><a href="#method-i-signup-label-Parameters">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 
@@ -282,7 +286,7 @@ See example for all fields.</p>
 
           
           <div class="method-source-code" id="signup-source">
-            <pre><span class="ruby-comment"># File app/controllers/user_controller.rb, line 35</span>
+            <pre><span class="ruby-comment"># File app/controllers/user_controller.rb, line 37</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">signup</span>
       <span class="ruby-keyword">unless</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:user</span>]
               <span class="ruby-identifier">render</span> <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:bad_request</span>
