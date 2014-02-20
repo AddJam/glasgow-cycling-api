@@ -75,8 +75,6 @@
     
     <li ><a href="#method-c-record">::record</a>
     
-    <li ><a href="#method-i-nameroute">#nameroute</a>
-    
     <li ><a href="#method-i-record_use">#record_use</a>
     
     <li ><a href="#method-i-review">#review</a>
@@ -156,13 +154,26 @@ user_id               :integer</pre>
 
         <div class="method-description">
           
-          
+          <p>Records a new route for the given user</p>
+
+<h4 id="method-c-record-label-Parameters">Parameters<span><a href="#method-c-record-label-Parameters">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
+<dl class="rdoc-list label-list"><dt><code>user</code>
+<dd>
+<p>the user who the route is being recorded against</p>
+</dd><dt><code>points</code>
+<dd>
+<p>an array of points to be created as RoutePoints</p>
+</dd></dl>
+
+<h4 id="method-c-record-label-Returns">Returns<span><a href="#method-c-record-label-Returns">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
+
+<p>The recorded route</p>
           
           
 
           
           <div class="method-source-code" id="record-source">
-            <pre><span class="ruby-comment"># File app/models/route.rb, line 37</span>
+            <pre><span class="ruby-comment"># File app/models/route.rb, line 45</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">record</span>(<span class="ruby-identifier">user</span>, <span class="ruby-identifier">points</span>)
         <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">points</span>.<span class="ruby-identifier">blank?</span> <span class="ruby-keyword">or</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">blank?</span>
 
@@ -214,39 +225,6 @@ user_id               :integer</pre>
        </header>
 
     
-      <div id="method-i-nameroute" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">nameroute</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="nameroute-source">
-            <pre><span class="ruby-comment"># File app/models/route.rb, line 99</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">nameroute</span> ()
-        <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
       <div id="method-i-record_use" class="method-detail ">
         
         <div class="method-heading">
@@ -260,13 +238,29 @@ user_id               :integer</pre>
 
         <div class="method-description">
           
-          
+          <p>Records a new route for the given user, with the route being called upon
+being the original.</p>
+
+<pre>original_route.record_use(user, points)</pre>
+
+<h4 id="method-i-record_use-label-Parameters">Parameters<span><a href="#method-i-record_use-label-Parameters">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
+<dl class="rdoc-list label-list"><dt><code>user</code>
+<dd>
+<p>the user who the route is being recorded against</p>
+</dd><dt><code>points</code>
+<dd>
+<p>an array of points to be created as RoutePoints</p>
+</dd></dl>
+
+<h4 id="method-i-record_use-label-Returns">Returns<span><a href="#method-i-record_use-label-Returns">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
+
+<p>The recorded route, a child of the original route.</p>
           
           
 
           
           <div class="method-source-code" id="record_use-source">
-            <pre><span class="ruby-comment"># File app/models/route.rb, line 71</span>
+            <pre><span class="ruby-comment"># File app/models/route.rb, line 90</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">record_use</span>(<span class="ruby-identifier">user</span>, <span class="ruby-identifier">points</span>)
         <span class="ruby-identifier">route_use</span> = <span class="ruby-constant">Route</span>.<span class="ruby-identifier">record</span>(<span class="ruby-identifier">user</span>, <span class="ruby-identifier">points</span>)
         <span class="ruby-identifier">route_use</span>.<span class="ruby-identifier">route_id</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>
@@ -299,13 +293,23 @@ user_id               :integer</pre>
 
         <div class="method-description">
           
-          
+          <p>Records a new review against the route and the provided user</p>
+
+<h4 id="method-i-review-label-Parameters">Parameters<span><a href="#method-i-review-label-Parameters">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
+<dl class="rdoc-list label-list"><dt><code>review_data</code>
+<dd>
+<p>data needed to create the review</p>
+</dd></dl>
+
+<h4 id="method-i-review-label-Returns">Returns<span><a href="#method-i-review-label-Returns">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
+
+<p>The recorded review</p>
           
           
 
           
           <div class="method-source-code" id="review-source">
-            <pre><span class="ruby-comment"># File app/models/route.rb, line 81</span>
+            <pre><span class="ruby-comment"># File app/models/route.rb, line 107</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">review</span>(<span class="ruby-identifier">review_data</span>)
         <span class="ruby-keyword">return</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">review_data</span>[<span class="ruby-value">:safety_rating</span>] <span class="ruby-keyword">and</span> <span class="ruby-identifier">review_data</span>[<span class="ruby-value">:difficulty_rating</span>] <span class="ruby-keyword">and</span>
                 <span class="ruby-identifier">review_data</span>[<span class="ruby-value">:environment_rating</span>] <span class="ruby-keyword">and</span> <span class="ruby-identifier">review_data</span>[<span class="ruby-value">:comment</span>]
