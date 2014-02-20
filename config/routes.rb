@@ -12,10 +12,12 @@ JourneyAPI::Application.routes.draw do
   put "/reviews/:id", to: "review#edit", as: 'edit_review'
 
   # Routes
-  get "/routes", to: "route#all", as: 'all_routes'
+  get "/routes/summaries/:per_page/:page_num", to: "route#summaries", as: 'route_summaries'
+  get "/routes/users_summaries/:per_page/:page_num", to: "route#users_summaries", as: 'users_route_summaries'
   get "/routes/:id", to: "route#find", as: 'find_routes'
   post "/routes", to: "route#record", as: 'record_route'
   get "/routes/nearby", to: "route#nearby", as: 'nearby_routes'
+  get "/routes/user", to: "route#user", as: 'user_routes'
 
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.

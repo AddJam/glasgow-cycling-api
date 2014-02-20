@@ -68,6 +68,10 @@ class User < ActiveRecord::Base
   	end
   end
 
+  def is_accessible_by?(user)
+    true
+  end
+
   private
 
   def ensure_authentication_token

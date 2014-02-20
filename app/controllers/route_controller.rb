@@ -49,12 +49,171 @@ class RouteController < ApplicationController
 		end
 	end
 
+	# *GET* /routes/:id
+	#
+	# Returns route matching id parameter
+	#
+	# ==== Parameters
+	# [+id+] Required. +id+ of the route to find
+	#
+	# ==== Returns
+	# The route with +id+
+	#
+	#  {
+	#    route_details:
+  #      {
+  #        distance: 30,
+  #        safety_rating: 2,
+  #        created_by: "chirsasur",
+  #        name: "London Road to Hope Street"
+  #        difficulty_rating: 5,
+  #        start_picture: "http://placekitten.com/350/200"
+  #        end_picture: "http://placekitten.com/350/200"
+  #        estimate_time: 3232
+  #        last_used: 1392894545
+  #      }
+	#    points: [
+	#      {
+	#        lat: 55.5,
+	#        long: -4.29,
+	#        altitude: 150,
+	#        time: 1392894545
+	#      }
+  #    ]
+  #  }
 	def find
+
 	end
 
-	def all
+	# *GET* /routes/summaries/:per_page/:page_num
+	#
+	# Returns all routes
+	#
+	# ==== Parameters
+	# [+per_page+] items to appear per page
+	# [+page_num+] current page number
+	# ==== Returns
+	# All routes with +id+
+	#
+	#  {
+	#    route_details:[
+  #      {
+  #        distance: 30,
+  #        safety_rating: 2,
+  #        created_by: "chirsasur",
+  #        name: "London Road to Hope Street"
+  #        difficulty_rating: 5,
+  #        start_picture: "http://placekitten.com/350/200"
+  #        end_picture: "http://placekitten.com/350/200"
+  #        estimate_time: 3232
+  #        last_used: 1392894545
+  #      }
+  #    ]
+  #  }
+	def summaries
 	end
 
+	# *GET* /routes/user
+	#
+	# Returns all routes created by the authenticated user
+	#
+	# ==== Returns
+	# All routes by the user
+	#
+	#  {
+	#    routes:[
+	#      {
+	#        route_details:[
+  #          {
+  #            distance: 30,
+  #            safety_rating: 2,
+  #            created_by: "chirsasur",
+  #            name: "London Road to Hope Street"
+  #            difficulty_rating: 5,
+  #            start_picture: "http://placekitten.com/350/200"
+  #            end_picture: "http://placekitten.com/350/200"
+  #            estimate_time: 3232
+  #            last_used: 1392894545
+  #          }
+  #        ]
+	#        points: [
+	#          {
+	#            lat: 55.5,
+	#            long: -4.29,
+	#            altitude: 150,
+	#            time: 1392894545
+	#          }
+  #        ]
+  #      }
+  #    ]
+  #  }
+	def user
+	end
+
+	# *GET* /routes/user_summaries/:per_page/:page_num
+	#
+	# Returns all routes
+	#
+	# ==== Parameters
+	# [+per_page+] items to appear per page
+	# [+page_num+] current page number
+	# ==== Returns
+	# All routes with +id+
+	#
+	#  {
+	#    route_details:[
+  #      {
+  #        distance: 30,
+  #        safety_rating: 2,
+  #        name: "London Road to Hope Street"
+  #        difficulty_rating: 5,
+  #        start_picture: "http://placekitten.com/350/200"
+  #        end_picture: "http://placekitten.com/350/200"
+  #        estimate_time: 3232
+  #        last_used: 1392894545
+  #      }
+  #    ]
+  #  }
+	def users_summaries
+	end
+
+	# *GET* /routes/nearby?lat=###?long=###
+	#
+	# Returns all routes created by the authenticated user
+	#
+	# ==== Parameters
+	# [+id+] Required. +id+ of the route to find
+	#
+	# ==== Returns
+	# All routes with +id+
+	#
+	#  {
+	#    routes:[
+	#      {
+	#        route_details:[
+  #          {
+  #            distance: 30,
+  #            safety_rating: 2,
+  #            created_by: "chirsasur",
+  #            name: "London Road to Hope Street"
+  #            difficulty_rating: 5,
+  #            start_picture: "http://placekitten.com/350/200"
+  #            end_picture: "http://placekitten.com/350/200"
+  #            estimate_time: 3232
+  #            last_used: 1392894545
+  #          }
+  #        ]
+	#        points: [
+	#          {
+	#            lat: 55.5,
+	#            long: -4.29,
+	#            altitude: 150,
+	#            time: 1392894545
+	#          }
+  #        ]
+  #      }
+  #    ]
+  #  }
 	def nearby
 	end
 end
