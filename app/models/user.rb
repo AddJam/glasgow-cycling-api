@@ -33,6 +33,7 @@ class User < ActiveRecord::Base
 
   has_many :route_reviews
   has_many :routes
+  has_many :user_responses
 
   validates :email, presence: true, uniqueness: true
   validates :first_name, presence: true

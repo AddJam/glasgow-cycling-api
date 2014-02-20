@@ -15,7 +15,7 @@ class RouteReviewTest < ActiveSupport::TestCase
   	review = route.review(user_review)
   	new_reviews = route.reviews.count
 
-  	assert_not_nil review, "Review created by record"
+  	assert_not_nil review, "Review created by review method"
     assert_equal initial_reviews + 1, new_reviews, "Review count increased by 1"
   end
 
