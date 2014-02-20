@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140220140649) do
+ActiveRecord::Schema.define(version: 20140220142033) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -117,6 +117,7 @@ ActiveRecord::Schema.define(version: 20140220140649) do
     t.integer  "total_time"
     t.integer  "route_id"
     t.integer  "user_id"
+    t.float    "distance"
   end
 
   create_table "user_responses", force: true do |t|

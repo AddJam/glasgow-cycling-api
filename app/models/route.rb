@@ -65,9 +65,22 @@ class Route < ActiveRecord::Base
 		route.end_time = route.points.last.time
 		route.total_time = route.end_time - route.start_time
 
+		# Ensure endpoints get geocoded
 		route.points.first.is_important = true
 		route.points.last.is_important = true
 
+		# Calculate route distance
+		Rails.logger.info "Distance between #{route.points.count} points"
+		route.distance = route.points.each_with_index.inject(0) do |dist, (elem, index)|
+			if index >= route.points.count - 1
+				dist
+			else
+				Rails.logger.info "distance between #{index} and #{index+1}"
+				next_point = route.points[index+1]
+				Rails.logger.info "distance of #{next_point.distance_from(elem)}"
+				dist += next_point.distance_from(elem)
+			end
+		end
 
 		if route.save
 			route
