@@ -42,7 +42,7 @@ class RouteTest < ActiveSupport::TestCase
   test "can add route use to existing route" do
     user = User.first
     points = route_points
-    original = Route.record(user, points)
+    original = create(:route) #Route.record(user, points)
     points = route_points
     route_use = original.record_use(user, points)
 

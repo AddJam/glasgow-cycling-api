@@ -51,7 +51,6 @@ gem 'devise'
 
 #Geocoding
 gem 'geocoder'
-
 gem 'redis' #cache
 
 # Development
@@ -65,5 +64,11 @@ group :development do
 	gem 'guard-rails' # Auto restart rails
 	gem 'guard-minitest' # Auto test
 	gem 'terminal-notifier-guard'
-	gem 'guard-zeus'
+	gem 'guard-zeus' # Faster start times
+end
+
+# Test
+group :test do
+	gem "factory_girl_rails", "~> 4.0"
+	gem "stepford"
 end
