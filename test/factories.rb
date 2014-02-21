@@ -55,7 +55,6 @@ FactoryGirl.define do
     # association :original, factory: :route
     user
     sequence(:id)
-    created_by 123
     name 'Test Name'
     lat 1.23
     long 1.23

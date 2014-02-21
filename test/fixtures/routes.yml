@@ -28,7 +28,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  created_by: 1
   name: MyString
   lat: 1.5
   long: 1.5
@@ -43,7 +42,6 @@ one:
   end_picture_id: 1
 
 two:
-  created_by: 1
   name: MyString
   lat: 1.5
   long: 1.5
