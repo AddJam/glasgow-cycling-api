@@ -31,11 +31,12 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :route_reviews
+  has_many :reviews, foreign_key: 'user_id', class_name: 'RouteReview'
   has_many :routes
   has_many :user_responses
 
-  validates :email, presence: true, uniqueness: true
+  validates :email, presence: true, uniqueness: true, length: { minimum: 5 },
+      format: { with: /@/, message: "email addresses must contain @" }
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :dob, presence: true

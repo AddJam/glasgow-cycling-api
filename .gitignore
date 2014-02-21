@@ -17,4 +17,4 @@ rerun.txt
 pickle-email-*.html
 .project
 config/initializers/secret_token.rb
->>>>>>> d722c3e61e91575d3f3f1a664203eb8ca0bc30c7
+.idea

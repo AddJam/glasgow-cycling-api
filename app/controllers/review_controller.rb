@@ -26,11 +26,11 @@ class ReviewController < ApplicationController
   def create
     review  = params[:review]
     route_id = params[:route_id]
-    unless review and route_id
+    unless review and route_id and user_signed_in?
       render status: :bad_request
     else
       route = Route.where(id: route_id).first
-      review = route.review(review)
+      review = route.review(current_user, review)
       if review
         render json: {review_id: review.id}
       else

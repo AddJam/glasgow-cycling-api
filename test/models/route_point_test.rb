@@ -10,6 +10,10 @@ class RoutePointTest < ActiveSupport::TestCase
 
   	assert_not_nil route_point.street_name, "route_point street name created from lat long"
     assert_equal route_point.street_name, "London Road", "Point street name retrieved as expected"
+  end
 
+  test "geocoding points with no location data should handle failure successfully" do
+  	route_point = create(:route_point, lat: 0.0, long: 0.0)
+  	assert_not_nil route_point, "route point with no street name should fail to geocode gracefully"
   end
 end

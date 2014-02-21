@@ -152,7 +152,6 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
-    sqlite3 (1.3.8)
     stepford (0.15.1)
       rails
       thor
@@ -198,7 +197,6 @@ DEPENDENCIES
   redis
   sass-rails (~> 4.0.0)
   sdoc
-  sqlite3
   stepford
   terminal-notifier-guard
   turbolinks
