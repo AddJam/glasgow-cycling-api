@@ -5,10 +5,8 @@
 #  id                    :integer          not null, primary key
 #  created_by            :integer
 #  name                  :string(255)
-#  start_lat             :float
-#  start_long            :float
-#  end_lat               :float
-#  end_long              :float
+#  lat                   :float
+#  long                  :float
 #  calculated_total_time :integer
 #  total_distance        :float
 #  last_used             :datetime
@@ -32,10 +30,8 @@
 one:
   created_by: 1
   name: MyString
-  start_lat: 1.5
-  start_long: 1.5
-  end_lat: 1.5
-  end_long: 1.5
+  lat: 1.5
+  long: 1.5
   calculated_total_time: 1
   total_distance: 1.5
   last_used: 2014-02-17 10:51:01
@@ -48,10 +44,8 @@ one:
 two:
   created_by: 1
   name: MyString
-  start_lat: 1.5
-  start_long: 1.5
-  end_lat: 1.5
-  end_long: 1.5
+  lat: 1.5
+  long: 1.5
   calculated_total_time: 1
   total_distance: 1.5
   last_used: 2014-02-17 10:51:01

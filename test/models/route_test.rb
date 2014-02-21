@@ -67,8 +67,8 @@ class RouteTest < ActiveSupport::TestCase
     points[2][:long] = 2.0
     expected_distance = 314.4748133100169
     route = Route.record(user, points)
-    assert_not_nil route.distance, "recorded route should have a distance"
-    assert_equal expected_distance, route.distance, "route distance should be accurate"
+    assert_not_nil route.total_distance, "recorded route should have a distance"
+    assert_equal expected_distance, route.total_distance, "route distance should be accurate"
   end
 
   test "details returns route details json" do
