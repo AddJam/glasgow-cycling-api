@@ -73,13 +73,17 @@
 
   <ul class="link-list" role="directory">
     
-    <li ><a href="#method-i-all">#all</a>
-    
     <li ><a href="#method-i-find">#find</a>
     
     <li ><a href="#method-i-nearby">#nearby</a>
     
     <li ><a href="#method-i-record">#record</a>
+    
+    <li ><a href="#method-i-summaries">#summaries</a>
+    
+    <li ><a href="#method-i-user">#user</a>
+    
+    <li ><a href="#method-i-users_summaries">#users_summaries</a>
     
   </ul>
 </div>
@@ -115,38 +119,6 @@
        </header>
 
     
-      <div id="method-i-all" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">all</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="all-source">
-            <pre><span class="ruby-comment"># File app/controllers/route_controller.rb, line 55</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">all</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
       <div id="method-i-find" class="method-detail ">
         
         <div class="method-heading">
@@ -160,14 +132,50 @@
 
         <div class="method-description">
           
-          
+          <p><strong>GET</strong> /routes/:id</p>
+
+<p>Returns route matching id parameter</p>
+
+<h4 id="method-i-find-label-Parameters">Parameters<span><a href="#method-i-find-label-Parameters">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
+<dl class="rdoc-list label-list"><dt><code>id</code>
+<dd>
+<p>Required. <code>id</code> of the route to find</p>
+</dd></dl>
+
+<h4 id="method-i-find-label-Returns">Returns<span><a href="#method-i-find-label-Returns">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
+
+<p>The route with <code>id</code></p>
+
+<pre>{
+  route_details:
+    {
+      distance: 30,
+      safety_rating: 2,
+      created_by: &quot;chirsasur&quot;,
+      name: &quot;London Road to Hope Street&quot;
+      difficulty_rating: 5,
+      start_picture: &quot;http://placekitten.com/350/200&quot;
+      end_picture: &quot;http://placekitten.com/350/200&quot;
+      estimate_time: 3232
+      last_used: 1392894545
+    }
+  points: [
+    {
+      lat: 55.5,
+      long: -4.29,
+      altitude: 150,
+      time: 1392894545
+    }
+  ]
+}</pre>
           
           
 
           
           <div class="method-source-code" id="find-source">
-            <pre><span class="ruby-comment"># File app/controllers/route_controller.rb, line 52</span>
+            <pre><span class="ruby-comment"># File app/controllers/route_controller.rb, line 84</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">find</span>
+
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -192,13 +200,53 @@
 
         <div class="method-description">
           
-          
+          <p><strong>GET</strong> /routes/nearby?lat=###?long=###</p>
+
+<p>Returns all routes created by the authenticated user</p>
+
+<h4 id="method-i-nearby-label-Parameters">Parameters<span><a href="#method-i-nearby-label-Parameters">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
+<dl class="rdoc-list label-list"><dt><code>id</code>
+<dd>
+<p>Required. <code>id</code> of the route to find</p>
+</dd></dl>
+
+<h4 id="method-i-nearby-label-Returns">Returns<span><a href="#method-i-nearby-label-Returns">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
+
+<p>All routes with <code>id</code></p>
+
+<pre>{
+  routes:[
+    {
+      route_details:[
+        {
+          distance: 30,
+          safety_rating: 2,
+          created_by: &quot;chirsasur&quot;,
+          name: &quot;London Road to Hope Street&quot;
+          difficulty_rating: 5,
+          start_picture: &quot;http://placekitten.com/350/200&quot;
+          end_picture: &quot;http://placekitten.com/350/200&quot;
+          estimate_time: 3232
+          last_used: 1392894545
+        }
+      ]
+      points: [
+        {
+          lat: 55.5,
+          long: -4.29,
+          altitude: 150,
+          time: 1392894545
+        }
+      ]
+    }
+  ]
+}</pre>
           
           
 
           
           <div class="method-source-code" id="nearby-source">
-            <pre><span class="ruby-comment"># File app/controllers/route_controller.rb, line 58</span>
+            <pre><span class="ruby-comment"># File app/controllers/route_controller.rb, line 217</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">nearby</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -286,6 +334,197 @@ is in metres.</p>
                         <span class="ruby-identifier">render</span> <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:internal_server_error</span>
                 <span class="ruby-keyword">end</span>
         <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-summaries" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">summaries</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p><strong>GET</strong> /routes/summaries/:per_page/:page_num</p>
+
+<p>Returns all routes</p>
+
+<h4 id="method-i-summaries-label-Parameters">Parameters<span><a href="#method-i-summaries-label-Parameters">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
+<dl class="rdoc-list label-list"><dt><code>per_page</code>
+<dd>
+<p>items to appear per page</p>
+</dd><dt><code>page_num</code>
+<dd>
+<p>current page number</p>
+</dd></dl>
+
+<h4 id="method-i-summaries-label-Returns">Returns<span><a href="#method-i-summaries-label-Returns">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
+
+<p>All routes with <code>id</code></p>
+
+<pre>{
+  route_details:[
+    {
+      distance: 30,
+      safety_rating: 2,
+      created_by: &quot;chirsasur&quot;,
+      name: &quot;London Road to Hope Street&quot;
+      difficulty_rating: 5,
+      start_picture: &quot;http://placekitten.com/350/200&quot;
+      end_picture: &quot;http://placekitten.com/350/200&quot;
+      estimate_time: 3232
+      last_used: 1392894545
+    }
+  ]
+}</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="summaries-source">
+            <pre><span class="ruby-comment"># File app/controllers/route_controller.rb, line 113</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">summaries</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-user" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">user</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p><strong>GET</strong> /routes/user</p>
+
+<p>Returns all routes created by the authenticated user</p>
+
+<h4 id="method-i-user-label-Returns">Returns<span><a href="#method-i-user-label-Returns">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
+
+<p>All routes by the user</p>
+
+<pre>{
+  routes:[
+    {
+      route_details:[
+        {
+          distance: 30,
+          safety_rating: 2,
+          created_by: &quot;chirsasur&quot;,
+          name: &quot;London Road to Hope Street&quot;
+          difficulty_rating: 5,
+          start_picture: &quot;http://placekitten.com/350/200&quot;
+          end_picture: &quot;http://placekitten.com/350/200&quot;
+          estimate_time: 3232
+          last_used: 1392894545
+        }
+      ]
+      points: [
+        {
+          lat: 55.5,
+          long: -4.29,
+          altitude: 150,
+          time: 1392894545
+        }
+      ]
+    }
+  ]
+}</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="user-source">
+            <pre><span class="ruby-comment"># File app/controllers/route_controller.rb, line 150</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">user</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-users_summaries" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">users_summaries</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p><strong>GET</strong> /routes/user_summaries/:per_page/:page_num</p>
+
+<p>Returns all routes</p>
+
+<h4 id="method-i-users_summaries-label-Parameters">Parameters<span><a href="#method-i-users_summaries-label-Parameters">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
+<dl class="rdoc-list label-list"><dt><code>per_page</code>
+<dd>
+<p>items to appear per page</p>
+</dd><dt><code>page_num</code>
+<dd>
+<p>current page number</p>
+</dd></dl>
+
+<h4 id="method-i-users_summaries-label-Returns">Returns<span><a href="#method-i-users_summaries-label-Returns">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
+
+<p>All routes with <code>id</code></p>
+
+<pre>{
+  route_details:[
+    {
+      distance: 30,
+      safety_rating: 2,
+      name: &quot;London Road to Hope Street&quot;
+      difficulty_rating: 5,
+      start_picture: &quot;http://placekitten.com/350/200&quot;
+      end_picture: &quot;http://placekitten.com/350/200&quot;
+      estimate_time: 3232
+      last_used: 1392894545
+    }
+  ]
+}</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="users_summaries-source">
+            <pre><span class="ruby-comment"># File app/controllers/route_controller.rb, line 177</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">users_summaries</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           

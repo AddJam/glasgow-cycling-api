@@ -67,7 +67,17 @@
 
     
     
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
     
+    <li ><a href="#method-c-store">::store</a>
+    
+  </ul>
+</div>
+
   </div>
 </nav>
 
@@ -105,6 +115,56 @@ updated_at     :datetime</pre>
     
 
     
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-store" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">store</span><span
+            class="method-args">(responses, user_id)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="store-source">
+            <pre><span class="ruby-comment"># File app/models/user_response.rb, line 18</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">store</span>(<span class="ruby-identifier">responses</span>, <span class="ruby-identifier">user_id</span>)
+        <span class="ruby-identifier">response</span> = <span class="ruby-constant">UserResponse</span>.<span class="ruby-identifier">new</span>
+
+        <span class="ruby-identifier">response</span>.<span class="ruby-identifier">user_id</span> = <span class="ruby-identifier">user_id</span>
+        <span class="ruby-identifier">response</span>.<span class="ruby-identifier">usage_per_week</span> = <span class="ruby-identifier">responses</span>[<span class="ruby-string">&#39;usage_per_week&#39;</span>]
+        <span class="ruby-identifier">response</span>.<span class="ruby-identifier">usage_type</span> = <span class="ruby-identifier">responses</span>[<span class="ruby-string">&#39;usage_type&#39;</span>]
+        <span class="ruby-identifier">response</span>.<span class="ruby-identifier">usage_reason</span> = <span class="ruby-identifier">response</span>[<span class="ruby-string">&#39;usage_reason&#39;</span>]
+
+        <span class="ruby-identifier">response</span>.<span class="ruby-identifier">save</span>
+
+        <span class="ruby-keyword">return</span> <span class="ruby-identifier">response</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
   </section>
 </main>
 

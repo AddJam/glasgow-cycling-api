@@ -77,14 +77,15 @@ class UserController < ApplicationController
   end
 
   def save_responses
-    unless params[:responses] and params[:user_id]
+    unless params[:responses] and user_signed_in?
       render status: :bad_request
     else
-      response = UserResponse.store(:responses, :user_id)
+      response = UserResponse.store(params[:responses], current_user.id)
       if response
-        render status: :success
+        render json: {}
       else
-        render status: :internal_server_error
+        render status: :internal_server_error, json: {} ##look to change
+      end
     end
   end
 end

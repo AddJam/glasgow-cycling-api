@@ -119,7 +119,7 @@ FactoryGirl.define do
     profile_picture 'Test Profile Picture'
     gender 123
     dob { 2.weeks.ago }
-    sequence(:authentication_token)
+    # sequence(:authentication_token)
   end
 
   factory :user_response do

@@ -23,8 +23,10 @@ class UserResponse < ActiveRecord::Base
 		response.usage_type = responses['usage_type']
 		response.usage_reason = response['usage_reason']
 
-		response.save
-
-		return response
+		if response.save
+			response
+		else
+			nil
+		end
 	end
 end

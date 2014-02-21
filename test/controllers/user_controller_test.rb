@@ -71,7 +71,7 @@ class UserControllerTest < ActionController::TestCase
 	end
 
 	test "user responses should work with correct responses given" do
-		user = User.first
+		user = create(:user)
 		user_id = user.id
 		response = {
       usage_per_week: 5,
@@ -79,7 +79,8 @@ class UserControllerTest < ActionController::TestCase
       usage_reason: 4
 		}
 
-		post :save_responses, user_token: user.authentication_token, user_email: user.email, responses: response, user_id format: :json
+		post(:save_responses, user_token: user.authentication_token, user_email: user.email,
+			responses: response, format: :json)
 
 		assert_response :success, "user responses should be saved succesfully"
 	end

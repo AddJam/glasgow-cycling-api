@@ -119,7 +119,7 @@ class Route < ActiveRecord::Base
 	# The recorded review
 	def review(review_data)
 		return unless review_data[:safety_rating] and review_data[:difficulty_rating] and
-			review_data[:environment_rating] and review_data[:comment]
+		review_data[:environment_rating] and review_data[:comment]
 
 		review = RouteReview.create do |review_instance|
 			review_instance.safety_rating = review_data[:safety_rating]
@@ -135,5 +135,43 @@ class Route < ActiveRecord::Base
 		end
 	end
 
-end
+	# Returns details for a route in format required by Route Controller
+	#
+	# ==== Returns
+	# The route details. TODO Picture URL returned
+	def details
 
+		#start_picture = Picture.where(id: self.start_picture_id).first
+		#end_picture = Picture.where(id: self.end_picture_id).first
+		{
+			route_id: self.id,
+			total_distance: self.total_distance,
+			safety_rating: self.safety,
+			created_by: self.user_id,
+			name: self.name,
+			difficulty_rating: self.difficulty,
+			start_picture: self.start_picture_id,
+			end_picture: self.end_picture_id,
+			estimate_time: self.calculated_total_time,
+			created_at: self.created_at
+		}
+	end
+
+	# Returns points for a route in format required by Route Controller
+	#
+	# ==== Returns
+	# The route points
+	def points_data
+
+		points = []
+		route_points = RoutePoint.where(route_id: id)
+		route_points.each do |point|
+			points << {
+				lat: point.lat,
+				long: point.long,
+				altitude: point.altitude,
+				time: point.time
+			}
+		end
+	end
+end
