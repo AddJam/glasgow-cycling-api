@@ -82,19 +82,19 @@ class RouteController < ApplicationController
 	#      }
   #    ]
   #  }
-	def find
-		unless params[:id]
-			render status: :bad_request, json: {}
-		else
-			route_id = params[:id]
-			route = Route.where(id: route_id).first
+  def find
+  	unless params[:id]
+  		render status: :bad_request, json: {}
+  	else
+  		route_id = params[:id]
+  		route = Route.where(id: route_id).first
 
-			if route
-				render json: {
-					details: route.details,
-					points: route.points_data
-				}
-			else
+  		if route
+  			render json: {
+  				details: route.details,
+  				points: route.points_data
+  			}
+  		else
 				render status: :bad_request, json: {} ##look to change
 			end
 		end
@@ -110,8 +110,8 @@ class RouteController < ApplicationController
 	# ==== Returns
 	# All routes with +id+
 	#
-	#  {
-	#    details:[
+	#  {routes[
+	#    details:
   #      {
   #        route_id: 12,
   #        total_distance: 30,
@@ -126,47 +126,29 @@ class RouteController < ApplicationController
   #      }
   #    ]
   #  }
-	def summaries
-
-	end
-
-	# *GET* /routes/user
-	#
-	# Returns all routes created by the authenticated user
-	#
-	# ==== Returns
-	# All routes by the user
-	#
-	#  {
-	#    routes:[
-	#      {
-	#        details:[
-  #          {
-  #            route_id: 12,
-  #            total_distance: 30,
-  #            safety_rating: 2,
-  #            created_by: "chirsasur",
-  #            name: "London Road to Hope Street",
-  #            difficulty_rating: 5,
-  #            start_picture: "http://placekitten.com/350/200",
-  #            end_picture: "http://placekitten.com/350/200",
-  #            estimate_time: 3232
-  #            created_at: 1392894545
-  #          }
-  #        ]
-	#        points: [
-	#          {
-	#            lat: 55.5,
-	#            long: -4.29,
-	#            altitude: 150,
-	#            time: 1392894545
-	#          }
-  #        ]
-  #      }
-  #    ]
-  #  }
-	def user
-	end
+  def all_summaries
+  	unless params[:per_page] and params[:page_num]
+  		render status: :bad_request, json: {}
+  	else
+  		page_num = params[:page_num].to_i
+  		per_page = params[:per_page].to_i
+  		offset = page_num * per_page - per_page
+  		if per_page == 0
+  			render status: :bad_request, json: {}
+  		else
+  			routes = Route.limit(per_page).offset(offset)
+  			summaries = []
+  			routes.each do |summary|
+  				summaries << {
+  					details: summary.details
+  				}
+  			end
+  			render json: {
+  				routes: summaries
+  			}
+  		end
+  	end
+  end
 
 	# *GET* /routes/user_summaries/:per_page/:page_num
 	#
@@ -194,8 +176,29 @@ class RouteController < ApplicationController
   #      }
   #    ]
   #  }
-	def users_summaries
-	end
+  def user_summaries
+  	unless params[:per_page] and params[:page_num] and user_signed_in?
+  		render status: :bad_request, json: {}
+  	else
+  		page_num = params[:page_num].to_i
+  		per_page = params[:per_page].to_i
+  		offset = page_num * per_page - per_page
+  		if per_page == 0
+  			render status: :bad_request, json: {}
+  		else
+  			routes = Route.where(user_id: current_user.id).limit(per_page).offset(offset)
+  			summaries = []
+  			routes.each do |summary|
+  				summaries << {
+  					details: summary.details
+  				}
+  			end
+  			render json: {
+  				routes: summaries
+  			}
+  		end
+  	end
+  end
 
 	# *GET* /routes/nearby?lat=###?long=###
 	#
@@ -235,6 +238,6 @@ class RouteController < ApplicationController
   #      }
   #    ]
   #  }
-	def nearby
-	end
+  def nearby
+  end
 end

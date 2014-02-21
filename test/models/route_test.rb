@@ -54,7 +54,6 @@ class RouteTest < ActiveSupport::TestCase
     assert_equal original.uses.count, 2, "all uses should be stored against original route"
   end
 
-
   test "distance calculated correctly" do
     # Note - distance is calculated once for a route
     #        after this, it is assumed points wont be modified
@@ -72,4 +71,12 @@ class RouteTest < ActiveSupport::TestCase
     assert_equal expected_distance, route.distance, "route distance should be accurate"
   end
 
+  test "details returns route details json" do
+    route = create(:route)
+    route_id = route.id
+    route_name = route.name
+    details = route.details
+    assert_not_nil details, "Route details not null"
+   # assert_equal route_id, details['route_id'], "Returned route id matches expected route id"
+  end
 end
