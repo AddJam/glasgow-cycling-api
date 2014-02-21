@@ -55,11 +55,10 @@ FactoryGirl.define do
     # association :original, factory: :route
     user
     sequence(:id)
-    created_by 123
     name 'Test Name'
     lat 1.23
     long 1.23
-    calculated_total_time 123
+    estimated_time 123
     total_distance 1.23
     last_used { 2.weeks.ago }
     mode 1

@@ -2,37 +2,36 @@
 #
 # Table name: routes
 #
-#  id                    :integer          not null, primary key
-#  created_by            :integer
-#  name                  :string(255)
-#  lat                   :float
-#  long                  :float
-#  calculated_total_time :integer
-#  total_distance        :float
-#  last_used             :datetime
-#  mode                  :integer
-#  safety                :integer
-#  difficulty            :integer
-#  start_picture_id      :integer
-#  end_picture_id        :integer
-#  created_at            :datetime
-#  updated_at            :datetime
-#  start_time            :datetime
-#  end_time              :datetime
-#  rating                :integer
-#  total_time            :integer
-#  route_id              :integer
-#  user_id               :integer
+#  id                 :integer          not null, primary key
+#  name               :string(255)
+#  lat                :float
+#  long               :float
+#  estimated_time     :integer
+#  total_distance     :float
+#  last_used          :datetime
+#  mode               :integer
+#  safety_rating      :integer
+#  difficulty_rating  :integer
+#  start_picture_id   :integer
+#  end_picture_id     :integer
+#  created_at         :datetime
+#  updated_at         :datetime
+#  start_time         :datetime
+#  end_time           :datetime
+#  rating             :integer
+#  total_time         :integer
+#  route_id           :integer
+#  user_id            :integer
+#  environment_rating :integer
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  created_by: 1
   name: MyString
   lat: 1.5
   long: 1.5
-  calculated_total_time: 1
+  estimated_time: 1
   total_distance: 1.5
   last_used: 2014-02-17 10:51:01
   mode: 1
@@ -43,11 +42,10 @@ one:
   end_picture_id: 1
 
 two:
-  created_by: 1
   name: MyString
   lat: 1.5
   long: 1.5
-  calculated_total_time: 1
+  estimated_time: 1
   total_distance: 1.5
   last_used: 2014-02-17 10:51:01
   mode: 1
