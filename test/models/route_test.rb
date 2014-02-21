@@ -18,21 +18,21 @@ class RouteTest < ActiveSupport::TestCase
 
   test "recording a route should store the route and all route points" do
     points = route_points
-  	route = Route.record(User.first, points)
+  	route = Route.record(create(:user), points)
 
   	assert_not_nil route, "Route created by record"
     assert_equal route.points.count, points.count, "all points should be recorded in route"
   end
 
   test "recording a route should add it to the users routes" do
-    user = User.first
+    user = create(:user)
     route = Route.record(user, route_points)
     route_added_to_user = user.routes.include? route
     assert route_added_to_user, "route should be added to user routes after recording"
   end
 
   test "recording a route should store route time" do
-    user = User.first
+    user = create(:user)
     points = route_points
     route = Route.record(user, points)
     total_time_seconds = points.last[:time] - points.first[:time]
@@ -40,7 +40,7 @@ class RouteTest < ActiveSupport::TestCase
   end
 
   test "can add route use to existing route" do
-    user = User.first
+    user = create(:user)
     points = route_points
     original = Route.record(user, points)
     points = route_points
@@ -56,7 +56,7 @@ class RouteTest < ActiveSupport::TestCase
 
 
   test "distance calculated correctly" do
-    user = User.first
+    user = create(:user)
     points = route_points
     points[0][:lat] = 0.0
     points[0][:long] = 0.0
