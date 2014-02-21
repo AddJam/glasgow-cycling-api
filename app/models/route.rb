@@ -135,6 +135,8 @@ class Route < ActiveRecord::Base
 	end
 
 	def ensure_distance_exists
+		return if self.distance.present? and self.distance > 0
+
 		# Calculate route distance
 		self.distance = self.points.each_with_index.inject(0) do |dist, (elem, index)|
 			if index >= self.points.count - 1

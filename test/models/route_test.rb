@@ -56,6 +56,8 @@ class RouteTest < ActiveSupport::TestCase
 
 
   test "distance calculated correctly" do
+    # Note - distance is calculated once for a route
+    #        after this, it is assumed points wont be modified
     user = create(:user)
     points = route_points
     points[0][:lat] = 0.0
