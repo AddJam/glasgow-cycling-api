@@ -35,7 +35,7 @@ class Route < ActiveRecord::Base
 	before_validation :ensure_distance_exists
 	before_validation :set_endpoints
 	before_validation :update_total_time
-	# before_save :calculate_ratings
+	before_save :calculate_ratings
 
 	validates :name, presence: true
 	validates :total_distance, presence: true
@@ -215,19 +215,25 @@ class Route < ActiveRecord::Base
 	end
 
 	def calculate_ratings
-		total_safety = self.reviews.inject(0) do |sum, review|
-			sum += review.safety_rating
-		end
-		self.safety_rating = total_safety/self.reviews.count
+		if self.reviews.count == 0
+			self.safety_rating = 0
+			self.environment_rating = 0
+			self.difficulty_rating = 0
+		else
+			total_safety = self.reviews.inject(0) do |sum, review|
+				sum += review.safety_rating
+			end
+			self.safety_rating = total_safety/self.reviews.count
 
-		total_difficulty = self.reviews.inject(0) do |sum, review|
-			sum += review.difficulty_rating
-		end
-		self.difficulty_rating = total_difficulty/self.reviews.count
+			total_difficulty = self.reviews.inject(0) do |sum, review|
+				sum += review.difficulty_rating
+			end
+			self.difficulty_rating = total_difficulty/self.reviews.count
 
-		total_environment = self.reviews.inject(0) do |sum, review|
-			sum += review.environment_rating
+			total_environment = self.reviews.inject(0) do |sum, review|
+				sum += review.environment_rating
+			end
+			self.environment_rating = total_environment/self.reviews.count
 		end
-		self.environment_rating = total_environment/self.reviews.count
 	end
 end
