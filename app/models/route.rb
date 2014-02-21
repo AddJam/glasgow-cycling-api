@@ -34,6 +34,12 @@ class Route < ActiveRecord::Base
 	has_many :uses, :foreign_key => 'route_id', :class_name => "Route"
 	belongs_to :original, :foreign_key => 'route_id', :class_name => "Route"
 
+	validates :name, presence: true
+	validates :distance, presence: true
+	validates :total_time, presence: true
+	validates :start_time, presence: true
+	validates :end_time, presence: true
+
 	# Records a new route for the given user
 	#
 	# ==== Parameters

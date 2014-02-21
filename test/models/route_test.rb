@@ -42,7 +42,7 @@ class RouteTest < ActiveSupport::TestCase
   test "can add route use to existing route" do
     user = User.first
     points = route_points
-    original = create(:route) #Route.record(user, points)
+    original = Route.record(user, points)
     points = route_points
     route_use = original.record_use(user, points)
 
@@ -67,7 +67,7 @@ class RouteTest < ActiveSupport::TestCase
     expected_distance = 314.4748133100169
     route = Route.record(user, points)
     assert_not_nil route.distance, "recorded route should have a distance"
-    assert_equal expected_distance, route.distance, "route distance should be"
+    assert_equal expected_distance, route.distance, "route distance should be accurate"
   end
 
 end

@@ -85,6 +85,7 @@ class UserController < ApplicationController
         render status: :success
       else
         render status: :internal_server_error
+      end
     end
   end
 end

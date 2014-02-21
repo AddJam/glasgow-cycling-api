@@ -21,10 +21,17 @@
 class RoutePoint < ActiveRecord::Base
 	belongs_to :route
 
+	validates :lat, presence: true
+	validates :long, presence: true
+	validates :altitude, presence: true
+	validates :time, presence: true
+
 	reverse_geocoded_by :lat, :long do |obj, results|
 		if geo = results.first
 			Rails.logger.info "geo #{geo.inspect}"
-			obj.street_name = geo.data['address']['road']
+			if geo.data and geo.data['address'] and geo.data['address']['road']
+				obj.street_name = geo.data['address']['road']
+			end
 		end
 	end
 
