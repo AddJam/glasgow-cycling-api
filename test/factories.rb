@@ -85,7 +85,6 @@ FactoryGirl.define do
     altitude 1.23
     on_road true
     street_name 'Test Street Name'
-    street_postcode 'Test Street Postcode'
     time { 2.weeks.ago }
   end
 
