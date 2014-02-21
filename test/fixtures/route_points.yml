@@ -23,8 +23,6 @@ one:
   route_id: 1
   lat: 1.5
   long: 1.5
-  preceding_route_point_id: 1
-  next_route_point_id: 1
   altitude: 1.5
   time: <%= 5.days.ago.to_s(:db) %>
   on_road: false
@@ -34,8 +32,6 @@ two:
   route_id: 1
   lat: 1.5
   long: 1.5
-  preceding_route_point_id: 1
-  next_route_point_id: 1
   altitude: 1.5
   time: <%= 5.days.ago.to_s(:db) %>
   on_road: false

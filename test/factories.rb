@@ -62,9 +62,10 @@ FactoryGirl.define do
     calculated_total_time 123
     total_distance 1.23
     last_used { 2.weeks.ago }
-    mode 123
-    safety 123
-    difficulty 123
+    mode 1
+    environment_rating 1
+    safety_rating 2
+    difficulty_rating 3
     start_picture_id 123
     end_picture_id 123
     start_time { 2.weeks.ago }
@@ -78,8 +79,6 @@ FactoryGirl.define do
     sequence(:id)
     lat 1.23
     long 1.23
-    preceding_route_point_id 123
-    next_route_point_id 123
     altitude 1.23
     on_road true
     street_name 'Test Street Name'
@@ -91,9 +90,9 @@ FactoryGirl.define do
     user
     sequence(:id)
     comment 'Test Comment'
-    safety_rating 123
-    difficulty_rating 123
-    environment_rating 123
+    safety_rating 2
+    difficulty_rating 2
+    environment_rating 2
   end
 
   factory :user do

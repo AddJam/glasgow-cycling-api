@@ -79,4 +79,10 @@ class RouteTest < ActiveSupport::TestCase
     assert_not_nil details, "Route details not null"
    # assert_equal route_id, details['route_id'], "Returned route id matches expected route id"
   end
+
+  # test "rating are set from average of reviews" do
+  #   route = create(:route)
+  #   reviews = create_list(:route_review, 10)
+  #   route.reviews = reviews
+  # end
 end

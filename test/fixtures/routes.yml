@@ -36,8 +36,9 @@ one:
   total_distance: 1.5
   last_used: 2014-02-17 10:51:01
   mode: 1
-  safety: 1
-  difficulty: 1
+  safety_rating: 1
+  difficulty_rating: 1
+  environment_rating: 1
   start_picture_id: 1
   end_picture_id: 1
 
@@ -50,7 +51,8 @@ two:
   total_distance: 1.5
   last_used: 2014-02-17 10:51:01
   mode: 1
-  safety: 1
-  difficulty: 1
+  safety_rating: 1
+  difficulty_rating: 1
+  environment_rating: 1
   start_picture_id: 1
   end_picture_id: 1
