@@ -90,4 +90,12 @@ class RouteTest < ActiveSupport::TestCase
     assert_equal route.difficulty_rating, reviews.first.difficulty_rating, "difficulty rating should be average correctly"
     assert_equal route.environment_rating, reviews.first.environment_rating, "environment rating should be average correctly"
   end
+
+  test "estimated_time is set based on route and all uses of the route" do
+    route = create(:route)
+    uses = create_list(:route, 10)
+    route.uses = uses
+    route.save
+    assert_equal 123, route.estimated_time # 123 is default in factory girl
+  end
 end

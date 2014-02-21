@@ -70,7 +70,7 @@ class RouteController < ApplicationController
   #        difficulty_rating: 5,
   #        start_picture: "http://placekitten.com/350/200",
   #        end_picture: "http://placekitten.com/350/200",
-  #        estimate_time: 3232
+  #        estimated_time: 3232
   #        created_at: 1392894545
   #      }
 	#    points: [
@@ -121,7 +121,7 @@ class RouteController < ApplicationController
   #        difficulty_rating: 5,
   #        start_picture: "http://placekitten.com/350/200",
   #        end_picture: "http://placekitten.com/350/200",
-  #        estimate_time: 3232
+  #        estimated_time: 3232
   #        created_at: 1392894545
   #      }
   #    ]
@@ -171,7 +171,7 @@ class RouteController < ApplicationController
   #        difficulty_rating: 5,
   #        start_picture: "http://placekitten.com/350/200",
   #        end_picture: "http://placekitten.com/350/200",
-  #        estimate_time: 3232
+  #        estimated_time: 3232
   #        created_at: 1392894545
   #      }
   #    ]
@@ -222,7 +222,7 @@ class RouteController < ApplicationController
   #            difficulty_rating: 5,
   #            start_picture: "http://placekitten.com/350/200",
   #            end_picture: "http://placekitten.com/350/200",
-  #            estimate_time: 3232
+  #            estimated_time: 3232
   #            created_at: 1392894545
   #          }
   #      }

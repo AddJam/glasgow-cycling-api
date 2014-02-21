@@ -2,27 +2,27 @@
 #
 # Table name: routes
 #
-#  id                    :integer          not null, primary key
-#  created_by            :integer
-#  name                  :string(255)
-#  lat                   :float
-#  long                  :float
-#  calculated_total_time :integer
-#  total_distance        :float
-#  last_used             :datetime
-#  mode                  :integer
-#  safety                :integer
-#  difficulty            :integer
-#  start_picture_id      :integer
-#  end_picture_id        :integer
-#  created_at            :datetime
-#  updated_at            :datetime
-#  start_time            :datetime
-#  end_time              :datetime
-#  rating                :integer
-#  total_time            :integer
-#  route_id              :integer
-#  user_id               :integer
+#  id                 :integer          not null, primary key
+#  name               :string(255)
+#  lat                :float
+#  long               :float
+#  estimated_time     :integer
+#  total_distance     :float
+#  last_used          :datetime
+#  mode               :integer
+#  safety_rating      :integer
+#  difficulty_rating  :integer
+#  start_picture_id   :integer
+#  end_picture_id     :integer
+#  created_at         :datetime
+#  updated_at         :datetime
+#  start_time         :datetime
+#  end_time           :datetime
+#  rating             :integer
+#  total_time         :integer
+#  route_id           :integer
+#  user_id            :integer
+#  environment_rating :integer
 #
 
 class Route < ActiveRecord::Base
@@ -34,7 +34,7 @@ class Route < ActiveRecord::Base
 
 	before_validation :ensure_distance_exists
 	before_validation :set_endpoints
-	before_validation :update_total_time
+	before_validation :calculate_times
 	before_save :calculate_ratings
 
 	validates :name, presence: true
@@ -155,7 +155,7 @@ class Route < ActiveRecord::Base
 			name: self.name,
 			start_picture: self.start_picture_id,
 			end_picture: self.end_picture_id,
-			estimate_time: self.calculated_total_time,
+			estimate_time: self.estimated_time,
 			user_time: self.total_time,
 			created_at: self.created_at
 		}
@@ -206,13 +206,19 @@ class Route < ActiveRecord::Base
 		self.points.last.is_important = true
 	end
 
-	def update_total_time
+	def calculate_times
 		# Calculate user route data
 		return if self.points.length == 0
 
 		self.start_time = self.points.first.time
 		self.end_time = self.points.last.time
 		self.total_time = self.end_time - self.start_time
+
+		time_for_all_users = self.total_time + self.uses.inject(0) do |sum, route|
+			sum += route.total_time
+		end
+
+		self.estimated_time = time_for_all_users / (1 + self.uses.count)
 	end
 
 	def calculate_ratings

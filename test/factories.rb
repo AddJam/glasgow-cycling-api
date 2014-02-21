@@ -58,7 +58,7 @@ FactoryGirl.define do
     name 'Test Name'
     lat 1.23
     long 1.23
-    calculated_total_time 123
+    estimated_time 123
     total_distance 1.23
     last_used { 2.weeks.ago }
     mode 1
