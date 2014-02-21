@@ -176,9 +176,7 @@ class Route < ActiveRecord::Base
 			if index >= self.points.count - 1
 				dist
 			else
-				Rails.logger.info "distance between #{index} and #{index+1}"
 				next_point = self.points[index+1]
-				Rails.logger.info "distance of #{next_point.distance_from(elem)}"
 				dist += next_point.distance_from(elem)
 			end
 		end
