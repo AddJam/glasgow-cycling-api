@@ -43,7 +43,6 @@ class Route < ActiveRecord::Base
 	# validates :total_time, presence: true
 	# validates :start_time, presence: true
 	# validates :end_time, presence: true
-	# validate :validate_points
 	# TODO validate at least one point exists
 
 	# Records a new route for the given user
@@ -130,9 +129,6 @@ class Route < ActiveRecord::Base
 	end
 
 	private
-	def validate_points
-		errors.add(:points, "no points exist") if points.size == 0
-	end
 
 	def ensure_distance_exists
 		return if self.distance.present? and self.distance > 0

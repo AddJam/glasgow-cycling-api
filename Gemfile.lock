@@ -142,8 +142,6 @@ GEM
     sdoc (0.4.0)
       json (~> 1.8)
       rdoc (~> 4.0, < 5.0)
-    shoulda-matchers (2.5.0)
-      activesupport (>= 3.0.0)
     slop (3.4.7)
     sprockets (2.10.1)
       hike (~> 1.2)
@@ -199,7 +197,6 @@ DEPENDENCIES
   redis
   sass-rails (~> 4.0.0)
   sdoc
-  shoulda-matchers
   stepford
   terminal-notifier-guard
   turbolinks
