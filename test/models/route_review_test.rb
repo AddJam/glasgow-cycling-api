@@ -22,7 +22,7 @@ class RouteReviewTest < ActiveSupport::TestCase
     assert user.reviews.include?(review), "user should contain the new review"
   end
 
-  test "a bad review should not store" do
+  test "an incomplete review should not store" do
   	user_review = {
 				environment_rating: 1.43,
 				difficulty_rating: 1,
