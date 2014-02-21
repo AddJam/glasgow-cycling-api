@@ -5,10 +5,8 @@
 #  id                    :integer          not null, primary key
 #  created_by            :integer
 #  name                  :string(255)
-#  start_lat             :float
-#  start_long            :float
-#  end_lat               :float
-#  end_long              :float
+#  lat                   :float
+#  long                  :float
 #  calculated_total_time :integer
 #  total_distance        :float
 #  last_used             :datetime
@@ -39,11 +37,20 @@ class Route < ActiveRecord::Base
 	before_validation :update_total_time
 
 	validates :name, presence: true
-	validates :distance, presence: true
+	validates :total_distance, presence: true
+	validates :lat, presence: true
+	validates :long, presence: true
 	# validates :total_time, presence: true
 	# validates :start_time, presence: true
 	# validates :end_time, presence: true
 	# TODO validate at least one point exists
+
+	reverse_geocoded_by :lat, :long
+
+	def to_coordinates
+		Rails.logger.info "to_coordinates #{lat}, #{long}"
+		[lat, long]
+	end
 
 	# Records a new route for the given user
 	#
@@ -169,10 +176,10 @@ class Route < ActiveRecord::Base
 	private
 
 	def ensure_distance_exists
-		return if self.distance.present? and self.distance > 0
+		return if self.total_distance.present? and self.total_distance > 0
 
 		# Calculate route distance
-		self.distance = self.points.each_with_index.inject(0) do |dist, (elem, index)|
+		self.total_distance = self.points.each_with_index.inject(0) do |dist, (elem, index)|
 			if index >= self.points.count - 1
 				dist
 			else
@@ -186,7 +193,11 @@ class Route < ActiveRecord::Base
 		# Ensure endpoints get geocoded
 		return if self.points.length == 0
 
-		self.points.first.is_important = true
+		start = self.points.first
+		start.is_important = true
+		self.lat = start.lat
+		self.long = start.long
+
 		self.points.last.is_important = true
 	end
 

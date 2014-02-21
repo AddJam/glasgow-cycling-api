@@ -57,10 +57,8 @@ FactoryGirl.define do
     sequence(:id)
     created_by 123
     name 'Test Name'
-    start_lat 1.23
-    start_long 1.23
-    end_lat 1.23
-    end_long 1.23
+    lat 1.23
+    long 1.23
     calculated_total_time 123
     total_distance 1.23
     last_used { 2.weeks.ago }

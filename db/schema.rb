@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140220142033) do
+ActiveRecord::Schema.define(version: 20140221140902) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -97,10 +97,8 @@ ActiveRecord::Schema.define(version: 20140220142033) do
   create_table "routes", force: true do |t|
     t.integer  "created_by"
     t.string   "name"
-    t.float    "start_lat"
-    t.float    "start_long"
-    t.float    "end_lat"
-    t.float    "end_long"
+    t.float    "lat"
+    t.float    "long"
     t.integer  "calculated_total_time"
     t.float    "total_distance"
     t.datetime "last_used"
@@ -117,7 +115,6 @@ ActiveRecord::Schema.define(version: 20140220142033) do
     t.integer  "total_time"
     t.integer  "route_id"
     t.integer  "user_id"
-    t.float    "distance"
   end
 
   create_table "user_responses", force: true do |t|
@@ -125,18 +122,6 @@ ActiveRecord::Schema.define(version: 20140220142033) do
     t.integer  "usage_per_week"
     t.integer  "usage_type"
     t.integer  "usage_reason"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "user_routes", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "route_id"
-    t.date     "date"
-    t.datetime "start_time"
-    t.datetime "end_time"
-    t.integer  "rating"
-    t.integer  "captured_total_time"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

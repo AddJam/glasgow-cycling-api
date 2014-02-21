@@ -210,8 +210,7 @@ class RouteController < ApplicationController
 	#  {
 	#    routes:[
 	#      {
-	#        details:[
-  #          {
+	#        details: {
   #            route_id: 12,
   #            total_distance: 30,
   #            safety_rating: 2,
@@ -223,18 +222,28 @@ class RouteController < ApplicationController
   #            estimate_time: 3232
   #            created_at: 1392894545
   #          }
-  #        ]
-	#        points: [
-	#          {
-	#            lat: 55.5,
-	#            long: -4.29,
-	#            altitude: 150,
-	#            time: 1392894545
-	#          }
-  #        ]
   #      }
   #    ]
   #  }
-	def nearby
+	def nearby_summaries
+		unless params[:lat] and params[:long]
+			render status: :bad_request, json: {}
+		else
+			coords = [params[:lat].to_f, params[:long].to_f]
+			Rails.logger.info "Coords #{coords}"
+			nearby_routes = Route.near(coords, 5, :units => :mi)
+
+			if nearby_routes.present?
+				render json: {
+					routes: nearby_routes.inject([]) do |routes, route|
+						routes << {
+							details: route.details
+						}
+					end
+				}
+			else
+				render status: :bad_request, json: {} ##look to change
+			end
+		end
 	end
 end
