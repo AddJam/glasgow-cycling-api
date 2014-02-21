@@ -18,9 +18,9 @@ class RouteTest < ActiveSupport::TestCase
 
   test "recording a route should store the route and all route points" do
     points = route_points
-  	route = Route.record(create(:user), points)
+    route = Route.record(create(:user), points)
 
-  	assert_not_nil route, "Route created by record"
+    assert_not_nil route, "Route created by record"
     assert_equal route.points.count, points.count, "all points should be recorded in route"
   end
 
@@ -78,11 +78,17 @@ class RouteTest < ActiveSupport::TestCase
     details = route.details
     assert_not_nil details, "Route details not null"
    # assert_equal route_id, details['route_id'], "Returned route id matches expected route id"
-  end
+ end
 
   # test "rating are set from average of reviews" do
   #   route = create(:route)
   #   reviews = create_list(:route_review, 10)
   #   route.reviews = reviews
   # end
+
+  test "route created and mode default to bike enum" do
+    points = route_points
+    route = Route.record(create(:user), points)
+    assert_equal "bike", route.mode, "Route mode should default to 0 (bike)"
+  end
 end
