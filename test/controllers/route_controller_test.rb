@@ -2,11 +2,11 @@ require 'test_helper'
 
 class RouteControllerTest < ActionController::TestCase
   def setup
-    sign_in User.first
+    sign_in create(:user)
   end
 
   test "can't record route when logged out" do
-    sign_out User.first
+    sign_out User.last
 
     points = [
       {

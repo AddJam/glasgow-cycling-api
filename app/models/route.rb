@@ -34,11 +34,17 @@ class Route < ActiveRecord::Base
 	has_many :uses, :foreign_key => 'route_id', :class_name => "Route"
 	belongs_to :original, :foreign_key => 'route_id', :class_name => "Route"
 
+	before_validation :ensure_distance_exists
+	before_validation :set_endpoints
+	before_validation :update_total_time
+
 	validates :name, presence: true
 	validates :distance, presence: true
-	validates :total_time, presence: true
-	validates :start_time, presence: true
-	validates :end_time, presence: true
+	# validates :total_time, presence: true
+	# validates :start_time, presence: true
+	# validates :end_time, presence: true
+	# validate :validate_points
+	# TODO validate at least one point exists
 
 	# Records a new route for the given user
 	#
@@ -65,28 +71,6 @@ class Route < ActiveRecord::Base
 
 		# Associate with user
 		user.routes << route
-
-		# Calculate user route data
-		route.start_time = route.points.first.time
-		route.end_time = route.points.last.time
-		route.total_time = route.end_time - route.start_time
-
-		# Ensure endpoints get geocoded
-		route.points.first.is_important = true
-		route.points.last.is_important = true
-
-		# Calculate route distance
-		Rails.logger.info "Distance between #{route.points.count} points"
-		route.distance = route.points.each_with_index.inject(0) do |dist, (elem, index)|
-			if index >= route.points.count - 1
-				dist
-			else
-				Rails.logger.info "distance between #{index} and #{index+1}"
-				next_point = route.points[index+1]
-				Rails.logger.info "distance of #{next_point.distance_from(elem)}"
-				dist += next_point.distance_from(elem)
-			end
-		end
 
 		if route.save
 			route
@@ -119,27 +103,68 @@ class Route < ActiveRecord::Base
 	# Records a new review against the route and the provided user
 	#
 	# ==== Parameters
+	# [+user+] user making the review
 	# [+review_data+] data needed to create the review
 	#
 	# ==== Returns
 	# The recorded review
-	def review(review_data)
+	def review(user, review_data)
 		return unless review_data[:safety_rating] and review_data[:difficulty_rating] and
 			review_data[:environment_rating] and review_data[:comment]
 
+		Rails.logger.info "Creating review"
 		review = RouteReview.create do |review_instance|
 			review_instance.safety_rating = review_data[:safety_rating]
 			review_instance.difficulty_rating = review_data[:difficulty_rating]
 			review_instance.environment_rating = review_data[:environment_rating]
 			review_instance.comment = review_data[:comment]
 		end
+		Rails.logger.info "Valid review #{review.inspect}\n#{review.valid?}"
 		self.reviews << review
-		if self.save
+		user.reviews << review
+		if user.save and self.save
 			review
 		else
 			nil
 		end
 	end
 
+	private
+	def validate_points
+		errors.add(:points, "no points exist") if points.size == 0
+	end
+
+	def ensure_distance_exists
+		return if self.distance.present?
+
+		# Calculate route distance
+		self.distance = self.points.each_with_index.inject(0) do |dist, (elem, index)|
+			if index >= self.points.count - 1
+				dist
+			else
+				Rails.logger.info "distance between #{index} and #{index+1}"
+				next_point = self.points[index+1]
+				Rails.logger.info "distance of #{next_point.distance_from(elem)}"
+				dist += next_point.distance_from(elem)
+			end
+		end
+	end
+
+	def set_endpoints
+		# Ensure endpoints get geocoded
+		return if self.points.length == 0
+
+		self.points.first.is_important = true
+		self.points.last.is_important = true
+	end
+
+	def update_total_time
+		# Calculate user route data
+		return if self.points.length == 0
+
+		self.start_time = self.points.first.time
+		self.end_time = self.points.last.time
+		self.total_time = self.end_time - self.start_time
+	end
 end
 

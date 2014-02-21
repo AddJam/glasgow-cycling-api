@@ -9,14 +9,17 @@ class RouteReviewTest < ActiveSupport::TestCase
 				comment: "A review comment"
 			}
 
-  	route = Route.first
+    user = create(:user)
+  	route = create(:route)
   	initial_reviews = route.reviews.count
 
-  	review = route.review(user_review)
+  	review = route.review(user, user_review)
   	new_reviews = route.reviews.count
 
-  	assert_not_nil review, "Review created by review method"
-    assert_equal initial_reviews + 1, new_reviews, "Review count increased by 1"
+  	assert_not_nil review, "review created by review method"
+    assert_equal initial_reviews + 1, new_reviews, "review count increased by 1"
+    assert route.reviews.include?(review), "route should contain the review"
+    assert user.reviews.include?(review), "user should contain the new review"
   end
 
   test "a bad review should not store" do
@@ -26,13 +29,13 @@ class RouteReviewTest < ActiveSupport::TestCase
 				comment: 34
   	}
 
-  	route = Route.first
+  	route = create(:route)
   	initial_reviews = route.reviews.count
 
-  	review = route.review(user_review)
+  	review = route.review(create(:user), user_review)
   	new_reviews = route.reviews.count
 
-  	assert_nil review, "Review not created by record"
-    assert_equal initial_reviews, new_reviews, "Review count not increased"
+  	assert_nil review, "review not created by record"
+    assert_equal initial_reviews, new_reviews, "review count not increased"
 	end
 end

@@ -2,7 +2,7 @@ require 'test_helper'
 
 class ReviewControllerTest < ActionController::TestCase
   def setup
-    sign_in User.first
+    sign_in create(:user)
     Rails.logger.info "User #{User.first.inspect}"
   end
 
