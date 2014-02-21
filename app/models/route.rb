@@ -35,6 +35,7 @@ class Route < ActiveRecord::Base
 	before_validation :ensure_distance_exists
 	before_validation :set_endpoints
 	before_validation :update_total_time
+	# before_save :calculate_ratings
 
 	validates :name, presence: true
 	validates :total_distance, presence: true
@@ -138,17 +139,20 @@ class Route < ActiveRecord::Base
 	# Returns details for a route in format required by Route Controller
 	#
 	# ==== Returns
-	# The route details. TODO Picture URL returned
+	# The route details.
+	# TODO Picture URL returned
+	# TODO update controller docs to match format & attrs
 	def details
 		#start_picture = Picture.where(id: self.start_picture_id).first
 		#end_picture = Picture.where(id: self.end_picture_id).first
 		{
 			route_id: self.id,
 			total_distance: self.total_distance,
-			safety_rating: self.safety,
+			environment_rating: self.environment_rating,
+			safety_rating: self.safety_rating,
+			difficulty_rating: self.difficulty_rating,
 			created_by: self.user_id,
 			name: self.name,
-			difficulty_rating: self.difficulty,
 			start_picture: self.start_picture_id,
 			end_picture: self.end_picture_id,
 			estimate_time: self.calculated_total_time,
@@ -208,5 +212,22 @@ class Route < ActiveRecord::Base
 		self.start_time = self.points.first.time
 		self.end_time = self.points.last.time
 		self.total_time = self.end_time - self.start_time
+	end
+
+	def calculate_ratings
+		total_safety = self.reviews.inject(0) do |sum, review|
+			sum += review.safety_rating
+		end
+		self.safety_rating = total_safety/self.reviews.count
+
+		total_difficulty = self.reviews.inject(0) do |sum, review|
+			sum += review.difficulty_rating
+		end
+		self.difficulty_rating = total_difficulty/self.reviews.count
+
+		total_environment = self.reviews.inject(0) do |sum, review|
+			sum += review.environment_rating
+		end
+		self.environment_rating = total_environment/self.reviews.count
 	end
 end
