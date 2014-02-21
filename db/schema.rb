@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140221140902) do
+ActiveRecord::Schema.define(version: 20140221152056) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,8 +70,6 @@ ActiveRecord::Schema.define(version: 20140221140902) do
     t.integer  "route_id"
     t.float    "lat"
     t.float    "long"
-    t.integer  "preceding_route_point_id"
-    t.integer  "next_route_point_id"
     t.float    "altitude"
     t.boolean  "on_road"
     t.string   "street_name"
