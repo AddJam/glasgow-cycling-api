@@ -99,13 +99,50 @@ class RouteControllerTest < ActionController::TestCase
     route_id = route_data['details']['route_id']
     assert_not_nil route_id, "route_id is not null"
     assert_not_nil route_data, "data returned"
-    assert_equal id, route_id, "correct route id returned"
+    assert_equal id, route_id, "correct route id should be returned"
   end
 
   test "find with an non-valid id should return bad request" do
     id = "fdsfd"
     get(:find, id:id, format: :json)
 
+    assert_response :bad_request
+  end
+
+  test "All route summaries with pagination" do
+    page = 3
+    per_page = 4
+    create_list(:route, 12)
+    get(:all_summaries, per_page: per_page, page_num: page, format: :json)
+    details = JSON.parse response.body
+    assert_response :success, "success response expected"
+    assert_equal per_page, details['routes'].count, "correct number of summaries should be returned"
+  end
+
+  test "cannot display 0 routes per page" do
+    page = 3
+    per_page = 0
+    get(:all_summaries, per_page: per_page, page_num: page, format: :json)
+    assert_response :bad_request
+  end
+
+  test "User route summaries with pagination" do
+    user = create(:user)
+    page = 3
+    per_page = 4
+    create_list(:route, 12, user_id: user.id)
+
+    get(:user_summaries,user_token: user.authentication_token, user_email: user.email,  per_page: per_page, page_num: page, format: :json)
+    details = JSON.parse response.body
+    assert_response :success, "success response expected"
+    assert_equal per_page, details['routes'].count, "correct number of summaries should be returned"
+  end
+
+  test "cannot display 0 user routes per page" do
+    page = 3
+    per_page = 0
+    user = create(:user)
+    get(:user_summaries, user_token: user.authentication_token, user_email: user.email,  per_page: per_page, page_num: page, format: :json)
     assert_response :bad_request
   end
 
