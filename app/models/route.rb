@@ -48,6 +48,8 @@ class Route < ActiveRecord::Base
 
 	reverse_geocoded_by :lat, :long
 
+	enum mode: [:bike, :walking]
+
 	def to_coordinates
 		Rails.logger.info "to_coordinates #{lat}, #{long}"
 		[lat, long]
@@ -78,6 +80,8 @@ class Route < ActiveRecord::Base
 
 		# Associate with user
 		user.routes << route
+
+		route.mode = "bike"
 
 		if route.save
 			route

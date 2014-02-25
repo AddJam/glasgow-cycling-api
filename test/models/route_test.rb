@@ -18,9 +18,9 @@ class RouteTest < ActiveSupport::TestCase
 
   test "recording a route should store the route and all route points" do
     points = route_points
-  	route = Route.record(create(:user), points)
+    route = Route.record(create(:user), points)
 
-  	assert_not_nil route, "Route created by record"
+    assert_not_nil route, "Route created by record"
     assert_equal route.points.count, points.count, "all points should be recorded in route"
   end
 
@@ -78,24 +78,30 @@ class RouteTest < ActiveSupport::TestCase
     details = route.details
     assert_not_nil details, "Route details not null"
    # assert_equal route_id, details['route_id'], "Returned route id matches expected route id"
-  end
+ end
 
-  test "rating are set from average of reviews" do
-    route = create(:route)
-    reviews = create_list(:route_review, 10)
-    route.reviews = reviews
-    route.save
-    assert_equal route.reviews.count, reviews.count, "reviews should be set on route"
-    assert_equal route.safety_rating, reviews.first.safety_rating, "safety rating should be average correctly"
-    assert_equal route.difficulty_rating, reviews.first.difficulty_rating, "difficulty rating should be average correctly"
-    assert_equal route.environment_rating, reviews.first.environment_rating, "environment rating should be average correctly"
-  end
+ test "route created and mode default to bike enum" do
+  points = route_points
+  route = Route.record(create(:user), points)
+  assert_equal "bike", route.mode, "Route mode should default to 0 (bike)"
+end
 
-  test "estimated_time is set based on route and all uses of the route" do
-    route = create(:route)
-    uses = create_list(:route, 10)
-    route.uses = uses
-    route.save
+test "rating are set from average of reviews" do
+  route = create(:route)
+  reviews = create_list(:route_review, 10)
+  route.reviews = reviews
+  route.save
+  assert_equal route.reviews.count, reviews.count, "reviews should be set on route"
+  assert_equal route.safety_rating, reviews.first.safety_rating, "safety rating should be average correctly"
+  assert_equal route.difficulty_rating, reviews.first.difficulty_rating, "difficulty rating should be average correctly"
+  assert_equal route.environment_rating, reviews.first.environment_rating, "environment rating should be average correctly"
+end
+
+test "estimated_time is set based on route and all uses of the route" do
+  route = create(:route)
+  uses = create_list(:route, 10)
+  route.uses = uses
+  route.save
     assert_equal 123, route.estimated_time # 123 is default in factory girl
   end
 end
