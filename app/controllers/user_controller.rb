@@ -36,13 +36,13 @@ class UserController < ApplicationController
   #  }
   def signup
   	unless params[:user]
-  		render status: :bad_request
+  		render status: :bad_request, json: {}
   	else
   		user = User.register JSON.parse(params[:user])
   		if user
   			render json: {user_token: user.authentication_token}
   		else
-  			render status: :internal_server_error
+  			render status: :internal_server_error, json: {}
   		end
   	end
   end
