@@ -12,7 +12,7 @@ class UserControllerTest < ActionController::TestCase
 			gender: 0,
 			profile_picture: "http://example.com/example.jpg"
 		}
-		post :signup, user: signup_params.to_json
+		post :signup, user: signup_params
 		assert_response :success
 
 		store_user = User.where(email: "testuser@example.com").first

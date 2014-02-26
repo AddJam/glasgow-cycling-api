@@ -38,7 +38,7 @@ class UserController < ApplicationController
   	unless params[:user]
   		render status: :bad_request, json: {}
   	else
-  		user = User.register JSON.parse(params[:user])
+  		user = User.register params[:user]
   		if user
   			render json: {user_token: user.authentication_token}
   		else
