@@ -77,6 +77,65 @@ class UserController < ApplicationController
   	end
   end
 
+  # *GET* /details
+  #
+  # Returns the user overview details for the logged in user
+  #
+  # ==== Parameters
+  # Takes a user email address and EITHER a password OR an authentication token.
+  #
+  # *Note:* If possible, the authentication token should always be used. This means that a user password
+  # should not have to be stored by the client.
+  #
+  # [+user_email+] Email address of a user.
+  # AND
+  # [+user_password+] password of a user
+  # OR
+  # [+user_token+] authentication token for a user
+  #
+  # ==== Returns
+  # User details:
+  #  {
+  #    first_name: 'Chris,
+  #    last_name: 'Sloey',
+  #    month: {
+  #        route: "London Road to Hope Street",
+  #        meters: 324,
+  #        seconds: 122342
+  #        }
+  #  }
+  def details
+    if user_signed_in?
+      user = User.where(id: current_user.id).first
+      render json: {
+          details: user.details,
+        }
+    else
+      render status: :unauthorized, json: {}
+    end
+  end
+
+  # *GET* /signin
+  #
+  # Returns the authentication token for an existing user
+  #
+  # ==== Parameters
+  # Takes a user email address and EITHER a password OR an authentication token.
+  #
+  # *Note:* If possible, the authentication token should always be used. This means that a user password
+  # should not have to be stored by the client.
+  #
+  # [+user_email+] Email address of a user.
+  # AND
+  # [+user_password+] password of a user
+  # OR
+  # [+user_token+] authentication token for a user
+  #
+  # ==== Returns
+  # Successful signin:
+  #  {
+  #    user_token: 'authentication_token'
+  #  }
   def save_responses
     unless params[:responses] and user_signed_in?
       render status: :bad_request

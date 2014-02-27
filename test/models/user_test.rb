@@ -8,7 +8,21 @@ class UserTest < ActiveSupport::TestCase
   	User.register user_attrs
   	stored_user = User.where(email: user_email).first
   	assert_not_nil stored_user, "Registered user should be in database"
-  	assert_not_nil stored_user.encrypted_password, "New user shuld have an encrypted password"
+  	assert_not_nil stored_user.encrypted_password, "New user should have an encrypted password"
   	assert_not_nil stored_user.authentication_token, "New user should have an authentication token"
   end
+
+  test "Route details are as expected" do
+    user = create(:user)
+    parent_route = create(:route, user_id: user.id, total_distance: 100, total_time: 0)
+    child_routes = create_list(:route, 5, route_id: parent_route.id, name: "jobby", user_id: user.id, total_time: 100, total_distance: 100)
+    other_routes = create_list(:route, 5, user_id: user.id, total_distance: 0, total_time: 0)
+
+    assert_equal 11, user.details[:month][:total], "Total routes should be correct"
+    assert_equal "jobby", user.details[:month][:route], "Favourite route should be correct"
+    assert_equal 600, user.details[:month][:meters], "Total meters should be correct"
+    assert_equal 500, user.details[:month][:seconds], "Total seconds route should be correct"
+
+  end
+
 end

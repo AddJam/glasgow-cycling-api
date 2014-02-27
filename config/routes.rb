@@ -3,6 +3,7 @@ JourneyAPI::Application.routes.draw do
   post "/signup", to: "user#signup", as: 'signup'
   get "/signin", to: "user#signin", as: 'signin'
   post "/responses", to: "user#save_responses", as: 'responses'
+  get "/details/", to: "user#details", as: 'details'
 
   # Reviews
   get "/reviews", to: "review#all", as: 'all_reviews'
