@@ -1,8 +1,9 @@
 class UserController < ApplicationController
 	# This is our new function that comes before Devise's one
-	before_filter :authenticate_user_from_token!, except: [:signup]
-	# This is Devise's authentication
-	before_filter :authenticate_user!, except: [:signup]
+	# before_filter :authenticate_user_from_token!, except: [:signup, :signin]
+	# # This is Devise's authentication
+	# before_filter :authenticate_user!, except: [:signup, :signin]
+  prepend_before_filter :allow_params_authentication!, only: :signin
 
   # *POST* /signup
   #
@@ -87,5 +88,10 @@ class UserController < ApplicationController
         render status: :internal_server_error, json: {} ##look to change
       end
     end
+  end
+
+  private
+  def failure
+    Rails.logger.info "Login failed"
   end
 end
