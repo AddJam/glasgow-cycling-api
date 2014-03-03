@@ -75,6 +75,10 @@ class User < ActiveRecord::Base
     true
   end
 
+  # Returns this users details as json
+  #
+  # ==== Returns
+  # The user details such as most used route, time and distance for this month
   def details
     total = Route.where('user_id = ? AND created_at > ?', self.id, 1.month.ago).count
     route_counts = Route.where(user_id: self.id).select('route_id id').group('route_id').order('count_route_id asc').count('route_id')
