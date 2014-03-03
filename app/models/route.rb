@@ -149,13 +149,18 @@ class Route < ActiveRecord::Base
 	def details
 		#start_picture = Picture.where(id: self.start_picture_id).first
 		#end_picture = Picture.where(id: self.end_picture_id).first
+		user = User.where(id: self.user_id).first
 		{
 			route_id: self.id,
 			total_distance: self.total_distance,
 			environment_rating: self.environment_rating,
 			safety_rating: self.safety_rating,
 			difficulty_rating: self.difficulty_rating,
-			created_by: self.user_id,
+			created_by: {
+				user_id: self.user_id,
+				first_name: user.first_name,
+				last_name: user.last_name
+				},
 			name: self.name,
 			start_picture: self.start_picture_id,
 			end_picture: self.end_picture_id,

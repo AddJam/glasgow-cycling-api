@@ -116,7 +116,11 @@ class RouteController < ApplicationController
   #        route_id: 12,
   #        total_distance: 30,
   #        safety_rating: 2,
-  #        created_by: "chirsasur",
+  #        created_by{
+  #            user_id: 101
+  #            first_name: "Chris"
+  #            last_name: "Sloey"
+  #            },
   #        name: "London Road to Hope Street",
   #        difficulty_rating: 5,
   #        start_picture: "http://placekitten.com/350/200",

@@ -98,7 +98,6 @@ class UserController < ApplicationController
   #  {
   #    first_name: 'Chris',
   #    last_name: 'Sloey',
-  #    user_id: 101,
   #    month: {
   #        route: "London Road to Hope Street",
   #        meters: 324,

@@ -12,6 +12,7 @@ class UserTest < ActiveSupport::TestCase
   	assert_not_nil stored_user.authentication_token, "New user should have an authentication token"
   end
 
+  #Need to test for when the user has no routes
   test "Route details are as expected" do
     user = create(:user)
     parent_route = create(:route, user_id: user.id, total_distance: 100, total_time: 0)
