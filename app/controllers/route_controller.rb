@@ -228,6 +228,7 @@ class RouteController < ApplicationController
   #      }
   #    ]
   #  }
+  # TODO Paginate? Should they be ordered? Based off user type?
 	def nearby_summaries
 		unless params[:lat] and params[:long]
 			render status: :bad_request, json: {}

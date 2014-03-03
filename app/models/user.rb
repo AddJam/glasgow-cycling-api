@@ -83,11 +83,10 @@ class User < ActiveRecord::Base
     most_used_id = route_counts.keys.first
     distance = Route.where('user_id = ? AND created_at > ?', self.id, 1.month.ago).sum('total_distance')
     seconds = Route.where('user_id = ? AND created_at > ?', self.id, 1.month.ago).sum('total_time')
-
-    # route_name = route_counts[most_used_id]# Route.where(id: most_used_id)
     {
       first_name: self.first_name,
       last_name: self.last_name,
+      user_id: self.id,
       month:{
          route: route_name,
          total: total,
