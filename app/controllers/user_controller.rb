@@ -96,13 +96,13 @@ class UserController < ApplicationController
   # ==== Returns
   # User details:
   #  {
-  #    first_name: 'Chris,
+  #    first_name: 'Chris',
   #    last_name: 'Sloey',
   #    month: {
   #        route: "London Road to Hope Street",
   #        meters: 324,
   #        seconds: 122342
-  #        }
+  #    }
   #  }
   def details
     if user_signed_in?
