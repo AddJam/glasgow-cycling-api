@@ -103,7 +103,7 @@ class UserController < ApplicationController
   #        route: "London Road to Hope Street",
   #        meters: 324,
   #        seconds: 122342
-  #        }
+  #    }
   #  }
   def details
     if user_signed_in?
