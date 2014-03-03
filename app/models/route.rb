@@ -151,7 +151,7 @@ class Route < ActiveRecord::Base
 		#end_picture = Picture.where(id: self.end_picture_id).first
 		user = User.where(id: self.user_id).first
 		{
-			route_id: self.id,
+			id: self.id,
 			total_distance: self.total_distance,
 			environment_rating: self.environment_rating,
 			safety_rating: self.safety_rating,
@@ -162,8 +162,8 @@ class Route < ActiveRecord::Base
 				last_name: user.last_name
 				},
 			name: self.name,
-			start_picture: self.start_picture_id,
-			end_picture: self.end_picture_id,
+			# start_picture: self.start_picture_id,
+			# end_picture: self.end_picture_id,
 			estimate_time: self.estimated_time,
 			user_time: self.total_time,
 			created_at: self.created_at
@@ -185,6 +185,10 @@ class Route < ActiveRecord::Base
 				time: point.time
 			}
 		end
+	end
+
+	def is_original?
+		route_id.blank?
 	end
 
 	private
@@ -216,6 +220,7 @@ class Route < ActiveRecord::Base
 	end
 
 	def calculate_times
+		return unless self.is_original?
 		# Calculate user route data
 		return if self.points.length == 0
 
@@ -227,10 +232,12 @@ class Route < ActiveRecord::Base
 			sum += route.total_time
 		end
 
+		Rails.logger.info "Dividing #{time_for_all_users} by #{1+self.uses.count}"
 		self.estimated_time = time_for_all_users / (1 + self.uses.count)
 	end
 
 	def calculate_ratings
+		return unless self.is_original?
 		if self.reviews.count == 0
 			self.safety_rating = 0
 			self.environment_rating = 0

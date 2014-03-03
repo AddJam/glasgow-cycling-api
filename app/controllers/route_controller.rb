@@ -62,7 +62,7 @@ class RouteController < ApplicationController
 	#  {
 	#    details:[
   #      {
-  #        route_id: 12,
+  #        id: 12,
   #        total_distance: 30,
   #        safety_rating: 2,
   #        created_by: "chirsasur",
@@ -113,7 +113,7 @@ class RouteController < ApplicationController
 	#  {routes[
 	#    details:
   #      {
-  #        route_id: 12,
+  #        id: 12,
   #        total_distance: 30,
   #        safety_rating: 2,
   #        created_by{
@@ -167,7 +167,7 @@ class RouteController < ApplicationController
 	#  {
 	#    details:[
   #      {
-  #        route_id: 12,
+  #        id: 12,
   #        total_distance: 30,
   #        safety_rating: 2,
   #        created_by: "chirsasur",
@@ -218,7 +218,7 @@ class RouteController < ApplicationController
 	#    routes:[
 	#      {
 	#        details: {
-  #            route_id: 12,
+  #            id: 12,
   #            total_distance: 30,
   #            safety_rating: 2,
   #            created_by: "chirsasur",
