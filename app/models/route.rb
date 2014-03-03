@@ -122,15 +122,12 @@ class Route < ActiveRecord::Base
 	def review(user, review_data)
 		return unless review_data[:safety_rating] and review_data[:difficulty_rating] and
 		review_data[:environment_rating] and review_data[:comment]
-
-		Rails.logger.info "Creating review"
 		review = RouteReview.create do |review_instance|
 			review_instance.safety_rating = review_data[:safety_rating]
 			review_instance.difficulty_rating = review_data[:difficulty_rating]
 			review_instance.environment_rating = review_data[:environment_rating]
 			review_instance.comment = review_data[:comment]
 		end
-		Rails.logger.info "Valid review #{review.inspect}\n#{review.valid?}"
 		self.reviews << review
 		user.reviews << review
 		if user.save and self.save
