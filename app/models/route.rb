@@ -51,7 +51,6 @@ class Route < ActiveRecord::Base
 	enum mode: [:bike, :walking]
 
 	def to_coordinates
-		Rails.logger.info "to_coordinates #{lat}, #{long}"
 		[lat, long]
 	end
 
@@ -228,8 +227,6 @@ class Route < ActiveRecord::Base
 		time_for_all_users = self.total_time + self.uses.inject(0) do |sum, route|
 			sum += route.total_time
 		end
-
-		Rails.logger.info "Dividing #{time_for_all_users} by #{1+self.uses.count}"
 		self.estimated_time = time_for_all_users / (1 + self.uses.count)
 	end
 
