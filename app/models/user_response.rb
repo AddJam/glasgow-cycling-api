@@ -21,7 +21,7 @@ class UserResponse < ActiveRecord::Base
 		response.user_id = user_id
 		response.usage_per_week = responses['usage_per_week']
 		response.usage_type = responses['usage_type']
-		response.usage_reason = response['usage_reason']
+		response.usage_reason = responses['usage_reason']
 
 		if response.save
 			response

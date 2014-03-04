@@ -3,15 +3,18 @@ require 'test_helper'
 class UserResponseTest < ActiveSupport::TestCase
 	test "valid users responses stored correctly" do
     response = {
-      usage_per_week: 5,
-      usage_type: 3,
-      usage_reason: 4
+      'usage_per_week' => 5,
+      'usage_type' => 3,
+      'usage_reason' => 4
     }
     user_id = 1
 
     response = UserResponse.store(response, user_id)
 
   	assert_not_nil response, "user responses stored correctly"
-  	assert_equal response.user_id, user_id, "user_id as expected"
+  	assert_equal user_id, response.user_id, "user_id as expected"
+    assert_equal 5, response.usage_per_week, "usage_per_week should be as submitted"
+    assert_equal 3, response.usage_type, "usage_type should be as submitted"
+    assert_equal 4, response.usage_reason, "usage_reason should be as submitted"
 	end
 end

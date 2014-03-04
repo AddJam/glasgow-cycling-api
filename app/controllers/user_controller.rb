@@ -113,30 +113,10 @@ class UserController < ApplicationController
     end
   end
 
-  # *GET* /signin
-  #
-  # Returns the authentication token for an existing user
-  #
-  # ==== Parameters
-  # Takes a user email address and EITHER a password OR an authentication token.
-  #
-  # *Note:* If possible, the authentication token should always be used. This means that a user password
-  # should not have to be stored by the client.
-  #
-  # [+user_email+] Email address of a user.
-  # AND
-  # [+user_password+] password of a user
-  # OR
-  # [+user_token+] authentication token for a user
-  #
-  # ==== Returns
-  # Successful signin:
-  #  {
-  #    user_token: 'authentication_token'
-  #  }
+  # *POST* /responses
   def save_responses
     unless params[:responses] and user_signed_in?
-      render status: :bad_request
+      render status: :bad_request, json: {}
     else
       response = UserResponse.store(params[:responses], current_user.id)
       if response
