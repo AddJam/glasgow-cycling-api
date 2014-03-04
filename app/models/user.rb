@@ -83,9 +83,9 @@ class User < ActiveRecord::Base
     # Find favourite route
     route_counts = Route.where(user_id: self.id).select('route_id id').group('route_id')
                     .order('count_route_id asc').count('route_id')
-    favourite_route = Route.find_by_sql("SELECT route_id, name, COUNT(route_id) AS count \
-                    FROM routes WHERE route_id IS NOT NULL AND user_id = #{self.id} GROUP \
-                    BY route_id, name ORDER BY count LIMIT 1")
+    favourite_route = Route.find_by_sql("SELECT route_id, name, COUNT(route_id) AS count
+                    FROM routes WHERE route_id IS NOT NULL AND user_id = #{self.id}
+                    GROUP BY route_id, name ORDER BY count LIMIT 1")
     fav_route_name = favourite_route.first.name if favourite_route.present?
 
     # Past month stats
