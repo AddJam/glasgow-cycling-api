@@ -96,7 +96,7 @@ class RouteControllerTest < ActionController::TestCase
     assert_response :success
 
     route_data = JSON.parse response.body
-    route_id = route_data['details']['route_id']
+    route_id = route_data['details']['id']
     assert_not_nil route_id, "route_id is not null"
     assert_not_nil route_data, "data returned"
     assert_equal id, route_id, "correct route id should be returned"

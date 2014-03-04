@@ -62,7 +62,7 @@ class RouteController < ApplicationController
 	#  {
 	#    details:[
   #      {
-  #        route_id: 12,
+  #        id: 12,
   #        total_distance: 30,
   #        safety_rating: 2,
   #        created_by: "chirsasur",
@@ -113,10 +113,14 @@ class RouteController < ApplicationController
 	#  {routes[
 	#    details:
   #      {
-  #        route_id: 12,
+  #        id: 12,
   #        total_distance: 30,
   #        safety_rating: 2,
-  #        created_by: "chirsasur",
+  #        created_by{
+  #            user_id: 101
+  #            first_name: "Chris"
+  #            last_name: "Sloey"
+  #            },
   #        name: "London Road to Hope Street",
   #        difficulty_rating: 5,
   #        start_picture: "http://placekitten.com/350/200",
@@ -163,7 +167,7 @@ class RouteController < ApplicationController
 	#  {
 	#    details:[
   #      {
-  #        route_id: 12,
+  #        id: 12,
   #        total_distance: 30,
   #        safety_rating: 2,
   #        created_by: "chirsasur",
@@ -214,7 +218,7 @@ class RouteController < ApplicationController
 	#    routes:[
 	#      {
 	#        details: {
-  #            route_id: 12,
+  #            id: 12,
   #            total_distance: 30,
   #            safety_rating: 2,
   #            created_by: "chirsasur",
@@ -228,6 +232,7 @@ class RouteController < ApplicationController
   #      }
   #    ]
   #  }
+  # TODO Paginate? Should they be ordered? Based off user type?
 	def nearby_summaries
 		unless params[:lat] and params[:long]
 			render status: :bad_request, json: {}

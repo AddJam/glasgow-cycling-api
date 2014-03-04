@@ -75,6 +75,10 @@ class User < ActiveRecord::Base
     true
   end
 
+  # Returns this users details as json
+  #
+  # ==== Returns
+  # The user details such as most used route, time and distance for this month
   def details
     # Find favourite route
     route_counts = Route.where(user_id: self.id).select('route_id id').group('route_id')
@@ -99,6 +103,7 @@ class User < ActiveRecord::Base
     {
       first_name: self.first_name,
       last_name: self.last_name,
+      user_id: self.id,
       month: month_stats
     }
   end

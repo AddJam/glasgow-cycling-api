@@ -51,7 +51,6 @@ class Route < ActiveRecord::Base
 	enum mode: [:bike, :walking]
 
 	def to_coordinates
-		Rails.logger.info "to_coordinates #{lat}, #{long}"
 		[lat, long]
 	end
 
@@ -122,15 +121,12 @@ class Route < ActiveRecord::Base
 	def review(user, review_data)
 		return unless review_data[:safety_rating] and review_data[:difficulty_rating] and
 		review_data[:environment_rating] and review_data[:comment]
-
-		Rails.logger.info "Creating review"
 		review = RouteReview.create do |review_instance|
 			review_instance.safety_rating = review_data[:safety_rating]
 			review_instance.difficulty_rating = review_data[:difficulty_rating]
 			review_instance.environment_rating = review_data[:environment_rating]
 			review_instance.comment = review_data[:comment]
 		end
-		Rails.logger.info "Valid review #{review.inspect}\n#{review.valid?}"
 		self.reviews << review
 		user.reviews << review
 		if user.save and self.save
@@ -149,16 +145,21 @@ class Route < ActiveRecord::Base
 	def details
 		#start_picture = Picture.where(id: self.start_picture_id).first
 		#end_picture = Picture.where(id: self.end_picture_id).first
+		user = User.where(id: self.user_id).first
 		{
-			route_id: self.id,
+			id: self.id,
 			total_distance: self.total_distance,
 			environment_rating: self.environment_rating,
 			safety_rating: self.safety_rating,
 			difficulty_rating: self.difficulty_rating,
-			created_by: self.user_id,
+			created_by: {
+				user_id: self.user_id,
+				first_name: user.first_name,
+				last_name: user.last_name
+				},
 			name: self.name,
-			start_picture: self.start_picture_id,
-			end_picture: self.end_picture_id,
+			# start_picture: self.start_picture_id,
+			# end_picture: self.end_picture_id,
 			estimate_time: self.estimated_time,
 			user_time: self.total_time,
 			created_at: self.created_at
@@ -180,6 +181,10 @@ class Route < ActiveRecord::Base
 				time: point.time
 			}
 		end
+	end
+
+	def is_original?
+		route_id.blank?
 	end
 
 	private
@@ -211,6 +216,7 @@ class Route < ActiveRecord::Base
 	end
 
 	def calculate_times
+		return unless self.is_original?
 		# Calculate user route data
 		return if self.points.length == 0
 
@@ -221,11 +227,11 @@ class Route < ActiveRecord::Base
 		time_for_all_users = self.total_time + self.uses.inject(0) do |sum, route|
 			sum += route.total_time
 		end
-
 		self.estimated_time = time_for_all_users / (1 + self.uses.count)
 	end
 
 	def calculate_ratings
+		return unless self.is_original?
 		if self.reviews.count == 0
 			self.safety_rating = 0
 			self.environment_rating = 0
