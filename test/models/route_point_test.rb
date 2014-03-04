@@ -16,4 +16,14 @@ class RoutePointTest < ActiveSupport::TestCase
   	route_point = create(:route_point, lat: 0.0, long: 0.0)
   	assert_not_nil route_point, "route point with no street name should fail to geocode gracefully"
   end
+
+  test "non-important route_point is not reverse geocoded" do
+    route_point = create(:route_point, lat: 0.0, long: 0.0, street_name: nil, is_important: false)
+    assert_nil route_point.street_name, "non-importnant route point should not have a name"
+  end
+
+  test "important route_point is reverse geocoded" do
+    route_point = create(:route_point, lat: 55.8447118, long: -4.194400299999984, street_name: nil, is_important: true)
+    assert_not_nil "importnant route point name should not be nil"
+  end
 end
