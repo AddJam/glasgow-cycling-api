@@ -19,7 +19,7 @@ class UserTest < ActiveSupport::TestCase
     child_routes = create_list(:route, 5, route_id: parent_route.id, name: "jobby", user_id: user.id, total_time: 100, total_distance: 100)
     other_routes = create_list(:route, 5, user_id: user.id, total_distance: 0, total_time: 0)
 
-    assert_not_nil user.details
+    assert_not_nil user.details, "User details should not be nil"
     assert_equal 1, user.details[:user_id], "User id not as expected"
     assert_equal "Test", user.details[:first_name], "User first_name not as expected"
     assert_equal "McTester", user.details[:last_name], "User last_name not as expected"
@@ -32,7 +32,7 @@ class UserTest < ActiveSupport::TestCase
   test "user details when there are no routes, route should return nil and other details 0" do
     user = create(:user, id: 1, first_name: "Test", last_name: "McTester")
 
-    assert_not_nil user.details
+    assert_not_nil user.details, "User details should not be nil"
     assert_equal 1, user.details[:user_id], "User id not as expected"
     assert_equal "Test", user.details[:first_name], "User first_name not as expected"
     assert_equal "McTester", user.details[:last_name], "User last_name not as expected"

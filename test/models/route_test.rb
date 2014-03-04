@@ -109,4 +109,18 @@ class RouteTest < ActiveSupport::TestCase
     # ISSUE HERE??? Was getting 111 > Expected (0 + (123*10) / 11) because saving the parent sets total_time to 0 (no points)
     assert_equal 123, route.estimated_time
   end
+
+  test "Route points returned correctly"  do
+    timestamp = 3.days.ago
+    route = create(:route, id: 555)
+    points = create_list(:route_point, 5, route_id: 555, is_important: false, lat: 321.0, long: 654.0, altitude: 987.0, time: timestamp)
+    returned_points = route.points_data
+
+    assert_not_nil returned_points, "route points should not be nil"
+    assert_equal 5, returned_points.count, "Number of route points not as expected"
+    assert_equal 321.0, returned_points.first[:lat], "lat not as expected"
+    assert_equal 654.0, returned_points.first[:long], "long not as expected"
+    assert_equal 987.0, returned_points.first[:altitude], "altitude not as expected"
+    assert_equal timestamp, returned_points.first[:time], "time not as expected"
+  end
 end
