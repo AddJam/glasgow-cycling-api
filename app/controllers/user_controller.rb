@@ -107,9 +107,7 @@ class UserController < ApplicationController
   def details
     if user_signed_in?
       user = User.where(id: current_user.id).first
-      render json: {
-          details: user.details,
-        }
+      render json: user.details
     else
       render status: :unauthorized, json: {}
     end
