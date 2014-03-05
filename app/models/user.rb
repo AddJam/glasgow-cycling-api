@@ -55,15 +55,27 @@ class User < ActiveRecord::Base
   # ==== Returns
   # The user which was registered, or nil if no user could be registered.
   def self.register(user_data)
+    # Password is the only field not handled by model validation (it's not a column)
   	return unless user_data['password']
   	user = User.new
+
+    # Basic user data
 		user.email = user_data['email']
 		user.password = user_data['password']
 		user.first_name = user_data['first_name']
 		user.last_name = user_data['last_name']
 		user.dob = DateTime.parse(user_data['dob']) if user_data['dob'].present?
 		user.gender = user_data['gender'].downcase if user_data['gender'].present?
-		user.profile_picture = user_data['profile_picture']
+
+    # Decode profile pic
+    profile_pic = user_data['profile_picture']
+    if profile_pic.present?
+      StringIO.open(Base64.decode64(profile_pic)) do |data|
+        data.original_filename = "#{first_name}-#{last_name}-#{Time.now.to_i}.png"
+        data.content_type = "image/png"
+        self.image = data
+      end
+    end
 
   	if user.save
   		Rails.logger.debug "Stored user #{user.inspect}"
