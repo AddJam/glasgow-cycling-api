@@ -117,15 +117,25 @@ class User < ActiveRecord::Base
     }
     month_stats[:route] = fav_route_name if fav_route_name.present?
 
-    {
+    user_details = {
       first_name: self.first_name,
       last_name: self.last_name,
       user_id: self.id,
       month: month_stats
     }
+
+    if (self.profile_pic)
+      user_details[:profile_pic] = base64_profile_pic
+    end
+
+    user_details
   end
 
   private
+
+  def base64_profile_pic
+    Base64.encode64(open(self.profile_pic.path) { |io| io.read })
+  end
 
   def ensure_authentication_token
     Rails.logger.info "Creating auth token"

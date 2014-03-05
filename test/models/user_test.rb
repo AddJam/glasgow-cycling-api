@@ -1,6 +1,8 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
+  # TODO test profile_pic in details
+
   test "registering a user should create the necessary auth fields" do
   	user_email = "testusermodel@example.com"
   	assert_nil User.where(email: user_email).first, "User shouldn't exist in db before register"
@@ -12,7 +14,6 @@ class UserTest < ActiveSupport::TestCase
   	assert_not_nil stored_user.authentication_token, "New user should have an authentication token"
   end
 
-  #Need to test for when the user has no routes
   test "user details are as expected" do
     user = create(:user, id: 1, first_name: "Test", last_name: "McTester")
     parent_route = create(:route, user_id: user.id, total_distance: 100, total_time: 0)
