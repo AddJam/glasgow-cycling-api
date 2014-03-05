@@ -47,7 +47,10 @@ gem 'rvm-capistrano'
 # Users + Auth
 gem 'devise'
 
-#Geocoding
+# Image handling
+gem "paperclip", "~> 4.1"
+
+# Geocoding
 gem 'geocoder'
 gem 'redis' #cache
 
