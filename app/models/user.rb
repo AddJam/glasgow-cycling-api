@@ -124,7 +124,7 @@ class User < ActiveRecord::Base
       month: month_stats
     }
 
-    if (self.profile_pic)
+    if self.profile_pic.present?
       user_details[:profile_pic] = base64_profile_pic
     end
 
@@ -134,7 +134,10 @@ class User < ActiveRecord::Base
   private
 
   def base64_profile_pic
-    Base64.encode64(open(self.profile_pic.path) { |io| io.read })
+    image = open(self.profile_pic.path) { |io| io.read }
+    if image.present?
+      Base64.encode64(image)
+    end
   end
 
   def ensure_authentication_token
