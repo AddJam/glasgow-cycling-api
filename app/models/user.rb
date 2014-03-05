@@ -31,6 +31,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  enum gender: [:male, :female, :undisclosed]
+
   has_many :reviews, foreign_key: 'user_id', class_name: 'RouteReview'
   has_many :routes
   has_many :user_responses
@@ -56,7 +58,7 @@ class User < ActiveRecord::Base
 		user.password = user_data['password']
 		user.first_name = user_data['first_name']
 		user.last_name = user_data['last_name']
-		user.dob = DateTime.parse(user_data['dob'])
+		user.dob = DateTime.parse(user_data['dob']) if user_data['dob'].present?
 		user.gender = user_data['gender']
 		user.profile_picture = user_data['profile_picture']
 

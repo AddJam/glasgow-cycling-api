@@ -112,7 +112,7 @@ FactoryGirl.define do
     first_name 'Test First Name'
     last_name 'Test Last Name'
     profile_picture 'Test Profile Picture'
-    gender 123
+    gender "male"
     dob { 2.weeks.ago }
     # sequence(:authentication_token)
   end

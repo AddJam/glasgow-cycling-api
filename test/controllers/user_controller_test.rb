@@ -9,7 +9,7 @@ class UserControllerTest < ActionController::TestCase
 			first_name: "Bob",
 			last_name: "Builder",
 			dob: Date.new(1998, 11, 28),
-			gender: 0,
+			gender: "male",
 			profile_picture: "http://example.com/example.jpg"
 		}
 		post :signup, user: signup_params
