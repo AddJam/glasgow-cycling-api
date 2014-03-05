@@ -70,11 +70,11 @@ class User < ActiveRecord::Base
     # Decode profile pic
     profile_pic = user_data['profile_picture']
     if profile_pic.present?
-      StringIO.open(Base64.decode64(profile_pic)) do |data|
-        data.original_filename = "#{first_name}-#{last_name}-#{Time.now.to_i}.png"
-        data.content_type = "image/png"
-        self.image = data
-      end
+      data = StringIO.open(Base64.decode64(profile_pic))
+      data.class.class_eval { attr_accessor :original_filename, :content_type }
+      data.original_filename = "#{user.first_name}-#{user.last_name}-#{Time.now.to_i}.png"
+      data.content_type = "image/png"
+      user.profile_pic = data
     end
 
   	if user.save
