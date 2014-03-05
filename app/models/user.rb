@@ -37,6 +37,9 @@ class User < ActiveRecord::Base
   has_many :routes
   has_many :user_responses
 
+  has_attached_file :profile_pic, :styles => { :medium => "300x300>", :thumb => "50x50>" }, :default_url => "/images/:style/default_profile_pic.png"
+  validates_attachment_content_type :profile_pic, :content_type => /\Aimage\/.*\Z/
+
   validates :email, presence: true, uniqueness: true, length: { minimum: 5 },
       format: { with: /@/, message: "email addresses must contain @" }
   validates :first_name, presence: true
