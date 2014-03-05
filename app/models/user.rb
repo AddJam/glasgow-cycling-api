@@ -56,7 +56,7 @@ class User < ActiveRecord::Base
 		user.password = user_data['password']
 		user.first_name = user_data['first_name']
 		user.last_name = user_data['last_name']
-		user.dob = user_data['dob']
+		user.dob = DateTime.parse(user_data['dob'])
 		user.gender = user_data['gender']
 		user.profile_picture = user_data['profile_picture']
 
