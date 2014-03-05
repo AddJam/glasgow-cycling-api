@@ -59,7 +59,7 @@ class User < ActiveRecord::Base
 		user.first_name = user_data['first_name']
 		user.last_name = user_data['last_name']
 		user.dob = DateTime.parse(user_data['dob']) if user_data['dob'].present?
-		user.gender = user_data['gender']
+		user.gender = user_data['gender'].downcase if user_data['gender'].present?
 		user.profile_picture = user_data['profile_picture']
 
   	if user.save
