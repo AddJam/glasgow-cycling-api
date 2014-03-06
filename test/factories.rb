@@ -111,7 +111,6 @@ FactoryGirl.define do
     last_sign_in_ip 'Test Last Sign In Ip'
     first_name 'Test First Name'
     last_name 'Test Last Name'
-    profile_picture 'Test Profile Picture'
     gender "male"
     dob { 2.weeks.ago }
     # sequence(:authentication_token)
