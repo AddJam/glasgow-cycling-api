@@ -61,9 +61,11 @@ class RouteTest < ActiveSupport::TestCase
   end
 
   test "details method should return route details json" do
+    local_timestamp = 3.days.ago
+
     route = create(:route, id: 1, name: "Test Route", estimated_time: 123,
       total_distance: 456, last_used: 1111111111, mode: 1, safety_rating: 1, difficulty_rating: 5, start_picture_id: 1,
-      end_picture_id: 2, created_at: 3.days.ago, updated_at: 3333333333, start_time: 33333333334,
+      end_picture_id: 2, created_at: local_timestamp, updated_at: 3333333333, start_time: 33333333334,
       end_time: 33333333355, rating: 3, total_time: 21, route_id: 2, user_id: 2, environment_rating: 4)
     user = create(:user, id: 2, first_name: "test", last_name: "McTester")
     details = route.details
@@ -80,7 +82,7 @@ class RouteTest < ActiveSupport::TestCase
     # assert_equal 2, details[:end_picture_id], "Returned end_picture_id is not as expected"
     assert_equal 123, details[:estimate_time], "Returned estimated_time is not as expected"
     assert_equal 21, details[:user_time], "Returned total_time is not as expected"
-    assert_equal 3.days.ago.to_i, details[:created_at].to_i, "Returned created_at is not as expected"
+    assert_equal local_timestamp.to_i, details[:created_at].to_i, "Returned created_at is not as expected"
   end
 
   test "route created and mode default to bike enum" do
