@@ -135,9 +135,7 @@ class User < ActiveRecord::Base
 
   def base64_profile_pic
     image = open(self.profile_pic.path) { |io| io.read }
-    if image.present?
-      Base64.encode64(image)
-    end
+    Base64.encode64(image)
   end
 
   def ensure_authentication_token
