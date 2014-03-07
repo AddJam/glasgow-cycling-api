@@ -160,7 +160,7 @@ class Route < ActiveRecord::Base
 			name: self.name,
 			# start_picture: self.start_picture_id,
 			# end_picture: self.end_picture_id,
-			estimate_time: self.estimated_time,
+			estimated_time: self.estimated_time,
 			user_time: self.total_time,
 			created_at: self.created_at
 		}

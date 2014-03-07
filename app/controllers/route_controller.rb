@@ -170,9 +170,10 @@ class RouteController < ApplicationController
   #        id: 12,
   #        total_distance: 30,
   #        safety_rating: 2,
+  #        difficulty_rating: 5,
+  #        environment_rating: 3,
   #        created_by: "chirsasur",
   #        name: "London Road to Hope Street",
-  #        difficulty_rating: 5,
   #        start_picture: "http://placekitten.com/350/200",
   #        end_picture: "http://placekitten.com/350/200",
   #        estimated_time: 3232
