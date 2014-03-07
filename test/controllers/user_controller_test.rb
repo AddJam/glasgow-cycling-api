@@ -3,6 +3,8 @@ require 'test_helper'
 class UserControllerTest < ActionController::TestCase
 	test "signup successful with correct params" do
 		assert_nil User.where(email: "testuser@example.com").first, "User shouldn't exist in DB before register"
+		image = open(Rails.root.join('public', 'images', 'medium', 'default_profile_pic.png')) { |io| io.read }
+    base64_image = Base64.encode64(image)
 		signup_params = {
 			email: "testuser@example.com",
 			password: "password",
@@ -10,7 +12,7 @@ class UserControllerTest < ActionController::TestCase
 			last_name: "Builder",
 			dob: Date.new(1998, 11, 28),
 			gender: "male",
-			profile_picture: "http://example.com/example.jpg"
+			profile_picture: base64_image
 		}
 		post :signup, user: signup_params
 		assert_response :success

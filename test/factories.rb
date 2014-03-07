@@ -111,6 +111,7 @@ FactoryGirl.define do
     last_sign_in_ip 'Test Last Sign In Ip'
     first_name 'Test First Name'
     last_name 'Test Last Name'
+    profile_pic { fixture_file_upload(Rails.root.join('public', 'images', 'medium', 'default_profile_pic.png'), 'image/png') }
     gender "male"
     dob { 2.weeks.ago }
     # sequence(:authentication_token)
