@@ -235,7 +235,7 @@ class RouteController < ApplicationController
   # TODO Paginate? Should they be ordered? Based off user type?
 	def nearby_summaries
 		unless params[:lat] and params[:long]
-			render status: :bad_request, json: {}
+			render status: :bad_request, json: {error: "Must provide lat and long to find nearby routes"}
 		else
 			coords = [params[:lat].to_f, params[:long].to_f]
 			Rails.logger.info "Coords #{coords}"
@@ -250,7 +250,7 @@ class RouteController < ApplicationController
 					end
 				}
 			else
-				render status: :bad_request, json: {} ##look to change
+				render status: :bad_request, json: {error: "Error generating nearby rotues"} ##look to change
 			end
 		end
 	end

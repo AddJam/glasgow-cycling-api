@@ -73,7 +73,7 @@ class UserController < ApplicationController
   	if user_signed_in?
   		render json: {user_token: current_user.authentication_token}
   	else
-  		render status: :unauthorized, json: {}
+  		render status: :unauthorized, json: {error: "Cannot sign in user with given credentials"}
   	end
   end
 
@@ -109,7 +109,7 @@ class UserController < ApplicationController
       user = User.where(id: current_user.id).first
       render json: user.details
     else
-      render status: :unauthorized, json: {}
+      render status: :unauthorized, json: {error: "No user details"}
     end
   end
 
@@ -122,7 +122,7 @@ class UserController < ApplicationController
       if response
         render json: {}
       else
-        render status: :internal_server_error, json: {} ##look to change
+        render status: :internal_server_error, json: {error: "Unable to save responses"}
       end
     end
   end
