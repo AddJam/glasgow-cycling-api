@@ -72,8 +72,8 @@ class User < ActiveRecord::Base
     if profile_pic.present?
       data = StringIO.open(Base64.decode64(profile_pic))
       data.class.class_eval { attr_accessor :original_filename, :content_type }
-      data.original_filename = "#{user.first_name}-#{user.last_name}-#{Time.now.to_i}.png"
-      data.content_type = "image/png"
+      data.original_filename = "#{user.first_name}-#{user.last_name}-#{Time.now.to_i}.jpg"
+      data.content_type = "image/jpg"
       user.profile_pic = data
     end
 
@@ -135,7 +135,7 @@ class User < ActiveRecord::Base
 
   def base64_profile_pic
     image = open(self.profile_pic.path) { |io| io.read }
-    Base64.encode64(image)
+    Base64.encode64(image).gsub("\n", '')
   end
 
   def ensure_authentication_token
