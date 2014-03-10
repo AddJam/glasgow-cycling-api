@@ -11,7 +11,6 @@ class UserControllerTest < ActionController::TestCase
 			first_name: "Bob",
 			last_name: "Builder",
 			dob: Date.new(1998, 11, 28),
-			gender: "male",
 			profile_picture: base64_image
 		}
 		post :signup, user: signup_params

@@ -84,7 +84,7 @@ class User < ActiveRecord::Base
   		Rails.logger.debug "Didn't store user #{user.inspect}"
       Rails.logger.debug "User valid: #{user.valid?}"
       Rails.logger.debug "#{user.errors.inspect}"
-  		return nil
+  		return user
   	end
   end
 

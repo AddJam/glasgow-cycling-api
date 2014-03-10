@@ -40,10 +40,10 @@ class UserController < ApplicationController
   		render status: :bad_request, json: {}
   	else
   		user = User.register params[:user]
-  		if user
+  		if user.valid?
   			render json: {user_token: user.authentication_token}
   		else
-  			render status: :internal_server_error, json: {}
+        render :json => { :errors => user.errors.as_json }, :status => 422
   		end
   	end
   end
