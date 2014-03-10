@@ -94,7 +94,7 @@ class RouteController < ApplicationController
   				points: route.points_data
   			}
   		else
-				render status: :bad_request, json: {} ##look to change
+				render status: :bad_request, json: {error: "Route not found"}
 			end
 		end
 	end
@@ -182,13 +182,13 @@ class RouteController < ApplicationController
   #  }
   def user_summaries
   	unless params[:per_page] and params[:page_num] and user_signed_in?
-  		render status: :bad_request, json: {}
+  		render status: :bad_request, json: {error: "Incorrect parameters for retrieving user summaries"}
   	else
   		page_num = params[:page_num].to_i
   		per_page = params[:per_page].to_i
   		offset = page_num * per_page - per_page
   		if per_page == 0
-  			render status: :bad_request, json: {}
+  			render status: :bad_request, json: {error: "Must display at least one route per page"}
   		else
   			routes = Route.where(user_id: current_user.id).limit(per_page).offset(offset)
   			summaries = []
