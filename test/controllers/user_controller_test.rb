@@ -11,6 +11,7 @@ class UserControllerTest < ActionController::TestCase
 			first_name: "Bob",
 			last_name: "Builder",
 			dob: Date.new(1998, 11, 28),
+			gender: "male",
 			profile_picture: base64_image
 		}
 		post :signup, user: signup_params
@@ -32,7 +33,7 @@ class UserControllerTest < ActionController::TestCase
 			password: "password"
 		}
 		post :signup, user: signup_params.to_json
-		assert_response :error
+		assert_response 422
 	end
 
 	test "signin should return auth token" do
@@ -56,6 +57,16 @@ class UserControllerTest < ActionController::TestCase
 	end
 
 	test "signin should return unauthorized when unsuccessful" do
+		get :signin, format: :json
+		assert_response :unauthorized
+	end
+
+	test "signin should return unauthorized with incorrect credentials" do
+		signin_params = {
+			email: "fake@user.com",
+			password: "blahblahblah"
+		}
+
 		get :signin, format: :json
 		assert_response :unauthorized
 	end
