@@ -41,11 +41,10 @@ class RouteController < ApplicationController
 			else
 				route = Route.record(current_user, params[:points])
 			end
-			if route
+			if route.valid?
 				render json: {route_id: route.id}
 			else
-				render status: :internal_server_error
-			end
+				render :json => { :errors => user.errors.as_json }, :status => 422			end
 		end
 	end
 

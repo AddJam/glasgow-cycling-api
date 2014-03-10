@@ -82,11 +82,8 @@ class Route < ActiveRecord::Base
 
 		route.mode = "bike"
 
-		if route.save
-			route
-		else
-			nil
-		end
+		route.save
+		route
 	end
 
 	# Records a new route for the given user, with the route being called upon
