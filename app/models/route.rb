@@ -120,7 +120,7 @@ class Route < ActiveRecord::Base
 	# The recorded review
 	def review(user, review_data)
 		return unless review_data[:safety_rating] and review_data[:difficulty_rating] and
-		review_data[:environment_rating] and review_data[:comment]
+		review_data[:environment_rating]
 		review = RouteReview.create do |review_instance|
 			review_instance.safety_rating = review_data[:safety_rating]
 			review_instance.difficulty_rating = review_data[:difficulty_rating]
@@ -162,7 +162,7 @@ class Route < ActiveRecord::Base
 			# end_picture: self.end_picture_id,
 			estimated_time: self.estimated_time,
 			user_time: self.total_time,
-			created_at: self.created_at
+			created_at: self.created_at.to_i
 		}
 	end
 
@@ -194,12 +194,10 @@ class Route < ActiveRecord::Base
 
 		# Calculate route distance
 		self.total_distance = self.points.each_with_index.inject(0) do |dist, (elem, index)|
-			if index >= self.points.count - 1
-				Rails.logger.info "Finished calculating distance #{dist}"
+			if index >= self.points.length - 1
 				dist
 			else
 				next_point = self.points[index+1]
-				Rails.logger.info "Adding distance of #{next_point.distance_from(elem)} to #{dist}"
 				dist += next_point.distance_from(elem)
 			end
 		end
