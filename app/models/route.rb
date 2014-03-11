@@ -76,6 +76,9 @@ class Route < ActiveRecord::Base
 				rp.altitude = point[:altitude]
 				rp.speed = point[:speed]
 				rp.time = Time.at(point[:time].to_i)
+				rp.vertical_accuracy = point[:vertical_accuracy]
+				rp.horizontal_accuracy = point[:horizontal_accuracy]
+				rp.course = point[:course]
 			end
 			route.points << route_point
 		end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140311103821) do
+ActiveRecord::Schema.define(version: 20140311165009) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,6 +78,9 @@ ActiveRecord::Schema.define(version: 20140311103821) do
     t.datetime "time"
     t.boolean  "is_important"
     t.float    "speed"
+    t.float    "vertical_accuracy"
+    t.float    "horizontal_accuracy"
+    t.float    "course"
   end
 
   add_index "route_points", ["lat", "long"], name: "index_route_points_on_lat_and_long", using: :btree

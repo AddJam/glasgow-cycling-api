@@ -2,18 +2,21 @@
 #
 # Table name: route_points
 #
-#  id           :integer          not null, primary key
-#  route_id     :integer
-#  lat          :float
-#  long         :float
-#  altitude     :float
-#  on_road      :boolean
-#  street_name  :string(255)
-#  created_at   :datetime
-#  updated_at   :datetime
-#  time         :datetime
-#  is_important :boolean
-#  speed        :float
+#  id                  :integer          not null, primary key
+#  route_id            :integer
+#  lat                 :float
+#  long                :float
+#  altitude            :float
+#  on_road             :boolean
+#  street_name         :string(255)
+#  created_at          :datetime
+#  updated_at          :datetime
+#  time                :datetime
+#  is_important        :boolean
+#  speed               :float
+#  vertical_accuracy   :float
+#  horizontal_accuracy :float
+#  course              :float
 #
 
 class RoutePoint < ActiveRecord::Base
@@ -23,7 +26,7 @@ class RoutePoint < ActiveRecord::Base
 	validates :long, presence: true
 	validates :altitude, presence: true
 	validates :time, presence: true
-	#validates :speed, presence: true
+	validates :speed, presence: true
 
 	reverse_geocoded_by :lat, :long do |obj, results|
 		if geo = results.first
