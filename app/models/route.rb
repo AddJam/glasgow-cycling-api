@@ -70,13 +70,12 @@ class Route < ActiveRecord::Base
 		route.name = "New Route" #TODO name properly
 		route.user_id = user.id
 		points.each do |point|
-			route_point = RoutePoint.create do |rp|
-				rp.lat = point[:lat]
-				rp.long = point[:long]
-				rp.altitude = point[:altitude]
-				rp.time = Time.at(point[:time].to_i)
-			end
-			route.points << route_point
+			rp = RoutePoint.new
+			rp.lat = point[:lat]
+			rp.long = point[:long]
+			rp.altitude = point[:altitude]
+			rp.time = Time.at(point[:time].to_i)
+			route.points << rp
 		end
 
 		route.mode = "bike"
@@ -190,12 +189,10 @@ class Route < ActiveRecord::Base
 
 		# Calculate route distance
 		self.total_distance = self.points.each_with_index.inject(0) do |dist, (elem, index)|
-			if index >= self.points.count - 1
-				Rails.logger.info "Finished calculating distance #{dist}"
+			if index >= self.points.length - 1
 				dist
 			else
 				next_point = self.points[index+1]
-				Rails.logger.info "Adding distance of #{next_point.distance_from(elem)} to #{dist}"
 				dist += next_point.distance_from(elem)
 			end
 		end

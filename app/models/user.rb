@@ -106,13 +106,13 @@ class User < ActiveRecord::Base
     fav_route_name = favourite_route.first.name if favourite_route.present?
 
     # Past month stats
-    month_distance = Route.where('user_id = ? AND created_at > ?', self.id, 1.month.ago).sum('total_distance')
+    month_distance_km = Route.where('user_id = ? AND created_at > ?', self.id, 1.month.ago).sum('total_distance')
     month_seconds = Route.where('user_id = ? AND created_at > ?', self.id, 1.month.ago).sum('total_time')
     month_num_routes = Route.where('user_id = ? AND created_at > ?', self.id, 1.month.ago).count
 
     month_stats = {
        total: month_num_routes,
-       meters: month_distance,
+       km: month_distance_km,
        seconds: month_seconds
     }
     month_stats[:route] = fav_route_name if fav_route_name.present?
