@@ -72,6 +72,7 @@ class Route < ActiveRecord::Base
 				rp.lat = point[:lat]
 				rp.long = point[:long]
 				rp.altitude = point[:altitude]
+				rp.speed = point[:speed]
 				rp.time = Time.at(point[:time].to_i)
 			end
 			route.points << route_point

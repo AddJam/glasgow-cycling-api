@@ -82,6 +82,7 @@ FactoryGirl.define do
     on_road true
     street_name 'Test Street Name'
     time { 2.weeks.ago }
+    speed 12.34
   end
 
   factory :route_review do

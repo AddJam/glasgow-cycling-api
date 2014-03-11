@@ -13,6 +13,7 @@
 #  updated_at   :datetime
 #  time         :datetime
 #  is_important :boolean
+#  speed        :float
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

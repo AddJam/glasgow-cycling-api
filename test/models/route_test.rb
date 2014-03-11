@@ -31,7 +31,7 @@ class RouteTest < ActiveSupport::TestCase
     points = create_list(:route_point, 3, lat: (rand * 100), long: (rand * 100), altitude: (rand * 500), time: Time.now)
 
     original = Route.record(user, points)
-    points = points = create_list(:route_point, 3, lat: (rand * 100), long: (rand * 100), altitude: (rand * 500), time: Time.now)
+    points = points = create_list(:route_point, 3, lat: (rand * 100), long: (rand * 100), altitude: (rand * 500), speed: (rand * 500),  time: Time.now)
     route_use = original.record_use(user, points)
 
     assert_not_nil route_use, "route should exist"

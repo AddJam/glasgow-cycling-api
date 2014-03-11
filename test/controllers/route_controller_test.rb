@@ -13,12 +13,14 @@ class RouteControllerTest < ActionController::TestCase
       lat: (rand * 100),
       long: (rand * 50),
       altitude: (rand * 500),
+      speed: (rand * 23),
       time: Time.now.to_i
       },
       {
         lat: (rand * 100),
         long: (rand * 50),
         altitude: (rand * 500),
+        speed: (rand * 23),
         time: Time.now.to_i
       }
     ]
@@ -37,12 +39,14 @@ class RouteControllerTest < ActionController::TestCase
       lat: (rand * 100),
       long: (rand * 50),
       altitude: (rand * 500),
+      speed: (rand * 23),
       time: Time.now.to_i
       },
       {
         lat: (rand * 100),
         long: (rand * 50),
         altitude: (rand * 500),
+        speed: (rand * 500),
         time: Time.now.to_i
       }
     ]
@@ -64,12 +68,14 @@ class RouteControllerTest < ActionController::TestCase
       lat: (rand * 100),
       long: (rand * 50),
       altitude: (rand * 500),
+      speed: (rand * 23),
       time: Time.now.to_i
       },
       {
         lat: (rand * 100),
         long: (rand * 50),
         altitude: (rand * 500),
+        speed: (rand * 23),
         time: Time.now.to_i
       }
     ]

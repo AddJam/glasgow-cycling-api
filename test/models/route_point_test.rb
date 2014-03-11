@@ -5,6 +5,8 @@ class RoutePointTest < ActiveSupport::TestCase
   	route_point = RoutePoint.new
   	route_point.lat = 55.8447118
   	route_point.long = -4.194400299999984
+    route_point.altitude = 10.0
+    route_point.speed = 13.2
   	route_point.is_important = true
   	route_point.save
 
@@ -13,7 +15,8 @@ class RoutePointTest < ActiveSupport::TestCase
   end
 
   test "geocoding points with no location data should handle failure successfully" do
-  	route_point = create(:route_point, lat: 0.0, long: 0.0)
+  	route_point = build(:route_point, lat: 0.0, long: 0.0, is_important: true)
+    assert route_point.save, "route point with bad location data should save"
   	assert_not_nil route_point, "route point with no street name should fail to geocode gracefully"
   end
 
