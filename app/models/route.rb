@@ -66,7 +66,9 @@ class Route < ActiveRecord::Base
 		return if points.blank? or user.blank?
 
 		# Create the route
-		route = Route.create name: "New Route" #TODO name properly
+		route = Route.new
+		route.name = "New Route" #TODO name properly
+		route.user_id = user.id
 		points.each do |point|
 			route_point = RoutePoint.create do |rp|
 				rp.lat = point[:lat]
@@ -76,9 +78,6 @@ class Route < ActiveRecord::Base
 			end
 			route.points << route_point
 		end
-
-		# Associate with user
-		user.routes << route
 
 		route.mode = "bike"
 
@@ -192,9 +191,11 @@ class Route < ActiveRecord::Base
 		# Calculate route distance
 		self.total_distance = self.points.each_with_index.inject(0) do |dist, (elem, index)|
 			if index >= self.points.count - 1
+				Rails.logger.info "Finished calculating distance #{dist}"
 				dist
 			else
 				next_point = self.points[index+1]
+				Rails.logger.info "Adding distance of #{next_point.distance_from(elem)} to #{dist}"
 				dist += next_point.distance_from(elem)
 			end
 		end
