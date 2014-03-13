@@ -27,6 +27,8 @@ class Picture < ActiveRecord::Base
 			}
 		else
 			pic = Picture.order("RANDOM()").limit(1).first
+			return nil unless pic
+
 			{
 				url: pic.url,
 				label: pic.label,
