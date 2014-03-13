@@ -15,7 +15,7 @@ JourneyAPI::Application.routes.draw do
   # Routes
   get "/routes/summaries/:per_page/:page_num", to: "route#all_summaries", as: 'all_summaries'
   get "/routes/user_summaries/:per_page/:page_num", to: "route#user_summaries", as: 'user_route_summaries'
-  get "/routes/:id", to: "route#find", as: 'find_routes'
+  get "/routes/find/:id", to: "route#find", as: 'find_routes'
   post "/routes", to: "route#record", as: 'record_route'
   get "/routes/nearby", to: "route#nearby_summaries", as: 'nearby_routes'
   get "/routes/user", to: "route#user", as: 'user_routes'
