@@ -63,8 +63,11 @@ class Route < ActiveRecord::Base
 	# ==== Returns
 	# The recorded route
 	def self.record(user, points)
-		return if points.blank? or user.blank?
-
+		if points.blank?
+			return {
+				error: "No route points"
+			}
+		end
 		# Create the route
 		route = Route.new
 		route.name = "New Route" #TODO name properly
@@ -143,10 +146,8 @@ class Route < ActiveRecord::Base
 	# TODO Picture URL returned
 	# TODO update controller docs to match format & attrs
 	def details
-		#start_picture = Picture.where(id: self.start_picture_id).first
-		#end_picture = Picture.where(id: self.end_picture_id).first
 		user = User.where(id: self.user_id).first
-		{
+		route_details = {
 			id: self.id,
 			total_distance: self.total_distance,
 			environment_rating: self.environment_rating,
@@ -158,12 +159,17 @@ class Route < ActiveRecord::Base
 				last_name: user.last_name
 				},
 			name: self.name,
-			# start_picture: self.start_picture_id,
-			# end_picture: self.end_picture_id,
 			estimated_time: self.estimated_time,
 			user_time: self.total_time,
 			created_at: self.created_at.to_i
 		}
+		last_point = self.points.last
+		if last_point
+			end_lat = last_point.lat
+			end_long = last_point.long
+			route_details[:end_picture]= Picture.for_location(end_lat, end_long)
+		end
+		route_details
 	end
 
 	# Returns points for a route in format required by Route Controller

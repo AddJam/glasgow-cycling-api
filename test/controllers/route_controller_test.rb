@@ -161,6 +161,8 @@ class RouteControllerTest < ActionController::TestCase
     route_two.points << create(:route_point, lat: 0.0000001, long: 0.0000001)
     route_two.save
 
+    create_list(:picture, 10)
+
     get(:nearby_summaries, lat: 0.0000002, long: 0.0000002)
 
     assert_response :success

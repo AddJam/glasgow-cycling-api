@@ -45,8 +45,8 @@ FactoryGirl.define do
     lat 1.23
     long 1.23
     credit_label 'Test Credit Label'
-    credit_url 'Test Credit Url'
-  end
+    credit_url 'http://blah.com'
+   end
 
   factory :route do
     # after(:create) do |user, evaluator|; FactoryGirl.create_list :route, 2; end # commented to avoid circular reference
