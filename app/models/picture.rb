@@ -47,7 +47,7 @@ class Picture < ActiveRecord::Base
 	end
 
   def base64_image
-    image_data = open(self.image.path(:thumb)) { |io| io.read }
+    image_data = open(self.image.path(:medium)) { |io| io.read }
     Base64.encode64(image_data).gsub("\n", '')
   end
 
