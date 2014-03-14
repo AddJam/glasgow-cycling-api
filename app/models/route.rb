@@ -36,6 +36,7 @@ class Route < ActiveRecord::Base
 	before_validation :set_endpoints
 	before_validation :calculate_times
 	before_save :calculate_ratings
+	before_save :set_name
 
 	validates :name, presence: true
 	validates :total_distance, presence: true
@@ -82,6 +83,7 @@ class Route < ActiveRecord::Base
 				rp.vertical_accuracy = point[:vertical_accuracy]
 				rp.horizontal_accuracy = point[:horizontal_accuracy]
 				rp.course = point[:course]
+				rp.street_name = point[:street_name] if point[:street_name].present?
 			end
 			route.points << route_point
 		end
@@ -257,6 +259,21 @@ class Route < ActiveRecord::Base
 				sum += review.environment_rating
 			end
 			self.environment_rating = total_environment/self.reviews.count
+		end
+	end
+
+	def set_name
+		return if self.points.count == 0
+		start_name = self.points.first.street_name
+		end_name = self.points.last.street_name
+		if start_name.present? and end_name.present?
+			self.name = "#{start_name} to #{end_name}"
+		elsif start_name.present?
+			self.name = "From #{start_name}"
+		elsif end_name.present?
+			self.name = "To #{end_name}"
+		else
+			self.name = "Glasgow City Route"
 		end
 	end
 end
