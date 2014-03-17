@@ -2,15 +2,19 @@
 #
 # Table name: pictures
 #
-#  id           :integer          not null, primary key
-#  url          :string(255)
-#  label        :string(255)
-#  lat          :float
-#  long         :float
-#  credit_label :string(255)
-#  credit_url   :string(255)
-#  created_at   :datetime
-#  updated_at   :datetime
+#  id                 :integer          not null, primary key
+#  url                :string(255)
+#  label              :string(255)
+#  lat                :float
+#  long               :float
+#  credit_label       :string(255)
+#  credit_url         :string(255)
+#  created_at         :datetime
+#  updated_at         :datetime
+#  image_file_name    :string(255)
+#  image_content_type :string(255)
+#  image_file_size    :integer
+#  image_updated_at   :datetime
 #
 
 class Picture < ActiveRecord::Base
@@ -47,6 +51,8 @@ class Picture < ActiveRecord::Base
 	end
 
   def base64_image
+  	Rails.logger.info "Picture databanana #{self.image}"
+  	Rails.logger.info "Picture databanana #{self.image.path(:medium)}"
     image_data = open(self.image.path(:medium)) { |io| io.read }
     Base64.encode64(image_data).gsub("\n", '')
   end

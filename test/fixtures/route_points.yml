@@ -13,7 +13,7 @@
 #  updated_at          :datetime
 #  time                :datetime
 #  is_important        :boolean
-#  speed               :float
+#  kph                 :float
 #  vertical_accuracy   :float
 #  horizontal_accuracy :float
 #  course              :float

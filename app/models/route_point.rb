@@ -13,7 +13,7 @@
 #  updated_at          :datetime
 #  time                :datetime
 #  is_important        :boolean
-#  speed               :float
+#  kph                 :float
 #  vertical_accuracy   :float
 #  horizontal_accuracy :float
 #  course              :float
@@ -26,7 +26,7 @@ class RoutePoint < ActiveRecord::Base
 	validates :long, presence: true
 	validates :altitude, presence: true
 	validates :time, presence: true
-	validates :speed, presence: true
+	# validates :kph, presence: true
 
 	reverse_geocoded_by :lat, :long do |obj, results|
 		if geo = results.first

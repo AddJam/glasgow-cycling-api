@@ -28,6 +28,7 @@
 class Route < ActiveRecord::Base
 	has_many :reviews, :foreign_key => 'route_id', :class_name => "RouteReview"
 	has_many :points, :foreign_key => 'route_id', :class_name => "RoutePoint"
+	has_many :pointz, :foreign_key => 'route_id', :class_name => "RoutePoint"
 	belongs_to :user
 	has_many :uses, :foreign_key => 'route_id', :class_name => "Route"
 	belongs_to :original, :foreign_key => 'route_id', :class_name => "Route"
@@ -78,7 +79,8 @@ class Route < ActiveRecord::Base
 				rp.lat = point[:lat]
 				rp.long = point[:long]
 				rp.altitude = point[:altitude]
-				rp.speed = point[:speed]
+				rp.kph = point[:speed] if point[:speed]
+				rp.kph = point[:kph] if point[:kph]
 				rp.time = Time.at(point[:time].to_i)
 				rp.vertical_accuracy = point[:vertical_accuracy]
 				rp.horizontal_accuracy = point[:horizontal_accuracy]

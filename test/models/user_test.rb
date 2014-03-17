@@ -15,12 +15,13 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "user details are as expected" do
-    user = create(:user, id: 1, first_name: "Test", last_name: "McTester")
+    user = create(:user, first_name: "Test", last_name: "McTester")
     parent_route = create(:route, user_id: user.id, total_distance: 100, total_time: 0)
     child_routes = create_list(:route, 5, route_id: parent_route.id, name: "jobby", user_id: user.id, total_time: 100, total_distance: 100)
     other_routes = create_list(:route, 5, user_id: user.id, total_distance: 0, total_time: 0)
+
     assert_not_nil user.details, "User details should not be nil"
-    assert_equal 1, user.details[:user_id], "User id not as expected"
+    assert_equal user.id, user.details[:user_id], "User id not as expected"
     assert_equal "Test", user.details[:first_name], "User first_name not as expected"
     assert_equal "McTester", user.details[:last_name], "User last_name not as expected"
     assert_equal 11, user.details[:month][:total], "Total routes should be correct"

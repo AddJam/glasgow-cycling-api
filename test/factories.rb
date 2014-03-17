@@ -40,12 +40,13 @@ FactoryGirl.define do
 
   factory :picture do
     sequence(:id)
-    url 'Test Url'
+    sequence(:url) do |n|; "http://example.com/#{n}.png"; end
     label 'Test Label'
     lat 1.23
     long 1.23
     credit_label 'Test Credit Label'
     credit_url 'http://blah.com'
+    image { fixture_file_upload(Rails.root.join('public', 'images', 'medium', 'default_profile_pic.png'), 'image/png') }
    end
 
   factory :route do
@@ -82,7 +83,7 @@ FactoryGirl.define do
     on_road true
     street_name 'Test Street Name'
     time { 2.weeks.ago }
-    speed 12.34
+    kph 12.34
   end
 
   factory :route_review do

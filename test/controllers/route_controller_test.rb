@@ -5,25 +5,30 @@ class RouteControllerTest < ActionController::TestCase
     sign_in create(:user)
   end
 
-  test "can't record route when logged out" do
-    sign_out User.last
-
-    points = [
+  def points
+    [
       {
       lat: (rand * 100),
       long: (rand * 50),
       altitude: (rand * 500),
-      speed: (rand * 23),
-      time: Time.now.to_i
+      kph: (rand * 23),
+      time: Time.now.to_i,
+      street_name: 'Random Street'
       },
       {
         lat: (rand * 100),
         long: (rand * 50),
         altitude: (rand * 500),
-        speed: (rand * 23),
-        time: Time.now.to_i
+        kph: (rand * 23),
+        time: Time.now.to_i,
+        street_name: 'Random Street'
       }
     ]
+  end
+
+  test "can't record route when logged out" do
+    sign_out User.last
+
     post :record, format: :json, points: points
     assert_response :unauthorized
   end
@@ -34,22 +39,6 @@ class RouteControllerTest < ActionController::TestCase
   end
 
   test "should record route" do
-    points = [
-      {
-      lat: (rand * 100),
-      long: (rand * 50),
-      altitude: (rand * 500),
-      speed: (rand * 23),
-      time: Time.now.to_i
-      },
-      {
-        lat: (rand * 100),
-        long: (rand * 50),
-        altitude: (rand * 500),
-        speed: (rand * 500),
-        time: Time.now.to_i
-      }
-    ]
     post(:record, points: points)
     assert_response :success
 
@@ -62,23 +51,39 @@ class RouteControllerTest < ActionController::TestCase
     assert_not_nil Route.where(id: route_id).first
   end
 
-  test "should record route use" do
-    points = [
+  test "old API parameters should work for recording route" do
+    # Using speed instead of kph
+    points_speed = [
       {
       lat: (rand * 100),
       long: (rand * 50),
       altitude: (rand * 500),
       speed: (rand * 23),
-      time: Time.now.to_i
+      time: Time.now.to_i,
+      street_name: 'Random Street'
       },
       {
         lat: (rand * 100),
         long: (rand * 50),
         altitude: (rand * 500),
-        speed: (rand * 23),
-        time: Time.now.to_i
+        speed: (rand * 500),
+        time: Time.now.to_i,
+        street_name: 'Random Street'
       }
     ]
+    post(:record, points: points_speed)
+    assert_response :success
+
+    route_data = JSON.parse response.body
+    assert_not_nil route_data
+    route_id = route_data['route_id']
+    assert_not_nil route_data["route_id"]
+
+    # Check route was added
+    assert_not_nil Route.where(id: route_id).first
+  end
+
+  test "should record route use" do
     original = Route.first
     post(:record, points: points, original_route_id: original.id)
     assert_response :success

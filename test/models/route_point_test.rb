@@ -6,7 +6,7 @@ class RoutePointTest < ActiveSupport::TestCase
   	route_point.lat = 55.8447118
   	route_point.long = -4.194400299999984
     route_point.altitude = 10.0
-    route_point.speed = 13.2
+    route_point.kph = 13.2
   	route_point.is_important = true
   	route_point.save
 
