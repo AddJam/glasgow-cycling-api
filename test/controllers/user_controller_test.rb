@@ -37,15 +37,11 @@ class UserControllerTest < ActionController::TestCase
 	end
 
 	test "signin should return auth token" do
-		# user = User.first
-		# sign_in user
-		user = create(:user, password: 'bananazz')
-		signin_params = {
-			email: user.email,
-			password: 'bananazz'
-		}
-		get :signin, user: signin_params.to_json, format: :json
-		assert_response :success, "signin should be successful for logged in user ** BROKEN"
+		user = create(:user)
+		sign_in user
+
+		get :signin, format: :json
+		assert_response :success, "signin should be successful for logged in user"
 
 		json_response = JSON.parse response.body
 		assert_not_nil json_response, "json should be returned by signin"
