@@ -38,8 +38,6 @@ class Picture < ActiveRecord::Base
 			}
 		else
 			pic = Picture.order("RANDOM()").limit(1).first
-			Rails.logger.info "Random picture with ID #{pic.id}"
-			Rails.logger.info "Random picture has image #{pic.image}"
 			return nil unless pic
 
 			{
@@ -53,9 +51,6 @@ class Picture < ActiveRecord::Base
 	end
 
   def base64_image
-  	Rails.logger.info "Picture databanana #{self.image}"
-  	Rails.logger.info "Picture databanana #{self.image.path}"
-  	Rails.logger.info "Picture databanana #{self.image.path(:medium)}"
     image_data = open(self.image.path(:medium)) { |io| io.read }
     Base64.encode64(image_data).gsub("\n", '')
   end
