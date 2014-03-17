@@ -7,9 +7,9 @@ class ReviewControllerTest < ActionController::TestCase
   end
 
   test "can't create review when logged out" do
-    sign_out User.first
+    sign_out create(:user)
 
-    route = Route.first
+    route = create(:route)
     review = {
       safety_rating: 5,
       difficulty_rating: 3,
@@ -25,7 +25,7 @@ class ReviewControllerTest < ActionController::TestCase
   end
 
   test "should create review" do
-    route = Route.first
+    route = create(:route)
     review = {
       safety_rating: 5,
       difficulty_rating: 3,

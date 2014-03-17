@@ -84,7 +84,7 @@ class RouteControllerTest < ActionController::TestCase
   end
 
   test "should record route use" do
-    original = Route.first
+    original = create(:route)
     post(:record, points: points, original_route_id: original.id)
     assert_response :success
 
