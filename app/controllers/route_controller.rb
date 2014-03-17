@@ -242,7 +242,7 @@ class RouteController < ApplicationController
 			Rails.logger.info "Coords #{coords}"
 			nearby_routes = Route.near(coords, 5, :units => :mi)
 
-			if nearby_routes.present?
+			if nearby_routes
 				render json: {
 					routes: nearby_routes.inject([]) do |routes, route|
 						routes << {
@@ -251,7 +251,7 @@ class RouteController < ApplicationController
 					end
 				}
 			else
-				render status: 422, json: {error: "Error generating nearby rotues"} ##look to change
+				render status: 422, json: {error: "Error generating nearby routes"}
 			end
 		end
 	end
