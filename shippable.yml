@@ -1,5 +1,8 @@
 language: ruby
 rvm:
   - 2.1.1
-email:
-  - team@codecreatedme.com
+env:
+  - CI_REPORTS=shippable/testresults COVERAGE_REPORTS=shippable/codecoverage
+notifications:
+  email:
+    - team@codecreatedme.com

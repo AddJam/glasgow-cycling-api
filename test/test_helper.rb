@@ -18,3 +18,7 @@ end
 class ActionController::TestCase
   include Devise::TestHelpers
 end
+
+require "minitest/reporters"
+Minitest::Reporters.use! [MiniTest::Reporters::DefaultReporter.new,
+                          MiniTest::Reporters::JUnitReporter.new]

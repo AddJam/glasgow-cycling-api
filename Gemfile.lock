@@ -30,6 +30,7 @@ GEM
     annotate (2.6.2)
       activerecord (>= 2.3.0)
       rake (>= 0.8.7)
+    ansi (1.4.3)
     arel (5.0.0)
     atomic (1.1.15)
     bcrypt (3.1.7)
@@ -92,6 +93,7 @@ GEM
       minitest (>= 3.0)
     guard-rails (0.5.0)
       guard (>= 2.0.0)
+    hashie (2.0.5)
     highline (1.6.21)
     hike (1.2.3)
     i18n (0.6.9)
@@ -116,6 +118,11 @@ GEM
     method_source (0.8.2)
     mime-types (1.25.1)
     minitest (5.3.0)
+    minitest-reporters (1.0.2)
+      ansi
+      builder
+      minitest (>= 5.0)
+      powerbar
     multi_json (1.8.4)
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
@@ -133,6 +140,9 @@ GEM
       mime-types
     pg (0.17.1)
     polyglot (0.3.4)
+    powerbar (1.0.11)
+      ansi (~> 1.4.0)
+      hashie (>= 1.1.0)
     pry (0.9.12.6)
       coderay (~> 1.0)
       method_source (~> 0.8)
@@ -230,6 +240,8 @@ DEPENDENCIES
   guard-rails
   jbuilder (~> 1.2)
   jquery-rails
+  minitest
+  minitest-reporters
   paperclip (~> 4.1)
   pg (~> 0.17.1)
   rails (~> 4.1.0.rc1)
