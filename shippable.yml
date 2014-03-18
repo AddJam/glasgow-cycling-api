@@ -2,7 +2,7 @@ language: ruby
 rvm:
   - 2.1.1
 env:
-  - CI_REPORTS=test/results
+  - CI_REPORTS=shippable/testresults
 notifications:
   email:
     - team@codecreatedme.com

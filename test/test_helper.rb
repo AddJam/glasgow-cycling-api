@@ -20,5 +20,6 @@ class ActionController::TestCase
 end
 
 require "minitest/reporters"
+reports_dir = ENV["CI_REPORTS"] || "test/results"
 Minitest::Reporters.use! [MiniTest::Reporters::DefaultReporter.new,
-                          MiniTest::Reporters::JUnitReporter.new]
+                          MiniTest::Reporters::JUnitReporter.new(, true)]
