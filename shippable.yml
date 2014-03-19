@@ -3,6 +3,8 @@ rvm:
   - 2.1.1
 env:
   - CI_REPORTS=shippable/testresults
+before_script:
+  - psql -c 'create database journey_test;' -U postgres
 script: rake test
 notifications:
   email:

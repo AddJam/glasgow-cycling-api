@@ -20,4 +20,4 @@ config/initializers/secret_token.rb
 .idea
 dump.rdb
 .DS_Store
-test/reports
+test/results
