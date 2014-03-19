@@ -8,7 +8,7 @@ before_script:
   - psql -c 'create database journey_test;' -U postgres -w
 services:
     - redis
-script: rake test
+script: bundle exec rake test
 notifications:
   email:
     - team@codecreatedme.com
