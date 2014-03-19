@@ -5,6 +5,8 @@ env:
   - CI_REPORTS=shippable/testresults
 before_script:
   - psql -c 'create database journey_test;' -U postgres
+services:
+    - redis
 script: rake test
 notifications:
   email:
