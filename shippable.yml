@@ -4,7 +4,8 @@ rvm:
 env:
   - CI_REPORTS=shippable/testresults
 before_script:
-  - psql -c 'create database journey_test;' -U postgres
+  - psql -c 'drop database if exists journey_test;' -U postgres -w
+  - psql -c 'create database journey_test;' -U postgres -w
 services:
     - redis
 script: rake test
