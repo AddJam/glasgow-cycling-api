@@ -113,9 +113,9 @@ class RouteTest < ActiveSupport::TestCase
   end
 
   test "Route points returned correctly"  do
-    timestamp = 3.days.ago
+    point_time = 3.days.ago
     route = create(:route)
-    points = create_list(:route_point, 5, route_id: route.id, is_important: false, lat: 321.0, long: 654.0, altitude: 987.0, time: timestamp)
+    points = create_list(:route_point, 5, route_id: route.id, is_important: false, lat: 321.0, long: 654.0, altitude: 987.0, time: point_time)
     returned_points = route.points_data
 
     assert_not_nil returned_points, "route points should not be nil"
@@ -123,6 +123,6 @@ class RouteTest < ActiveSupport::TestCase
     assert_equal 321.0, returned_points.first[:lat], "lat not as expected"
     assert_equal 654.0, returned_points.first[:long], "long not as expected"
     assert_equal 987.0, returned_points.first[:altitude], "altitude not as expected"
-    assert_equal timestamp, returned_points.first[:time], "time not as expected"
+    assert_equal point_time.to_i, returned_points.first[:time].to_i, "return point should have the correc time"
   end
 end
