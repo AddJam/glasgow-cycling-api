@@ -18,8 +18,3 @@ end
 class ActionController::TestCase
   include Devise::TestHelpers
 end
-
-require "minitest/reporters"
-reports_dir = ENV["CI_REPORTS"] || "test/results"
-Minitest::Reporters.use! [MiniTest::Reporters::DefaultReporter.new,
-                          MiniTest::Reporters::JUnitReporter.new(reports_dir, true)]
