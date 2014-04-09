@@ -135,7 +135,7 @@ class UserControllerTest < ActionController::TestCase
 		assert_response :success, "specifying invalid parameters shouldn't cause an API error" #TODO confirm
 
 		updated_user = User.where(id: user.id).first
-		assert_equal user.updated_at, updated_user.updated_at, "user shouldn't be updated when only invalid params are specified"
+		assert_equal user.updated_at.to_i, updated_user.updated_at.to_i, "user shouldn't be updated when only invalid params are specified"
 	end
 
 	test "user details shouldn't be updateable to invalid values" do
@@ -152,6 +152,6 @@ class UserControllerTest < ActionController::TestCase
 		assert_response :error, "specifying invalid parameter values should cause an error"
 
 		updated_user = User.where(id: user.id).first
-		assert_equal user.updated_at, updated_user.updated_at, "user shouldn't be updated when only invalid param values are specified"
+		assert_equal user.updated_at.to_i, updated_user.updated_at.to_i, "user shouldn't be updated when only invalid param values are specified"
 	end
 end
