@@ -28,7 +28,6 @@
 class Route < ActiveRecord::Base
 	has_many :reviews, :foreign_key => 'route_id', :class_name => "RouteReview"
 	has_many :points, :foreign_key => 'route_id', :class_name => "RoutePoint"
-	has_many :pointz, :foreign_key => 'route_id', :class_name => "RoutePoint"
 	belongs_to :user
 	has_many :uses, :foreign_key => 'route_id', :class_name => "Route"
 	belongs_to :original, :foreign_key => 'route_id', :class_name => "Route"
