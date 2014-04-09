@@ -105,12 +105,23 @@ class UserController < ApplicationController
   #    }
   #  }
   def details
+		Rails.logger.info "Getting user details"
     if user_signed_in?
       user = User.where(id: current_user.id).first
       render json: user.details
     else
       render status: :unauthorized, json: {error: "No user details"}
     end
+  end
+
+  # *PUT* /details
+  def update_details
+		Rails.logger.info "Updating user details"
+		if current_user.update(user_details_params)
+			render json: current_user.details
+		else
+			render status: :internal_server_error, json: {error: "Unable to save user details"}
+		end
   end
 
   # *POST* /responses
@@ -128,7 +139,12 @@ class UserController < ApplicationController
   end
 
   private
+
   def failure
     Rails.logger.info "Login failed"
   end
+
+	def user_details_params
+		params.permit(:first_name, :last_name)
+	end
 end

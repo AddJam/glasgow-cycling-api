@@ -79,6 +79,79 @@ class UserControllerTest < ActionController::TestCase
 		post(:save_responses, user_token: user.authentication_token, user_email: user.email,
 			responses: response, format: :json)
 
-		assert_response :success, "user responses should be saved succesfully"
+		assert_response :success, "user responses should be saved successfully"
+	end
+
+	test "details should be returned correctly" do
+		user = create(:user)
+		sign_in user
+
+		get :details, format: :json
+
+		assert_response :success, "user details should be returned successfully"
+
+		json_response = JSON.parse response.body
+		assert_not_nil json_response, "user details should be returned as JSON"
+		assert_equal json_response['first_name'], user.first_name, "user first name should be correct"
+		assert_equal json_response['last_name'], user.last_name, "user last name should be correct"
+		assert_equal json_response['user_id'], user.id, "user id should be correct"
+		assert_not_nil json_response['month'], "monthly stats should be returned with user details"
+		assert_not_nil json_response['profile_pic'], "profile pic should be returned with user details"
+	end
+
+	test "user details should be updateable" do
+		user = create(:user)
+		sign_in user
+
+		image = open(Rails.root.join('public', 'images', 'medium', 'default_profile_pic.png')) { |io| io.read }
+
+		new_details = {
+			first_name: 'Elizabeth',
+			last_name: 'Smith',
+			profile_pic: Base64.encode64(image)
+		}
+
+		put :update_details, new_details, format: :json
+
+		assert_response :success, "Updating user details should be successful"
+
+		user = User.where(id: user.id).first
+
+		assert_equal new_details[:first_name], user.first_name, "User first name should be updated with new details"
+		assert_equal new_details[:last_name], user.last_name, "User last name should be updated with new details"
+	end
+
+	test "user details shouldn't allow updating secure fields" do
+		user = create(:user)
+		sign_in user
+
+		new_details = {
+			id: 123123,
+			password: "bananananana"
+		}
+
+		put :update_details, new_details, format: :json
+
+		assert_response :success, "specifying invalid parameters shouldn't cause an API error" #TODO confirm
+
+		updated_user = User.where(id: user.id).first
+		assert_equal user.updated_at, updated_user.updated_at, "user shouldn't be updated when only invalid params are specified"
+	end
+
+	test "user details shouldn't be updateable to invalid values" do
+		user = create(:user)
+		sign_in user
+
+		new_details = {
+			first_name: "",
+			last_name: ""
+		}
+
+		put :update_details, new_details, format: :json
+
+		assert_response :error, "specifying invalid parameter values should cause an error"
+
+		updated_user = User.where(id: user.id).first
+		assert_equal user.updated_at, updated_user.updated_at, "user shouldn't be updated when only invalid param values are specified"
 	end
 end
