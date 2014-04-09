@@ -69,13 +69,7 @@ class User < ActiveRecord::Base
 
     # Decode profile pic
     profile_pic = user_data['profile_picture']
-    if profile_pic.present?
-      data = StringIO.open(Base64.decode64(profile_pic))
-      data.class.class_eval { attr_accessor :original_filename, :content_type }
-      data.original_filename = "#{user.first_name}-#{user.last_name}-#{Time.now.to_i}.jpg"
-      data.content_type = "image/jpg"
-      user.profile_pic = data
-    end
+    user.set_profile_pic(profile_pic) if profile_pic.present?
 
   	if user.save
   		Rails.logger.debug "Stored user #{user.inspect}"
@@ -87,6 +81,14 @@ class User < ActiveRecord::Base
   		return user
   	end
   end
+
+	def set_profile_pic(base64_image)
+		data = StringIO.open(Base64.decode64(base64_image))
+		data.class.class_eval { attr_accessor :original_filename, :content_type }
+		data.original_filename = "#{self.first_name}-#{self.last_name}-#{Time.now.to_i}.jpg"
+		data.content_type = "image/jpg"
+		self.profile_pic = data
+	end
 
   def is_accessible_by?(user)
     true
