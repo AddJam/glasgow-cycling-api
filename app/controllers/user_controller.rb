@@ -17,7 +17,7 @@ class UserController < ApplicationController
   # +user.last_name+:: Required. String
   # +user.dob+:: Required. Unix timestamp
   # +user.gender+:: Required. 0: female, 1: male, 2: not disclosed
-  # +user.profile_picture+:: Optional. URL of profile picture
+  # +user.profile_picture+:: Optional. Base64 encoding of JPG profile picture
   #
   # ==== Example +user+ object
   #  {
@@ -27,7 +27,7 @@ class UserController < ApplicationController
   #    last_name: 'Doe',
   #    dob: 1392891658,
   #    gender: 0,
-  #    profile_picture: 'http://example.com/example.jpg'
+  #    profile_picture: "base64 encoded JPG image data"
   #  }
   #
   # ==== Returns
@@ -145,6 +145,6 @@ class UserController < ApplicationController
   end
 
 	def user_details_params
-		params.permit(:first_name, :last_name)
+		params.permit(:first_name, :last_name, :profile_pic)
 	end
 end

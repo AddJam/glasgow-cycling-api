@@ -37,7 +37,8 @@ class User < ActiveRecord::Base
   has_many :routes
   has_many :user_responses
 
-  has_attached_file :profile_pic, :styles => { :medium => "300x300>", :thumb => "50x50>" }, :default_url => "/images/:style/default_profile_pic.png"
+  has_attached_file :profile_pic, :styles => { :medium => "300x300>", :thumb => "50x50>" },
+                    :default_url => "/images/:style/default_profile_pic.png"
   validates_attachment_content_type :profile_pic, :content_type => /\Aimage\/.*\Z/
 
   validates :email, presence: true, uniqueness: true, length: { minimum: 5 },
@@ -68,8 +69,7 @@ class User < ActiveRecord::Base
 		user.gender = user_data['gender'].downcase if user_data['gender'].present?
 
     # Decode profile pic
-    profile_pic = user_data['profile_picture']
-    user.set_profile_pic(profile_pic) if profile_pic.present?
+    user.profile_pic = user_data['profile_picture'] if user_data['profile_picture'].present?
 
   	if user.save
   		Rails.logger.debug "Stored user #{user.inspect}"
@@ -81,14 +81,6 @@ class User < ActiveRecord::Base
   		return user
   	end
   end
-
-	def set_profile_pic(base64_image)
-		data = StringIO.open(Base64.decode64(base64_image))
-		data.class.class_eval { attr_accessor :original_filename, :content_type }
-		data.original_filename = "#{self.first_name}-#{self.last_name}-#{Time.now.to_i}.jpg"
-		data.content_type = "image/jpg"
-		self.profile_pic = data
-	end
 
   def is_accessible_by?(user)
     true

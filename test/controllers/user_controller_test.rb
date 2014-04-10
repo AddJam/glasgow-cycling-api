@@ -12,7 +12,7 @@ class UserControllerTest < ActionController::TestCase
 			last_name: "Builder",
 			dob: Date.new(1998, 11, 28),
 			gender: "male",
-			profile_picture: base64_image
+			profile_picture: "data:image/jpeg;base64,#{base64_image}"
 		}
 		post :signup, user: signup_params
 		assert_response :success
@@ -108,7 +108,7 @@ class UserControllerTest < ActionController::TestCase
 		new_details = {
 			first_name: 'Elizabeth',
 			last_name: 'Smith',
-			profile_pic: Base64.encode64(image)
+			profile_pic: "data:image/jpeg;base64,#{Base64.encode64(image)}"
 		}
 
 		put :update_details, new_details, format: :json
