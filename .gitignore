@@ -21,3 +21,4 @@ config/initializers/secret_token.rb
 dump.rdb
 .DS_Store
 test/results
+.env

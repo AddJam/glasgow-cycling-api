@@ -69,6 +69,7 @@ GEM
       railties (>= 3.2.6, < 5)
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
+    dotenv (0.10.0)
     erubis (2.7.0)
     execjs (2.0.2)
     factory_girl (4.4.0)
@@ -77,6 +78,9 @@ GEM
       factory_girl (~> 4.4.0)
       railties (>= 3.0.0)
     ffi (1.9.3)
+    foreman (0.63.0)
+      dotenv (>= 0.7)
+      thor (>= 0.13.6)
     formatador (0.2.4)
     geocoder (1.1.9)
     guard (2.6.0)
@@ -232,6 +236,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   devise
   factory_girl_rails (~> 4.0)
+  foreman
   geocoder
   guard
   guard-minitest

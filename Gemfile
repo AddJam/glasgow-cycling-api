@@ -40,9 +40,10 @@ gem 'unicorn'
 # Analytics
 gem 'newrelic_rpm'
 
-# Use Capistrano for deployment
+# Deployment
 gem 'capistrano'
 gem 'rvm-capistrano'
+gem 'foreman'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
