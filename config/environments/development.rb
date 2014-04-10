@@ -29,4 +29,19 @@ JourneyAPI::Application.configure do
 
   # Devise needs...
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default :charset => "utf-8"
+  config.action_mailer.smtp_settings = {
+    :address => "smtp.mandrillapp.com",
+    :port => 25, # ports 587 and 2525 are also supported with STARTTLS
+    :enable_starttls_auto => true, # detects and uses STARTTLS
+    :user_name => Rails.application.secrets.mandrill_username,
+    :password => Rails.application.secrets.mandrill_api_key,
+    :authentication => 'login', # Mandrill supports 'plain' or 'login'
+    :domain => 'localhost', # your domain to identify your server when connecting
+  }
+
+  p "Mandrill key #{Rails.application.secrets.mandrill_api_key}"
 end

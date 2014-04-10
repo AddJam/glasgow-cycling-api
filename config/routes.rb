@@ -5,6 +5,7 @@ JourneyAPI::Application.routes.draw do
   post "/responses", to: "user#save_responses", as: 'responses'
   get "/details", to: "user#details", as: 'details'
   put "/details", to: "user#update_details", as: 'update_details'
+  post "/forgot_password", to: "user#forgot_password", as: 'forgot_password'
 
   # Reviews
   get "/reviews", to: "review#all", as: 'all_reviews'
