@@ -1,8 +1,8 @@
 class UserController < ApplicationController
 	# This is our new function that comes before Devise's one
-	before_filter :authenticate_user_from_token!, except: [:signup, :signin]
+	before_filter :authenticate_user_from_token!, except: [:signup, :signin, :forgot_password]
 	# # This is Devise's authentication
-	before_filter :authenticate_user!, except: [:signup, :signin]
+	before_filter :authenticate_user!, except: [:signup, :signin, :forgot_password]
   prepend_before_filter :allow_params_authentication!, only: :signin
 
   # *POST* /signup
@@ -135,6 +135,17 @@ class UserController < ApplicationController
       else
         render status: :internal_server_error, json: {error: "Unable to save responses"}
       end
+    end
+  end
+
+  # *POST* /forgot_password
+  def forgot_password
+    user = User.where(email: params[:email]).first
+    if user.present?
+      user.send_reset_password_instructions
+      render json: {email: user.email}
+    else
+      render status: :bad_request, json: {error: "No user with given email"}
     end
   end
 
