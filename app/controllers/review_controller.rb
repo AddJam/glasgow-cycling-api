@@ -40,6 +40,22 @@ class ReviewController < ApplicationController
   end
 
   def edit
+    review = params[:review]
+    route_id = params[:route_id]
+    if review and route_id
+      route = Route.where(id: route_id).first
+      if route.present? and route.review.present?
+        if route.review.update(review_params)
+          render json: {review: route.review}
+        else
+          render status: :internal_server_error, json: {error: "Review could not be saved"}
+        end
+      else
+        render status: :internal_server_error, json: {error: "Review does not exist"}
+      end
+    else
+      render status: :bad_request, json: {error: "Request should contain both a review hash and route_id"}
+    end
   end
 
   def find
