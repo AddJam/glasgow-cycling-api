@@ -83,18 +83,6 @@ class RouteControllerTest < ActionController::TestCase
     assert_not_nil Route.where(id: route_id).first
   end
 
-  test "should record route use" do
-    original = create(:route)
-    post(:record, points: points, original_route_id: original.id)
-    assert_response :success
-
-    route_data = JSON.parse response.body
-    route_id = route_data['route_id']
-    route_use = Route.where(id: route_id).first
-    assert_not_nil route_use, "route use should be created"
-    assert_equal original, route_use.original, "route use should have correct original route"
-  end
-
   test "find with no id should return bad_request" do
     get(:find, id:"")
     assert_response :bad_request

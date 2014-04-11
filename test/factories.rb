@@ -59,18 +59,12 @@ FactoryGirl.define do
     name 'Test Name'
     lat 1.23
     long 1.23
-    estimated_time 123
     total_distance 1.23
-    last_used { 2.weeks.ago }
     mode 1
-    environment_rating 1
-    safety_rating 2
-    difficulty_rating 3
     start_picture_id 123
     end_picture_id 123
     start_time { 2.weeks.ago }
     end_time { 2.weeks.ago }
-    rating 123
     total_time 123
   end
 

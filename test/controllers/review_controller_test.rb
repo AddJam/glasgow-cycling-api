@@ -17,11 +17,13 @@ class ReviewControllerTest < ActionController::TestCase
       comment: "Great route, A+++++"
     }
 
-    review_count = route.reviews.count
     post :create, format: :json, route_id: route.id, review: review
 
     # Shouldn't work for unauthenticated request
     assert_response :unauthorized
+
+    route = Route.where(id: route.id).first
+    assert_nil route.review
   end
 
   test "should create review" do
@@ -33,14 +35,13 @@ class ReviewControllerTest < ActionController::TestCase
       comment: "Great route, A+++++"
     }
 
-    review_count = route.reviews.count
     post :create, route_id: route.id, review: review
     assert_response :success, "Should succeed POSTing correct params to review#create"
 
     review_data = JSON.parse response.body
     assert_not_nil review_data, "Review json should be returned"
 
-    assert_equal review_count + 1, route.reviews.count, "Review should be added to route"
+    assert_not_nil route.review, "Review should be added to route"
 
     review_id = review_data['review_id']
     assert_not_nil review_id, "Review id should be returned"

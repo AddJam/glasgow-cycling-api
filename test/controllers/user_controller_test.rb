@@ -154,4 +154,42 @@ class UserControllerTest < ActionController::TestCase
 		updated_user = User.where(id: user.id).first
 		assert_equal user.updated_at.to_i, updated_user.updated_at.to_i, "user shouldn't be updated when only invalid param values are specified"
 	end
+
+	test "user password should be changeable via controller" do
+		first_password = "bananazz"
+		second_password = "bananazz!"
+		email = "tester@bananas.com"
+
+		user = build(:user, email: email)
+		user.password = first_password
+		user.save
+		sign_in user
+
+		post :reset_password, {new_password: second_password, old_password: first_password}, format: :json
+
+		assert_response :success, "changing a password with correct parameters should be successful"
+
+		user = User.where(email: email).first
+		Rails.logger.info "User info after password change #{user.inspect}"
+		assert user.valid_password?(second_password), "user password should have been changed"
+	end
+
+	test "user password shouldn't be changeable via controller without correct current password" do
+		first_password = "bananazz"
+		second_password = "bananazz!"
+		email = "tester@bananas.com"
+
+		user = build(:user, email: email)
+		user.password = first_password
+		user.save
+		sign_in user
+
+		post :reset_password, {new_password: second_password, old_password: "#{first_password}123"}, format: :json
+
+		assert_response :unauthorized, "changing a password with incorrect old password shouldn't be successful"
+
+		user = User.where(email: email).first
+		Rails.logger.info "User info after password change #{user.inspect}"
+		assert user.valid_password?(first_password), "user password shouldn't have been changed"
+	end
 end

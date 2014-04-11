@@ -12,7 +12,6 @@ class RouteController < ApplicationController
 	#
 	# ==== Parameters
 	# [+points+] Required. A JSON array containing points. Each point contains data for a point in the route.
-	# [+original_route_id+] Optional. The route which this route recording is based upon.
 	#
 	# ====== Point example
 	# Each element in the points parameter array should be constructed as follows
@@ -33,14 +32,7 @@ class RouteController < ApplicationController
 		unless params[:points]
 			render status: :bad_request
 		else
-			if params[:original_route_id]
-				original_route = Route.where(id: params[:original_route_id]).first
-				if original_route
-					route = original_route.record_use(current_user, params[:points])
-				end
-			else
-				route = Route.record(current_user, params[:points])
-			end
+			route = Route.record(current_user, params[:points])
 			if route
 				render json: {route_id: route.id}
 			else
@@ -70,7 +62,6 @@ class RouteController < ApplicationController
   #        difficulty_rating: 5,
   #        start_picture: "http://placekitten.com/350/200",
   #        end_picture: "http://placekitten.com/350/200",
-  #        estimated_time: 3232
   #        created_at: 1392894545
   #      }
 	#    points: [
@@ -125,7 +116,6 @@ class RouteController < ApplicationController
   #        difficulty_rating: 5,
   #        start_picture: "http://placekitten.com/350/200",
   #        end_picture: "http://placekitten.com/350/200",
-  #        estimated_time: 3232
   #        created_at: 1392894545
   #      }
   #    ]
@@ -176,7 +166,6 @@ class RouteController < ApplicationController
   #        name: "London Road to Hope Street",
   #        start_picture: "http://placekitten.com/350/200",
   #        end_picture: "http://placekitten.com/350/200",
-  #        estimated_time: 3232
   #        created_at: 1392894545
   #      }
   #    ]
@@ -221,13 +210,10 @@ class RouteController < ApplicationController
 	#        details: {
   #            id: 12,
   #            total_distance: 30,
-  #            safety_rating: 2,
   #            created_by: "chirsasur",
   #            name: "London Road to Hope Street",
-  #            difficulty_rating: 5,
   #            start_picture: "http://placekitten.com/350/200",
   #            end_picture: "http://placekitten.com/350/200",
-  #            estimated_time: 3232
   #            created_at: 1392894545
   #          }
   #      }

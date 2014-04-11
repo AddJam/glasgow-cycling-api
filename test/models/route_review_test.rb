@@ -11,14 +11,12 @@ class RouteReviewTest < ActiveSupport::TestCase
 
     user = create(:user)
   	route = create(:route)
-  	initial_reviews = route.reviews.count
 
-  	review = route.review(user, user_review)
-  	new_reviews = route.reviews.count
+  	review = route.create_review(user, user_review)
+  assert_not_nil review, "review created by review method"
 
-  	assert_not_nil review, "review created by review method"
-    assert_equal initial_reviews + 1, new_reviews, "review count increased by 1"
-    assert route.reviews.include?(review), "route should contain the review"
+    route = Route.where(id: route.id).first
+    assert_not_nil route.review, "review should be associated with route"
     assert user.reviews.include?(review), "user should contain the new review"
   end
 
@@ -30,12 +28,11 @@ class RouteReviewTest < ActiveSupport::TestCase
   	}
 
   	route = create(:route)
-  	initial_reviews = route.reviews.count
 
-  	review = route.review(create(:user), user_review)
-  	new_reviews = route.reviews.count
-
+  	review = route.create_review(create(:user), user_review)
   	assert_nil review, "review not created by record"
-    assert_equal initial_reviews, new_reviews, "review count not increased"
+
+    route = Route.where(id: route.id).first
+    assert_nil route.review, "review should not be associated with route"
 	end
 end

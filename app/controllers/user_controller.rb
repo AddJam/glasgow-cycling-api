@@ -149,6 +149,19 @@ class UserController < ApplicationController
     end
   end
 
+  def reset_password
+    if current_user.valid_password? params[:old_password]
+      current_user.password = params[:new_password]
+      if current_user.save
+        render json: {auth_token: current_user.authentication_token}
+      else
+        render status: :bad_request, json: {error: "New password is invalid"}
+      end
+    else
+      render status: :unauthorized, json: {error: "Invalid password"}
+    end
+  end
+
   private
 
   def failure

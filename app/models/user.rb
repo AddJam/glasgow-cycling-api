@@ -91,14 +91,6 @@ class User < ActiveRecord::Base
   # ==== Returns
   # The user details such as most used route, time and distance for this month
   def details
-    # Find favourite route
-    route_counts = Route.where(user_id: self.id).select('route_id id').group('route_id')
-                    .order('count_route_id asc').count('route_id')
-    favourite_route = Route.find_by_sql("SELECT route_id, name, COUNT(route_id) AS count
-                    FROM routes WHERE route_id IS NOT NULL AND user_id = #{self.id}
-                    GROUP BY route_id, name ORDER BY count LIMIT 1")
-    fav_route_name = favourite_route.first.name if favourite_route.present?
-
     # Past month stats
     month_distance_km = Route.where('user_id = ? AND created_at > ?', self.id, 1.month.ago).sum('total_distance')
     month_seconds = Route.where('user_id = ? AND created_at > ?', self.id, 1.month.ago).sum('total_time')
@@ -109,8 +101,7 @@ class User < ActiveRecord::Base
        km: month_distance_km,
        seconds: month_seconds
     }
-    month_stats[:route] = fav_route_name if fav_route_name.present?
-
+		
     user_details = {
       first_name: self.first_name,
       last_name: self.last_name,

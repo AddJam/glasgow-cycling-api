@@ -24,19 +24,22 @@ class ReviewController < ApplicationController
   #    review_id: 10
   #  }
   def create
-    review  = params[:review]
+    review = params[:review]
     route_id = params[:route_id]
     unless review and route_id and user_signed_in?
       render status: :bad_request
     else
       route = Route.where(id: route_id).first
-      review = route.review(current_user, review)
+      review = route.create_review(current_user, review)
       if review
         render json: {review_id: review.id}
       else
-        render status: :internal_server_error
+        render status: :internal_server_error, json: {error: "Review could not be saved"}
       end
     end
+  end
+
+  def edit
   end
 
   def find
@@ -48,6 +51,9 @@ class ReviewController < ApplicationController
   def delete
   end
 
-  def edit
+  private
+
+  def review_params
+    params.permit(:safety_rating, :environment_rating, :difficulty_rating, :comment)
   end
 end

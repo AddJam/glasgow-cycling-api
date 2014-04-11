@@ -41,21 +41,6 @@ class RouteTest < ActiveSupport::TestCase
     assert_equal total_time_seconds, route.total_time, "store route time in user history"
   end
 
-  test "can add route use to existing route" do
-    user = create(:user)
-    points = route_point_params(3)
-
-    original = Route.record(user, points)
-    route_use = original.record_use(user, points)
-
-    assert_not_nil route_use, "route should exist"
-    assert_equal route_use.points.count, points.count, "all points should be recorded in route"
-    assert_equal original, route_use.original, "original route should be set on route use"
-
-    second_use = original.record_use(user, points)
-    assert_equal original.uses.count, 2, "all uses should be stored against original route"
-  end
-
   test "distance calculated correctly" do
     # Note - distance is calculated once for a route
     #        after this, it is assumed points wont be modified
@@ -77,26 +62,24 @@ class RouteTest < ActiveSupport::TestCase
   test "details method should return route details json" do
     local_timestamp = 3.days.ago
 
-    route = create(:route, id: 111, name: "Test Route", estimated_time: 123,
-      total_distance: 456, last_used: local_timestamp, mode: 1, safety_rating: 1, difficulty_rating: 5, start_picture_id: 1,
+    route = create(:route, id: 111, name: "Test Route",
+      total_distance: 456, mode: 1, start_picture_id: 1,
       end_picture_id: 2, created_at: local_timestamp, updated_at: local_timestamp, start_time: 33333333334,
-      end_time: 33333333355, rating: 3, total_time: 21, route_id: 2, user_id: 2, environment_rating: 4)
+      end_time: 33333333355, total_time: 21, user_id: 2)
     user = create(:user, id: 2, first_name: "test", last_name: "McTester")
     details = route.details
     assert_not_nil details, "Route details not null"
     assert_equal 111, details[:id], "Returned route unique id is not as expected"
-    assert_equal 4, details[:environment_rating], "Returned environment_rating is not as expected"
-    assert_equal 1, details[:safety_rating], "Returned safety_rating is not as expected"
-    assert_equal 5, details[:difficulty_rating], "Returned difficulty_rating is not as expected"
     assert_equal 2, details[:created_by][:user_id], "Returned user_id is not as expected"
     assert_equal "test", details[:created_by][:first_name], "Returned user_id is not as expected"
     assert_equal "McTester", details[:created_by][:last_name], "Returned user_id is not as expected"
     assert_equal "Test Route", details[:name], "Returned name is not as expected"
     # assert_equal 1, details[:start_picture_id], "Returned start_picture_id is not as expected"
     # assert_equal 2, details[:end_picture_id], "Returned end_picture_id is not as expected"
-    assert_equal 123, details[:estimated_time], "Returned estimated_time is not as expected"
     assert_equal 21, details[:user_time], "Returned total_time is not as expected"
     assert_equal local_timestamp.to_i, details[:created_at].to_i, "Returned created_at is not as expected"
+
+    # TODO test review is present in details
   end
 
   test "route created and mode default to bike enum" do
@@ -104,26 +87,6 @@ class RouteTest < ActiveSupport::TestCase
 
     route = Route.record(create(:user), points)
     assert_equal "bike", route.mode, "Route mode should default to 0 (bike)"
-  end
-
-  test "rating are set from average of reviews" do
-    route = create(:route)
-    reviews = create_list(:route_review, 10)
-    route.reviews = reviews
-    route.save
-    assert_equal route.reviews.count, reviews.count, "reviews should be set on route"
-    assert_equal route.safety_rating, reviews.first.safety_rating, "safety rating should be average correctly"
-    assert_equal route.difficulty_rating, reviews.first.difficulty_rating, "difficulty rating should be average correctly"
-    assert_equal route.environment_rating, reviews.first.environment_rating, "environment rating should be average correctly"
-  end
-
-  test "estimated_time is set based on route and all uses of the route" do
-    route = create(:route, estimated_time: 123)
-    uses = create_list(:route, 10, estimated_time: 123, route_id: route.id)
-    route.uses = uses
-    route.save
-    # ISSUE HERE??? Was getting 111 > Expected (0 + (123*10) / 11) because saving the parent sets total_time to 0 (no points)
-    assert_equal 123, route.estimated_time
   end
 
   test "Route points returned correctly"  do
