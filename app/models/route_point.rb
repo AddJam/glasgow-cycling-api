@@ -22,6 +22,7 @@
 class RoutePoint < ActiveRecord::Base
 	belongs_to :route
 
+	validates :maidenhead, presence: true
 	validates :lat, presence: true
 	validates :long, presence: true
 	validates :altitude, presence: true
@@ -37,11 +38,16 @@ class RoutePoint < ActiveRecord::Base
 		end
 	end
 
+	before_validation :ensure_maidenhead
 	after_validation :get_street
 
 	def get_street
 		unless street_name
 			reverse_geocode if is_important
 		end
+	end
+
+	def ensure_maidenhead
+		self.maidenhead = Maidenhead.to_maidenhead(lat, long, 4) unless self.maidenhead.present?
 	end
 end
