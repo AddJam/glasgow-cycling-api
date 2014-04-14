@@ -27,6 +27,7 @@ class Route < ActiveRecord::Base
 	before_validation :set_endpoints
 	before_validation :calculate_times
 	before_save :set_name
+	before_save :set_maidenheads
 
 	validates :name, presence: true
 	validates :total_distance, presence: true
@@ -43,6 +44,12 @@ class Route < ActiveRecord::Base
 
 	def to_coordinates
 		[lat, long]
+	end
+
+	def similar
+		return unless start_maidenhead.present? and end_maidenhead.present?
+		a_to_z = Route.where(start_maidenhead: start_maidenhead, end_maidenhead: end_maidenhead)
+		a_to_z
 	end
 
 	# Records a new route for the given user
@@ -213,5 +220,11 @@ class Route < ActiveRecord::Base
 		else
 			self.name = "Glasgow City Route"
 		end
+	end
+
+	def set_maidenheads
+		return if self.points.blank?
+		self.start_maidenhead = self.points.first.maidenhead
+		self.end_maidenhead = self.points.last.maidenhead
 	end
 end
