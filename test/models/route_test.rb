@@ -5,8 +5,8 @@ class RouteTest < ActiveSupport::TestCase
     points = []
     num_points.times do
       new_point = {
-        lat: rand * 100,
-        long: rand * 100,
+        lat: rand * 90,
+        long: rand * 180,
         altitude: rand * 500,
         time: Time.now,
         kph: rand * 500
