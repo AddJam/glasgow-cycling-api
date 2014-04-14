@@ -27,7 +27,7 @@ class RoutePoint < ActiveRecord::Base
 	validates :long, presence: true
 	validates :altitude, presence: true
 	validates :time, presence: true
-	# validates :kph, presence: true
+	validates :kph, presence: true
 
 	reverse_geocoded_by :lat, :long do |obj, results|
 		if geo = results.first
