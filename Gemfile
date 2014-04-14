@@ -54,8 +54,9 @@ gem 'devise'
 # Image handling
 gem "paperclip", "~> 4.1"
 
-# Geocoding
+# Location
 gem 'geocoder'
+gem 'maidenhead'
 gem 'redis' #cache
 
 # Development

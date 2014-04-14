@@ -113,6 +113,7 @@ GEM
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
     lumberjack (1.0.5)
+    maidenhead (1.0.1)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -243,6 +244,7 @@ DEPENDENCIES
   guard-rails
   jbuilder (~> 2.0)
   jquery-rails
+  maidenhead
   minitest
   minitest-reporters
   newrelic_rpm
