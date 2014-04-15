@@ -127,11 +127,16 @@ class RouteControllerTest < ActionController::TestCase
 
   test "User route summaries with pagination" do
     user = create(:user)
-    page = 3
-    per_page = 4
-    create_list(:route, 12, user_id: user.id)
+    page = 1
+    per_page = 2
+    4.times do
+      route = build(:route, user_id: user.id, lat: rand * 90, long: rand * 180)
+      route.points = create_list(:route_point, 2, lat: rand * 90, long: rand * 180)
+      route.save
+    end
 
-    get(:user_summaries,user_token: user.authentication_token, user_email: user.email,  per_page: per_page, page_num: page, format: :json)
+    get(:user_summaries,user_token: user.authentication_token, user_email: user.email, per_page: per_page, page_num: page, format: :json)
+
     details = JSON.parse response.body
     assert_response :success, "success response expected"
     assert_equal per_page, details['routes'].count, "correct number of summaries should be returned"

@@ -122,8 +122,6 @@ class Route < ActiveRecord::Base
 	#
 	# ==== Returns
 	# The route details.
-	# TODO Picture URL returned
-	# TODO update controller docs to match format & attrs
 	def details
 		user = User.where(id: self.user_id).first
 		route_details = {

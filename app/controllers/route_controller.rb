@@ -182,13 +182,62 @@ class RouteController < ApplicationController
   		if per_page == 0
   			render status: :bad_request, json: {error: "Must display at least one route per page"}
   		else
-  			routes = Route.where(user_id: current_user.id).limit(per_page).offset(offset)
-  			summaries = []
-  			routes.each do |summary|
-  				summaries << {
-  					details: summary.details
-  				}
-  			end
+
+				# TODO DRY
+				routes = Route.where(user_id: current_user.id).select(:start_maidenhead, :end_maidenhead)
+											.group(:start_maidenhead, :end_maidenhead).limit(per_page).offset(offset)
+
+				# Generate all summaries
+				summaries = routes.inject([]) do |all_summaries, route|
+					instances = Route.where(start_maidenhead: route.start_maidenhead,
+										end_maidenhead: route.end_maidenhead).order('created_at DESC')
+
+					# Route summary
+					route = instances.first
+					summary = {
+						start_maidenhead: route.start_maidenhead,
+						end_maidenhead: route.end_maidenhead,
+						start_name: route.start_name,
+						end_name: route.end_name,
+						last_route_time: route.created_at,
+						instances: instances.count
+					}
+
+					# Calculate averages
+					total_distance = instances.map {|i| i.total_distance}.inject(:+)
+					total_safety_rating = instances.map do |i|
+						if i.review.present?
+							i.review.safety_rating
+						else
+							0
+						end
+					end.inject(:+)
+
+					total_difficulty_rating = instances.map do |i|
+						if i.review.present?
+							i.review.difficulty_rating
+						else
+							0
+						end
+					end.inject(:+)
+
+					total_environment_rating = instances.map do |i|
+						if i.review.present?
+							i.review.environment_rating
+						else
+							0
+						end
+					end.inject(:+)
+					summary[:averages] = {
+						distance:  total_distance / instances.count.to_f,
+						safety_rating: total_safety_rating / instances.count.to_f,
+						difficulty_rating: total_difficulty_rating / instances.count.to_f,
+						environment_rating: total_environment_rating / instances.count.to_f
+					}
+
+					all_summaries << summary
+				end
+
   			render json: {
   				routes: summaries
   			}
