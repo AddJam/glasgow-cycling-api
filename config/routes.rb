@@ -16,7 +16,6 @@ JourneyAPI::Application.routes.draw do
   put "/reviews/:id", to: "review#edit", as: 'edit_review'
 
   # Routes
-  get "/routes/summaries/:per_page/:page_num", to: "route#all_summaries", as: 'all_summaries'
   get "/routes/user_summaries/:per_page/:page_num", to: "route#user_summaries", as: 'user_route_summaries'
   get "/routes/find/:id", to: "route#find", as: 'find_routes'
   post "/routes", to: "route#record", as: 'record_route'

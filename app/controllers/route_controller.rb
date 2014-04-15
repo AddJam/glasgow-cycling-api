@@ -91,59 +91,6 @@ class RouteController < ApplicationController
 		end
 	end
 
-	# *GET* /routes/summaries/:per_page/:page_num
-	#
-	# Returns all routes
-	#
-	# ==== Parameters
-	# [+per_page+] items to appear per page
-	# [+page_num+] current page number
-	# ==== Returns
-	# All routes with +id+
-	#
-	#  {routes[
-	#    details:
-  #      {
-  #        id: 12,
-  #        total_distance: 30,
-  #        safety_rating: 2,
-  #        created_by{
-  #            user_id: 101
-  #            first_name: "Chris"
-  #            last_name: "Sloey"
-  #            },
-  #        name: "London Road to Hope Street",
-  #        difficulty_rating: 5,
-  #        start_picture: "http://placekitten.com/350/200",
-  #        end_picture: "http://placekitten.com/350/200",
-  #        created_at: 1392894545
-  #      }
-  #    ]
-  #  }
-  def all_summaries
-  	unless params[:per_page] and params[:page_num]
-  		render status: :bad_request, json: {}
-  	else
-  		page_num = params[:page_num].to_i
-  		per_page = params[:per_page].to_i
-  		offset = page_num * per_page - per_page
-  		if per_page == 0
-  			render status: :bad_request, json: {}
-  		else
-  			routes = Route.limit(per_page).offset(offset)
-  			summaries = []
-  			routes.each do |summary|
-  				summaries << {
-  					details: summary.details
-  				}
-  			end
-  			render json: {
-  				routes: summaries
-  			}
-  		end
-  	end
-  end
-
 	# *GET* /routes/user_summaries/:per_page/:page_num
 	#
 	# Returns all routes

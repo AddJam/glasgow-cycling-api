@@ -108,20 +108,11 @@ class RouteControllerTest < ActionController::TestCase
     assert_response :bad_request
   end
 
-  test "All route summaries with pagination" do
-    page = 3
-    per_page = 4
-    create_list(:route, 12)
-    get(:all_summaries, per_page: per_page, page_num: page, format: :json)
-    details = JSON.parse response.body
-    assert_response :success, "success response expected"
-    assert_equal per_page, details['routes'].count, "correct number of summaries should be returned"
-  end
-
   test "cannot display 0 routes per page" do
     page = 3
     per_page = 0
-    get(:all_summaries, per_page: per_page, page_num: page, format: :json)
+    user = create(:user)
+    get(:user_summaries, user_token: user.authentication_token, user_email: user.email, per_page: per_page, page_num: page, format: :json)
     assert_response :bad_request
   end
 
@@ -146,7 +137,7 @@ class RouteControllerTest < ActionController::TestCase
     page = 3
     per_page = 0
     user = create(:user)
-    get(:user_summaries, user_token: user.authentication_token, user_email: user.email,  per_page: per_page, page_num: page, format: :json)
+    get(:user_summaries, user_token: user.authentication_token, user_email: user.email, per_page: per_page, page_num: page, format: :json)
     assert_response :bad_request
   end
 end

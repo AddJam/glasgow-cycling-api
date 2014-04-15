@@ -180,7 +180,7 @@ class Route < ActiveRecord::Base
 		instances = Route.where(start_maidenhead: start_maidenhead,
 							end_maidenhead: end_maidenhead).order('created_at DESC')
 
-		# Route summary
+		# Overview
 		route = instances.first
 		summary = {
 			start_maidenhead: start_maidenhead,
@@ -191,7 +191,7 @@ class Route < ActiveRecord::Base
 			instances: instances.count
 		}
 
-		# Calculate averages
+		# Averages
 		total_distance = instances.map {|i| i.total_distance}.inject(:+)
 		total_safety_rating = instances.map do |i|
 			if i.review.present?
@@ -216,6 +216,7 @@ class Route < ActiveRecord::Base
 				0
 			end
 		end.inject(:+)
+
 		summary[:averages] = {
 			distance:  total_distance / instances.count.to_f,
 			safety_rating: total_safety_rating / instances.count.to_f,
