@@ -20,7 +20,6 @@ JourneyAPI::Application.routes.draw do
   get "/routes/user_summaries/:per_page/:page_num", to: "route#user_summaries", as: 'user_route_summaries'
   get "/routes/find/:id", to: "route#find", as: 'find_routes'
   post "/routes", to: "route#record", as: 'record_route'
-  get "/routes/nearby", to: "route#nearby_summaries", as: 'nearby_routes'
   get "/routes/user", to: "route#user", as: 'user_routes'
 
   devise_for :users

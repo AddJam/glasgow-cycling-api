@@ -144,23 +144,4 @@ class RouteControllerTest < ActionController::TestCase
     get(:user_summaries, user_token: user.authentication_token, user_email: user.email,  per_page: per_page, page_num: page, format: :json)
     assert_response :bad_request
   end
-
-  test "nearby routes summaries should be accurate" do
-    num_nearby = 4
-    (0...num_nearby).each do |index|
-      route = create(:route)
-      route.points << create(:route_point, lat: 0.0, long: 0.0)
-      route.save
-    end
-
-    create_list(:picture, 10)
-
-    get(:nearby_summaries, lat: 0.0, long: 0.0)
-
-    assert_response :success
-    nearby_json = JSON.parse response.body
-    assert_not_nil nearby_json, "nearby routes should be returned as JSON"
-    nearby_routes = nearby_json['routes']
-    assert_equal num_nearby, nearby_routes.count, "all nearby routes should be found"
-  end
 end
