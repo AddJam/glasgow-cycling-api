@@ -157,16 +157,18 @@ class RouteController < ApplicationController
 	#  {
 	#    details:[
   #      {
-  #        id: 12,
-  #        total_distance: 30,
-  #        safety_rating: 2,
-  #        difficulty_rating: 5,
-  #        environment_rating: 3,
-  #        created_by: "chirsasur",
-  #        name: "London Road to Hope Street",
-  #        start_picture: "http://placekitten.com/350/200",
-  #        end_picture: "http://placekitten.com/350/200",
-  #        created_at: 1392894545
+	#        averages: {
+	#          distance: 30,
+	#          safety_rating: 2,
+	#          difficulty_rating: 5,
+	#          environment_rating: 3
+	#				}
+	# 			 start_maidenhead: "AA02cc00",
+	#        end_maidenhead: "AA02cc05",
+	#        start_name: "London Road",
+	#        end_name: "Hope Street",
+  #        last_route_time: 1392894545,
+	# 			 instances: 3
   #      }
   #    ]
   #  }
