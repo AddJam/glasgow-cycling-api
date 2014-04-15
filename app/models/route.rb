@@ -61,7 +61,7 @@ class Route < ActiveRecord::Base
 		end
 		# Create the route
 		route = Route.new
-		route.name = "New Route" #TODO name properly
+		route.name = "Glasgow City Route"
 		route.user_id = user.id
 		points.each do |point|
 			route_point = RoutePoint.create do |rp|
