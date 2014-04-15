@@ -8,16 +8,16 @@ class RouteControllerTest < ActionController::TestCase
   def points
     [
       {
-      lat: (rand * 100),
-      long: (rand * 50),
+      lat: (rand * 90),
+      long: (rand * 180),
       altitude: (rand * 500),
       kph: (rand * 23),
       time: Time.now.to_i,
       street_name: 'Random Street'
       },
       {
-        lat: (rand * 100),
-        long: (rand * 50),
+        lat: (rand * 90),
+        long: (rand * 180),
         altitude: (rand * 500),
         kph: (rand * 23),
         time: Time.now.to_i,
@@ -55,16 +55,16 @@ class RouteControllerTest < ActionController::TestCase
     # Using speed instead of kph
     points_speed = [
       {
-      lat: (rand * 100),
-      long: (rand * 50),
+      lat: (rand * 90),
+      long: (rand * 180),
       altitude: (rand * 500),
       speed: (rand * 23),
       time: Time.now.to_i,
       street_name: 'Random Street'
       },
       {
-        lat: (rand * 100),
-        long: (rand * 50),
+        lat: (rand * 90),
+        long: (rand * 180),
         altitude: (rand * 500),
         speed: (rand * 500),
         time: Time.now.to_i,

@@ -46,10 +46,10 @@ class Route < ActiveRecord::Base
 		[lat, long]
 	end
 
-	def similar
+	def all_instances
 		return unless start_maidenhead.present? and end_maidenhead.present?
-		a_to_z = Route.where(start_maidenhead: start_maidenhead, end_maidenhead: end_maidenhead)
-		a_to_z
+		similar = Route.where(start_maidenhead: start_maidenhead, end_maidenhead: end_maidenhead)
+		similar.select {|route| similarity(self.maidenheads, route.maidenheads) >= 0.8}
 	end
 
 	# Records a new route for the given user
@@ -171,6 +171,13 @@ class Route < ActiveRecord::Base
 		end
 	end
 
+	def maidenheads
+		self.points.inject([]) do |maidenhead, point|
+			maidenhead << point.maidenhead
+			maidenhead
+		end
+	end
+
 	private
 
 	def ensure_distance_exists
@@ -226,5 +233,27 @@ class Route < ActiveRecord::Base
 		return if self.points.blank?
 		self.start_maidenhead = self.points.first.maidenhead
 		self.end_maidenhead = self.points.last.maidenhead
+	end
+
+	def similarity(route_one, route_two)
+		if route_one.first != route_two.first or route_one.last != route_two.last
+			return 0
+		end
+
+		route_one.uniq!
+		route_two.uniq!
+
+		matching_cells = route_two.select do |cell|
+			route_one.include? cell
+		end
+
+		points_also_in_route_one = matching_cells.length
+		non_matching_one = route_one.length - points_also_in_route_one
+		non_matching_two = route_two.length - points_also_in_route_one
+
+		longest_len = route_one.length > route_two.length ? route_one.length : route_two.length
+
+		# Similarity is ratio of matching to total unique points
+		points_also_in_route_one.to_f / (non_matching_one.to_f + non_matching_two.to_f + points_also_in_route_one.to_f)
 	end
 end
