@@ -141,7 +141,10 @@ class RouteTest < ActiveSupport::TestCase
     assert_equal routes.last.start_maidenhead, summary[:start_maidenhead], "start_maidenhead should be the one requested"
     assert_equal routes.last.end_maidenhead, summary[:end_maidenhead], "end_maidenhead should be the one requested"
     assert_equal routes.last.created_at.to_i, summary[:last_route_time].to_i, "last_route_time should be accurate"
-
-    # TODO test averages
+    assert_not_nil summary[:averages], "summary should contain averages"
+    assert_not_nil summary[:averages][:distance], "summary should contain average distance"
+    assert_not_nil summary[:averages][:safety_rating], "summary should contain average safety_rating"
+    assert_not_nil summary[:averages][:environment_rating], "summary should contain average environment_rating"
+    assert_not_nil summary[:averages][:difficulty_rating], "summary should contain average difficulty_rating"
   end
 end
