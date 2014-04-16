@@ -26,16 +26,15 @@ class Route < ActiveRecord::Base
 	before_validation :ensure_distance_exists
 	before_validation :set_endpoints
 	before_validation :calculate_times
+	before_validation :set_maidenheads
 	before_save :set_name
-	before_save :set_maidenheads
 
 	validates :name, presence: true
 	validates :total_distance, presence: true
 	validates :lat, presence: true
 	validates :long, presence: true
-	# validates :total_time, presence: true
-	# validates :start_time, presence: true
-	# validates :end_time, presence: true
+	validates :start_maidenhead, presence: true
+	validates :end_maidenhead, presence: true
 	# TODO validate at least one point exists
 
 	reverse_geocoded_by :lat, :long
