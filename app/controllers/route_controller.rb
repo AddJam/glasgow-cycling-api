@@ -91,59 +91,6 @@ class RouteController < ApplicationController
 		end
 	end
 
-	# *GET* /routes/summaries/:per_page/:page_num
-	#
-	# Returns all routes
-	#
-	# ==== Parameters
-	# [+per_page+] items to appear per page
-	# [+page_num+] current page number
-	# ==== Returns
-	# All routes with +id+
-	#
-	#  {routes[
-	#    details:
-  #      {
-  #        id: 12,
-  #        total_distance: 30,
-  #        safety_rating: 2,
-  #        created_by{
-  #            user_id: 101
-  #            first_name: "Chris"
-  #            last_name: "Sloey"
-  #            },
-  #        name: "London Road to Hope Street",
-  #        difficulty_rating: 5,
-  #        start_picture: "http://placekitten.com/350/200",
-  #        end_picture: "http://placekitten.com/350/200",
-  #        created_at: 1392894545
-  #      }
-  #    ]
-  #  }
-  def all_summaries
-  	unless params[:per_page] and params[:page_num]
-  		render status: :bad_request, json: {}
-  	else
-  		page_num = params[:page_num].to_i
-  		per_page = params[:per_page].to_i
-  		offset = page_num * per_page - per_page
-  		if per_page == 0
-  			render status: :bad_request, json: {}
-  		else
-  			routes = Route.limit(per_page).offset(offset)
-  			summaries = []
-  			routes.each do |summary|
-  				summaries << {
-  					details: summary.details
-  				}
-  			end
-  			render json: {
-  				routes: summaries
-  			}
-  		end
-  	end
-  end
-
 	# *GET* /routes/user_summaries/:per_page/:page_num
 	#
 	# Returns all routes
@@ -157,16 +104,18 @@ class RouteController < ApplicationController
 	#  {
 	#    details:[
   #      {
-  #        id: 12,
-  #        total_distance: 30,
-  #        safety_rating: 2,
-  #        difficulty_rating: 5,
-  #        environment_rating: 3,
-  #        created_by: "chirsasur",
-  #        name: "London Road to Hope Street",
-  #        start_picture: "http://placekitten.com/350/200",
-  #        end_picture: "http://placekitten.com/350/200",
-  #        created_at: 1392894545
+	#        averages: {
+	#          distance: 30,
+	#          safety_rating: 2,
+	#          difficulty_rating: 5,
+	#          environment_rating: 3
+	#				}
+	# 			 start_maidenhead: "AA02cc00",
+	#        end_maidenhead: "AA02cc05",
+	#        start_name: "London Road",
+	#        end_name: "Hope Street",
+  #        last_route_time: 1392894545,
+	# 			 instances: 3
   #      }
   #    ]
   #  }
@@ -180,65 +129,18 @@ class RouteController < ApplicationController
   		if per_page == 0
   			render status: :bad_request, json: {error: "Must display at least one route per page"}
   		else
-  			routes = Route.where(user_id: current_user.id).limit(per_page).offset(offset)
-  			summaries = []
-  			routes.each do |summary|
-  				summaries << {
-  					details: summary.details
-  				}
-  			end
+				routes = Route.where(user_id: current_user.id).select(:start_maidenhead, :end_maidenhead)
+											.group(:start_maidenhead, :end_maidenhead).limit(per_page).offset(offset)
+
+				# Generate all summaries
+				summaries = routes.inject([]) do |all_summaries, route|
+					all_summaries << Route.summarise(route.start_maidenhead, route.end_maidenhead, current_user)
+				end
+
   			render json: {
   				routes: summaries
   			}
   		end
   	end
   end
-
-	# *GET* /routes/nearby?lat=###?long=###
-	#
-	# Returns routes near given location (lat, long)
-	#
-	# ==== Parameters
-	# [+lat+] Required. +lat+ latitude of location
-	# [+lat+] Required. +long+ longtitude of location
-	# ==== Returns
-	# Routes nearby location with route details
-	#
-	#  {
-	#    routes:[
-	#      {
-	#        details: {
-  #            id: 12,
-  #            total_distance: 30,
-  #            created_by: "chirsasur",
-  #            name: "London Road to Hope Street",
-  #            start_picture: "http://placekitten.com/350/200",
-  #            end_picture: "http://placekitten.com/350/200",
-  #            created_at: 1392894545
-  #          }
-  #      }
-  #    ]
-  #  }
-  # TODO Paginate? Should they be ordered? Based off user type?
-	def nearby_summaries
-		unless params[:lat] and params[:long]
-			render status: :bad_request, json: {error: "Must provide location to find nearby routes"}
-		else
-			coords = [params[:lat].to_f, params[:long].to_f]
-			Rails.logger.info "Coords #{coords}"
-			nearby_routes = Route.near(coords, 5, :units => :mi)
-
-			if nearby_routes
-				render json: {
-					routes: nearby_routes.inject([]) do |routes, route|
-						routes << {
-							details: route.details
-						}
-					end
-				}
-			else
-				render status: 422, json: {error: "Error generating nearby routes"}
-			end
-		end
-	end
 end

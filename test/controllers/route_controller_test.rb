@@ -8,16 +8,16 @@ class RouteControllerTest < ActionController::TestCase
   def points
     [
       {
-      lat: (rand * 100),
-      long: (rand * 50),
+      lat: (rand * 90),
+      long: (rand * 180),
       altitude: (rand * 500),
       kph: (rand * 23),
       time: Time.now.to_i,
       street_name: 'Random Street'
       },
       {
-        lat: (rand * 100),
-        long: (rand * 50),
+        lat: (rand * 90),
+        long: (rand * 180),
         altitude: (rand * 500),
         kph: (rand * 23),
         time: Time.now.to_i,
@@ -55,16 +55,16 @@ class RouteControllerTest < ActionController::TestCase
     # Using speed instead of kph
     points_speed = [
       {
-      lat: (rand * 100),
-      long: (rand * 50),
+      lat: (rand * 90),
+      long: (rand * 180),
       altitude: (rand * 500),
       speed: (rand * 23),
       time: Time.now.to_i,
       street_name: 'Random Street'
       },
       {
-        lat: (rand * 100),
-        long: (rand * 50),
+        lat: (rand * 90),
+        long: (rand * 180),
         altitude: (rand * 500),
         speed: (rand * 500),
         time: Time.now.to_i,
@@ -108,30 +108,26 @@ class RouteControllerTest < ActionController::TestCase
     assert_response :bad_request
   end
 
-  test "All route summaries with pagination" do
-    page = 3
-    per_page = 4
-    create_list(:route, 12)
-    get(:all_summaries, per_page: per_page, page_num: page, format: :json)
-    details = JSON.parse response.body
-    assert_response :success, "success response expected"
-    assert_equal per_page, details['routes'].count, "correct number of summaries should be returned"
-  end
-
   test "cannot display 0 routes per page" do
     page = 3
     per_page = 0
-    get(:all_summaries, per_page: per_page, page_num: page, format: :json)
+    user = create(:user)
+    get(:user_summaries, user_token: user.authentication_token, user_email: user.email, per_page: per_page, page_num: page, format: :json)
     assert_response :bad_request
   end
 
   test "User route summaries with pagination" do
     user = create(:user)
-    page = 3
-    per_page = 4
-    create_list(:route, 12, user_id: user.id)
+    page = 1
+    per_page = 2
+    4.times do
+      route = build(:route, user_id: user.id, lat: rand * 90, long: rand * 180)
+      route.points = create_list(:route_point, 2, lat: rand * 90, long: rand * 180)
+      route.save
+    end
 
-    get(:user_summaries,user_token: user.authentication_token, user_email: user.email,  per_page: per_page, page_num: page, format: :json)
+    get(:user_summaries,user_token: user.authentication_token, user_email: user.email, per_page: per_page, page_num: page, format: :json)
+
     details = JSON.parse response.body
     assert_response :success, "success response expected"
     assert_equal per_page, details['routes'].count, "correct number of summaries should be returned"
@@ -141,26 +137,7 @@ class RouteControllerTest < ActionController::TestCase
     page = 3
     per_page = 0
     user = create(:user)
-    get(:user_summaries, user_token: user.authentication_token, user_email: user.email,  per_page: per_page, page_num: page, format: :json)
+    get(:user_summaries, user_token: user.authentication_token, user_email: user.email, per_page: per_page, page_num: page, format: :json)
     assert_response :bad_request
-  end
-
-  test "nearby routes summaries should be accurate" do
-    num_nearby = 4
-    (0...num_nearby).each do |index|
-      route = create(:route)
-      route.points << create(:route_point, lat: 0.0, long: 0.0)
-      route.save
-    end
-
-    create_list(:picture, 10)
-
-    get(:nearby_summaries, lat: 0.0, long: 0.0)
-
-    assert_response :success
-    nearby_json = JSON.parse response.body
-    assert_not_nil nearby_json, "nearby routes should be returned as JSON"
-    nearby_routes = nearby_json['routes']
-    assert_equal num_nearby, nearby_routes.count, "all nearby routes should be found"
   end
 end

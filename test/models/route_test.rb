@@ -92,14 +92,33 @@ class RouteTest < ActiveSupport::TestCase
   test "Route points returned correctly"  do
     point_time = 3.days.ago
     route = create(:route)
-    points = create_list(:route_point, 5, route_id: route.id, is_important: false, lat: 321.0, long: 654.0, altitude: 987.0, time: point_time)
+    points = create_list(:route_point, 5, route_id: route.id, is_important: false, lat: 31.0, long: 64.0, altitude: 987.0, time: point_time)
     returned_points = route.points_data
 
     assert_not_nil returned_points, "route points should not be nil"
     assert_equal 5, returned_points.count, "Number of route points not as expected"
-    assert_equal 321.0, returned_points.first[:lat], "lat not as expected"
-    assert_equal 654.0, returned_points.first[:long], "long not as expected"
+    assert_equal 31.0, returned_points.first[:lat], "lat not as expected"
+    assert_equal 64.0, returned_points.first[:long], "long not as expected"
     assert_equal 987.0, returned_points.first[:altitude], "altitude not as expected"
     assert_equal point_time.to_i, returned_points.first[:time].to_i, "return point should have the correc time"
+  end
+
+  test "similar routes are accurarely found" do
+    routes = create_list(:route, 5)
+    routes.each_with_index do |route, index|
+      points = create_list(:route_point, 10, route_id: route.id, is_important: false, lat: 55.0, long: -4.0, altitude: 987.0)
+
+      # Modify one of the routes to not be similar
+      if index == 4
+        points += create_list(:route_point, 4, route_id: route.id, is_important: false, lat: 22.0, long: -4.0, altitude: 987.0)
+        points << create(:route_point, route_id: route.id, is_important: false, lat: 55.0, long: -4.0, altitude: 987.0)
+      end
+      route.points = points
+      route.save
+    end
+
+
+    instances = routes.first.all_instances
+    assert_equal routes.length-1, instances.count, "number of similar routes should be accurate"
   end
 end

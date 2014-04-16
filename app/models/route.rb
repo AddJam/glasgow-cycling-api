@@ -27,6 +27,7 @@ class Route < ActiveRecord::Base
 	before_validation :set_endpoints
 	before_validation :calculate_times
 	before_save :set_name
+	before_save :set_maidenheads
 
 	validates :name, presence: true
 	validates :total_distance, presence: true
@@ -43,6 +44,12 @@ class Route < ActiveRecord::Base
 
 	def to_coordinates
 		[lat, long]
+	end
+
+	def all_instances
+		return unless start_maidenhead.present? and end_maidenhead.present?
+		similar = Route.where(start_maidenhead: start_maidenhead, end_maidenhead: end_maidenhead)
+		similar.select {|route| similarity(self.maidenheads, route.maidenheads) >= 0.8}
 	end
 
 	# Records a new route for the given user
@@ -115,8 +122,6 @@ class Route < ActiveRecord::Base
 	#
 	# ==== Returns
 	# The route details.
-	# TODO Picture URL returned
-	# TODO update controller docs to match format & attrs
 	def details
 		user = User.where(id: self.user_id).first
 		route_details = {
@@ -162,6 +167,69 @@ class Route < ActiveRecord::Base
 				time: point.time
 			}
 		end
+	end
+
+	def maidenheads
+		self.points.inject([]) do |maidenhead, point|
+			maidenhead << point.maidenhead
+			maidenhead
+		end
+	end
+
+	def self.summarise(start_maidenhead, end_maidenhead, user)
+		if user.present?
+			instances = Route.where(start_maidenhead: start_maidenhead, end_maidenhead: end_maidenhead,
+									user_id: user.id).order('created_at DESC')
+		else
+			instances = Route.where(start_maidenhead: start_maidenhead,
+								end_maidenhead: end_maidenhead).order('created_at DESC')
+		end
+
+		# Overview
+		route = instances.first
+		summary = {
+			start_maidenhead: start_maidenhead,
+			end_maidenhead: end_maidenhead,
+			start_name: route.start_name,
+			end_name: route.end_name,
+			last_route_time: route.created_at,
+			instances: instances.count
+		}
+
+		# Averages
+		total_distance = instances.map {|i| i.total_distance}.inject(:+)
+		total_safety_rating = instances.map do |i|
+			if i.review.present?
+				i.review.safety_rating
+			else
+				0
+			end
+		end.inject(:+)
+
+		total_difficulty_rating = instances.map do |i|
+			if i.review.present?
+				i.review.difficulty_rating
+			else
+				0
+			end
+		end.inject(:+)
+
+		total_environment_rating = instances.map do |i|
+			if i.review.present?
+				i.review.environment_rating
+			else
+				0
+			end
+		end.inject(:+)
+
+		summary[:averages] = {
+			distance:  total_distance / instances.count.to_f,
+			safety_rating: total_safety_rating / instances.count.to_f,
+			difficulty_rating: total_difficulty_rating / instances.count.to_f,
+			environment_rating: total_environment_rating / instances.count.to_f
+		}
+
+		summary
 	end
 
 	private
@@ -213,5 +281,33 @@ class Route < ActiveRecord::Base
 		else
 			self.name = "Glasgow City Route"
 		end
+	end
+
+	def set_maidenheads
+		return if self.points.blank?
+		self.start_maidenhead = self.points.first.maidenhead
+		self.end_maidenhead = self.points.last.maidenhead
+	end
+
+	def similarity(route_one, route_two)
+		if route_one.first != route_two.first or route_one.last != route_two.last
+			return 0
+		end
+
+		route_one.uniq!
+		route_two.uniq!
+
+		matching_cells = route_two.select do |cell|
+			route_one.include? cell
+		end
+
+		points_also_in_route_one = matching_cells.length
+		non_matching_one = route_one.length - points_also_in_route_one
+		non_matching_two = route_two.length - points_also_in_route_one
+
+		longest_len = route_one.length > route_two.length ? route_one.length : route_two.length
+
+		# Similarity is ratio of matching to total unique points
+		points_also_in_route_one.to_f / (non_matching_one.to_f + non_matching_two.to_f + points_also_in_route_one.to_f)
 	end
 end
