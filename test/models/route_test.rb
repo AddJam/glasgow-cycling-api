@@ -121,7 +121,7 @@ class RouteTest < ActiveSupport::TestCase
     assert_equal routes.length-1, instances.count, "number of similar routes should be accurate"
   end
 
-  test "summarise groupse routes correctly" do
+  test "routes are grouped correctly by summarise" do
     routes = create_list(:route, 5)
     routes.each_with_index do |route, index|
       points = create_list(:route_point, 10, route_id: route.id, is_important: false, lat: 55.0, long: -4.0, altitude: 987.0)
@@ -140,7 +140,7 @@ class RouteTest < ActiveSupport::TestCase
     assert_equal 5, summary[:instances], "summary should contain correct count of instances"
     assert_equal routes.last.start_maidenhead, summary[:start_maidenhead], "start_maidenhead should be the one requested"
     assert_equal routes.last.end_maidenhead, summary[:end_maidenhead], "end_maidenhead should be the one requested"
-    assert_equal routes.last.created_at, summary[:last_route_time], "last_route_time should be accurate"
+    assert_equal routes.last.created_at.to_i, summary[:last_route_time].to_i, "last_route_time should be accurate"
 
     # TODO test averages
   end
