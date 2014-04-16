@@ -61,6 +61,8 @@ FactoryGirl.define do
     end_name 'City Centre'
     lat 1.23
     long 1.23
+    start_maidenhead 'AA00bb11'
+    end_maidenhead 'AA00bb11'
     total_distance 1.23
     mode 1
     start_picture_id 123

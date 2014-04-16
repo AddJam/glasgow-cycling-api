@@ -43,12 +43,12 @@ class RouteControllerTest < ActionController::TestCase
     assert_response :success
 
     route_data = JSON.parse response.body
-    assert_not_nil route_data
+    assert_not_nil route_data, "route data should be returned"
     route_id = route_data['route_id']
-    assert_not_nil route_data["route_id"]
+    assert_not_nil route_data["route_id"], "route data should contain a route id"
 
     # Check route was added
-    assert_not_nil Route.where(id: route_id).first
+    assert_not_nil Route.where(id: route_id).first, "route should be stored"
   end
 
   test "old API parameters should work for recording route" do
@@ -138,6 +138,23 @@ class RouteControllerTest < ActionController::TestCase
     per_page = 0
     user = create(:user)
     get(:user_summaries, user_token: user.authentication_token, user_email: user.email, per_page: per_page, page_num: page, format: :json)
-    assert_response :bad_request
+    assert_response :bad_request, "shouldn't allow requesting 0 results per page"
+  end
+
+  test "search with no parameters returns all routes" do
+    user = User.last
+    4.times do
+      route = build(:route, user_id: user.id, lat: rand * 90, long: rand * 180)
+      route.points = create_list(:route_point, 2, lat: rand * 90, long: rand * 180)
+      route.save
+    end
+
+    get(:search, format: :json)
+
+    assert_response :success, "should allow searching with no parameters"
+    assert_not_nil response.body, "response should have a body"
+    results = JSON.parse response.body
+    assert_not_nil results["routes"], "result should contain routes"
+    assert_equal Route.distinct.count(:start_maidenhead, :end_maidenhead), results["routes"].length, "there should be one result for each route"
   end
 end
