@@ -17,12 +17,12 @@ class RouteTest < ActiveSupport::TestCase
     points
   end
 
-  test "recording a route should store the route and all route points" do
+  test 'recording a route should store the route and all route points' do
     points = route_point_params(3)
     route = Route.record(create(:user), points)
 
-    assert_not_nil route, "Route created by record"
-    assert_equal route.points.count, points.count, "all points should be recorded in route"
+    assert_not_nil route, 'Route created by record'
+    assert_equal route.points.count, points.count, 'all points should be recorded in route'
   end
 
   test "recording a route should add it to the users routes" do
@@ -117,8 +117,31 @@ class RouteTest < ActiveSupport::TestCase
       route.save
     end
 
-
     instances = routes.first.all_instances
     assert_equal routes.length-1, instances.count, "number of similar routes should be accurate"
+  end
+
+  test "summarise groupse routes correctly" do
+    routes = create_list(:route, 5)
+    routes.each_with_index do |route, index|
+      points = create_list(:route_point, 10, route_id: route.id, is_important: false, lat: 55.0, long: -4.0, altitude: 987.0)
+
+      # Modify one of the routes to not be similar
+      if index == 4
+        points += create_list(:route_point, 4, route_id: route.id, is_important: false, lat: 22.0, long: -4.0, altitude: 987.0)
+        points << create(:route_point, route_id: route.id, is_important: false, lat: 55.0, long: -4.0, altitude: 987.0)
+      end
+      route.points = points
+      route.save
+    end
+
+    summary = Route.summarise(routes.last.start_maidenhead, routes.last.end_maidenhead, nil)
+    assert_not_nil summary, "summary should be returned"
+    assert_equal 5, summary[:instances], "summary should contain correct count of instances"
+    assert_equal routes.last.start_maidenhead, summary[:start_maidenhead], "start_maidenhead should be the one requested"
+    assert_equal routes.last.end_maidenhead, summary[:end_maidenhead], "end_maidenhead should be the one requested"
+    assert_equal routes.last.created_at, summary[:last_route_time], "last_route_time should be accurate"
+
+    # TODO test averages
   end
 end
