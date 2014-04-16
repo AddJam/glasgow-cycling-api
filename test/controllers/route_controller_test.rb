@@ -89,8 +89,12 @@ class RouteControllerTest < ActionController::TestCase
   end
 
   test "find with an id should return route data" do
-    id = create(:route).id
-    get(:find, id:id, format: :json)
+    route = create(:route)
+    points = create_list(:route_point, 5, route_id: route.id)
+    route.points = points
+    route.save
+
+    get(:find, id:route.id, format: :json)
 
     assert_response :success
 
@@ -98,7 +102,7 @@ class RouteControllerTest < ActionController::TestCase
     route_id = route_data['details']['id']
     assert_not_nil route_id, "route_id is not null"
     assert_not_nil route_data, "data returned"
-    assert_equal id, route_id, "correct route id should be returned"
+    assert_equal route.id, route_id, "correct route id should be returned"
   end
 
   test "find with an non-valid id should return bad request" do

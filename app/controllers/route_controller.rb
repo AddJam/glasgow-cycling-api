@@ -82,8 +82,8 @@ class RouteController < ApplicationController
 
   		if route
   			render json: {
-  				details: route.details,
-  				points: route.points_data
+  				details: route.summary,
+  				points: route.points_data,
   			}
   		else
 				render status: :bad_request, json: {error: "Route not found"}
@@ -115,7 +115,7 @@ class RouteController < ApplicationController
 	#        start_name: "London Road",
 	#        end_name: "Hope Street",
   #        last_route_time: 1392894545,
-	# 			 instances: 3
+	# 			 uses: 3
   #      }
   #    ]
   #  }
@@ -187,10 +187,7 @@ class RouteController < ApplicationController
 		# Group by Similarity rather than start/end points if both points provided
 		if start_maidenhead and end_maidenhead
 			summaries = routes.inject([]) do |all_summaries, route|
-				instances = route.all_instances
-				summaries << instances.map do |instance|
-					instance.details
-				end
+				all_summaries << route.summary
 			end
 		else
 			if params[:user_only]

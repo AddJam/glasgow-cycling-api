@@ -45,10 +45,10 @@ class Route < ActiveRecord::Base
 		[lat, long]
 	end
 
-	def all_instances
+	def all_uses
 		return unless start_maidenhead.present? and end_maidenhead.present?
 		similar = Route.where(start_maidenhead: start_maidenhead, end_maidenhead: end_maidenhead)
-		similar.select {|route| similarity(self.maidenheads, route.maidenheads) >= 0.8}
+		similar.select {|route| similarity(self.maidenheads, route.maidenheads) >= 0.9}
 	end
 
 	# Records a new route for the given user
@@ -117,38 +117,48 @@ class Route < ActiveRecord::Base
 		end
 	end
 
-	# Returns details for a route in format required by Route Controller
+	# Returns summary of this route and all uses
 	#
 	# ==== Returns
 	# The route details.
-	def details
-		user = User.where(id: self.user_id).first
-		route_details = {
-			id: self.id,
-			total_distance: self.total_distance,
-			created_by: {
-				user_id: self.user_id,
-				first_name: user.first_name,
-				last_name: user.last_name
-				},
-			name: self.name,
-			user_time: self.total_time,
-			created_at: self.created_at.to_i
-		}
+	def summary
+		uses = self.all_uses
 
-		if self.review.present?
-			route_details[:environment_rating] = self.review.environment_rating
-			route_details[:safety_rating] = self.review.safety_rating
-			route_details[:difficulty_rating] = self.review.difficulty_rating
-		end
+		route_summary = {
+			id: self.id,
+			name: self.name,
+			start_name: self.start_name,
+			end_name: self.end_name,
+			last_route_time: uses.first.created_at,
+			uses: uses.count
+		}
 
 		last_point = self.points.last
 		if last_point
 			end_lat = last_point.lat
 			end_long = last_point.long
-			route_details[:end_picture]= Picture.for_location(end_lat, end_long)
+			route_summary[:end_picture] = Picture.for_location(end_lat, end_long)
 		end
-		route_details
+
+		# Averages
+		average_distance = uses.pick(:total_distance).average
+		reviews = uses.pick(:review)
+		if reviews.present?
+			average_safety_rating = reviews.pick(:safety_rating).average
+			average_difficulty_rating = reviews.pick(:difficulty_rating).average
+			average_environment_rating = reviews.pick(:environment_rating).average
+		end
+		average_time = uses.pick(:total_time).average
+
+		route_summary[:averages] = {
+			distance:  average_distance,
+			time: average_time,
+			safety_rating: average_safety_rating,
+			difficulty_rating: average_difficulty_rating,
+			environment_rating: average_environment_rating
+		}
+
+		route_summary
 	end
 
 	# Returns points for a route in format required by Route Controller
@@ -175,57 +185,38 @@ class Route < ActiveRecord::Base
 		end
 	end
 
+	# Summary of all routes between a start and end maidenhead
 	def self.summarise(start_maidenhead, end_maidenhead, user)
 		if user.present?
-			instances = Route.where(start_maidenhead: start_maidenhead, end_maidenhead: end_maidenhead,
+			uses = Route.where(start_maidenhead: start_maidenhead, end_maidenhead: end_maidenhead,
 									user_id: user.id).order('created_at DESC')
 		else
-			instances = Route.where(start_maidenhead: start_maidenhead,
+			uses = Route.where(start_maidenhead: start_maidenhead,
 								end_maidenhead: end_maidenhead).order('created_at DESC')
 		end
 
 		# Overview
-		route = instances.first
+		route = uses.first
 		summary = {
 			start_maidenhead: start_maidenhead,
 			end_maidenhead: end_maidenhead,
 			start_name: route.start_name,
 			end_name: route.end_name,
 			last_route_time: route.created_at,
-			instances: instances.count
+			uses: uses.count
 		}
 
 		# Averages
-		total_distance = instances.map {|i| i.total_distance}.inject(:+)
-		total_safety_rating = instances.map do |i|
-			if i.review.present?
-				i.review.safety_rating
-			else
-				0
-			end
-		end.inject(:+)
-
-		total_difficulty_rating = instances.map do |i|
-			if i.review.present?
-				i.review.difficulty_rating
-			else
-				0
-			end
-		end.inject(:+)
-
-		total_environment_rating = instances.map do |i|
-			if i.review.present?
-				i.review.environment_rating
-			else
-				0
-			end
-		end.inject(:+)
+		average_distance = uses.pick(:total_distance).average
+		average_safety_rating = uses.pick(:review).pick(:safety_rating).average
+		average_difficulty_rating = uses.pick(:review).pick(:difficulty_rating).average
+		average_environment_rating = uses.pick(:review).pick(:environment_rating).average
 
 		summary[:averages] = {
-			distance:  total_distance / instances.count.to_f,
-			safety_rating: total_safety_rating / instances.count.to_f,
-			difficulty_rating: total_difficulty_rating / instances.count.to_f,
-			environment_rating: total_environment_rating / instances.count.to_f
+			distance: average_distance,
+			safety_rating: average_safety_rating,
+			difficulty_rating: average_difficulty_rating,
+			environment_rating: average_difficulty_rating
 		}
 
 		summary
