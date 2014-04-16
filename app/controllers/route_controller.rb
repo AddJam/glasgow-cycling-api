@@ -143,4 +143,69 @@ class RouteController < ApplicationController
   		end
   	end
   end
+
+	# *GET* /search
+	#
+	# Search routes by source, destination or with authorized user as the creator
+	#
+	# ###Params
+	#   - source_lat (float)
+	#   - source_long (float)
+	#   - dest_lat (float)
+	#   - dest_long (float)
+	#   - user_only (boolean)
+	#   - per_page (integer)
+	#   - page_num (integer)
+	def search
+		# Pagination
+		per_page = params[:per_page] || 10
+		per_page = per_page.to_i
+
+		page_num = params[:page_num] || 1
+		page_num = page_num.to_i
+
+		offset = page_num * per_page - per_page
+
+		# Location
+		if params[:source_lat] and params[:source_long]
+			start_maidenhead = Maidenhead.to_maidenhead(params[:source_lat].to_f, params[:source_long].to_f)
+		end
+
+		if params[:dest_lat] and params[:dest_long]
+			end_maidenhead = Maidenhead.to_maidenhead(params[:dest_lat].to_f, params[:dest_long].to_f)
+		end
+
+		# Where clause
+		where = {}
+		where[:start_maidenhead] = start_maidenhead if start_maidenhead.present?
+		where[:end_maidenhead] = end_maidenhead if end_maidenhead.present?
+		where[:user_id] = current_user.id if params[:user_only].present?
+
+		routes = Route.where(where).select(:start_maidenhead, :end_maidenhead)
+									.group(:start_maidenhead, :end_maidenhead).limit(per_page).offset(offset)
+
+		# Group by Similarity rather than start/end points if both points provided
+		if start_maidenhead and end_maidenhead
+			summaries = routes.inject([]) do |all_summaries, route|
+				instances = route.all_instances
+				summaries << instances.map do |instance|
+					instance.details
+				end
+			end
+		else
+			if params[:user_only]
+				summaries = routes.inject([]) do |all_summaries, route|
+						all_summaries << Route.summarise(route.start_maidenhead, route.end_maidenhead, current_user)
+				end
+			else
+				summaries = routes.inject([]) do |all_summaries, route|
+					all_summaries << Route.summarise(route.start_maidenhead, route.end_maidenhead, nil)
+				end
+			end
+		end
+
+		render json: {
+			routes: summaries
+		}
+	end
 end
