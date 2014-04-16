@@ -176,9 +176,14 @@ class Route < ActiveRecord::Base
 		end
 	end
 
-	def self.summarise(start_maidenhead, end_maidenhead)
-		instances = Route.where(start_maidenhead: start_maidenhead,
-							end_maidenhead: end_maidenhead).order('created_at DESC')
+	def self.summarise(start_maidenhead, end_maidenhead, user)
+		if user.present?
+			instances = Route.where(start_maidenhead: start_maidenhead, end_maidenhead: end_maidenhead,
+									user_id: user.id).order('created_at DESC')
+		else
+			instances = Route.where(start_maidenhead: start_maidenhead,
+								end_maidenhead: end_maidenhead).order('created_at DESC')
+		end
 
 		# Overview
 		route = instances.first

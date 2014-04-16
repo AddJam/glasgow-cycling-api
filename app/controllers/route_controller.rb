@@ -134,7 +134,7 @@ class RouteController < ApplicationController
 
 				# Generate all summaries
 				summaries = routes.inject([]) do |all_summaries, route|
-					all_summaries << Route.summarise(route.start_maidenhead, route.end_maidenhead)
+					all_summaries << Route.summarise(route.start_maidenhead, route.end_maidenhead, current_user)
 				end
 
   			render json: {
