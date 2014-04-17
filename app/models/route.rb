@@ -48,7 +48,7 @@ class Route < ActiveRecord::Base
 	def all_uses
 		return unless start_maidenhead.present? and end_maidenhead.present?
 		similar = Route.where(start_maidenhead: start_maidenhead, end_maidenhead: end_maidenhead)
-		similar.select {|route| similarity(self.maidenheads, route.maidenheads) >= 0.9}
+		similar.select {|route| self.is_similar? route }
 	end
 
 	# Records a new route for the given user
@@ -220,6 +220,10 @@ class Route < ActiveRecord::Base
 		}
 
 		summary
+	end
+
+	def is_similar?(other_route)
+		similarity(self.maidenheads, other_route.maidenheads) >= 0.9
 	end
 
 	private

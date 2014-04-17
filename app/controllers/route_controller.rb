@@ -168,31 +168,44 @@ class RouteController < ApplicationController
 
 		# Location
 		if params[:source_lat] and params[:source_long]
-			start_maidenhead = Maidenhead.to_maidenhead(params[:source_lat].to_f, params[:source_long].to_f)
+			start_maidenhead = Maidenhead.to_maidenhead(params[:source_lat].to_f, params[:source_long].to_f, 4)
 		end
 
 		if params[:dest_lat] and params[:dest_long]
-			end_maidenhead = Maidenhead.to_maidenhead(params[:dest_lat].to_f, params[:dest_long].to_f)
+			end_maidenhead = Maidenhead.to_maidenhead(params[:dest_lat].to_f, params[:dest_long].to_f, 4)
 		end
 
 		# Where clause
-		where = {}
-		where[:start_maidenhead] = start_maidenhead if start_maidenhead.present?
-		where[:end_maidenhead] = end_maidenhead if end_maidenhead.present?
-		where[:user_id] = current_user.id if params[:user_only].present?
-
-		routes = Route.where(where).select(:start_maidenhead, :end_maidenhead)
-									.group(:start_maidenhead, :end_maidenhead).limit(per_page).offset(offset)
+		condition = {}
+		condition[:start_maidenhead] = start_maidenhead if start_maidenhead.present?
+		condition[:end_maidenhead] = end_maidenhead if end_maidenhead.present?
+		condition[:user_id] = current_user.id if params[:user_only].present?
 
 		# Group by Similarity rather than start/end points if both points provided
 		if start_maidenhead and end_maidenhead
+			# Get all uses and group into routes by similarity
+			all_uses = Route.where(condition).limit(per_page).offset(offset)
+			routes = all_uses.inject([]) do |routes, use|
+				if routes.blank?
+					routes << use
+				else
+					use_found = routes.any?  { |route| use.is_similar?(route) }
+					routes << use unless use_found
+				end
+				routes
+			end
+
+			# Summarise routes
 			summaries = routes.inject([]) do |all_summaries, route|
 				all_summaries << route.summary
 			end
 		else
+			routes = Route.where(condition).select(:start_maidenhead, :end_maidenhead)
+										.group(:start_maidenhead, :end_maidenhead).limit(per_page).offset(offset)
+
 			if params[:user_only]
 				summaries = routes.inject([]) do |all_summaries, route|
-						all_summaries << Route.summarise(route.start_maidenhead, route.end_maidenhead, current_user)
+					all_summaries << Route.summarise(route.start_maidenhead, route.end_maidenhead, current_user)
 				end
 			else
 				summaries = routes.inject([]) do |all_summaries, route|

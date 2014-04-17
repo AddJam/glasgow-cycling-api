@@ -170,9 +170,17 @@ class RouteControllerTest < ActionController::TestCase
     user = User.last
     Route.destroy_all
 
-    4.times do
+    # User routes
+    2.times do
       route = build(:route, user_id: user.id, lat: rand * 90, long: rand * 180)
-      route.points = create_list(:route_point, 2, lat: rand * 90, long: rand * 180)
+      route.points = create_list(:route_point, 2, route_id: route.id, lat: rand * 90, long: rand * 180)
+      route.save
+    end
+
+    # Non-user routes
+    2.times do
+      route = build(:route, lat: rand * 90, long: rand * 180)
+      route.points = create_list(:route_point, 2, route_id: route.id, lat: rand * 90, long: rand * 180)
       route.save
     end
 
@@ -189,31 +197,47 @@ class RouteControllerTest < ActionController::TestCase
   end
 
   test "search with start and end points should return routes grouped by similarity" do
-    # Route.destroy_all
-    #
-    # 4.times do
-    #   route = build(:route, user_id: user.id, lat: rand * 90, long: rand * 180)
-    #   route.points = create_list(:route_point, 2, lat: rand * 90, long: rand * 180)
-    #   route.save
-    # end
-    #
-    # 2.times do
-    #   route = build(:route, user_id: user.id, lat: rand * 90, long: rand * 180)
-    #   route.points = create_list(:route_point, 2, lat: rand * 90, long: rand * 180)
-    #   route.save
-    # end
-    #
-    #
-    #
-    # get(:search, start_lat: true, format: :json)
-    #
-    # assert_response :success, "user search should should be successful"
-    # assert_not_nil response.body, "response should have a body"
-    #
-    # results = JSON.parse response.body
-    # assert_not_nil results["routes"], "result should contain routes"
-    #
-    # distinct_routes = Route.distinct.where(user_id: user.id).count(:start_maidenhead, :end_maidenhead)
-    # assert_equal distinct_routes, results["routes"].length, "there should be one result for each user route"
+    # Create two sets of routes between the same start and end points
+    2.times do
+      route = build(:route, lat: rand * 90, long: rand * 180)
+      route.points << create(:route_point, lat: 45.0, long: 150.0)
+      route.points << create(:route_point, lat: 40.0, long: 150.0)
+      route.points << create(:route_point, lat: 42.0, long: 33.0)
+      route.points << create(:route_point, lat: 40.0, long: 145.0)
+      route.save
+    end
+
+    2.times do
+      route = build(:route, lat: rand * 90, long: rand * 180)
+      route.points << create(:route_point, lat: 45.0, long: 150.0)
+      route.points << create(:route_point, lat: 23.0, long: 120.0)
+      route.points << create(:route_point, lat: 14.0, long: 45.0)
+      route.points << create(:route_point, lat: 40.0, long: 145.0)
+      route.save
+    end
+
+    # Create misc routes to/from other locations
+    2.times do
+      route = build(:route, lat: rand * 90, long: rand * 180)
+      route.points = create_list(:route_point, 2, lat: rand * 90.0, long: rand * 180.0)
+      route.save
+    end
+
+    route = Route.first
+    get(:search, source_lat: route.points.first.lat, source_long: route.points.first.long,
+                  dest_lat: route.points.last.lat, dest_long: route.points.last.long,
+                  format: :json)
+
+    assert_response :success, 'route search with start and end locations should should be successful'
+    assert_not_nil response.body, 'response should have a body'
+
+    results = JSON.parse response.body
+    assert_not_nil results['routes'], 'result should contain routes'
+
+    # 2 routes were created, each with multiple uses
+    assert_equal 2, results['routes'].length, 'there should be one result for each route'
+    p results.inspect
+    assert_equal 2, results['routes'][0]['uses'], 'there should be two uses of route one'
+    assert_equal 2, results['routes'][1]['uses'], 'there should be two uses of route two'
   end
 end
