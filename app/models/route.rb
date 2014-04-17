@@ -19,8 +19,10 @@
 #
 
 class Route < ActiveRecord::Base
-	has_one :review, :foreign_key => 'route_id', :class_name => "RouteReview"
-	has_many :points, :foreign_key => 'route_id', :class_name => "RoutePoint"
+	has_one :review, :foreign_key => 'route_id', :class_name => 'RouteReview'
+	has_many :points, :foreign_key => 'route_id', :class_name => 'RoutePoint'
+	has_many :flaggings
+	has_many :flaggers, :through => :flaggings, :source => :user
 	belongs_to :user
 
 	before_validation :ensure_distance_exists

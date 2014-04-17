@@ -36,6 +36,8 @@ class User < ActiveRecord::Base
   has_many :reviews, foreign_key: 'user_id', class_name: 'RouteReview'
   has_many :routes
   has_many :user_responses
+	has_many :flaggings
+	has_many :flagged_routes, :through => :flaggings, :source => :route
 
   has_attached_file :profile_pic, :styles => { :medium => "300x300>", :thumb => "50x50>" },
                     :default_url => "/images/:style/default_profile_pic.png"
@@ -101,7 +103,7 @@ class User < ActiveRecord::Base
        km: month_distance_km,
        seconds: month_seconds
     }
-		
+
     user_details = {
       first_name: self.first_name,
       last_name: self.last_name,
