@@ -166,20 +166,11 @@ class RouteControllerTest < ActionController::TestCase
     assert_equal distinct_routes, results["routes"].length, "there should be one result for each route"
   end
 
-  test "search with start and end points should return routes grouped by similarity" do
-  end
-
   test "search with user_only=true should only return user routes" do
     user = User.last
     Route.destroy_all
 
     4.times do
-      route = build(:route, user_id: user.id, lat: rand * 90, long: rand * 180)
-      route.points = create_list(:route_point, 2, lat: rand * 90, long: rand * 180)
-      route.save
-    end
-
-    2.times do
       route = build(:route, user_id: user.id, lat: rand * 90, long: rand * 180)
       route.points = create_list(:route_point, 2, lat: rand * 90, long: rand * 180)
       route.save
@@ -195,5 +186,34 @@ class RouteControllerTest < ActionController::TestCase
 
     distinct_routes = Route.distinct.where(user_id: user.id).count(:start_maidenhead, :end_maidenhead)
     assert_equal distinct_routes, results["routes"].length, "there should be one result for each user route"
+  end
+
+  test "search with start and end points should return routes grouped by similarity" do
+    # Route.destroy_all
+    #
+    # 4.times do
+    #   route = build(:route, user_id: user.id, lat: rand * 90, long: rand * 180)
+    #   route.points = create_list(:route_point, 2, lat: rand * 90, long: rand * 180)
+    #   route.save
+    # end
+    #
+    # 2.times do
+    #   route = build(:route, user_id: user.id, lat: rand * 90, long: rand * 180)
+    #   route.points = create_list(:route_point, 2, lat: rand * 90, long: rand * 180)
+    #   route.save
+    # end
+    #
+    #
+    #
+    # get(:search, start_lat: true, format: :json)
+    #
+    # assert_response :success, "user search should should be successful"
+    # assert_not_nil response.body, "response should have a body"
+    #
+    # results = JSON.parse response.body
+    # assert_not_nil results["routes"], "result should contain routes"
+    #
+    # distinct_routes = Route.distinct.where(user_id: user.id).count(:start_maidenhead, :end_maidenhead)
+    # assert_equal distinct_routes, results["routes"].length, "there should be one result for each user route"
   end
 end
