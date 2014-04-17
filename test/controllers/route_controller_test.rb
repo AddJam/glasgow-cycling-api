@@ -285,4 +285,27 @@ class RouteControllerTest < ActionController::TestCase
     route = Route.where(id: route.id).first
     assert route.flaggers.include?(user), 'route should be flagged by logged in user'
   end
+
+  test "route is deletable" do
+    user = User.last
+    route = create(:route, user_id: user.id)
+
+    delete(:delete, route_id: route.id, format: :json)
+
+    assert_response :success, 'deleting a route should be successful'
+
+    route = Route.where(id: route.id).first
+    assert_nil route, 'route should not exist after deletion'
+  end
+
+  test "route is only deletable by owner" do
+    user = User.last
+    route = create(:route, user_id: user.id + 1)
+
+    delete(:delete, route_id: route.id, format: :json)
+    assert_response :unauthorized, 'deleting another users route should be unsuccessful'
+
+    route = Route.where(id: route.id).first
+    assert_not_nil route, 'route should still exist after unauthenticated deletion attempt'
+  end
 end

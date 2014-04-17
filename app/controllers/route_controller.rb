@@ -219,20 +219,46 @@ class RouteController < ApplicationController
 		}
 	end
 
-	# PUT /route/flag/:route_id
+	# PUT /routes/flag/:route_id
 	# Flag the specified route
 	def flag
 		unless params[:route_id]
-			render nothing: true, status: :bad_request
+			render status: :bad_request, json: {error: 'route_id must be provided'}
+			return
 		end
 
 		route = Route.where(id: params[:route_id]).first
 		unless route.present?
-			render nothing: true, status: :bad_request
+			render status: :bad_request, json: {error: 'No route found with provided route_id'}
+			return
 		end
 
 		route.flaggers << current_user
 		route.save
+
+		render nothing:true
+	end
+
+	# DELETE /routes/:route_id
+	# Delete a route owned by the authenticated user
+	def delete
+		unless params[:route_id]
+			render status: :bad_request, json: {error: 'route_id must be provided'}
+			return
+		end
+
+		route = Route.where(id: params[:route_id]).first
+		unless route.present?
+			render status: :bad_request, json: {error: 'No route found with provided route_id'}
+			return
+		end
+
+		unless route.user_id == current_user.id
+			render status: :unauthorized, json: {error: 'Routes can only be deleted by the owner'}
+			return
+		end
+
+		route.destroy
 
 		render nothing:true
 	end
