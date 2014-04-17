@@ -20,6 +20,7 @@ JourneyAPI::Application.routes.draw do
   get "/routes/find/:id", to: "route#find", as: 'find_routes'
   post "/routes", to: "route#record", as: 'record_route'
   get "/routes", to: "route#search", as: 'search_routes'
+  put "/routes/flag/:route_id", to: "route#flag", as: 'flag_route'
 
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.

@@ -218,4 +218,22 @@ class RouteController < ApplicationController
 			routes: summaries
 		}
 	end
+
+	# PUT /route/flag/:route_id
+	# Flag the specified route
+	def flag
+		unless params[:route_id]
+			render nothing: true, status: :bad_request
+		end
+
+		route = Route.where(id: params[:route_id]).first
+		unless route.present?
+			render nothing: true, status: :bad_request
+		end
+
+		route.flaggers << current_user
+		route.save
+
+		render nothing:true
+	end
 end

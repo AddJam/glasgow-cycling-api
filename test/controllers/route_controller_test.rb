@@ -262,15 +262,27 @@ class RouteControllerTest < ActionController::TestCase
     point = route.points.first
     get(:search, source_lat: point.lat, source_long: point.long, format: :json)
 
-    assert_response :success, "user search should should be successful"
-    assert_not_nil response.body, "response should have a body"
+    assert_response :success, 'user search should should be successful'
+    assert_not_nil response.body, 'response should have a body'
 
     results = JSON.parse response.body
-    assert_not_nil results["routes"], "result should contain routes"
+    assert_not_nil results['routes'], 'result should contain routes'
 
     start_maidenhead = Maidenhead.to_maidenhead(point.lat, point.long, 4)
     distinct_routes = Route.where(start_maidenhead: start_maidenhead)
               .select(:start_maidenhead, :end_maidenhead).group(:start_maidenhead, :end_maidenhead).length
-    assert_equal distinct_routes, results["routes"].length, "there should be one result for each user route"
+    assert_equal distinct_routes, results['routes'].length, 'there should be one result for each user route'
+  end
+
+  test "route is flaggable" do
+    user = User.last
+    route = create(:route)
+
+    get(:flag, route_id: route.id, format: :json)
+
+    assert_response :success, 'flagging a route should be successful'
+
+    route = Route.where(id: route.id).first
+    assert route.flaggers.include?(user), 'route should be flagged by logged in user'
   end
 end
