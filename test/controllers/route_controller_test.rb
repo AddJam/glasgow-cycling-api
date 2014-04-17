@@ -166,7 +166,7 @@ class RouteControllerTest < ActionController::TestCase
     assert_equal distinct_routes, results["routes"].length, "there should be one result for each route"
   end
 
-  test "search with user_only=true should only return user routes" do
+  test "search with user_only=true" do
     user = User.last
     Route.destroy_all
 
@@ -196,7 +196,7 @@ class RouteControllerTest < ActionController::TestCase
     assert_equal distinct_routes, results["routes"].length, "there should be one result for each user route"
   end
 
-  test "search with start and end points should return routes grouped by similarity" do
+  test "search with start and end points" do
     # Create two sets of routes between the same start and end points
     2.times do
       route = build(:route, lat: rand * 90, long: rand * 180)
@@ -236,8 +236,41 @@ class RouteControllerTest < ActionController::TestCase
 
     # 2 routes were created, each with multiple uses
     assert_equal 2, results['routes'].length, 'there should be one result for each route'
-    p results.inspect
     assert_equal 2, results['routes'][0]['uses'], 'there should be two uses of route one'
     assert_equal 2, results['routes'][1]['uses'], 'there should be two uses of route two'
+  end
+
+  test "search with a start point and no end point" do
+    user = User.last
+    Route.destroy_all
+
+    # User routes
+    2.times do
+      route = build(:route, user_id: user.id, lat: rand * 90, long: rand * 180)
+      route.points = create_list(:route_point, 2, route_id: route.id, lat: rand * 90, long: rand * 180)
+      route.save
+    end
+
+    # Non-user routes
+    2.times do
+      route = build(:route, lat: rand * 90, long: rand * 180)
+      route.points = create_list(:route_point, 2, route_id: route.id, lat: rand * 90, long: rand * 180)
+      route.save
+    end
+
+    route = Route.first
+    point = route.points.first
+    get(:search, source_lat: point.lat, source_long: point.long, format: :json)
+
+    assert_response :success, "user search should should be successful"
+    assert_not_nil response.body, "response should have a body"
+
+    results = JSON.parse response.body
+    assert_not_nil results["routes"], "result should contain routes"
+
+    start_maidenhead = Maidenhead.to_maidenhead(point.lat, point.long, 4)
+    distinct_routes = Route.where(start_maidenhead: start_maidenhead)
+              .select(:start_maidenhead, :end_maidenhead).group(:start_maidenhead, :end_maidenhead).length
+    assert_equal distinct_routes, results["routes"].length, "there should be one result for each user route"
   end
 end
