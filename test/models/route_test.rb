@@ -141,5 +141,6 @@ class RouteTest < ActiveSupport::TestCase
     assert_not_nil summary[:averages][:safety_rating], "summary should contain average safety_rating"
     assert_not_nil summary[:averages][:environment_rating], "summary should contain average environment_rating"
     assert_not_nil summary[:averages][:difficulty_rating], "summary should contain average difficulty_rating"
+    assert_not_nil summary[:averages][:time], "summary should contain average total time"
   end
 end

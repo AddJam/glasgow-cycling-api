@@ -212,13 +212,15 @@ class Route < ActiveRecord::Base
 		average_distance = uses.pick(:total_distance).average
 		average_safety_rating = uses.pick(:review).pick(:safety_rating).average
 		average_difficulty_rating = uses.pick(:review).pick(:difficulty_rating).average
+		average_time = uses.pick(:total_time).average
 		average_environment_rating = uses.pick(:review).pick(:environment_rating).average
 
 		summary[:averages] = {
 			distance: average_distance,
 			safety_rating: average_safety_rating,
 			difficulty_rating: average_difficulty_rating,
-			environment_rating: average_difficulty_rating
+			environment_rating: average_difficulty_rating,
+			time: average_time
 		}
 
 		summary
