@@ -132,7 +132,8 @@ class Route < ActiveRecord::Base
 			start_name: self.start_name,
 			end_name: self.end_name,
 			last_route_time: uses.first.created_at,
-			uses: uses.count
+			uses: uses.count,
+			num_reviews: uses.pick(:review).count
 		}
 
 		last_point = self.points.last
@@ -205,7 +206,8 @@ class Route < ActiveRecord::Base
 			start_name: route.start_name,
 			end_name: route.end_name,
 			last_route_time: route.created_at,
-			uses: uses.count
+			uses: uses.count,
+			num_reviews: uses.pick(:review).count
 		}
 
 		# Averages

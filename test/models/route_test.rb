@@ -71,6 +71,7 @@ class RouteTest < ActiveSupport::TestCase
     assert_not_nil summary[:name], "Returned name is present"
     assert_not_nil summary[:start_name], "Returned start name is present"
     assert_not_nil summary[:end_name], "Returned end name is present"
+    assert_not_nil summary[:num_reviews], "Review count returned"
     assert_not_nil summary[:averages], "Returned averages are present"
     assert_equal route.created_at.to_i, summary[:last_route_time].to_i, "Returned created_at is as expected"
   end
