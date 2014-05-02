@@ -7,7 +7,12 @@ class Array
 
   def pick(key)
     self.inject([]) do |result, elem|
-      result << elem[key] if elem[key].present?
+      if elem.is_a? Hash
+        result << elem[key] if elem[key].present?
+      elsif elem.is_a? Object
+        data = elem.send(key)
+        result << data if data.present?
+      end
       result
     end
   end
