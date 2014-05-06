@@ -59,6 +59,10 @@ gem 'geocoder'
 gem 'maidenhead'
 gem 'redis' #cache
 
+#Weather API
+# Weather
+gem 'forecast_io'
+
 # Development
 group :development do
 	gem 'better_errors'
