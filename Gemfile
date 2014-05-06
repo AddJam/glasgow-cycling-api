@@ -63,6 +63,9 @@ gem 'redis' #cache
 # Weather
 gem 'forecast_io'
 
+# Timed tasks and workers
+gem 'sidekiq'
+
 # Development
 group :development do
 	gem 'better_errors'

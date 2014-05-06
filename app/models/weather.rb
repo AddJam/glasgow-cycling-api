@@ -3,12 +3,13 @@
 # Table name: weathers
 #
 #  id         :integer          not null, primary key
-#  date       :datetime
+#  date       :date
 #  sunset     :datetime
 #  sunrise    :datetime
 #  created_at :datetime
 #  updated_at :datetime
 #
+
 require 'Date'
 
 class Weather < ActiveRecord::Base
@@ -18,22 +19,20 @@ class Weather < ActiveRecord::Base
 	#
 	# ==== Returns
 	# The weather
-	def on_day(date)
-
+	def self.on_day(date)
 		if date
-			w = WeatherPoint.where(date: date)
+			weather = WeatherPoint.where(date: date.beginning_of_hour)
 		else
-			w = WeatherPoint.where(date: Date.today)
+			weather = WeatherPoint.where(date: time.now.beginning_of_hour)
 		end
 		weather = {
-			date: w.date,
-			icon: w.icon,
-			precipitation: w.preciptiation,
-			max_temp: w.max_temp,
-			max_wind: w.max_wind,
-			uv_index: w.uv_index
+			time: weather.start_time,
+			icon: weather.icon,
+			precipitation_probability: precipitation_probability,
+			precipitation_type: precipitation_type,
+			temp: weather.temperature,
+			wind_speed: weather.max_wind,
+			wind_bearing: wind_bearing
 		}
 		end
 	end
-
-end
