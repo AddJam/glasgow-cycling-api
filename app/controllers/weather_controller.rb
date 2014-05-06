@@ -1,4 +1,4 @@
-class ReviewController < ApplicationController
+class WeatherController < ApplicationController
 
   # *GET* /weather
   #

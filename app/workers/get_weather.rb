@@ -1,8 +1,10 @@
 require'forecast_io'
 
-class Weather
+class WeatherWorker
+	include Sidekiq::Worker
+	sidekiq_options retry: 5
 
-	def get_weather
+	def perform
 		#taken from Scout App
 		ForecastIO.api_key = '4fc4aab9cb2571fe6316cc212b418784'
 
@@ -27,8 +29,4 @@ class Weather
     #weather.hayfever_rating =
 
   end
-
-  #weather = Weather.new
-  #puts weather.get_weather
-
 end
