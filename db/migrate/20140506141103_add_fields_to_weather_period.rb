@@ -15,7 +15,7 @@ class AddFieldsToWeatherPeriod < ActiveRecord::Migration
     change_column :weather_periods, :wind_speed, :float
     change_column :weather_periods, :precipitation_type, :string
     remove_column :weather_periods, :wind_direction, :integer
-    remove_column :weather_periods, :preciptiation_level, :integer
+    remove_column :weather_periods, :precipitation_level, :integer
     remove_column :weather_periods, :pollen_count, :integer
     remove_column :weather_periods, :uv_level, :integer
     remove_column :weather_periods, :end_time, :datetime
