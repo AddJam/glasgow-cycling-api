@@ -22,7 +22,7 @@ class WeatherController < ApplicationController
   #   wind_bearing: weatherperiod.wind_bearing
   # }
   def retrieve
-    timestamp = params[:timestamp]
+    timestamp = params[:timestamp].to_i
     weather = WeatherPeriod.at_hour(timestamp)
     if weather
       render json: weather
