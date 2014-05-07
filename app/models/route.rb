@@ -191,31 +191,31 @@ class Route < ActiveRecord::Base
 	# Summary of all routes between a start and end maidenhead
 	def self.summarise_routes(start_maidenhead, end_maidenhead, user)
 		if user.present?
-			uses = Route.where(start_maidenhead: start_maidenhead, end_maidenhead: end_maidenhead,
+			routes = Route.where(start_maidenhead: start_maidenhead, end_maidenhead: end_maidenhead,
 									user_id: user.id).order('created_at DESC')
 		else
-			uses = Route.where(start_maidenhead: start_maidenhead,
+			routes = Route.where(start_maidenhead: start_maidenhead,
 								end_maidenhead: end_maidenhead).order('created_at DESC')
 		end
 
 		# Overview
-		route = uses.first
+		route = routes.first
 		summary = {
 			start_maidenhead: start_maidenhead,
 			end_maidenhead: end_maidenhead,
 			start_name: route.start_name,
 			end_name: route.end_name,
 			last_route_time: route.created_at,
-			uses: uses.count,
-			num_reviews: uses.pick(:review).count
+			num_routes: routes.count,
+			num_reviews: routes.pick(:review).count
 		}
 
 		# Averages
-		average_distance = uses.pick(:total_distance).average
-		average_safety_rating = uses.pick(:review).pick(:safety_rating).average
-		average_difficulty_rating = uses.pick(:review).pick(:difficulty_rating).average
-		average_time = uses.pick(:total_time).average
-		average_environment_rating = uses.pick(:review).pick(:environment_rating).average
+		average_distance = routes.pick(:total_distance).average
+		average_safety_rating = routes.pick(:review).pick(:safety_rating).average
+		average_difficulty_rating = routes.pick(:review).pick(:difficulty_rating).average
+		average_time = routes.pick(:total_time).average
+		average_environment_rating = routes.pick(:review).pick(:environment_rating).average
 
 		summary[:averages] = {
 			distance: average_distance,
