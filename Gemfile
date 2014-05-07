@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 4.1.0'
+gem 'rails', '~> 4.1'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
@@ -58,6 +58,13 @@ gem "paperclip", "~> 4.1"
 gem 'geocoder'
 gem 'maidenhead'
 gem 'redis' #cache
+
+#Weather API
+# Weather
+gem 'forecast_io'
+
+# Timed tasks and workers
+gem 'sidekiq'
 
 # Development
 group :development do

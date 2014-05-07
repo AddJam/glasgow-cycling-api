@@ -17,6 +17,7 @@
 #  vertical_accuracy   :float
 #  horizontal_accuracy :float
 #  course              :float
+#  maidenhead          :string(255)
 #
 
 class RoutePoint < ActiveRecord::Base

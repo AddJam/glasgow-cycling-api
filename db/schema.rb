@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140417132041) do
+ActiveRecord::Schema.define(version: 20140507095218) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -168,19 +168,26 @@ ActiveRecord::Schema.define(version: 20140417132041) do
   create_table "weather_periods", force: true do |t|
     t.integer  "weather_id"
     t.datetime "start_time"
-    t.datetime "end_time"
-    t.integer  "precipitation_type"
-    t.integer  "precipitation_level"
-    t.integer  "wind_speed"
-    t.integer  "wind_direction"
-    t.integer  "pollen_count"
-    t.integer  "uv_level"
+    t.string   "precipitation_type"
+    t.float    "wind_speed"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "summary"
+    t.string   "icon"
+    t.float    "precipitation_intensity"
+    t.float    "precipitation_probability"
+    t.float    "temperature"
+    t.float    "dew_point"
+    t.float    "humidity"
+    t.float    "wind_bearing"
+    t.float    "visibility"
+    t.float    "cloud_cover"
+    t.float    "pressue"
+    t.float    "ozone"
   end
 
   create_table "weathers", force: true do |t|
-    t.datetime "date"
+    t.date     "date"
     t.datetime "sunset"
     t.datetime "sunrise"
     t.datetime "created_at"
