@@ -189,7 +189,7 @@ class Route < ActiveRecord::Base
 	end
 
 	# Summary of all routes between a start and end maidenhead
-	def self.summarise(start_maidenhead, end_maidenhead, user)
+	def self.summarise_routes(start_maidenhead, end_maidenhead, user)
 		if user.present?
 			uses = Route.where(start_maidenhead: start_maidenhead, end_maidenhead: end_maidenhead,
 									user_id: user.id).order('created_at DESC')

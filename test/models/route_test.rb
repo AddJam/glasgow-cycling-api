@@ -17,7 +17,7 @@ class RouteTest < ActiveSupport::TestCase
     points
   end
 
-  test 'route start and end points are geocoded' do
+  test 'route start and end points are geocoded for suitable locations' do
     points = route_point_params(3, lat: 55.8447118, long: -4.19440029)
     route = Route.record(create(:user), points)
 
@@ -129,7 +129,7 @@ class RouteTest < ActiveSupport::TestCase
     assert_equal routes.length-1, uses.count, "number of similar routes should be accurate"
   end
 
-  test "routes are grouped correctly by summarise" do
+  test "routes are grouped correctly by summarise_routes" do
     routes = create_list(:route, 5)
     routes.each_with_index do |route, index|
       points = create_list(:route_point, 10, route_id: route.id, is_important: false, lat: 55.0, long: -4.0, altitude: 987.0)
@@ -143,7 +143,7 @@ class RouteTest < ActiveSupport::TestCase
       route.save
     end
 
-    summary = Route.summarise(routes.last.start_maidenhead, routes.last.end_maidenhead, nil)
+    summary = Route.summarise_routes(routes.last.start_maidenhead, routes.last.end_maidenhead, nil)
     assert_not_nil summary, "summary should be returned"
     assert_equal 5, summary[:uses], "summary should contain correct count of uses"
     assert_equal routes.last.start_maidenhead, summary[:start_maidenhead], "start_maidenhead should be the one requested"
