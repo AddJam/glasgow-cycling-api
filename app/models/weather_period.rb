@@ -19,7 +19,7 @@
 #  wind_bearing              :float
 #  visibility                :float
 #  cloud_cover               :float
-#  pressue                   :float
+#  pressure                  :float
 #  ozone                     :float
 #
 

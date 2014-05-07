@@ -52,6 +52,9 @@ GEM
       nio4r (>= 0.5.0)
     climate_control (0.0.3)
       activesupport (>= 3.0)
+    clockwork (0.7.5)
+      activesupport
+      tzinfo
     cocaine (0.5.4)
       climate_control (>= 0.0.3, < 1.0)
     coderay (1.1.0)
@@ -250,6 +253,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   capistrano
+  clockwork
   coffee-rails (~> 4.0.0)
   devise
   factory_girl_rails (~> 4.0)
