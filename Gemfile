@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 4.1.0'
+gem 'rails', '~> 4.1'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
@@ -77,6 +77,9 @@ group :development do
 	gem 'guard-rails' # Auto restart rails
 	gem 'guard-minitest' # Auto test
 	gem 'terminal-notifier-guard'
+
+  # Easier usage of tests
+  gem 'single_test'
 end
 
 # Test

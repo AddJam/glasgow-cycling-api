@@ -17,6 +17,18 @@ class RouteTest < ActiveSupport::TestCase
     points
   end
 
+  test 'route start and end points are geocoded' do
+    points = route_point_params(3, lat: 55.8447118, long: -4.19440029)
+    route = Route.record(create(:user), points)
+
+    assert_not_nil route, 'Route created by record'
+    assert_equal route.points.count, points.count, 'all points should be recorded in route'
+    assert route.points.first.is_important, 'first point marked as important'
+    assert route.points.last.is_important, 'last point marked as important'
+    assert_not_nil route.points.first.street_name, 'street name set on first point'
+    assert_not_nil route.points.last.street_name, 'street name set on last point'
+  end
+
   test 'recording a route should store the route and all route points' do
     points = route_point_params(3)
     route = Route.record(create(:user), points)
