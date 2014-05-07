@@ -1,5 +1,5 @@
 class ChangeDateTimeToDateOnWeather < ActiveRecord::Migration
   def change
-   change_column :weathers, :date, :date
+   change_column :weather_periods, :date, :date
   end
 end

@@ -18,11 +18,34 @@
 #  humidity                  :float
 #  wind_bearing              :float
 #  visibility                :float
-#  cloudCover                :float
+#  cloud_cover               :float
 #  pressue                   :float
 #  ozone                     :float
 #
 
 class WeatherPeriod < ActiveRecord::Base
 	belongs_to :weather
+
+	# Returns weather for given hour, if no hour given return todays weather
+	#
+	# ==== Returns
+	# The weather
+	def self.at_hour(timestamp)
+		if timestamp.present?
+			time = Time.at(timestamp)
+			weatherperiod = WeatherPeriod.where(start_time: time.beginning_of_hour).first
+		else
+			weatherperiod = WeatherPeriod.where(start_time: Time.now.beginning_of_hour).first
+		end
+
+		{
+			time: weatherperiod.start_time,
+			icon: weatherperiod.icon,
+			precipitation_probability: weatherperiod.precipitation_probability,
+			precipitation_type: weatherperiod.precipitation_type,
+			temp: weatherperiod.temperature,
+			wind_speed: weatherperiod.wind_speed,
+			wind_bearing: weatherperiod.wind_bearing
+		}
+	end
 end

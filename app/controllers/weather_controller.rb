@@ -8,16 +8,22 @@ class WeatherController < ApplicationController
   # *Assumption:* user not required to be logged in
   #
   # ==== Parameters
-  # [+date+] Todays date (optional)
+  # [+timestamp+] timestamp to get weather for
   #
   # ==== Returns
   # The weather for the given date in Glasgow
-  #  {
-  #    review_id: 10
-  #  }
+  # {
+  #   time: weatherperiod.start_time,
+  #   icon: weatherperiod.icon,
+  #   precipitation_probability: weatherperiod.precipitation_probability,
+  #   precipitation_type: weatherperiod.precipitation_type,
+  #   temp: weatherperiod.temperature,
+  #   wind_speed: weatherperiod.wind_speed,
+  #   wind_bearing: weatherperiod.wind_bearing
+  # }
   def retrieve
-    date = params[:date]
-    weather = Weather.on_day(date: date).first
+    timestamp = params[:timestamp]
+    weather = WeatherPeriod.at_hour(timestamp)
     if weather
       render json: weather
     else

@@ -134,16 +134,22 @@ FactoryGirl.define do
   end
 
   factory :weather_period do
-    weather
     sequence(:id)
-    start_time { 2.weeks.ago }
-    end_time { 2.weeks.ago }
-    precipitation_type 123
-    precipitation_level 123
+    start_time { 2.weeks.ago.beginning_of_hour }
+    precipitation_type "rain"
+    precipitation_intensity 123
+    precipitation_probability 123
     wind_speed 123
-    wind_direction 123
-    pollen_count 123
-    uv_level 123
+    wind_bearing 123
+    summary "It's wet"
+    icon "rain"
+    temperature 123
+    dew_point 123
+    humidity 123
+    visibility 123
+    cloud_cover 123
+    pressue 123
+    ozone 470.3
   end
 
 end

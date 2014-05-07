@@ -22,13 +22,13 @@ class WeatherWorker
 
 		hour = forecast['hourly']['data']
 		hours.each do |hour|
-			start_time = time.at(hour['time'].to_i).to_datetime
+			start_time = Time.at(hour['time'].to_i).to_datetime
 			next unless start_time.today?
-			period = WeatherPeriod.where(start_time: start_time).first
+			period = WeatherPeriod.where(start_time: start_time.to_i).first
 			period ||= WeatherPeriod.new
 
 			period.weather_id = weather.id
-			period.start_time = start_time
+			period.start_time = start_time.beginning_of_hour.to_i
 			period.summary = hour['summary']
 			period.icon = hour['icon']
 			period.precipitation_intensity = hour['precipIntensity']
