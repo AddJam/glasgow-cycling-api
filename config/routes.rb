@@ -24,7 +24,7 @@ JourneyAPI::Application.routes.draw do
   delete '/routes/:route_id', to: 'route#delete', as: 'delete_route'
 
   # Weather
-  get '/weather/:per_page', to: 'weather#retrieve', as: 'retrieve'
+  get '/weather', to: 'weather#retrieve', as: 'retrieve_weather'
 
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.

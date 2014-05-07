@@ -38,6 +38,7 @@ class WeatherPeriod < ActiveRecord::Base
 			weatherperiod = WeatherPeriod.where(start_time: Time.now.beginning_of_hour).first
 		end
 
+		if weatherperiod
 		{
 			time: weatherperiod.start_time,
 			icon: weatherperiod.icon,
@@ -47,5 +48,6 @@ class WeatherPeriod < ActiveRecord::Base
 			wind_speed: weatherperiod.wind_speed,
 			wind_bearing: weatherperiod.wind_bearing
 		}
+		end
 	end
 end
