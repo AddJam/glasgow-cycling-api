@@ -5,7 +5,6 @@ class WeatherWorker
 	sidekiq_options retry: 5
 
 	def perform
-		p "In the worker"
 		#taken from Scout App
 		ForecastIO.api_key = '4fc4aab9cb2571fe6316cc212b418784'
 
