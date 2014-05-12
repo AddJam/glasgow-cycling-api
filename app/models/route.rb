@@ -131,8 +131,10 @@ class Route < ActiveRecord::Base
 			name: self.name,
 			start_name: self.start_name,
 			end_name: self.end_name,
+			start_maidenhead: self.points.first.maidenhead,
+			end_maidenhead: self.points.last.maidenhead,
 			last_route_time: uses.first.created_at,
-			uses: uses.count,
+			num_instances: uses.count,
 			num_reviews: uses.pick(:review).count
 		}
 
@@ -207,6 +209,10 @@ class Route < ActiveRecord::Base
 			uniques
 		end
 
+		if unique_routes.count == 1
+			return unique_routes.first.summary
+		end
+
 		# Overview
 		route = routes.first
 		summary = {
@@ -215,7 +221,7 @@ class Route < ActiveRecord::Base
 			start_name: route.start_name,
 			end_name: route.end_name,
 			last_route_time: route.created_at,
-			num_routes: unique_routes.count,
+			num_instances: unique_routes.count,
 			num_reviews: routes.pick(:review).count
 		}
 
