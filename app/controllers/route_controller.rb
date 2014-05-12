@@ -167,11 +167,15 @@ class RouteController < ApplicationController
 		offset = page_num * per_page - per_page
 
 		# Location
-		if params[:source_lat] and params[:source_long]
+		if params[:start_maidenhead]
+			start_maidenhead = params[:start_maidenhead]
+		elsif params[:source_lat] and params[:source_long]
 			start_maidenhead = Maidenhead.to_maidenhead(params[:source_lat].to_f, params[:source_long].to_f, 4)
 		end
 
-		if params[:dest_lat] and params[:dest_long]
+		if params[:end_maidenhead]
+			end_maidenhead = params[:end_maidenhead]
+		elsif params[:dest_lat] and params[:dest_long]
 			end_maidenhead = Maidenhead.to_maidenhead(params[:dest_lat].to_f, params[:dest_long].to_f, 4)
 		end
 
