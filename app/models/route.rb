@@ -198,6 +198,15 @@ class Route < ActiveRecord::Base
 								end_maidenhead: end_maidenhead).order('created_at DESC')
 		end
 
+		unique_routes = routes.inject([]) do |uniques, route|
+			should_add = uniques.none? do |elem|
+				route.is_similar? elem
+			end
+
+			uniques << route if should_add
+			uniques
+		end
+
 		# Overview
 		route = routes.first
 		summary = {
@@ -206,7 +215,7 @@ class Route < ActiveRecord::Base
 			start_name: route.start_name,
 			end_name: route.end_name,
 			last_route_time: route.created_at,
-			num_routes: routes.count,
+			num_routes: unique_routes.count,
 			num_reviews: routes.pick(:review).count
 		}
 

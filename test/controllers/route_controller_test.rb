@@ -274,6 +274,49 @@ class RouteControllerTest < ActionController::TestCase
     assert_equal distinct_routes, results['routes'].length, 'there should be one result for each user route'
   end
 
+  test "search with start and end maidenheads" do
+    # Create two sets of routes between the same start and end points
+    2.times do
+      route = build(:route, lat: rand * 90, long: rand * 180)
+      route.points << create(:route_point, lat: 45.0, long: 150.0)
+      route.points << create(:route_point, lat: 40.0, long: 150.0)
+      route.points << create(:route_point, lat: 42.0, long: 33.0)
+      route.points << create(:route_point, lat: 40.0, long: 145.0)
+      route.save
+    end
+
+    2.times do
+      route = build(:route, lat: rand * 90, long: rand * 180)
+      route.points << create(:route_point, lat: 45.0, long: 150.0)
+      route.points << create(:route_point, lat: 23.0, long: 120.0)
+      route.points << create(:route_point, lat: 14.0, long: 45.0)
+      route.points << create(:route_point, lat: 40.0, long: 145.0)
+      route.save
+    end
+
+    # Create misc routes to/from other locations
+    2.times do
+      route = build(:route, lat: rand * 90, long: rand * 180)
+      route.points = create_list(:route_point, 2, lat: rand * 90.0, long: rand * 180.0)
+      route.save
+    end
+
+    route = Route.first
+    get(:search, start_maidenhead: route.points.first.maidenhead,
+              end_maidenhead: route.points.last.maidenhead, format: :json)
+
+    assert_response :success, 'route search with start and end locations should should be successful'
+    assert_not_nil response.body, 'response should have a body'
+
+    results = JSON.parse response.body
+    assert_not_nil results['routes'], 'result should contain routes'
+
+    # 2 routes were created, each with multiple uses
+    assert_equal 2, results['routes'].length, 'there should be one result for each route'
+    assert_equal 2, results['routes'][0]['uses'], 'there should be two uses of route one'
+    assert_equal 2, results['routes'][1]['uses'], 'there should be two uses of route two'
+  end
+
   test "route is flaggable" do
     user = User.last
     route = create(:route)
