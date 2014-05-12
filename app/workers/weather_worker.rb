@@ -13,6 +13,7 @@ class WeatherWorker
 		long = -4.2542
 
 		forecast = ForecastIO.forecast(lat, long)
+		return unless forecast['daily'] and forecast['daily']['data']
 		day = forecast['daily']['data'].first
 
 		weather = Weather.new
