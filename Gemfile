@@ -59,12 +59,12 @@ gem 'geocoder'
 gem 'maidenhead'
 gem 'redis' #cache
 
-#Weather API
 # Weather
 gem 'forecast_io'
 
 # Timed tasks and workers
 gem 'sidekiq'
+gem 'clockwork'
 
 # Development
 group :development do

@@ -20,15 +20,15 @@ class WeatherWorker
 		weather.sunset = day['sunsetTime']
 		weather.save
 
-		hour = forecast['hourly']['data']
+		hours = forecast['hourly']['data']
 		hours.each do |hour|
-			start_time = Time.at(hour['time'].to_i).to_datetime
+			start_time = Time.at(hour['time']).to_datetime
 			next unless start_time.today?
-			period = WeatherPeriod.where(start_time: start_time.to_i).first
+			period = WeatherPeriod.where(start_time: start_time).first
 			period ||= WeatherPeriod.new
 
 			period.weather_id = weather.id
-			period.start_time = start_time.beginning_of_hour.to_i
+			period.start_time = start_time.beginning_of_hour
 			period.summary = hour['summary']
 			period.icon = hour['icon']
 			period.precipitation_intensity = hour['precipIntensity']
@@ -41,7 +41,7 @@ class WeatherWorker
 			period.wind_bearing = hour['windBearing']
 			period.visibility = hour['visibility']
 			period.cloud_cover = hour['cloudCover']
-			period.pressue = hour['pressue']
+			period.pressure = hour['pressure']
 			period.ozone = hour['ozone']
 
 			period.save
