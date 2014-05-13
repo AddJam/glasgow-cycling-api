@@ -148,7 +148,7 @@ FactoryGirl.define do
     humidity 123
     visibility 123
     cloud_cover 123
-    pressue 123
+    pressure 123
     ozone 470.3
   end
 

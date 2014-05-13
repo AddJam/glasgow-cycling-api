@@ -236,8 +236,8 @@ class RouteControllerTest < ActionController::TestCase
 
     # 2 routes were created, each with multiple uses
     assert_equal 2, results['routes'].length, 'there should be one result for each route'
-    assert_equal 2, results['routes'][0]['uses'], 'there should be two uses of route one'
-    assert_equal 2, results['routes'][1]['uses'], 'there should be two uses of route two'
+    assert_equal 2, results['routes'][0]['num_instances'], 'there should be two uses of route one'
+    assert_equal 2, results['routes'][1]['num_instances'], 'there should be two uses of route two'
   end
 
   test "search with a start point and no end point" do
@@ -313,8 +313,8 @@ class RouteControllerTest < ActionController::TestCase
 
     # 2 routes were created, each with multiple uses
     assert_equal 2, results['routes'].length, 'there should be one result for each route'
-    assert_equal 2, results['routes'][0]['uses'], 'there should be two uses of route one'
-    assert_equal 2, results['routes'][1]['uses'], 'there should be two uses of route two'
+    assert_equal 2, results['routes'][0]['num_instances'], 'there should be two uses of route one'
+    assert_equal 2, results['routes'][1]['num_instances'], 'there should be two uses of route two'
   end
 
   test "route is flaggable" do

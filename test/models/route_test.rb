@@ -145,7 +145,7 @@ class RouteTest < ActiveSupport::TestCase
 
     summary = Route.summarise_routes(routes.last.start_maidenhead, routes.last.end_maidenhead, nil)
     assert_not_nil summary, "summary should be returned"
-    assert_equal 5, summary[:num_routes], "summary should contain correct count of routes"
+    assert_equal 2, summary[:num_instances], "summary should contain correct count of different routes"
     assert_equal routes.last.start_maidenhead, summary[:start_maidenhead], "start_maidenhead should be the one requested"
     assert_equal routes.last.end_maidenhead, summary[:end_maidenhead], "end_maidenhead should be the one requested"
     assert_equal routes.last.created_at.to_i, summary[:last_route_time].to_i, "last_route_time should be accurate"
