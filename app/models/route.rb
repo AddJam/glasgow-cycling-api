@@ -152,10 +152,12 @@ class Route < ActiveRecord::Base
 			average_environment_rating = reviews.pick(:environment_rating).average
 		end
 		average_time = uses.pick(:total_time).average
+		average_speed = (average_distance * 1000)/average_time
 
 		route_summary[:averages] = {
 			distance:  average_distance,
 			time: average_time,
+			speed: average_speed,
 			safety_rating: average_safety_rating,
 			difficulty_rating: average_difficulty_rating,
 			environment_rating: average_environment_rating
