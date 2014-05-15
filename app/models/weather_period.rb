@@ -40,7 +40,7 @@ class WeatherPeriod < ActiveRecord::Base
 
 		if weatherperiod
 		{
-			time: weatherperiod.start_time,
+			time: weatherperiod.start_time.to_i,
 			icon: weatherperiod.icon,
 			precipitation_probability: weatherperiod.precipitation_probability,
 			precipitation_type: weatherperiod.precipitation_type,
