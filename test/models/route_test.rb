@@ -1,22 +1,6 @@
 require 'test_helper'
 
 class RouteTest < ActiveSupport::TestCase
-  def route_point_params(num_points, point_attrs = {})
-    points = []
-    num_points.times do
-      new_point = {
-        lat: rand * 90,
-        long: rand * 180,
-        altitude: rand * 500,
-        time: Time.now,
-        kph: rand * 500
-      }
-      new_point.merge!(point_attrs)
-      points << new_point
-    end
-    points
-  end
-
   test 'route start and end points are geocoded for suitable locations' do
     points = route_point_params(3, lat: 55.8447118, long: -4.19440029)
     route = Route.record(create(:user), points)

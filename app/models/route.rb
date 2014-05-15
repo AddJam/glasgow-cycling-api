@@ -30,6 +30,7 @@ class Route < ActiveRecord::Base
 	before_validation :calculate_times
 	before_validation :set_maidenheads
 	before_save :set_name
+	before_create :generate_stats
 
 	validates :name, presence: true
 	validates :total_distance, presence: true
@@ -329,5 +330,28 @@ class Route < ActiveRecord::Base
 
 		# Similarity is ratio of matching to total unique points
 		points_also_in_route_one.to_f / (non_matching_one.to_f + non_matching_two.to_f + points_also_in_route_one.to_f)
+	end
+
+	def generate_stats
+		# Retrieve basic point data for analysis
+		stat_points = self.points.map do |point|
+			{
+				time: point.time,
+				speed: point.kph
+			}
+		end
+
+		# Generate distances
+		self.points.each_with_index do |point, index|
+			if index == 0
+				stat_points[index][:distance] = 0
+			else
+				prev_point = self.points[index - 1]
+				stat_points[index][:distance] = point.distance_from(prev_point)
+			end
+		end
+
+		# Create statistics from points
+		Hour.generate!(stat_points, user)
 	end
 end

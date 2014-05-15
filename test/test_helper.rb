@@ -13,6 +13,21 @@ class ActiveSupport::TestCase
   # fixtures :all
 
   # Add more helper methods to be used by all tests here...
+  def route_point_params(num_points, point_attrs = {})
+    points = []
+    num_points.times do
+      new_point = {
+        lat: rand * 90,
+        long: rand * 180,
+        altitude: rand * 500,
+        time: Time.now,
+        kph: rand * 500
+      }
+      new_point.merge!(point_attrs)
+      points << new_point
+    end
+    points
+  end
 end
 
 class ActionController::TestCase
