@@ -55,12 +55,12 @@ class Hour < ActiveRecord::Base
       hours = Hour.where('time >= ? AND time <= ?', num_days.to_i.days.ago, Time.now)
     end
 
-    speed_values = hours.pick(:speed)
-
     {
       overall: {
         distance: hours.pick(:distance).sum,
-        avg_speed: hours.pick(:speed).average
+        avg_speed: hours.pick(:average_speed).average,
+        min_speed: hours.pick(:min_speed).min,
+        max_speed: hours.pick(:max_speed).max
       },
       hours: hours
     }

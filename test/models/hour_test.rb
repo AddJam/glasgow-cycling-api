@@ -55,4 +55,39 @@ class HourTest < ActiveSupport::TestCase
     assert_in_delta max_speed, hour.max_speed, tolerance, 'max speed should be accurate'
     assert_in_delta min_speed, hour.min_speed, tolerance, 'min speed should be accurate'
   end
+
+  test "days data is accurate" do
+    Hour.destroy_all
+
+    points = route_point_params(3)
+    points[0][:time] = 3.hours.ago
+    points[1][:time] = 3.hours.ago
+    points[2][:time] = 1.hour.ago
+    p "Points kph:"
+    p points.pick(:kph)
+    p points.pick(:kph).average
+    user = create(:user)
+    route = Route.record(user, points)
+
+    days_data = Hour.days(1, user)
+    assert_not_nil days_data[:hours], "all hours contributing to the stats should be returned"
+    assert_equal 2, days_data[:hours].count, "correct number of hours is returned"
+
+    #
+    # Validate overall stats
+    #
+    assert_not_nil days_data[:overall], "overall stats should be returned"
+    tolerance = 0.0001 # 10cm tolerance on float comparisons
+
+    # Distance
+    assert_in_delta route.total_distance, days_data[:overall][:distance], tolerance, 'total distance should be accurate'
+
+    # Speed
+    avg_speed = points.pick(:kph).average
+    max_speed = points.pick(:kph).max
+    min_speed = points.pick(:kph).min
+    assert_in_delta avg_speed, days_data[:overall][:avg_speed], tolerance, 'average speed should be accurate'
+    assert_in_delta max_speed, days_data[:overall][:max_speed], tolerance, 'max speed should be accurate'
+    assert_in_delta min_speed, days_data[:overall][:min_speed], tolerance, 'min speed should be accurate'
+  end
 end
