@@ -46,7 +46,8 @@ class WeatherPeriod < ActiveRecord::Base
 			precipitation_type: weatherperiod.precipitation_type,
 			temp: weatherperiod.temperature,
 			wind_speed: weatherperiod.wind_speed,
-			wind_bearing: weatherperiod.wind_bearing
+			wind_bearing: weatherperiod.wind_bearing,
+			source: "Powered by forecast.io"
 		}
 		end
 	end
