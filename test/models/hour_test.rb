@@ -49,6 +49,10 @@ class HourTest < ActiveSupport::TestCase
 
     # Speed
     avg_speed = points[0..1].pick(:kph).average
+    max_speed = points[0..1].pick(:kph).max
+    min_speed = points[0..1].pick(:kph).min
     assert_in_delta avg_speed, hour.average_speed, tolerance, 'average speed should be accurate'
+    assert_in_delta max_speed, hour.max_speed, tolerance, 'max speed should be accurate'
+    assert_in_delta min_speed, hour.min_speed, tolerance, 'min speed should be accurate'
   end
 end
