@@ -1,4 +1,8 @@
 JourneyAPI::Application.routes.draw do
+  get 'stats/week'
+
+  get 'stats/month'
+
   # User
   post "/signup", to: "user#signup", as: 'signup'
   get "/signin", to: "user#signin", as: 'signin'
