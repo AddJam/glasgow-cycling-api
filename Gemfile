@@ -57,7 +57,10 @@ gem "paperclip", "~> 4.1"
 # Location
 gem 'geocoder'
 gem 'maidenhead'
-gem 'redis' #cache
+
+# Cache
+gem 'redis'
+gem 'redis-rails'
 
 # Weather
 gem 'forecast_io'
