@@ -17,7 +17,7 @@ class ReviewControllerTest < ActionController::TestCase
       comment: "Great route, A+++++"
     }
 
-    post :create, format: :json, route_id: route.id, review: review
+    post :review, format: :json, route_id: route.id, review: review
 
     # Shouldn't work for unauthenticated request
     assert_response :unauthorized
@@ -26,7 +26,7 @@ class ReviewControllerTest < ActionController::TestCase
     assert_nil route.review
   end
 
-  test "should create review" do
+  test "creating a review" do
     route = create(:route)
     review = {
       safety_rating: 5,
@@ -35,42 +35,60 @@ class ReviewControllerTest < ActionController::TestCase
       comment: "Great route, A+++++"
     }
 
-    post :create, route_id: route.id, review: review
-    assert_response :success, "Should succeed POSTing correct params to review#create"
+    post :review, route_id: route.id, review: review
+    assert_response :success, "Should succeed creating a review"
 
-    review_data = JSON.parse response.body
-    assert_not_nil review_data, "Review json should be returned"
+    review_json = JSON.parse response.body
+    assert_not_nil review_json, "Review json should be returned"
 
     assert_not_nil route.review, "Review should be added to route"
 
-    review_id = review_data['review_id']
-    assert_not_nil review_id, "Review id should be returned"
-    assert_not_nil RouteReview.where(id: review_id).first, "Review should exist with returned id"
+    review_data = review_json['review']
+    assert_not_nil review, "Review id should be returned"
+    assert_not_nil RouteReview.where(id: review_data['id'].to_i).first, "Review should exist with returned id"
+    assert_equal review[:safety_rating], review_data['safety_rating'].to_i, "safety rating should be correct"
+    assert_equal review[:difficulty_rating], review_data['difficulty_rating'].to_i, "difficulty rating should be correct"
+    assert_equal review[:environment_rating], review_data['environment_rating'].to_i, "environment rating should be correct"
+    assert_equal review[:comment], review_data['comment'], "comment should be correct"
+  end
+
+  test "updating a review" do
+    route = create(:route)
+    review = {
+      safety_rating: 5,
+      difficulty_rating: 3,
+      environment_rating: 4,
+      comment: "Great route, A+++++"
+    }
+
+    post :review, route_id: route.id, review: review
+    assert_response :success, "Should succeed creating a review"
+
+    review = {
+      safety_rating: 3,
+      difficulty_rating: 2,
+      environment_rating: 1,
+      comment: "Awesome route!!!"
+    }
+    post :review, route_id: route.id, review: review
+    assert_response :success, "Should succeed updating a review"
+
+    review_json = JSON.parse response.body
+    assert_not_nil review_json, "Review json should be returned"
+
+    assert_not_nil route.review, "Review should be added to route"
+
+    review_data = review_json['review']
+    assert_not_nil review, "Review id should be returned"
+    assert_not_nil RouteReview.where(id: review_data['id'].to_i).first, "Review should exist with returned id"
+    assert_equal review[:safety_rating], review_data['safety_rating'].to_i, "safety rating should be correct"
+    assert_equal review[:difficulty_rating], review_data['difficulty_rating'].to_i, "difficulty rating should be correct"
+    assert_equal review[:environment_rating], review_data['environment_rating'].to_i, "environment rating should be correct"
+    assert_equal review[:comment], review_data['comment'], "comment should be correct"
   end
 
   test "should fail to create a review when no params specified" do
-    post :create
+    post :review
     assert_response :bad_request
   end
-
-  # test "should get retrieve" do
-  #   get :find
-  #   assert_response :success
-  # end
-
-  # test "should get retrieve_all" do
-  #   get :all
-  #   assert_response :success
-  # end
-
-  # test "should get delete" do
-  #   delete :delete
-  #   assert_response :success
-  # end
-
-  # test "should get edit" do
-  #   put :edit
-  #   assert_response :success
-  # end
-
 end

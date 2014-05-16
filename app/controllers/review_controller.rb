@@ -21,25 +21,9 @@ class ReviewController < ApplicationController
   # ==== Returns
   # The ID of the review which was saved
   #  {
-  #    review_id: 10
+  #    review:
   #  }
-  def create
-    review = params[:review]
-    route_id = params[:route_id]
-    unless review and route_id and user_signed_in?
-      render status: :bad_request
-    else
-      route = Route.where(id: route_id).first
-      review = route.create_review(current_user, review)
-      if review
-        render json: {review_id: review.id}
-      else
-        render status: :internal_server_error, json: {error: "Review could not be saved"}
-      end
-    end
-  end
-
-  def edit
+  def review
     review = params[:review]
     route_id = params[:route_id]
     if review and route_id
@@ -51,25 +35,21 @@ class ReviewController < ApplicationController
           render status: :internal_server_error, json: {error: "Review could not be saved"}
         end
       else
-        render status: :internal_server_error, json: {error: "Review does not exist"}
+        review = route.create_review(current_user, review)
+        if review
+          render json: {review: review}
+        else
+          render status: :internal_server_error, json: {error: "Review could not be created"}
+        end
       end
     else
       render status: :bad_request, json: {error: "Request should contain both a review hash and route_id"}
     end
   end
 
-  def find
-  end
-
-  def all
-  end
-
-  def delete
-  end
-
   private
 
   def review_params
-    params.permit(:safety_rating, :environment_rating, :difficulty_rating, :comment)
+    params.require(:review).permit(:safety_rating, :environment_rating, :difficulty_rating, :comment)
   end
 end
