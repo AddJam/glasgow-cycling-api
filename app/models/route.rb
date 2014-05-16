@@ -217,7 +217,7 @@ class Route < ActiveRecord::Base
 			end_name: route.end_name,
 			last_route_time: route.created_at,
 			num_instances: unique_routes.count,
-			num_reviews: routes.pick(:review).count
+			num_reviews: routes.pick(:review).count,
 		}
 
 		# Averages

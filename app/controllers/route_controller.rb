@@ -186,7 +186,7 @@ class RouteController < ApplicationController
 		# Group by Similarity rather than start/end points if both points provided
 		if start_maidenhead and end_maidenhead
 			# Get all uses and group into routes by similarity
-			all_uses = Route.where(condition).limit(per_page).offset(offset)
+			all_uses = Route.where(condition).order('start_time DESC').limit(per_page).offset(offset)
 			routes = all_uses.inject([]) do |routes, use|
 				if routes.blank?
 					routes << use
@@ -202,8 +202,9 @@ class RouteController < ApplicationController
 				all_summaries << route.summary
 			end
 		else
-			routes = Route.where(condition).select(:start_maidenhead, :end_maidenhead)
-										.group(:start_maidenhead, :end_maidenhead).limit(per_page).offset(offset)
+			routes = Route.where(condition).select('start_maidenhead, end_maidenhead, MAX(start_time) as start_time')
+										.group(:start_maidenhead, :end_maidenhead).order('start_time DESC')
+										.limit(per_page).offset(offset)
 
 			if params[:user_only]
 				summaries = routes.inject([]) do |all_summaries, route|
