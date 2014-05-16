@@ -86,5 +86,14 @@ class HourTest < ActiveSupport::TestCase
     assert_in_delta avg_speed, days_data[:overall][:avg_speed], tolerance, 'average speed should be accurate'
     assert_in_delta max_speed, days_data[:overall][:max_speed], tolerance, 'max speed should be accurate'
     assert_in_delta min_speed, days_data[:overall][:min_speed], tolerance, 'min speed should be accurate'
+
+    # Num routes
+    assert_equal 1, days_data[:overall][:routes_started], "a single route should have been started"
+    assert_equal 1, days_data[:overall][:routes_completed], "a single route should have been completed"
+
+    Route.record(user, points)
+    days_data = Hour.days(1, user)
+    assert_equal 2, days_data[:overall][:routes_started], "two routes should have been started"
+    assert_equal 2, days_data[:overall][:routes_completed], "two routes should have been completed"
   end
 end

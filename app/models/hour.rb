@@ -16,7 +16,8 @@ class Hour < ActiveRecord::Base
 
     # For each distinct time (hour), generate averages and distances
     hours = points.group_by {|p| p[:hour]}
-    hours.each_key do |timestamp|
+    keys = hours.keys
+    keys.each_with_index do |timestamp, index|
       hour_points = hours[timestamp]
 
       # Create or find hour to update
@@ -34,7 +35,6 @@ class Hour < ActiveRecord::Base
       # Update
       hour.time = Time.at(timestamp)
       hour.user = user if user.present?
-      hour.num_points ||= 0
       hour.num_points += hour_points.count
 
       # Speed
@@ -44,6 +44,13 @@ class Hour < ActiveRecord::Base
 
       # Distance from previous point
       hour.distance = hour_points.pick(:distance).sum
+
+      # Route completion / starting
+      if index == 0
+        hour.routes_started += 1
+      elsif index == (hours.count - 1)
+        hour.routes_completed += 1
+      end
 
       hour.save
     end
@@ -68,7 +75,9 @@ class Hour < ActiveRecord::Base
         distance: hours.pick(:distance).sum,
         avg_speed: avg_speed,
         min_speed: hours.pick(:min_speed).min,
-        max_speed: hours.pick(:max_speed).max
+        max_speed: hours.pick(:max_speed).max,
+        routes_started: hours.pick(:routes_started).sum,
+        routes_completed: hours.pick(:routes_completed).sum
       },
       hours: hours
     }
