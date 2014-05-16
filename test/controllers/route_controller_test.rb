@@ -242,6 +242,7 @@ class RouteControllerTest < ActionController::TestCase
 
   test "search with start and end maidenheads" do
     # Create two sets of routes between the same start and end points
+    Route.destroy_all
     2.times do
       route = build(:route, lat: rand * 90, long: rand * 180)
       route.points << create(:route_point, lat: 45.0, long: 150.0)
