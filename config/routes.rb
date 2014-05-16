@@ -1,8 +1,4 @@
 JourneyAPI::Application.routes.draw do
-  get 'stats/week'
-
-  get 'stats/month'
-
   # User
   post "/signup", to: "user#signup", as: 'signup'
   get "/signin", to: "user#signin", as: 'signin'
@@ -29,6 +25,9 @@ JourneyAPI::Application.routes.draw do
 
   # Weather
   get '/weather', to: 'weather#retrieve', as: 'retrieve_weather'
+
+  # Stats
+  get '/stats', to: 'stats#days', as: 'stats'
 
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
