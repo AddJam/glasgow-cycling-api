@@ -27,7 +27,8 @@ JourneyAPI::Application.routes.draw do
   get '/weather', to: 'weather#retrieve', as: 'retrieve_weather'
 
   # Stats
-  get '/stats', to: 'stats#days', as: 'stats'
+  get '/stats/hours', to: 'stats#hours', as: 'stats_hours'
+  get '/stats/days', to: 'stats#days', as: 'stats_days'
 
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.

@@ -56,12 +56,13 @@ class Hour < ActiveRecord::Base
     end
   end
 
-  # Cumulative stats from now to num_days ago
-  def self.days(num_days, user=nil)
+  # Cumulative stats from now to num_hours ago
+  def self.hours(num_hours, user=nil)
+    start_threshold = num_hours.to_i.hours.ago.beginning_of_hour
     if user.present?
-      hours = Hour.where('time >= ? AND time <= ? AND user_id = ?', num_days.to_i.days.ago, Time.now, user.id)
+      hours = Hour.where('time >= ? AND time <= ? AND user_id = ?', start_threshold, Time.now, user.id)
     else
-      hours = Hour.where('time >= ? AND time <= ?', num_days.to_i.days.ago, Time.now)
+      hours = Hour.where('time >= ? AND time <= ?', start_threshold, Time.now)
     end
 
     total_speed = hours.inject(0.0) do |total, hour|
@@ -80,6 +81,65 @@ class Hour < ActiveRecord::Base
         routes_completed: hours.pick(:routes_completed).sum
       },
       hours: hours
+    }
+  end
+
+  # Cumulative stats from now to num_days ago
+  def self.days(num_days, user=nil)
+    start_threshold = num_days.to_i.days.ago.beginning_of_day
+    if user.present?
+      hours = Hour.where('time >= ? AND time <= ? AND user_id = ?', start_threshold, Time.now, user.id)
+    else
+      hours = Hour.where('time >= ? AND time <= ?', start_threshold, Time.now)
+    end
+
+    # Create array of days - group then merge
+    day_groups = hours.inject([]) do |groups, hour|
+      group = groups.first {|g| g.time.beginning_of_day == hour.time.beginning_of_day}
+      if group
+        group << hour
+      else
+        groups << [hour]
+      end
+      groups
+    end
+
+    days = day_groups.map do |day_group|
+      # Calculate avg speed based on num points
+      total_speed = day_group.inject(0.0) do |total, day|
+        total += day.average_speed * day.num_points
+      end
+      total_points = day_group.pick(:num_points).sum
+      avg_speed = total_speed / total_points
+
+      {
+        distance: day_group.pick(:distance).sum,
+        avg_speed: avg_speed,
+        min_speed: day_group.pick(:min_speed).min,
+        max_speed: day_group.pick(:max_speed).max,
+        routes_started: day_group.pick(:routes_started).sum,
+        routes_completed: day_group.pick(:routes_completed).sum
+      }
+    end
+
+    # Calculate avg speed based on num points
+    total_speed = hours.inject(0.0) do |total, hour|
+      total += hour.average_speed * hour.num_points
+    end
+    total_points = hours.pick(:num_points).sum
+    avg_speed = total_speed / total_points
+
+    # Results
+    {
+      overall: {
+        distance: hours.pick(:distance).sum,
+        avg_speed: avg_speed,
+        min_speed: hours.pick(:min_speed).min,
+        max_speed: hours.pick(:max_speed).max,
+        routes_started: hours.pick(:routes_started).sum,
+        routes_completed: hours.pick(:routes_completed).sum
+      },
+      days: days
     }
   end
 end

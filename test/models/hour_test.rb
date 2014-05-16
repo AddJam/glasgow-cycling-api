@@ -56,6 +56,47 @@ class HourTest < ActiveSupport::TestCase
     assert_in_delta min_speed, hour.min_speed, tolerance, 'min speed should be accurate'
   end
 
+  test "hours data is accurate" do
+    Hour.destroy_all
+
+    points = route_point_params(3)
+    points[0][:time] = 3.hours.ago
+    points[1][:time] = 3.hours.ago
+    points[2][:time] = 1.hour.ago
+    user = create(:user)
+    route = Route.record(user, points)
+
+    hours_data = Hour.hours(5, user)
+    assert_not_nil hours_data[:hours], "all hours contributing to the stats should be returned"
+    assert_equal 2, hours_data[:hours].count, "correct number of hours is returned"
+
+    #
+    # Validate overall stats
+    #
+    assert_not_nil hours_data[:overall], "overall stats should be returned"
+    tolerance = 0.0001 # 10cm tolerance on float comparisons
+
+    # Distance
+    assert_in_delta route.total_distance, hours_data[:overall][:distance], tolerance, 'total distance should be accurate'
+
+    # Speed
+    avg_speed = points.pick(:kph).average
+    max_speed = points.pick(:kph).max
+    min_speed = points.pick(:kph).min
+    assert_in_delta avg_speed, hours_data[:overall][:avg_speed], tolerance, 'average speed should be accurate'
+    assert_in_delta max_speed, hours_data[:overall][:max_speed], tolerance, 'max speed should be accurate'
+    assert_in_delta min_speed, hours_data[:overall][:min_speed], tolerance, 'min speed should be accurate'
+
+    # Num routes
+    assert_equal 1, hours_data[:overall][:routes_started], "a single route should have been started"
+    assert_equal 1, hours_data[:overall][:routes_completed], "a single route should have been completed"
+
+    Route.record(user, points)
+    hours_data = Hour.hours(5, user)
+    assert_equal 2, hours_data[:overall][:routes_started], "two routes should have been started"
+    assert_equal 2, hours_data[:overall][:routes_completed], "two routes should have been completed"
+  end
+
   test "days data is accurate" do
     Hour.destroy_all
 
@@ -66,9 +107,9 @@ class HourTest < ActiveSupport::TestCase
     user = create(:user)
     route = Route.record(user, points)
 
-    days_data = Hour.days(1, user)
-    assert_not_nil days_data[:hours], "all hours contributing to the stats should be returned"
-    assert_equal 2, days_data[:hours].count, "correct number of hours is returned"
+    days_data = Hour.days(5, user)
+    assert_not_nil days_data[:days], "all days contributing to the stats should be returned"
+    assert_equal 1, days_data[:days].count, "correct number of hours is returned"
 
     #
     # Validate overall stats
@@ -92,7 +133,7 @@ class HourTest < ActiveSupport::TestCase
     assert_equal 1, days_data[:overall][:routes_completed], "a single route should have been completed"
 
     Route.record(user, points)
-    days_data = Hour.days(1, user)
+    days_data = Hour.hours(5, user)
     assert_equal 2, days_data[:overall][:routes_started], "two routes should have been started"
     assert_equal 2, days_data[:overall][:routes_completed], "two routes should have been completed"
   end
