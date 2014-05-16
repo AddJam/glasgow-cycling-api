@@ -34,6 +34,8 @@ class Hour < ActiveRecord::Base
       # Update
       hour.time = Time.at(timestamp)
       hour.user = user if user.present?
+      hour.num_points ||= 0
+      hour.num_points += hour_points.count
 
       # Speed
       hour.average_speed = hour_points.pick(:speed).average
@@ -55,10 +57,16 @@ class Hour < ActiveRecord::Base
       hours = Hour.where('time >= ? AND time <= ?', num_days.to_i.days.ago, Time.now)
     end
 
+    total_speed = hours.inject(0.0) do |total, hour|
+      total += hour.average_speed * hour.num_points
+    end
+    total_points = hours.pick(:num_points).sum
+    avg_speed = total_speed / total_points
+
     {
       overall: {
         distance: hours.pick(:distance).sum,
-        avg_speed: hours.pick(:average_speed).average,
+        avg_speed: avg_speed,
         min_speed: hours.pick(:min_speed).min,
         max_speed: hours.pick(:max_speed).max
       },

@@ -63,9 +63,6 @@ class HourTest < ActiveSupport::TestCase
     points[0][:time] = 3.hours.ago
     points[1][:time] = 3.hours.ago
     points[2][:time] = 1.hour.ago
-    p "Points kph:"
-    p points.pick(:kph)
-    p points.pick(:kph).average
     user = create(:user)
     route = Route.record(user, points)
 
