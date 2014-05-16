@@ -112,40 +112,6 @@ class RouteControllerTest < ActionController::TestCase
     assert_response :bad_request
   end
 
-  test "cannot display 0 routes per page" do
-    page = 3
-    per_page = 0
-    user = create(:user)
-    get(:user_summaries, user_token: user.authentication_token, user_email: user.email, per_page: per_page, page_num: page, format: :json)
-    assert_response :bad_request
-  end
-
-  test "User route summaries with pagination" do
-    user = create(:user)
-    page = 1
-    per_page = 2
-    4.times do
-      route = build(:route, user_id: user.id, lat: rand * 90, long: rand * 180)
-      route.points = create_list(:route_point, 2, lat: rand * 90, long: rand * 180)
-      route.save
-    end
-
-    get(:user_summaries,user_token: user.authentication_token, user_email: user.email, per_page: per_page, page_num: page, format: :json)
-
-    details = JSON.parse response.body
-    assert_response :success, "success response expected"
-    assert_equal per_page, details['routes'].count, "correct number of summaries should be returned"
-  end
-
-  test "cannot display 0 user routes per page" do
-    page = 3
-    per_page = 0
-    user = create(:user)
-    get(:user_summaries, user_token: user.authentication_token, user_email: user.email,
-        per_page: per_page, page_num: page, format: :json)
-    assert_response :bad_request, "shouldn't allow requesting 0 results per page"
-  end
-
   test "search with no parameters returns all routes" do
     user = User.last
     4.times do

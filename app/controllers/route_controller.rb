@@ -89,59 +89,6 @@ class RouteController < ApplicationController
 		end
 	end
 
-	# *GET* /routes/user_summaries/:per_page/:page_num
-	#
-	# Returns all routes
-	#
-	# ==== Parameters
-	# [+per_page+] items to appear per page
-	# [+page_num+] current page number
-	# ==== Returns
-	# All routes with +id+
-	#
-	#  {
-	#    details:[
-  #      {
-	#        averages: {
-	#          distance: 30,
-	#          safety_rating: 2,
-	#          difficulty_rating: 5,
-	#          environment_rating: 3
-	#				}
-	# 			 start_maidenhead: "AA02cc00",
-	#        end_maidenhead: "AA02cc05",
-	#        start_name: "London Road",
-	#        end_name: "Hope Street",
-  #        last_route_time: 1392894545,
-	# 			 uses: 3
-  #      }
-  #    ]
-  #  }
-  def user_summaries
-  	unless params[:per_page] and params[:page_num] and user_signed_in?
-  		render status: :bad_request, json: {error: "Incorrect parameters for retrieving user summaries"}
-  	else
-  		page_num = params[:page_num].to_i
-  		per_page = params[:per_page].to_i
-  		offset = page_num * per_page - per_page
-  		if per_page == 0
-  			render status: :bad_request, json: {error: "Must display at least one route per page"}
-  		else
-				routes = Route.where(user_id: current_user.id).select(:start_maidenhead, :end_maidenhead)
-											.group(:start_maidenhead, :end_maidenhead).limit(per_page).offset(offset)
-
-				# Generate all summaries
-				summaries = routes.inject([]) do |all_summaries, route|
-					all_summaries << Route.summarise_routes(route.start_maidenhead, route.end_maidenhead, current_user)
-				end
-
-  			render json: {
-  				routes: summaries
-  			}
-  		end
-  	end
-  end
-
 	# *GET* /search
 	#
 	# Search routes by source, destination or with authorized user as the creator
