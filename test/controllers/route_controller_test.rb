@@ -315,6 +315,7 @@ class RouteControllerTest < ActionController::TestCase
     assert_equal 2, results['routes'].length, 'there should be one result for each route'
     assert_equal 2, results['routes'][0]['num_instances'], 'there should be two uses of route one'
     assert_equal 2, results['routes'][1]['num_instances'], 'there should be two uses of route two'
+    assert results['routes'][0]['last_route_time'].to_i >= results['routes'][1]['last_route_time'].to_i, 'first route should be last used'
   end
 
   test "route is flaggable" do

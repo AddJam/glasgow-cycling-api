@@ -133,7 +133,7 @@ class Route < ActiveRecord::Base
 			end_name: self.end_name,
 			start_maidenhead: self.points.first.maidenhead,
 			end_maidenhead: self.points.last.maidenhead,
-			last_route_time: uses.first.created_at,
+			last_route_time: uses.first.created_at.to_i,
 			num_instances: uses.count,
 			num_reviews: uses.pick(:review).count
 		}
@@ -215,7 +215,7 @@ class Route < ActiveRecord::Base
 			end_maidenhead: end_maidenhead,
 			start_name: route.start_name,
 			end_name: route.end_name,
-			last_route_time: route.created_at,
+			last_route_time: route.created_at.to_i,
 			num_instances: unique_routes.count,
 			num_reviews: routes.pick(:review).count,
 		}
