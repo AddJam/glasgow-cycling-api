@@ -138,13 +138,6 @@ class Route < ActiveRecord::Base
 			num_reviews: uses.pick(:review).count
 		}
 
-		last_point = self.points.last
-		if last_point
-			end_lat = last_point.lat
-			end_long = last_point.long
-			route_summary[:end_picture] = Picture.for_location(end_lat, end_long)
-		end
-
 		# Averages
 		average_distance = uses.pick(:total_distance).average
 		reviews = uses.pick(:review)

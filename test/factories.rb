@@ -38,17 +38,6 @@ FactoryGirl.define do
     road_closure_details 'Test Road Closure Details'
   end
 
-  factory :picture do
-    sequence(:id)
-    sequence(:url) do |n|; "http://example.com/#{n}.png"; end
-    label 'Test Label'
-    lat 1.23
-    long 1.23
-    credit_label 'Test Credit Label'
-    credit_url 'http://blah.com'
-    image { fixture_file_upload(Rails.root.join('public', 'images', 'medium', 'default_profile_pic.png'), 'image/png') }
-   end
-
   factory :route do
     # after(:create) do |user, evaluator|; FactoryGirl.create_list :route, 2; end # commented to avoid circular reference
     # after(:create) do |user, evaluator|; FactoryGirl.create_list :route_point, 2; end # commented to avoid circular reference
@@ -65,8 +54,6 @@ FactoryGirl.define do
     end_maidenhead 'AA00bb11'
     total_distance 1.23
     mode 1
-    start_picture_id 123
-    end_picture_id 123
     start_time { 2.weeks.ago }
     end_time { 2.weeks.ago }
     total_time 123
