@@ -1,8 +1,12 @@
 class Array
-  def average
+  def sum
     self.inject(0) do |total, elem|
       total += elem || 0
-    end / self.length.to_f
+    end
+  end
+
+  def average
+    sum / self.length.to_f
   end
 
   def pick(key)

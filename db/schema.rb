@@ -11,8 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140516091842) do
-
+ActiveRecord::Schema.define(version: 20140516092617) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -60,6 +59,20 @@ ActiveRecord::Schema.define(version: 20140516091842) do
     t.integer  "route_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "hours", force: true do |t|
+    t.integer  "user_id"
+    t.datetime "time"
+    t.float    "distance"
+    t.float    "average_speed"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.float    "max_speed"
+    t.float    "min_speed"
+    t.integer  "num_points",       default: 0
+    t.integer  "routes_started",   default: 0
+    t.integer  "routes_completed", default: 0
   end
 
   create_table "pictures", force: true do |t|

@@ -44,4 +44,7 @@ JourneyAPI::Application.configure do
   }
 
   p "Mandrill key #{Rails.application.secrets.mandrill_api_key}"
+  
+  # Cache
+  config.cache_store = :redis_store
 end

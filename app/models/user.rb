@@ -38,6 +38,7 @@ class User < ActiveRecord::Base
   has_many :user_responses
 	has_many :flaggings
 	has_many :flagged_routes, :through => :flaggings, :source => :route
+	has_many :stats, class_name: 'Hour'
 
   has_attached_file :profile_pic, :styles => { :medium => "300x300>", :thumb => "50x50>" },
                     :default_url => "/images/:style/default_profile_pic.png"
