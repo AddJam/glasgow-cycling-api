@@ -60,8 +60,6 @@ class RouteController < ApplicationController
   #        created_by: "chirsasur",
   #        name: "London Road to Hope Street",
   #        difficulty_rating: 5,
-  #        start_picture: "http://placekitten.com/350/200",
-  #        end_picture: "http://placekitten.com/350/200",
   #        created_at: 1392894545
   #      }
 	#    points: [
