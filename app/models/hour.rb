@@ -58,22 +58,33 @@ class Hour < ActiveRecord::Base
 
   # Cumulative stats from now to num_hours ago
   def self.hours(num_hours, user=nil)
-    start_threshold = num_hours.to_i.hours.ago.beginning_of_hour
-    if user.present?
-      hours = Hour.where('time >= ? AND time <= ? AND user_id = ?', start_threshold, Time.now, user.id)
-    else
-      hours = Hour.where('time >= ? AND time <= ?', start_threshold, Time.now)
-    end
-
-    {
-      overall: Hour.stats_for_hours(hours),
-      hours: hours
-    }
+    return Hour.period(:hours, num_hours, user)
   end
 
   # Cumulative stats from now to num_days ago
   def self.days(num_days, user=nil)
-    start_threshold = num_days.to_i.days.ago.beginning_of_day
+    return Hour.period(:days, num_days, user)
+  end
+
+  # Cumulative stats from now to num_weeks ago
+  def self.weeks(num_weeks, user=nil)
+    return Hour.period(:weeks, num_weeks, user)
+  end
+
+  def self.period(unit, num, user=nil)
+    if unit == :hours
+      beginning = :beginning_of_hour
+    elsif unit == :days
+      beginning = :beginning_of_day
+    elsif unit == :weeks
+      beginning = :beginning_of_week
+    else
+      return
+    end
+
+    # E.g. 3.days.ago.beginning_of_hour for Hour.period(:weeks, 3)
+    start_threshold = num.to_i.send(unit).ago.send(beginning)
+
     if user.present?
       hours = Hour.where('time >= ? AND time <= ? AND user_id = ?', start_threshold, Time.now, user.id)
     else
@@ -81,8 +92,8 @@ class Hour < ActiveRecord::Base
     end
 
     # Create array of days - group then merge
-    day_groups = hours.inject([]) do |groups, hour|
-      group = groups.first {|g| g.time.beginning_of_day == hour.time.beginning_of_day}
+    period_groups = hours.inject([]) do |groups, hour|
+      group = groups.find {|g| g.first.time.send(beginning).to_i == hour.time.send(beginning).to_i}
       if group
         group << hour
       else
@@ -91,11 +102,11 @@ class Hour < ActiveRecord::Base
       groups
     end
 
-    days = day_groups.map { |day_hours| Hour.stats_for_hours(day_hours) }
+    periods = period_groups.map { |period_hours| Hour.stats_for_hours(period_hours) }
 
     {
-      overall: Hour.stats_for_hours(hours),
-      days: days
+      :overall => Hour.stats_for_hours(hours),
+      unit => periods
     }
   end
 
