@@ -282,11 +282,9 @@ class Route < ActiveRecord::Base
 	end
 
 	def set_name
-		p "Setting name, num points: #{self.points.count}"
 		return if points.count == 0 or name.present?
 		start_name = points.first.street_name
 		end_name = points.last.street_name
-		p "Start: #{start_name}, end: #{end_name}"
 		if start_name.present? and end_name.present?
 			self.name = "#{start_name} to #{end_name}"
 		elsif start_name.present?
@@ -297,7 +295,6 @@ class Route < ActiveRecord::Base
 			self.name = "Glasgow City Route"
 		end
 		save
-		p "Name is now: #{self.name}"
 	end
 
 	def set_maidenheads

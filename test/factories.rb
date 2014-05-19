@@ -46,8 +46,6 @@ FactoryGirl.define do
     user
     sequence(:id)
     name 'Test Name'
-    start_name 'London Road'
-    end_name 'City Centre'
     lat 1.23
     long 1.23
     start_maidenhead 'AA00bb11'

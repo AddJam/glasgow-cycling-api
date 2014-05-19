@@ -116,7 +116,7 @@ class RouteControllerTest < ActionController::TestCase
     user = User.last
     4.times do
       route = build(:route, user_id: user.id, lat: rand * 90, long: rand * 180)
-      route.points = create_list(:route_point, 2, lat: rand * 90, long: rand * 180)
+      route.points = create_list(:route_point, 2, lat: rand * 90, long: rand * 180, street_name: "test")
       route.save
     end
 
