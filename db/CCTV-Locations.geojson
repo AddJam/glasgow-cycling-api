@@ -1,0 +1,7586 @@
+{
+  "type": "FeatureCollection", 
+  "features": [
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.256034387773434, 
+          55.85613593441915
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1037.0, 
+        "ORIG_NUM": "AB31", 
+        "LOCATION": "Clyde Walkway at Dixon Street", 
+        "CAM_NUM": 31.0, 
+        "y": 664847.0, 
+        "x": 258801.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.25700471121732, 
+          55.856333860650174
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1036.0, 
+        "ORIG_NUM": "AB32", 
+        "LOCATION": "Clydewalk Between Jamaica Street at Oswald Stre", 
+        "CAM_NUM": 32.0, 
+        "y": 664871.0, 
+        "x": 258741.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.249735054313572, 
+          55.854426626946776
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1038.0, 
+        "ORIG_NUM": "AB33", 
+        "LOCATION": "Clydewalkway at Stockwell Street", 
+        "CAM_NUM": 33.0, 
+        "y": 664644.0, 
+        "x": 259189.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.245831873539076, 
+          55.85324854378601
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 832.0, 
+        "ORIG_NUM": "AB34", 
+        "LOCATION": "Clyde St at Albert Bridge", 
+        "CAM_NUM": 34.0, 
+        "y": 664505.0, 
+        "x": 259429.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.248025378199072, 
+          55.855536503996674
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 974.0, 
+        "ORIG_NUM": "AB37", 
+        "LOCATION": "Stockwell Street at Bridgegate", 
+        "CAM_NUM": 37.0, 
+        "y": 664764.0, 
+        "x": 259300.0, 
+        "CCTV_SCHEM": "City Centre"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.248187379640779, 
+          55.857511016852
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 975.0, 
+        "ORIG_NUM": "AB38", 
+        "LOCATION": "Argyle Street at Stockwell Street", 
+        "CAM_NUM": 38.0, 
+        "y": 664984.0, 
+        "x": 259297.0, 
+        "CCTV_SCHEM": "City Centre"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.24666962282445, 
+          55.85862635392965
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1002.0, 
+        "ORIG_NUM": "AB39", 
+        "LOCATION": "Wilson Street at Hutcheson Street", 
+        "CAM_NUM": 39.0, 
+        "y": 665105.0, 
+        "x": 259396.0, 
+        "CCTV_SCHEM": "City Centre"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.247400411951324, 
+          55.859934316934755
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 976.0, 
+        "ORIG_NUM": "AB41", 
+        "LOCATION": "Ingram Street at Glassford Street", 
+        "CAM_NUM": 41.0, 
+        "y": 665252.0, 
+        "x": 259355.0, 
+        "CCTV_SCHEM": "City Centre"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.251420638184622, 
+          55.85787434754433
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 977.0, 
+        "ORIG_NUM": "AB42", 
+        "LOCATION": "Argyle Street at Queen Street", 
+        "CAM_NUM": 42.0, 
+        "y": 665031.0, 
+        "x": 259096.0, 
+        "CCTV_SCHEM": "City Centre"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.254806216518523, 
+          55.85617642881715
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 978.0, 
+        "ORIG_NUM": "AB43", 
+        "LOCATION": "Clyde Street", 
+        "CAM_NUM": 43.0, 
+        "y": 664849.0, 
+        "x": 258878.0, 
+        "CCTV_SCHEM": "City Centre"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.254397719073231, 
+          55.85684906668626
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 979.0, 
+        "ORIG_NUM": "AB44", 
+        "LOCATION": "Howard Street", 
+        "CAM_NUM": 44.0, 
+        "y": 664923.0, 
+        "x": 258906.0, 
+        "CCTV_SCHEM": "City Centre"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.25373216459665, 
+          55.85832639137412
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 980.0, 
+        "ORIG_NUM": "AB45", 
+        "LOCATION": "Buchanan Street at Argyle Street", 
+        "CAM_NUM": 45.0, 
+        "y": 665086.0, 
+        "x": 258953.0, 
+        "CCTV_SCHEM": "City Centre"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.255779287180976, 
+          55.8583517912741
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 981.0, 
+        "ORIG_NUM": "AB46", 
+        "LOCATION": "Jamaica Street at Argyle Street", 
+        "CAM_NUM": 46.0, 
+        "y": 665093.0, 
+        "x": 258825.0, 
+        "CCTV_SCHEM": "City Centre"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.257962985731708, 
+          55.858527455559575
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 982.0, 
+        "ORIG_NUM": "AB47", 
+        "LOCATION": "Oswald Street at Argyle Street", 
+        "CAM_NUM": 47.0, 
+        "y": 665117.0, 
+        "x": 258689.0, 
+        "CCTV_SCHEM": "City Centre"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.259005236318276, 
+          55.86133971034603
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 998.0, 
+        "ORIG_NUM": "AB50", 
+        "LOCATION": "Bothwell Street at Wellington Street", 
+        "CAM_NUM": 50.0, 
+        "y": 665432.0, 
+        "x": 258634.0, 
+        "CCTV_SCHEM": "City Centre"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.257310404392157, 
+          55.860777575923144
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 984.0, 
+        "ORIG_NUM": "AB51", 
+        "LOCATION": "Gordon Street at Hope Street", 
+        "CAM_NUM": 51.0, 
+        "y": 665366.0, 
+        "x": 258738.0, 
+        "CCTV_SCHEM": "City Centre"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.255580905878751, 
+          55.86071941170668
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 985.0, 
+        "ORIG_NUM": "AB52", 
+        "LOCATION": "Gordon Street at Renfield Street", 
+        "CAM_NUM": 52.0, 
+        "y": 665356.0, 
+        "x": 258846.0, 
+        "CCTV_SCHEM": "City Centre"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.25413515260865, 
+          55.86059310497746
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 986.0, 
+        "ORIG_NUM": "AB53", 
+        "LOCATION": "Gordon Street at West Nile Street", 
+        "CAM_NUM": 53.0, 
+        "y": 665339.0, 
+        "x": 258936.0, 
+        "CCTV_SCHEM": "City Centre"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.250548192266815, 
+          55.85992171613955
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1144.0, 
+        "ORIG_NUM": "AB54", 
+        "LOCATION": "Queen Street at Royal Exchange Square", 
+        "CAM_NUM": 54.0, 
+        "y": 665257.0, 
+        "x": 259158.0, 
+        "CCTV_SCHEM": "City Centre"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.251637237458116, 
+          55.86051300821614
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1088.0, 
+        "ORIG_NUM": "AB55", 
+        "LOCATION": "Royal Exchange Square", 
+        "CAM_NUM": 55.0, 
+        "y": 665325.0, 
+        "x": 259092.0, 
+        "CCTV_SCHEM": "City Centre"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.25241531486285, 
+          55.86125380092285
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 987.0, 
+        "ORIG_NUM": "AB56", 
+        "LOCATION": "St. Vincent Place at Buchanan Street", 
+        "CAM_NUM": 56.0, 
+        "y": 665409.0, 
+        "x": 259046.0, 
+        "CCTV_SCHEM": "City Centre"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.248510002104884, 
+          55.86171174429938
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 988.0, 
+        "ORIG_NUM": "AB57", 
+        "LOCATION": "George Square at North Hanover Street", 
+        "CAM_NUM": 57.0, 
+        "y": 665452.0, 
+        "x": 259292.0, 
+        "CCTV_SCHEM": "City Centre"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.251934887491287, 
+          55.86344680533202
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1220.0, 
+        "ORIG_NUM": "AB58", 
+        "LOCATION": "Buchanan Street at Bath Street", 
+        "CAM_NUM": 58.0, 
+        "y": 665652.0, 
+        "x": 259084.0, 
+        "CCTV_SCHEM": "City Centre"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.251983307657241, 
+          55.86345490756477
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1065.0, 
+        "ORIG_NUM": "AB59", 
+        "LOCATION": "Buchanan Street at Bath Street (Static)", 
+        "CAM_NUM": 59.0, 
+        "y": 665653.0, 
+        "x": 259081.0, 
+        "CCTV_SCHEM": "City Centre"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.256305624091278, 
+          55.86412176256928
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 991.0, 
+        "ORIG_NUM": "AB60", 
+        "LOCATION": "Bath Street at Hope Street", 
+        "CAM_NUM": 60.0, 
+        "y": 665736.0, 
+        "x": 258813.0, 
+        "CCTV_SCHEM": "City Centre"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.25444495799316, 
+          55.86373341112612
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 990.0, 
+        "ORIG_NUM": "AB61", 
+        "LOCATION": "Renfield Street at Bath Street", 
+        "CAM_NUM": 61.0, 
+        "y": 665689.0, 
+        "x": 258928.0, 
+        "CCTV_SCHEM": "City Centre"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.256846046328651, 
+          55.862691663269764
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 989.0, 
+        "ORIG_NUM": "AB62", 
+        "LOCATION": "West George Street at Hope Street", 
+        "CAM_NUM": 62.0, 
+        "y": 665578.0, 
+        "x": 258774.0, 
+        "CCTV_SCHEM": "City Centre"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.252726547928066, 
+          55.86442104920436
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 992.0, 
+        "ORIG_NUM": "AB63", 
+        "LOCATION": "Sauchiehall Street at West Nile Street", 
+        "CAM_NUM": 63.0, 
+        "y": 665762.0, 
+        "x": 259038.0, 
+        "CCTV_SCHEM": "City Centre"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.256042340906206, 
+          55.86481870699281
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 993.0, 
+        "ORIG_NUM": "AB64", 
+        "LOCATION": "Sauchiehall Street at Hope Street", 
+        "CAM_NUM": 64.0, 
+        "y": 665813.0, 
+        "x": 258832.0, 
+        "CCTV_SCHEM": "City Centre"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.259061921608127, 
+          55.865068910235166
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 994.0, 
+        "ORIG_NUM": "AB65", 
+        "LOCATION": "Cambridge Street at Sauchiehall Street", 
+        "CAM_NUM": 65.0, 
+        "y": 665847.0, 
+        "x": 258644.0, 
+        "CCTV_SCHEM": "City Centre"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.260878241228817, 
+          55.86386703719288
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1000.0, 
+        "ORIG_NUM": "AB68", 
+        "LOCATION": "West Regent Street at Blythswood Square", 
+        "CAM_NUM": 68.0, 
+        "y": 665717.0, 
+        "x": 258526.0, 
+        "CCTV_SCHEM": "City Centre"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.260238867802986, 
+          55.86221590600816
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 999.0, 
+        "ORIG_NUM": "AB69", 
+        "LOCATION": "St. Vincent Street at West Campbell Street", 
+        "CAM_NUM": 69.0, 
+        "y": 665532.0, 
+        "x": 258560.0, 
+        "CCTV_SCHEM": "City Centre"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.251454127778893, 
+          55.86508252501242
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1005.0, 
+        "ORIG_NUM": "AB71", 
+        "LOCATION": "Killermont Street  at Royal Concert Hall", 
+        "CAM_NUM": 71.0, 
+        "y": 665833.0, 
+        "x": 259120.0, 
+        "CCTV_SCHEM": "City Centre"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.245702424559143, 
+          55.8629135528855
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1001.0, 
+        "ORIG_NUM": "AB72", 
+        "LOCATION": "Cathedral Street at John Street", 
+        "CAM_NUM": 72.0, 
+        "y": 665580.0, 
+        "x": 259472.0, 
+        "CCTV_SCHEM": "City Centre"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.239541335637314, 
+          55.86306181208707
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 997.0, 
+        "ORIG_NUM": "AB73", 
+        "LOCATION": "Cathedral Street at Taylor Street", 
+        "CAM_NUM": 73.0, 
+        "y": 665584.0, 
+        "x": 259858.0, 
+        "CCTV_SCHEM": "City Centre"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.242692224892446, 
+          55.86587174511981
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1067.0, 
+        "ORIG_NUM": "AB74", 
+        "LOCATION": "Kennedy Path", 
+        "CAM_NUM": 74.0, 
+        "y": 665903.0, 
+        "x": 259671.0, 
+        "CCTV_SCHEM": "City Centre"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.242062304977437, 
+          55.86603602999763
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1068.0, 
+        "ORIG_NUM": "AB76", 
+        "LOCATION": "Kennedy Path Rear", 
+        "CAM_NUM": 76.0, 
+        "y": 665920.0, 
+        "x": 259711.0, 
+        "CCTV_SCHEM": "City Centre"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.239092306117986, 
+          55.86636875878987
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1252.0, 
+        "ORIG_NUM": "AB77", 
+        "LOCATION": "Glebe Court", 
+        "CAM_NUM": 77.0, 
+        "y": 665951.0, 
+        "x": 259898.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.245078600190738, 
+          55.865675418691744
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1253.0, 
+        "ORIG_NUM": "AB78", 
+        "LOCATION": "ST Mungo Avenue", 
+        "CAM_NUM": 78.0, 
+        "y": 665886.0, 
+        "x": 259521.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.237002501044382, 
+          55.86227207156115
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 996.0, 
+        "ORIG_NUM": "AB79", 
+        "LOCATION": "Collins Street at Macleod Street", 
+        "CAM_NUM": 79.0, 
+        "y": 665491.0, 
+        "x": 260014.0, 
+        "CCTV_SCHEM": "City Centre"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.236137943662082, 
+          55.8641933461072
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1003.0, 
+        "ORIG_NUM": "AB80", 
+        "LOCATION": "Glebe Street", 
+        "CAM_NUM": 80.0, 
+        "y": 665703.0, 
+        "x": 260075.0, 
+        "CCTV_SCHEM": "City Centre"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.258306827414505, 
+          55.85674141382327
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 895.0, 
+        "ORIG_NUM": "AB89", 
+        "LOCATION": "Broomielaw at Oswald Street", 
+        "CAM_NUM": 89.0, 
+        "y": 664919.0, 
+        "x": 258661.0, 
+        "CCTV_SCHEM": "City Centre"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.257433624144605, 
+          55.860973062681325
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1012.0, 
+        "ORIG_NUM": "AB91", 
+        "LOCATION": "Hope Street at Bothwell Street", 
+        "CAM_NUM": 91.0, 
+        "y": 665388.0, 
+        "x": 258731.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.257524701407504, 
+          55.8600635497495
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1013.0, 
+        "ORIG_NUM": "AB92", 
+        "LOCATION": "Hope Street, outside Central Hotel", 
+        "CAM_NUM": 92.0, 
+        "y": 665287.0, 
+        "x": 258722.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.255478712830073, 
+          55.85950783406919
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1226.0, 
+        "ORIG_NUM": "AB93", 
+        "LOCATION": "Union Street, east side", 
+        "CAM_NUM": 93.0, 
+        "y": 665221.0, 
+        "x": 258848.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.262568699661535, 
+          55.85995291095089
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 983.0, 
+        "ORIG_NUM": "AC48", 
+        "LOCATION": "Cadogan Street at Blythswood Street", 
+        "CAM_NUM": 48.0, 
+        "y": 665285.0, 
+        "x": 258406.0, 
+        "CCTV_SCHEM": "City Centre"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.263275668025004, 
+          55.865512803054926
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 995.0, 
+        "ORIG_NUM": "AC66", 
+        "LOCATION": "Pitt Street at Sauchiehall Street", 
+        "CAM_NUM": 66.0, 
+        "y": 665905.0, 
+        "x": 258382.0, 
+        "CCTV_SCHEM": "City Centre"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.26697854100478, 
+          55.86596596660903
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1004.0, 
+        "ORIG_NUM": "AC67", 
+        "LOCATION": "Sauchiehall Street at Elmbank Street", 
+        "CAM_NUM": 67.0, 
+        "y": 665963.0, 
+        "x": 258152.0, 
+        "CCTV_SCHEM": "City Centre"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.281619241092231, 
+          55.86730428685547
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 919.0, 
+        "ORIG_NUM": "AC79", 
+        "LOCATION": "Nr Football Pitch & Royal Terr, Kelvingrove Par", 
+        "CAM_NUM": 79.0, 
+        "y": 666142.0, 
+        "x": 257241.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.279776231777682, 
+          55.86776990196225
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 920.0, 
+        "ORIG_NUM": "AC80", 
+        "LOCATION": "nr Park Gardens, Kelvingrove Park", 
+        "CAM_NUM": 80.0, 
+        "y": 666190.0, 
+        "x": 257358.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.286365694672969, 
+          55.86782739944481
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 921.0, 
+        "ORIG_NUM": "AC81", 
+        "LOCATION": "Kelvin Way at Park entrance nr bridge", 
+        "CAM_NUM": 81.0, 
+        "y": 666210.0, 
+        "x": 256946.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.275649743864848, 
+          55.85734764250212
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1066.0, 
+        "ORIG_NUM": "AC81", 
+        "LOCATION": "Lancefield Quay at Lancefield Street", 
+        "CAM_NUM": 81.0, 
+        "y": 665022.0, 
+        "x": 257578.0, 
+        "CCTV_SCHEM": "City Centre"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.263694988201281, 
+          55.85925805093537
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 894.0, 
+        "ORIG_NUM": "AC82", 
+        "LOCATION": "Argyle St. Opposite Brown St.", 
+        "CAM_NUM": 82.0, 
+        "y": 665210.0, 
+        "x": 258333.0, 
+        "CCTV_SCHEM": "City Centre"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.283862587557229, 
+          55.86848511234539
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 831.0, 
+        "ORIG_NUM": "AC82", 
+        "LOCATION": "nr playground, pond , Kelvingrove Park", 
+        "CAM_NUM": 82.0, 
+        "y": 666278.0, 
+        "x": 257105.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.269586342859618, 
+          55.86052475508861
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 893.0, 
+        "ORIG_NUM": "AC83", 
+        "LOCATION": "Argyle St. At Motorway", 
+        "CAM_NUM": 83.0, 
+        "y": 665363.0, 
+        "x": 257969.0, 
+        "CCTV_SCHEM": "City Centre"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.270834199476075, 
+          55.859450066201546
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 892.0, 
+        "ORIG_NUM": "AC84", 
+        "LOCATION": "Warroch St. At Pedestrian Overpass", 
+        "CAM_NUM": 84.0, 
+        "y": 665246.0, 
+        "x": 257887.0, 
+        "CCTV_SCHEM": "City Centre"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.273192652767039, 
+          55.86015256098294
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 890.0, 
+        "ORIG_NUM": "AC85", 
+        "LOCATION": "Hydepark St. (North End)", 
+        "CAM_NUM": 85.0, 
+        "y": 665329.0, 
+        "x": 257742.0, 
+        "CCTV_SCHEM": "City Centre"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.270643520227555, 
+          55.85673005057928
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 891.0, 
+        "ORIG_NUM": "AC86", 
+        "LOCATION": "Anderston Quay Opposite Entrance To Warroch St.", 
+        "CAM_NUM": 86.0, 
+        "y": 664943.0, 
+        "x": 257889.0, 
+        "CCTV_SCHEM": "City Centre"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.267985287431936, 
+          55.86623504618576
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1011.0, 
+        "ORIG_NUM": "AC94", 
+        "LOCATION": "Sauchiehall Street at 'Garage'", 
+        "CAM_NUM": 94.0, 
+        "y": 665995.0, 
+        "x": 258090.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.368009872641535, 
+          55.89940668021229
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 850.0, 
+        "ORIG_NUM": "AD01", 
+        "LOCATION": "Top Of Kelso Street At Towing Path", 
+        "CAM_NUM": 1.0, 
+        "y": 669895.0, 
+        "x": 251959.0, 
+        "CCTV_SCHEM": "Dumbarton Road Corrido"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.37314945879682, 
+          55.88637286297015
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 851.0, 
+        "ORIG_NUM": "AD02", 
+        "LOCATION": "Junction Of Lady Anne Street / Dumbarton Road", 
+        "CAM_NUM": 2.0, 
+        "y": 668456.0, 
+        "x": 251588.0, 
+        "CCTV_SCHEM": "Dumbarton Road Corrido"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.358940032484509, 
+          55.88572920353717
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 852.0, 
+        "ORIG_NUM": "AD03", 
+        "LOCATION": "Junction Of Anniesland Road / Erika Avenue", 
+        "CAM_NUM": 3.0, 
+        "y": 668354.0, 
+        "x": 252474.0, 
+        "CCTV_SCHEM": "Dumbarton Road Corrido"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.364451864361198, 
+          55.88352904681446
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1141.0, 
+        "ORIG_NUM": "AD04", 
+        "LOCATION": "Plean Street Multi", 
+        "CAM_NUM": 4.0, 
+        "y": 668121.0, 
+        "x": 252121.0, 
+        "CCTV_SCHEM": "Dumbarton Road Corrido"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.350477534025293, 
+          55.879347335976746
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1142.0, 
+        "ORIG_NUM": "AD05", 
+        "LOCATION": "Balmoral Street", 
+        "CAM_NUM": 5.0, 
+        "y": 667626.0, 
+        "x": 252979.0, 
+        "CCTV_SCHEM": "Dumbarton Road Corrido"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.330861741181637, 
+          55.8730238897117
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1143.0, 
+        "ORIG_NUM": "AD06", 
+        "LOCATION": "Dumbarton Road at Smith Street", 
+        "CAM_NUM": 6.0, 
+        "y": 666881.0, 
+        "x": 254182.0, 
+        "CCTV_SCHEM": "Dumbarton Road Corrido"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.357504800864406, 
+          55.890808373714506
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1218.0, 
+        "ORIG_NUM": "AD07", 
+        "LOCATION": "Alderman Road Shops Front", 
+        "CAM_NUM": 7.0, 
+        "y": 668916.0, 
+        "x": 252583.0, 
+        "CCTV_SCHEM": "Dumbarton Road Corrido"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.357412391105162, 
+          55.89060340307203
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1219.0, 
+        "ORIG_NUM": "AD08", 
+        "LOCATION": "Alderman Road Shops Rear", 
+        "CAM_NUM": 8.0, 
+        "y": 668893.0, 
+        "x": 252588.0, 
+        "CCTV_SCHEM": "Dumbarton Road Corrido"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.315198787659698, 
+          55.870694915657836
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1247.0, 
+        "ORIG_NUM": "AD09", 
+        "LOCATION": "Dumbarton road at Meadow Road", 
+        "CAM_NUM": 9.0, 
+        "y": 666589.0, 
+        "x": 255153.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.313691443863901, 
+          55.86873677779335
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1248.0, 
+        "ORIG_NUM": "AD10", 
+        "LOCATION": "Castlebank Street", 
+        "CAM_NUM": 10.0, 
+        "y": 666368.0, 
+        "x": 255240.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.315716609203342, 
+          55.868114415350334
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1249.0, 
+        "ORIG_NUM": "AD11", 
+        "LOCATION": "Meadowside Quay", 
+        "CAM_NUM": 11.0, 
+        "y": 666303.0, 
+        "x": 255111.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.337176092065594, 
+          55.87673329777894
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 916.0, 
+        "ORIG_NUM": "AD75", 
+        "LOCATION": "Fossil House (SW corner) Victoria Park", 
+        "CAM_NUM": 75.0, 
+        "y": 667307.0, 
+        "x": 253801.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.336639001580377, 
+          55.876842373684276
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 915.0, 
+        "ORIG_NUM": "AD76", 
+        "LOCATION": "Nr NE Corner Fossil House, Victoria Park", 
+        "CAM_NUM": 76.0, 
+        "y": 667318.0, 
+        "x": 253835.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.332665146506665, 
+          55.87590204912842
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 917.0, 
+        "ORIG_NUM": "AD77", 
+        "LOCATION": "Nr War Memorial, Victoria Park", 
+        "CAM_NUM": 77.0, 
+        "y": 667205.0, 
+        "x": 254080.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.329227331122703, 
+          55.874564938854824
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 918.0, 
+        "ORIG_NUM": "AD78", 
+        "LOCATION": "Nr Large Pond & Expressway, Victoria Park", 
+        "CAM_NUM": 78.0, 
+        "y": 667049.0, 
+        "x": 254290.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.353246098872633, 
+          55.91213917725433
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 816.0, 
+        "ORIG_NUM": "CA01", 
+        "LOCATION": "Rozelle Ave. at Jedworth Ave.", 
+        "CAM_NUM": 1.0, 
+        "y": 671280.0, 
+        "x": 252930.0, 
+        "CCTV_SCHEM": "Drumchapel/Maryhill"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.352379841060984, 
+          55.913162466063675
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 817.0, 
+        "ORIG_NUM": "CA02", 
+        "LOCATION": "Jedworth Ave. at Jedworth Rd.", 
+        "CAM_NUM": 2.0, 
+        "y": 671392.0, 
+        "x": 252988.0, 
+        "CCTV_SCHEM": "Drumchapel/Maryhill"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.365309569287595, 
+          55.91102709607635
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1172.0, 
+        "ORIG_NUM": "CA03", 
+        "LOCATION": "Linkwood Multi No 39", 
+        "CAM_NUM": 3.0, 
+        "y": 671182.0, 
+        "x": 252172.0, 
+        "CCTV_SCHEM": "Drumchapel/Maryhill"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.363492401571693, 
+          55.91798330680793
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 819.0, 
+        "ORIG_NUM": "CA04", 
+        "LOCATION": "Peel Glen Rd. at Ladyloan Avenue", 
+        "CAM_NUM": 4.0, 
+        "y": 671952.0, 
+        "x": 252312.0, 
+        "CCTV_SCHEM": "Drumchapel/Maryhill"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.370570746984992, 
+          55.911222526147135
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 820.0, 
+        "ORIG_NUM": "CA05", 
+        "LOCATION": "Kinfauns Dr. at Hecla Ave.", 
+        "CAM_NUM": 5.0, 
+        "y": 671215.0, 
+        "x": 251844.0, 
+        "CCTV_SCHEM": "Drumchapel/Maryhill"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.370191318056962, 
+          55.91025005980528
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 823.0, 
+        "ORIG_NUM": "CA06", 
+        "LOCATION": "Kinfauns Drive at Dunkenny Square", 
+        "CAM_NUM": 6.0, 
+        "y": 671106.0, 
+        "x": 251864.0, 
+        "CCTV_SCHEM": "Drumchapel/Maryhill"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.3721586136233, 
+          55.90996947093316
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 822.0, 
+        "ORIG_NUM": "CA07", 
+        "LOCATION": "Dunkenny Sq. (Drumchapel Shopping Centre)", 
+        "CAM_NUM": 7.0, 
+        "y": 671079.0, 
+        "x": 251740.0, 
+        "CCTV_SCHEM": "Drumchapel/Maryhill"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.372803799088406, 
+          55.91083793355132
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 821.0, 
+        "ORIG_NUM": "CA08", 
+        "LOCATION": "Hecla Avenue at Hecla Place", 
+        "CAM_NUM": 8.0, 
+        "y": 671177.0, 
+        "x": 251703.0, 
+        "CCTV_SCHEM": "Drumchapel/Maryhill"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.382263768177127, 
+          55.91660579303248
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1162.0, 
+        "ORIG_NUM": "CA09", 
+        "LOCATION": "Water Tower at Kells Place", 
+        "CAM_NUM": 9.0, 
+        "y": 671839.0, 
+        "x": 251134.0, 
+        "CCTV_SCHEM": "Drumchapel/Maryhill"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.378038822172354, 
+          55.91609421514813
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1163.0, 
+        "ORIG_NUM": "CA10", 
+        "LOCATION": "Achamore Road at Lochgoin Avenue", 
+        "CAM_NUM": 10.0, 
+        "y": 671773.0, 
+        "x": 251396.0, 
+        "CCTV_SCHEM": "Drumchapel/Maryhill"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.36472165100253, 
+          55.91609005040431
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 818.0, 
+        "ORIG_NUM": "CA106", 
+        "LOCATION": "Peel Glen Rd. at Kinfauns Dr.", 
+        "CAM_NUM": 106.0, 
+        "y": 671744.0, 
+        "x": 252228.0, 
+        "CCTV_SCHEM": "Drumchapel/Maryhill"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.362379697530622, 
+          55.906535062597996
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1042.0, 
+        "ORIG_NUM": "CA107", 
+        "LOCATION": "Junction of Drumchapel Road and Garscadden Road", 
+        "CAM_NUM": 107.0, 
+        "y": 670676.0, 
+        "x": 252338.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.383424912381881, 
+          55.909446240680886
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1164.0, 
+        "ORIG_NUM": "CA11", 
+        "LOCATION": "Abbotshall Avenue at Drumry Road East", 
+        "CAM_NUM": 11.0, 
+        "y": 671045.0, 
+        "x": 251034.0, 
+        "CCTV_SCHEM": "Drumchapel/Maryhill"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.280627362415848, 
+          55.89918711057792
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1030.0, 
+        "ORIG_NUM": "CA116", 
+        "LOCATION": "Tresta Road at St Kentigerns Cemetery", 
+        "CAM_NUM": 116.0, 
+        "y": 669687.0, 
+        "x": 257420.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.285395278760619, 
+          55.89348083342648
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 913.0, 
+        "ORIG_NUM": "CA117", 
+        "LOCATION": "Stockfield Junction at Lochburn Pass", 
+        "CAM_NUM": 117.0, 
+        "y": 669062.0, 
+        "x": 257101.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.374400626035429, 
+          55.908685800994
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1165.0, 
+        "ORIG_NUM": "CA12", 
+        "LOCATION": "Drumry Road East at Dunkenny Road", 
+        "CAM_NUM": 12.0, 
+        "y": 670941.0, 
+        "x": 251595.0, 
+        "CCTV_SCHEM": "Drumchapel/Maryhill"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.320169276367097, 
+          55.89585939162498
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 914.0, 
+        "ORIG_NUM": "CA128", 
+        "LOCATION": "Bearsden Rd at bridge nr Temple Road", 
+        "CAM_NUM": 128.0, 
+        "y": 669399.0, 
+        "x": 254936.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.385254261809528, 
+          55.90874563934365
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1227.0, 
+        "ORIG_NUM": "CA13", 
+        "LOCATION": "Drumry Road East at Great Western Road", 
+        "CAM_NUM": 13.0, 
+        "y": 670971.0, 
+        "x": 250917.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.367617328076751, 
+          55.911342283443055
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1171.0, 
+        "ORIG_NUM": "CA14", 
+        "LOCATION": "Linkwood Mutli No 15", 
+        "CAM_NUM": 14.0, 
+        "y": 671222.0, 
+        "x": 252029.0, 
+        "CCTV_SCHEM": "Drumchapel/Maryhill"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.358273310555281, 
+          55.90874412344548
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1174.0, 
+        "ORIG_NUM": "CA16", 
+        "LOCATION": "Glenkirk Drive at Belsyde Avenue", 
+        "CAM_NUM": 16.0, 
+        "y": 670913.0, 
+        "x": 252603.0, 
+        "CCTV_SCHEM": "Drumchapel/Maryhill"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.359462278750348, 
+          55.91119323606874
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1173.0, 
+        "ORIG_NUM": "CA17", 
+        "LOCATION": "Linkwood Drive at Southdean Road", 
+        "CAM_NUM": 17.0, 
+        "y": 671188.0, 
+        "x": 252538.0, 
+        "CCTV_SCHEM": "Drumchapel/Maryhill"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.355693556961007, 
+          55.91660469479712
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1241.0, 
+        "ORIG_NUM": "CA19", 
+        "LOCATION": "Summerhill Road", 
+        "CAM_NUM": 19.0, 
+        "y": 671782.0, 
+        "x": 252794.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.293765857640685, 
+          55.89735200200726
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 848.0, 
+        "ORIG_NUM": "CA21", 
+        "LOCATION": "Junction Of Kilmun Street/Shiskine Drive", 
+        "CAM_NUM": 21.0, 
+        "y": 669510.0, 
+        "x": 256592.0, 
+        "CCTV_SCHEM": "Drumchapel/Maryhill"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.29480316379944, 
+          55.892703550837574
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1031.0, 
+        "ORIG_NUM": "CA31", 
+        "LOCATION": "Lock 21 Maryhill Road", 
+        "CAM_NUM": 31.0, 
+        "y": 668995.0, 
+        "x": 256510.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.287236186934313, 
+          55.88969840691469
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 748.0, 
+        "ORIG_NUM": "CA36", 
+        "LOCATION": "Outside Maryhill Police Station On Maryhill Roa", 
+        "CAM_NUM": 36.0, 
+        "y": 668645.0, 
+        "x": 256972.0, 
+        "CCTV_SCHEM": "Drumchapel/Maryhill"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.283499191256227, 
+          55.88680157519902
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 749.0, 
+        "ORIG_NUM": "CA37", 
+        "LOCATION": "Junction Of Maryhill Road And Shakespeare Stree", 
+        "CAM_NUM": 37.0, 
+        "y": 668315.0, 
+        "x": 257195.0, 
+        "CCTV_SCHEM": "Drumchapel/Maryhill"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.269702032591661, 
+          55.875111038493436
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 751.0, 
+        "ORIG_NUM": "CA39", 
+        "LOCATION": "Junction Of Maryhill Road And North Woodside Ro", 
+        "CAM_NUM": 39.0, 
+        "y": 666986.0, 
+        "x": 258015.0, 
+        "CCTV_SCHEM": "Drumchapel/Maryhill"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.293219417308575, 
+          55.890261211112474
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1033.0, 
+        "ORIG_NUM": "CA40", 
+        "LOCATION": "Gairbraid Avenue at Guthrie Street", 
+        "CAM_NUM": 40.0, 
+        "y": 668720.0, 
+        "x": 256600.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.248809833938251, 
+          55.89537714568429
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1239.0, 
+        "ORIG_NUM": "CB112", 
+        "LOCATION": "Ronaldsay Street", 
+        "CAM_NUM": 112.0, 
+        "y": 669198.0, 
+        "x": 259395.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.249319382365472, 
+          55.896994747934585
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1240.0, 
+        "ORIG_NUM": "CB113", 
+        "LOCATION": "Liddesdale Road", 
+        "CAM_NUM": 113.0, 
+        "y": 669379.0, 
+        "x": 259369.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.241886445539327, 
+          55.88461841789226
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 674.0, 
+        "ORIG_NUM": "CB114", 
+        "LOCATION": "Junction Of Finlas Street And Carlisle Street", 
+        "CAM_NUM": 114.0, 
+        "y": 667987.0, 
+        "x": 259789.0, 
+        "CCTV_SCHEM": "Drumchapel/Maryhill"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.241056120061854, 
+          55.877982074225315
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 836.0, 
+        "ORIG_NUM": "CB115", 
+        "LOCATION": "Junction Of Entrance To M8 Food Park And Keppoc", 
+        "CAM_NUM": 115.0, 
+        "y": 667247.0, 
+        "x": 259817.0, 
+        "CCTV_SCHEM": "Drumchapel/Maryhill"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.246837273727994, 
+          55.89335481032569
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1251.0, 
+        "ORIG_NUM": "CB18", 
+        "LOCATION": "On Westray Street at Westray Circus", 
+        "CAM_NUM": 18.0, 
+        "y": 668969.0, 
+        "x": 259511.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.263852433099725, 
+          55.888881346918815
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1032.0, 
+        "ORIG_NUM": "CB22", 
+        "LOCATION": "Bilsland Drive at Emerson Street", 
+        "CAM_NUM": 22.0, 
+        "y": 668506.0, 
+        "x": 258431.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.256009154017765, 
+          55.88657150845015
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 840.0, 
+        "ORIG_NUM": "CB23", 
+        "LOCATION": "Junction Of Balmore Road And Bilsland Drive", 
+        "CAM_NUM": 23.0, 
+        "y": 668233.0, 
+        "x": 258913.0, 
+        "CCTV_SCHEM": "Drumchapel/Maryhill"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.255378094872052, 
+          55.88534266242292
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 839.0, 
+        "ORIG_NUM": "CB24", 
+        "LOCATION": "Junction Of Balmore Road And Stronend Street", 
+        "CAM_NUM": 24.0, 
+        "y": 668095.0, 
+        "x": 258948.0, 
+        "CCTV_SCHEM": "Drumchapel/Maryhill"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.252960811203415, 
+          55.88392181413518
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 838.0, 
+        "ORIG_NUM": "CB26", 
+        "LOCATION": "Saracen Cross", 
+        "CAM_NUM": 26.0, 
+        "y": 667932.0, 
+        "x": 259094.0, 
+        "CCTV_SCHEM": "Drumchapel/Maryhill"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.252915079680609, 
+          55.88230472255283
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 837.0, 
+        "ORIG_NUM": "CB27", 
+        "LOCATION": "Junction Of Saracen Street And Allander Street", 
+        "CAM_NUM": 27.0, 
+        "y": 667752.0, 
+        "x": 259091.0, 
+        "CCTV_SCHEM": "Drumchapel/Maryhill"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.255796579488835, 
+          55.883735039833034
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 672.0, 
+        "ORIG_NUM": "CB28", 
+        "LOCATION": "Junction Of Bardowie Street And Carbeth Street", 
+        "CAM_NUM": 28.0, 
+        "y": 667917.0, 
+        "x": 258916.0, 
+        "CCTV_SCHEM": "Drumchapel/Maryhill"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.248161484327629, 
+          55.88389273088733
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 673.0, 
+        "ORIG_NUM": "CB29", 
+        "LOCATION": "Junction Of Bardowie Street Near Ashfield Stree", 
+        "CAM_NUM": 29.0, 
+        "y": 667919.0, 
+        "x": 259394.0, 
+        "CCTV_SCHEM": "Drumchapel/Maryhill"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.239422456730701, 
+          55.87904548877699
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 675.0, 
+        "ORIG_NUM": "CB30", 
+        "LOCATION": "Junction Of Endrick Street And Keppochhill Road", 
+        "CAM_NUM": 30.0, 
+        "y": 667362.0, 
+        "x": 259923.0, 
+        "CCTV_SCHEM": "Drumchapel/Maryhill"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.245495027580175, 
+          55.89891619665043
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1258.0, 
+        "ORIG_NUM": "CB33", 
+        "LOCATION": "Egilsay Street at Ronay Street", 
+        "CAM_NUM": 33.0, 
+        "y": 669585.0, 
+        "x": 259615.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.250245077883217, 
+          55.900824892473274
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1034.0, 
+        "ORIG_NUM": "CB34", 
+        "LOCATION": "Scaraway Street at Skerry Terrace", 
+        "CAM_NUM": 34.0, 
+        "y": 669807.0, 
+        "x": 259325.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.242806590507474, 
+          55.90084379646235
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1035.0, 
+        "ORIG_NUM": "CB35", 
+        "LOCATION": "Scaraway Street at Valley Street", 
+        "CAM_NUM": 35.0, 
+        "y": 669794.0, 
+        "x": 259790.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.270880366026284, 
+          55.88023074364947
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 750.0, 
+        "ORIG_NUM": "CB38", 
+        "LOCATION": "Maryhill Road At Queens Cross", 
+        "CAM_NUM": 38.0, 
+        "y": 667558.0, 
+        "x": 257960.0, 
+        "CCTV_SCHEM": "Drumchapel/Maryhill"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.272427318351622, 
+          55.888094122347546
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 752.0, 
+        "ORIG_NUM": "CB41", 
+        "LOCATION": "Junction Of Ruchill Street And Mayfield Street", 
+        "CAM_NUM": 41.0, 
+        "y": 668436.0, 
+        "x": 257892.0, 
+        "CCTV_SCHEM": "Drumchapel/Maryhill"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.272281364596253, 
+          55.88751256259813
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 753.0, 
+        "ORIG_NUM": "CB42", 
+        "LOCATION": "Junction Of Bilsland Drive And Mayfield Street", 
+        "CAM_NUM": 42.0, 
+        "y": 668371.0, 
+        "x": 257899.0, 
+        "CCTV_SCHEM": "Drumchapel/Maryhill"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.273690255223796, 
+          55.88972468702434
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 849.0, 
+        "ORIG_NUM": "CB43", 
+        "LOCATION": "Opposite No 3 Brassey Street", 
+        "CAM_NUM": 43.0, 
+        "y": 668620.0, 
+        "x": 257819.0, 
+        "CCTV_SCHEM": "Drumchapel/Maryhill"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.23473451827991, 
+          55.85172485409334
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 835.0, 
+        "ORIG_NUM": "EA104", 
+        "LOCATION": "Glasgow Green at Doulton Fountain", 
+        "CAM_NUM": 104.0, 
+        "y": 664313.0, 
+        "x": 260118.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.234951286893584, 
+          55.851604065514586
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1014.0, 
+        "ORIG_NUM": "EA105", 
+        "LOCATION": "Glasgow Green at Doulton Fountain", 
+        "CAM_NUM": 105.0, 
+        "y": 664300.0, 
+        "x": 260104.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.24339813233268, 
+          55.85260982521113
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1019.0, 
+        "ORIG_NUM": "EA129", 
+        "LOCATION": "Glasgow Green at West Boat House", 
+        "CAM_NUM": 129.0, 
+        "y": 664429.0, 
+        "x": 259579.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.243456014960508, 
+          55.85333683881427
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1020.0, 
+        "ORIG_NUM": "EA130", 
+        "LOCATION": "Glasgow Green at Greendyke Street", 
+        "CAM_NUM": 130.0, 
+        "y": 664510.0, 
+        "x": 259578.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.239596579834101, 
+          55.853191440232855
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1021.0, 
+        "ORIG_NUM": "EA131", 
+        "LOCATION": "Glasgow Green at Charlotte Street", 
+        "CAM_NUM": 131.0, 
+        "y": 664486.0, 
+        "x": 259819.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.237252820961801, 
+          55.85078022897167
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1010.0, 
+        "ORIG_NUM": "EA132", 
+        "LOCATION": "Glasgow Green SW of People's Palace", 
+        "CAM_NUM": 132.0, 
+        "y": 664213.0, 
+        "x": 259957.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.236807790082655, 
+          55.849431059078604
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1022.0, 
+        "ORIG_NUM": "EA133", 
+        "LOCATION": "Glasgow Green at Humane Society House", 
+        "CAM_NUM": 133.0, 
+        "y": 664062.0, 
+        "x": 259980.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.2346956793141, 
+          55.84826498993072
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1018.0, 
+        "ORIG_NUM": "EA134", 
+        "LOCATION": "Glasgow Green at East Boat House", 
+        "CAM_NUM": 134.0, 
+        "y": 663928.0, 
+        "x": 260108.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.232652708316206, 
+          55.849416661124316
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1017.0, 
+        "ORIG_NUM": "EA135", 
+        "LOCATION": "Glasgow Green at Templeton Street", 
+        "CAM_NUM": 135.0, 
+        "y": 664052.0, 
+        "x": 260240.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.23516756002146, 
+          55.851752940297956
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1015.0, 
+        "ORIG_NUM": "EA136", 
+        "LOCATION": "Glasgow Green at Doulton Fountain", 
+        "CAM_NUM": 136.0, 
+        "y": 664317.0, 
+        "x": 260091.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.234965722414653, 
+          55.851855480995944
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1016.0, 
+        "ORIG_NUM": "EA137", 
+        "LOCATION": "Glasgow Green at Doulton Fountain", 
+        "CAM_NUM": 137.0, 
+        "y": 664328.0, 
+        "x": 260104.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.213072104138012, 
+          55.84562682360708
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1083.0, 
+        "ORIG_NUM": "EA156", 
+        "LOCATION": "Nuneaton Street at Boden Street", 
+        "CAM_NUM": 156.0, 
+        "y": 663591.0, 
+        "x": 261452.0, 
+        "CCTV_SCHEM": "East End"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.202634679550041, 
+          55.86361123270612
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1024.0, 
+        "ORIG_NUM": "EA185", 
+        "LOCATION": "Alexandra Park", 
+        "CAM_NUM": 185.0, 
+        "y": 665571.0, 
+        "x": 262169.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.242173652546454, 
+          55.85659608036697
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 973.0, 
+        "ORIG_NUM": "EA36", 
+        "LOCATION": "Gallowgate at High Street", 
+        "CAM_NUM": 36.0, 
+        "y": 664870.0, 
+        "x": 259670.0, 
+        "CCTV_SCHEM": "City Centre"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.223387611251634, 
+          55.84413746408663
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 896.0, 
+        "ORIG_NUM": "EA56", 
+        "LOCATION": "Reid Street at Franklin Street", 
+        "CAM_NUM": 56.0, 
+        "y": 663446.0, 
+        "x": 260801.0, 
+        "CCTV_SCHEM": "East End"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.223332936771292, 
+          55.84681701728682
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 897.0, 
+        "ORIG_NUM": "EA57", 
+        "LOCATION": "Reid Street at Muslin Street", 
+        "CAM_NUM": 57.0, 
+        "y": 663744.0, 
+        "x": 260814.0, 
+        "CCTV_SCHEM": "East End"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.225378075504326, 
+          55.848775475112646
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 898.0, 
+        "ORIG_NUM": "EA58", 
+        "LOCATION": "Main Street at Bridgeton Cross", 
+        "CAM_NUM": 58.0, 
+        "y": 663966.0, 
+        "x": 260693.0, 
+        "CCTV_SCHEM": "East End"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.224734905812741, 
+          55.849263498289744
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 899.0, 
+        "ORIG_NUM": "EA59", 
+        "LOCATION": "London Road at Bridgeton Cross", 
+        "CAM_NUM": 59.0, 
+        "y": 664019.0, 
+        "x": 260735.0, 
+        "CCTV_SCHEM": "East End"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.22629689826348, 
+          55.85366655473816
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 900.0, 
+        "ORIG_NUM": "EA61", 
+        "LOCATION": "Abercromby Street at Millroad Street", 
+        "CAM_NUM": 61.0, 
+        "y": 664512.0, 
+        "x": 260653.0, 
+        "CCTV_SCHEM": "East End"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.230401962942642, 
+          55.85391577919768
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 846.0, 
+        "ORIG_NUM": "EA62", 
+        "LOCATION": "Green Street / Moncur Street", 
+        "CAM_NUM": 62.0, 
+        "y": 664548.0, 
+        "x": 260397.0, 
+        "CCTV_SCHEM": "East End"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.229169798833771, 
+          55.85276961151479
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1115.0, 
+        "ORIG_NUM": "EA63", 
+        "LOCATION": "Corner Of Stevenson St and Tobago St", 
+        "CAM_NUM": 63.0, 
+        "y": 664418.0, 
+        "x": 260470.0, 
+        "CCTV_SCHEM": "East End"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.23261362317458, 
+          55.85347117785939
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 845.0, 
+        "ORIG_NUM": "EA64", 
+        "LOCATION": "Junction Claythorn Park / Stevenson Street", 
+        "CAM_NUM": 64.0, 
+        "y": 664503.0, 
+        "x": 260257.0, 
+        "CCTV_SCHEM": "East End"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.231638837028995, 
+          55.85486410306484
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 844.0, 
+        "ORIG_NUM": "EA65", 
+        "LOCATION": "Claythorn Street / Millroad Street", 
+        "CAM_NUM": 65.0, 
+        "y": 664656.0, 
+        "x": 260323.0, 
+        "CCTV_SCHEM": "East End"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.210336845108391, 
+          55.84190984742982
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1039.0, 
+        "ORIG_NUM": "EA66", 
+        "LOCATION": "Springfield Road at Sunnybank Street", 
+        "CAM_NUM": 66.0, 
+        "y": 663172.0, 
+        "x": 261610.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.233760976272769, 
+          55.855364896387414
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1075.0, 
+        "ORIG_NUM": "EA67", 
+        "LOCATION": "Gallowgate at Bain Street", 
+        "CAM_NUM": 67.0, 
+        "y": 664716.0, 
+        "x": 260192.0, 
+        "CCTV_SCHEM": "East End"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.228618028255726, 
+          55.85597051721103
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 843.0, 
+        "ORIG_NUM": "EA68", 
+        "LOCATION": "Junction Gallowgate / Melbourne Street", 
+        "CAM_NUM": 68.0, 
+        "y": 664773.0, 
+        "x": 260516.0, 
+        "CCTV_SCHEM": "East End"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.223201603918962, 
+          55.858225751568646
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1199.0, 
+        "ORIG_NUM": "EA69", 
+        "LOCATION": "Duke Street at Bellgrove Street", 
+        "CAM_NUM": 69.0, 
+        "y": 665013.0, 
+        "x": 260863.0, 
+        "CCTV_SCHEM": "East End"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.217994342123999, 
+          55.85855344296358
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 842.0, 
+        "ORIG_NUM": "EA70", 
+        "LOCATION": "Junction Duke Street / Whitehill Street", 
+        "CAM_NUM": 70.0, 
+        "y": 665039.0, 
+        "x": 261190.0, 
+        "CCTV_SCHEM": "East End"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.212462714173787, 
+          55.8585182210397
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 904.0, 
+        "ORIG_NUM": "EA71", 
+        "LOCATION": "Duke Street at Millerston Street", 
+        "CAM_NUM": 71.0, 
+        "y": 665024.0, 
+        "x": 261536.0, 
+        "CCTV_SCHEM": "East End"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.22125110580736, 
+          55.85709248532233
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 901.0, 
+        "ORIG_NUM": "EA72", 
+        "LOCATION": "Sword Street at Reidvale Street", 
+        "CAM_NUM": 72.0, 
+        "y": 664883.0, 
+        "x": 260981.0, 
+        "CCTV_SCHEM": "East End"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.221622102071361, 
+          55.85631277901561
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1114.0, 
+        "ORIG_NUM": "EA73", 
+        "LOCATION": "Top Of Sword Street", 
+        "CAM_NUM": 73.0, 
+        "y": 664797.0, 
+        "x": 260955.0, 
+        "CCTV_SCHEM": "East End"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.219291084351838, 
+          55.85550993832252
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 841.0, 
+        "ORIG_NUM": "EA74", 
+        "LOCATION": "Corner Of Comelypark Street", 
+        "CAM_NUM": 74.0, 
+        "y": 664703.0, 
+        "x": 261098.0, 
+        "CCTV_SCHEM": "East End"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.214976093726507, 
+          55.855785451575095
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 903.0, 
+        "ORIG_NUM": "EA75", 
+        "LOCATION": "Whitevale Multi South", 
+        "CAM_NUM": 75.0, 
+        "y": 664725.0, 
+        "x": 261369.0, 
+        "CCTV_SCHEM": "East End"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.214811219566675, 
+          55.855977177282824
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 902.0, 
+        "ORIG_NUM": "EA76", 
+        "LOCATION": "Whitevale Multi North", 
+        "CAM_NUM": 76.0, 
+        "y": 664746.0, 
+        "x": 261380.0, 
+        "CCTV_SCHEM": "East End"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.214504417414103, 
+          55.86490821571497
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1256.0, 
+        "ORIG_NUM": "EA77", 
+        "LOCATION": "Armadale Path at Meadowpark Street", 
+        "CAM_NUM": 77.0, 
+        "y": 665739.0, 
+        "x": 261431.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.212919682131038, 
+          55.863462627096055
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 906.0, 
+        "ORIG_NUM": "EA78", 
+        "LOCATION": "Alexander Parade at Meadowpark Street", 
+        "CAM_NUM": 78.0, 
+        "y": 665575.0, 
+        "x": 261525.0, 
+        "CCTV_SCHEM": "East End"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.21270869649732, 
+          55.866216879763904
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1112.0, 
+        "ORIG_NUM": "EA79", 
+        "LOCATION": "Next To 43 Viewpark Avenue", 
+        "CAM_NUM": 79.0, 
+        "y": 665881.0, 
+        "x": 261548.0, 
+        "CCTV_SCHEM": "East End"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.208833405889585, 
+          55.862996751292265
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 907.0, 
+        "ORIG_NUM": "EA80", 
+        "LOCATION": "Alexander Parade at Train Station", 
+        "CAM_NUM": 80.0, 
+        "y": 665515.0, 
+        "x": 261779.0, 
+        "CCTV_SCHEM": "East End"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.206586511903611, 
+          55.861706784461276
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 908.0, 
+        "ORIG_NUM": "EA81", 
+        "LOCATION": "Walter Street at Appin Street", 
+        "CAM_NUM": 81.0, 
+        "y": 665367.0, 
+        "x": 261915.0, 
+        "CCTV_SCHEM": "East End"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.201109884831292, 
+          55.86123861781518
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 733.0, 
+        "ORIG_NUM": "EA82", 
+        "LOCATION": "Walter Street at Aberfoyle Street", 
+        "CAM_NUM": 82.0, 
+        "y": 665304.0, 
+        "x": 262256.0, 
+        "CCTV_SCHEM": "East End"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.20912061086976, 
+          55.853697563403976
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 905.0, 
+        "ORIG_NUM": "EA83", 
+        "LOCATION": "Gallowgate at Retail Park", 
+        "CAM_NUM": 83.0, 
+        "y": 664481.0, 
+        "x": 261728.0, 
+        "CCTV_SCHEM": "East End"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.210420956781879, 
+          55.85070802133101
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 734.0, 
+        "ORIG_NUM": "EA84", 
+        "LOCATION": "Stamford Street at Law Street", 
+        "CAM_NUM": 84.0, 
+        "y": 664151.0, 
+        "x": 261636.0, 
+        "CCTV_SCHEM": "East End"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.207860762861294, 
+          55.86416472671089
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1023.0, 
+        "ORIG_NUM": "EA84", 
+        "LOCATION": "Alexandra Park", 
+        "CAM_NUM": 84.0, 
+        "y": 665643.0, 
+        "x": 261844.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.212535652869433, 
+          55.84968127494186
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1261.0, 
+        "ORIG_NUM": "EA85", 
+        "LOCATION": "Barrowfield Street at Frazer Street", 
+        "CAM_NUM": 85.0, 
+        "y": 664041.0, 
+        "x": 261500.0, 
+        "CCTV_SCHEM": "East End"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.211070892368661, 
+          55.84667850751481
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 735.0, 
+        "ORIG_NUM": "EA86", 
+        "LOCATION": "Nuneaton Street", 
+        "CAM_NUM": 86.0, 
+        "y": 663704.0, 
+        "x": 261581.0, 
+        "CCTV_SCHEM": "East End"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.221269955425667, 
+          55.84678238123188
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1027.0, 
+        "ORIG_NUM": "EA87", 
+        "LOCATION": "Queen Mary Street at Dalmarnock Road", 
+        "CAM_NUM": 87.0, 
+        "y": 663736.0, 
+        "x": 260943.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.22032675864759, 
+          55.84845328760454
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1028.0, 
+        "ORIG_NUM": "EA88", 
+        "LOCATION": "Heron Street at Baltic Place", 
+        "CAM_NUM": 88.0, 
+        "y": 663920.0, 
+        "x": 261008.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.220555167242166, 
+          55.84909633381672
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1043.0, 
+        "ORIG_NUM": "EA89", 
+        "LOCATION": "London Road at Heron Street", 
+        "CAM_NUM": 89.0, 
+        "y": 663992.0, 
+        "x": 260996.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.218857288586661, 
+          55.84705962670633
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1029.0, 
+        "ORIG_NUM": "EA90", 
+        "LOCATION": "112 Baltic Street MSF", 
+        "CAM_NUM": 90.0, 
+        "y": 663762.0, 
+        "x": 261095.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.188501693103953, 
+          55.85019211078112
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 739.0, 
+        "ORIG_NUM": "EB100", 
+        "LOCATION": "Pharonhill Street at Quarrybrae", 
+        "CAM_NUM": 100.0, 
+        "y": 664050.0, 
+        "x": 263006.0, 
+        "CCTV_SCHEM": "East End"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.197624335459089, 
+          55.849328375010046
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1113.0, 
+        "ORIG_NUM": "EB101", 
+        "LOCATION": "38 Dechmont Street", 
+        "CAM_NUM": 101.0, 
+        "y": 663972.0, 
+        "x": 262432.0, 
+        "CCTV_SCHEM": "East End"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.196213855878734, 
+          55.851232142649735
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 741.0, 
+        "ORIG_NUM": "EB102", 
+        "LOCATION": "Parkhead Cross", 
+        "CAM_NUM": 102.0, 
+        "y": 664181.0, 
+        "x": 262527.0, 
+        "CCTV_SCHEM": "East End"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.192710939687209, 
+          55.85173506346996
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 740.0, 
+        "ORIG_NUM": "EB103", 
+        "LOCATION": "Westmuir Street at Sorby Street", 
+        "CAM_NUM": 103.0, 
+        "y": 664230.0, 
+        "x": 262748.0, 
+        "CCTV_SCHEM": "East End"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.182342136399368, 
+          55.85289918105732
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 742.0, 
+        "ORIG_NUM": "EB104", 
+        "LOCATION": "Old Shettleston Road at Shettleston Road", 
+        "CAM_NUM": 104.0, 
+        "y": 664339.0, 
+        "x": 263401.0, 
+        "CCTV_SCHEM": "East End"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.188640096074447, 
+          55.857200588695086
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1111.0, 
+        "ORIG_NUM": "EB105", 
+        "LOCATION": "Junction Of Moorfoot Street / Rigby Street", 
+        "CAM_NUM": 105.0, 
+        "y": 664830.0, 
+        "x": 263022.0, 
+        "CCTV_SCHEM": "East End"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.188749765074803, 
+          55.86000301187995
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1170.0, 
+        "ORIG_NUM": "EB106", 
+        "LOCATION": "Junction Of Glencorse Street / Carntyne Road", 
+        "CAM_NUM": 106.0, 
+        "y": 665142.0, 
+        "x": 263025.0, 
+        "CCTV_SCHEM": "East End"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.173034434635873, 
+          55.85275834507554
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 743.0, 
+        "ORIG_NUM": "EB107", 
+        "LOCATION": "Darleith Street at Denbeck Street", 
+        "CAM_NUM": 107.0, 
+        "y": 664305.0, 
+        "x": 263983.0, 
+        "CCTV_SCHEM": "East End"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.171625453444026, 
+          55.85184843764774
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 744.0, 
+        "ORIG_NUM": "EB108", 
+        "LOCATION": "Shettleston Road at Kenmore Street", 
+        "CAM_NUM": 108.0, 
+        "y": 664201.0, 
+        "x": 264068.0, 
+        "CCTV_SCHEM": "East End"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.170501920918326, 
+          55.85118515211196
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 745.0, 
+        "ORIG_NUM": "EB109", 
+        "LOCATION": "South Vesalius Street at Pettigrew Street", 
+        "CAM_NUM": 109.0, 
+        "y": 664125.0, 
+        "x": 264136.0, 
+        "CCTV_SCHEM": "East End"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.184631114357619, 
+          55.851546249580636
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1074.0, 
+        "ORIG_NUM": "EB110", 
+        "LOCATION": "Caroline Street at Quarryknowe Street", 
+        "CAM_NUM": 110.0, 
+        "y": 664193.0, 
+        "x": 263253.0, 
+        "CCTV_SCHEM": "East End"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.174686498716219, 
+          55.84428908036696
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 746.0, 
+        "ORIG_NUM": "EB117", 
+        "LOCATION": "Tollcross Road at Wellshot Road", 
+        "CAM_NUM": 117.0, 
+        "y": 663366.0, 
+        "x": 263850.0, 
+        "CCTV_SCHEM": "East End"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.175597736870674, 
+          55.84287078070108
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 747.0, 
+        "ORIG_NUM": "EB118", 
+        "LOCATION": "Braidfauld Street at Dunira Street", 
+        "CAM_NUM": 118.0, 
+        "y": 663210.0, 
+        "x": 263788.0, 
+        "CCTV_SCHEM": "East End"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.142845025537286, 
+          55.85992126775368
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 810.0, 
+        "ORIG_NUM": "EB132", 
+        "LOCATION": "Calvay Crescent", 
+        "CAM_NUM": 132.0, 
+        "y": 665043.0, 
+        "x": 265897.0, 
+        "CCTV_SCHEM": "Easterhouse"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.131449953862973, 
+          55.859337230741446
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 808.0, 
+        "ORIG_NUM": "EB134", 
+        "LOCATION": "Edinburgh Road opposite Altmore Road", 
+        "CAM_NUM": 134.0, 
+        "y": 664956.0, 
+        "x": 266608.0, 
+        "CCTV_SCHEM": "Easterhouse"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.129512815080845, 
+          55.855478862873085
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 811.0, 
+        "ORIG_NUM": "EB136", 
+        "LOCATION": "Pendeen Road at Garlieston Road", 
+        "CAM_NUM": 136.0, 
+        "y": 664523.0, 
+        "x": 266716.0, 
+        "CCTV_SCHEM": "Easterhouse"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.131761597015777, 
+          55.858316158554075
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1151.0, 
+        "ORIG_NUM": "EB137", 
+        "LOCATION": "Hallhill Road at Burnmouth Road", 
+        "CAM_NUM": 137.0, 
+        "y": 664843.0, 
+        "x": 266585.0, 
+        "CCTV_SCHEM": "Easterhouse"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.111901733955598, 
+          55.8501558187953
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1117.0, 
+        "ORIG_NUM": "EB154", 
+        "LOCATION": "Scott Street/Main Street, Baillieston", 
+        "CAM_NUM": 154.0, 
+        "y": 663897.0, 
+        "x": 267800.0, 
+        "CCTV_SCHEM": "Easterhouse"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.108751784086268, 
+          55.85040759665691
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1116.0, 
+        "ORIG_NUM": "EB155", 
+        "LOCATION": "Main Street, Baillieston", 
+        "CAM_NUM": 155.0, 
+        "y": 663919.0, 
+        "x": 267998.0, 
+        "CCTV_SCHEM": "Easterhouse"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.185558972800368, 
+          55.85241961773017
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1260.0, 
+        "ORIG_NUM": "EB50", 
+        "LOCATION": "Westmuir Street opposite Beardmore Park", 
+        "CAM_NUM": 50.0, 
+        "y": 664292.0, 
+        "x": 263198.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.182070107228244, 
+          55.842630290661184
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1154.0, 
+        "ORIG_NUM": "EB51", 
+        "LOCATION": "On Ground at Potter Path", 
+        "CAM_NUM": 51.0, 
+        "y": 663196.0, 
+        "x": 263382.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.179961653336464, 
+          55.846343924027195
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1101.0, 
+        "ORIG_NUM": "EB86", 
+        "LOCATION": "Tollcross Park", 
+        "CAM_NUM": 86.0, 
+        "y": 663605.0, 
+        "x": 263527.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.181500967335436, 
+          55.84758399518625
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 909.0, 
+        "ORIG_NUM": "EB87", 
+        "LOCATION": "Tollcross Park", 
+        "CAM_NUM": 87.0, 
+        "y": 663746.0, 
+        "x": 263435.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.182711079439823, 
+          55.848650122109916
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 910.0, 
+        "ORIG_NUM": "EB88", 
+        "LOCATION": "Tollcross Park", 
+        "CAM_NUM": 88.0, 
+        "y": 663867.0, 
+        "x": 263363.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.180216575364056, 
+          55.849754987831105
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 911.0, 
+        "ORIG_NUM": "EB89", 
+        "LOCATION": "Tollcross Park", 
+        "CAM_NUM": 89.0, 
+        "y": 663985.0, 
+        "x": 263523.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.177321818555711, 
+          55.849419759817344
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 912.0, 
+        "ORIG_NUM": "EB90", 
+        "LOCATION": "Tollcross Park", 
+        "CAM_NUM": 90.0, 
+        "y": 663942.0, 
+        "x": 263703.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.19425067474037, 
+          55.8521210746214
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1041.0, 
+        "ORIG_NUM": "EB91", 
+        "LOCATION": "Salamanca Street at Parkhead Hospital", 
+        "CAM_NUM": 91.0, 
+        "y": 664276.0, 
+        "x": 262653.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.200891491958669, 
+          55.84776889638081
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 736.0, 
+        "ORIG_NUM": "EB92", 
+        "LOCATION": "Springfield Cross", 
+        "CAM_NUM": 92.0, 
+        "y": 663805.0, 
+        "x": 262222.0, 
+        "CCTV_SCHEM": "East End"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.198155575134058, 
+          55.84770096874373
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 737.0, 
+        "ORIG_NUM": "EB93", 
+        "LOCATION": "Helenvale Multi", 
+        "CAM_NUM": 93.0, 
+        "y": 663792.0, 
+        "x": 262393.0, 
+        "CCTV_SCHEM": "East End"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.19492826778489, 
+          55.845718230383696
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 738.0, 
+        "ORIG_NUM": "EB94", 
+        "LOCATION": "London Road at Canmore Street", 
+        "CAM_NUM": 94.0, 
+        "y": 663565.0, 
+        "x": 262588.0, 
+        "CCTV_SCHEM": "East End"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.191345683226864, 
+          55.845081011968254
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1076.0, 
+        "ORIG_NUM": "EB96", 
+        "LOCATION": "Glen Isla Street at Methven Street", 
+        "CAM_NUM": 96.0, 
+        "y": 663487.0, 
+        "x": 262810.0, 
+        "CCTV_SCHEM": "East End"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.187163624410483, 
+          55.844292560192564
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1077.0, 
+        "ORIG_NUM": "EB97", 
+        "LOCATION": "Maukinfauld Street at Rattray Street", 
+        "CAM_NUM": 97.0, 
+        "y": 663391.0, 
+        "x": 263069.0, 
+        "CCTV_SCHEM": "East End"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.189703095513511, 
+          55.84911010043538
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 847.0, 
+        "ORIG_NUM": "EB98", 
+        "LOCATION": "Junction Crail Street /  Tollcross Road", 
+        "CAM_NUM": 98.0, 
+        "y": 663932.0, 
+        "x": 262927.0, 
+        "CCTV_SCHEM": "East End"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.191855672056185, 
+          55.85073461686952
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1040.0, 
+        "ORIG_NUM": "EB99", 
+        "LOCATION": "Powfoot Street at Beatock Street", 
+        "CAM_NUM": 99.0, 
+        "y": 664117.0, 
+        "x": 262798.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.228686422666948, 
+          55.86972162694064
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1175.0, 
+        "ORIG_NUM": "EC21", 
+        "LOCATION": "Royston Road at Gadshill Street", 
+        "CAM_NUM": 21.0, 
+        "y": 666303.0, 
+        "x": 260561.0, 
+        "CCTV_SCHEM": "Glasgow North"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.225871566411639, 
+          55.87025795651942
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1176.0, 
+        "ORIG_NUM": "EC22", 
+        "LOCATION": "Royston Road at Provanhill Street", 
+        "CAM_NUM": 22.0, 
+        "y": 666357.0, 
+        "x": 260739.0, 
+        "CCTV_SCHEM": "Glasgow North"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.221430238355094, 
+          55.87086853772684
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1177.0, 
+        "ORIG_NUM": "EC23", 
+        "LOCATION": "Royston Road at Brodick Street", 
+        "CAM_NUM": 23.0, 
+        "y": 666416.0, 
+        "x": 261019.0, 
+        "CCTV_SCHEM": "Glasgow North"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.223326858566637, 
+          55.87188592956455
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1178.0, 
+        "ORIG_NUM": "EC24", 
+        "LOCATION": "Charles Street at Garnock Street", 
+        "CAM_NUM": 24.0, 
+        "y": 666533.0, 
+        "x": 260904.0, 
+        "CCTV_SCHEM": "Glasgow North"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.219458391679107, 
+          55.870212011759534
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1179.0, 
+        "ORIG_NUM": "EC25", 
+        "LOCATION": "Roystonhill at Dunolly Street", 
+        "CAM_NUM": 25.0, 
+        "y": 666339.0, 
+        "x": 261140.0, 
+        "CCTV_SCHEM": "Glasgow North"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.224590684567259, 
+          55.8685463509686
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1180.0, 
+        "ORIG_NUM": "EC26", 
+        "LOCATION": "Roystonhill at Thrasis Street", 
+        "CAM_NUM": 26.0, 
+        "y": 666164.0, 
+        "x": 260813.0, 
+        "CCTV_SCHEM": "Glasgow North"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.222914681791444, 
+          55.8674710631296
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1183.0, 
+        "ORIG_NUM": "EC27", 
+        "LOCATION": "Rosemount Street Mutli No40", 
+        "CAM_NUM": 27.0, 
+        "y": 666041.0, 
+        "x": 260914.0, 
+        "CCTV_SCHEM": "Glasgow North"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.216911807538385, 
+          55.86928717004499
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1184.0, 
+        "ORIG_NUM": "EC28", 
+        "LOCATION": "Cloverbank Street at Sandmill Street", 
+        "CAM_NUM": 28.0, 
+        "y": 666231.0, 
+        "x": 261296.0, 
+        "CCTV_SCHEM": "Glasgow North"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.228284831426123, 
+          55.867176179001206
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1181.0, 
+        "ORIG_NUM": "EC29", 
+        "LOCATION": "James Nisbet Street", 
+        "CAM_NUM": 29.0, 
+        "y": 666019.0, 
+        "x": 260577.0, 
+        "CCTV_SCHEM": "Glasgow North"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.22987758680917, 
+          55.86679677321738
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1182.0, 
+        "ORIG_NUM": "EC30", 
+        "LOCATION": "7 James Nisbet Street", 
+        "CAM_NUM": 30.0, 
+        "y": 665980.0, 
+        "x": 260476.0, 
+        "CCTV_SCHEM": "Glasgow North"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.208814118952962, 
+          55.874762927574906
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1078.0, 
+        "ORIG_NUM": "EC31", 
+        "LOCATION": "Stroma Street at Forge Street", 
+        "CAM_NUM": 31.0, 
+        "y": 666824.0, 
+        "x": 261822.0, 
+        "CCTV_SCHEM": "Glasgow North"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.205369025908753, 
+          55.876038152428514
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1198.0, 
+        "ORIG_NUM": "EC32", 
+        "LOCATION": "Forge Street at Forge Place", 
+        "CAM_NUM": 32.0, 
+        "y": 666959.0, 
+        "x": 262042.0, 
+        "CCTV_SCHEM": "Glasgow North"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.192980179602238, 
+          55.8786324862158
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1195.0, 
+        "ORIG_NUM": "EC33", 
+        "LOCATION": "Royston Road at Provanmill Road", 
+        "CAM_NUM": 33.0, 
+        "y": 667223.0, 
+        "x": 262826.0, 
+        "CCTV_SCHEM": "Glasgow North"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.190070280327777, 
+          55.87636531070301
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1196.0, 
+        "ORIG_NUM": "EC34", 
+        "LOCATION": "Opposite 247 Provanmill Road", 
+        "CAM_NUM": 34.0, 
+        "y": 666965.0, 
+        "x": 263000.0, 
+        "CCTV_SCHEM": "Glasgow North"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.191259420251241, 
+          55.87590371176327
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1197.0, 
+        "ORIG_NUM": "EC35", 
+        "LOCATION": "Hogganfield Street", 
+        "CAM_NUM": 35.0, 
+        "y": 666916.0, 
+        "x": 262924.0, 
+        "CCTV_SCHEM": "Glasgow North"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.204608872269572, 
+          55.88152570241671
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1192.0, 
+        "ORIG_NUM": "EC36", 
+        "LOCATION": "Broomfield Road at Roundabout", 
+        "CAM_NUM": 36.0, 
+        "y": 667568.0, 
+        "x": 262109.0, 
+        "CCTV_SCHEM": "Glasgow North"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.206371160813793, 
+          55.882428912260195
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1193.0, 
+        "ORIG_NUM": "EC37", 
+        "LOCATION": "All Saints Church Broomfield Road", 
+        "CAM_NUM": 37.0, 
+        "y": 667672.0, 
+        "x": 262002.0, 
+        "CCTV_SCHEM": "Glasgow North"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.202525539530021, 
+          55.881446157049304
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1194.0, 
+        "ORIG_NUM": "EC38", 
+        "LOCATION": "Birnie Road at Birnie Court", 
+        "CAM_NUM": 38.0, 
+        "y": 667555.0, 
+        "x": 262239.0, 
+        "CCTV_SCHEM": "Glasgow North"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.200963675303732, 
+          55.89199049449694
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1185.0, 
+        "ORIG_NUM": "EC39", 
+        "LOCATION": "Wallacewell Road at Northgate Road", 
+        "CAM_NUM": 39.0, 
+        "y": 668725.0, 
+        "x": 262374.0, 
+        "CCTV_SCHEM": "Glasgow North"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.204910882834938, 
+          55.89671963729411
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1186.0, 
+        "ORIG_NUM": "EC40", 
+        "LOCATION": "Broomton Road at Northgate Road", 
+        "CAM_NUM": 40.0, 
+        "y": 669259.0, 
+        "x": 262144.0, 
+        "CCTV_SCHEM": "Glasgow North"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.201372547920606, 
+          55.897232385933115
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1187.0, 
+        "ORIG_NUM": "EC41", 
+        "LOCATION": "59 Broomton Road at Shops", 
+        "CAM_NUM": 41.0, 
+        "y": 669309.0, 
+        "x": 262367.0, 
+        "CCTV_SCHEM": "Glasgow North"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.227869123782491, 
+          55.88364155115749
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1188.0, 
+        "ORIG_NUM": "EC42", 
+        "LOCATION": "Springburn Way at Carleston Street", 
+        "CAM_NUM": 42.0, 
+        "y": 667850.0, 
+        "x": 260662.0, 
+        "CCTV_SCHEM": "Glasgow North"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.230634434773255, 
+          55.881946574940756
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1189.0, 
+        "ORIG_NUM": "EC43", 
+        "LOCATION": "Atlas Road at Angus Street", 
+        "CAM_NUM": 43.0, 
+        "y": 667667.0, 
+        "x": 260483.0, 
+        "CCTV_SCHEM": "Glasgow North"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.233252431961301, 
+          55.886321409785864
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1190.0, 
+        "ORIG_NUM": "EC44", 
+        "LOCATION": "Hawthorn Street at Fernbank Street", 
+        "CAM_NUM": 44.0, 
+        "y": 668159.0, 
+        "x": 260335.0, 
+        "CCTV_SCHEM": "Glasgow North"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.235948893792819, 
+          55.88676681505292
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1069.0, 
+        "ORIG_NUM": "EC45", 
+        "LOCATION": "Hawthron Street at Memel Street", 
+        "CAM_NUM": 45.0, 
+        "y": 668214.0, 
+        "x": 260168.0, 
+        "CCTV_SCHEM": "Glasgow North"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.237770314161406, 
+          55.887290994512206
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1070.0, 
+        "ORIG_NUM": "EC46", 
+        "LOCATION": "Hawthorn Street at Blackthorn Street", 
+        "CAM_NUM": 46.0, 
+        "y": 668276.0, 
+        "x": 260056.0, 
+        "CCTV_SCHEM": "Glasgow North"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.22989974506336, 
+          55.892835896491135
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1191.0, 
+        "ORIG_NUM": "EC47", 
+        "LOCATION": "Galloway Street at Cairn Street", 
+        "CAM_NUM": 47.0, 
+        "y": 668877.0, 
+        "x": 260568.0, 
+        "CCTV_SCHEM": "Glasgow North"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.228383012390887, 
+          55.889259006420254
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1100.0, 
+        "ORIG_NUM": "EC83", 
+        "LOCATION": "Springburn Park, Rockery nr Balgrayhill Rd", 
+        "CAM_NUM": 83.0, 
+        "y": 668476.0, 
+        "x": 260650.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.22779544068749, 
+          55.88933256236124
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1103.0, 
+        "ORIG_NUM": "EC95", 
+        "LOCATION": "Near Pond at West end of Springburn Park", 
+        "CAM_NUM": 95.0, 
+        "y": 668483.0, 
+        "x": 260687.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.133412298218907, 
+          55.86743758628584
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1147.0, 
+        "ORIG_NUM": "ED111", 
+        "LOCATION": "Footpath at Rear of Refuse Dump", 
+        "CAM_NUM": 111.0, 
+        "y": 665861.0, 
+        "x": 266513.0, 
+        "CCTV_SCHEM": "Easterhouse"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.137234422911216, 
+          55.86834198819225
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1089.0, 
+        "ORIG_NUM": "ED112", 
+        "LOCATION": "Easter queenslie Road at Carmaben Road", 
+        "CAM_NUM": 112.0, 
+        "y": 665969.0, 
+        "x": 266277.0, 
+        "CCTV_SCHEM": "Easterhouse"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.139295062597439, 
+          55.86744330591491
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1146.0, 
+        "ORIG_NUM": "ED113", 
+        "LOCATION": "Carmaben Road", 
+        "CAM_NUM": 113.0, 
+        "y": 665873.0, 
+        "x": 266145.0, 
+        "CCTV_SCHEM": "Easterhouse"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.14266444799873, 
+          55.86680044082066
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1145.0, 
+        "ORIG_NUM": "ED114", 
+        "LOCATION": "Blairtummock Road at Penston Road", 
+        "CAM_NUM": 114.0, 
+        "y": 665808.0, 
+        "x": 265932.0, 
+        "CCTV_SCHEM": "Easterhouse"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.14064171847472, 
+          55.86431893379734
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1150.0, 
+        "ORIG_NUM": "ED115", 
+        "LOCATION": "Dunivaig Road", 
+        "CAM_NUM": 115.0, 
+        "y": 665528.0, 
+        "x": 266050.0, 
+        "CCTV_SCHEM": "Easterhouse"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.136922056600221, 
+          55.866729527655934
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1148.0, 
+        "ORIG_NUM": "ED116", 
+        "LOCATION": "Easter Queenslie Road at Blairtummock Road", 
+        "CAM_NUM": 116.0, 
+        "y": 665789.0, 
+        "x": 266291.0, 
+        "CCTV_SCHEM": "Easterhouse"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.191779396515033, 
+          55.86725662822545
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1080.0, 
+        "ORIG_NUM": "ED119", 
+        "LOCATION": "Front of shops at Cumbernauld Road", 
+        "CAM_NUM": 119.0, 
+        "y": 665955.0, 
+        "x": 262861.0, 
+        "CCTV_SCHEM": "Easterhouse"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.191979119934357, 
+          55.867396884312136
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1079.0, 
+        "ORIG_NUM": "ED120", 
+        "LOCATION": "Rear of shops at Cumbernauld Road", 
+        "CAM_NUM": 120.0, 
+        "y": 665971.0, 
+        "x": 262849.0, 
+        "CCTV_SCHEM": "Easterhouse"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.175157292305146, 
+          55.86701229997727
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1072.0, 
+        "ORIG_NUM": "ED121", 
+        "LOCATION": "Bellrock Street at Ruchazie Place", 
+        "CAM_NUM": 121.0, 
+        "y": 665895.0, 
+        "x": 263900.0, 
+        "CCTV_SCHEM": "Easterhouse"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.167140076808423, 
+          55.86570664899725
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 809.0, 
+        "ORIG_NUM": "ED122", 
+        "LOCATION": "Bellrock Street at Startpoint Street", 
+        "CAM_NUM": 122.0, 
+        "y": 665734.0, 
+        "x": 264397.0, 
+        "CCTV_SCHEM": "Easterhouse"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.162496200532319, 
+          55.86785566698795
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1160.0, 
+        "ORIG_NUM": "ED123", 
+        "LOCATION": "Longstone Road at Longstone Place", 
+        "CAM_NUM": 123.0, 
+        "y": 665964.0, 
+        "x": 264695.0, 
+        "CCTV_SCHEM": "Easterhouse"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.160488237974014, 
+          55.862785581464784
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1161.0, 
+        "ORIG_NUM": "ED124", 
+        "LOCATION": "Crowlin Crescent at Gantock Crescent", 
+        "CAM_NUM": 124.0, 
+        "y": 665396.0, 
+        "x": 264803.0, 
+        "CCTV_SCHEM": "Easterhouse"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.160726647644564, 
+          55.86563967744695
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 961.0, 
+        "ORIG_NUM": "ED125", 
+        "LOCATION": "Bellrock Street at Skerryvore Place", 
+        "CAM_NUM": 125.0, 
+        "y": 665714.0, 
+        "x": 264798.0, 
+        "CCTV_SCHEM": "Easterhouse"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.154429758641124, 
+          55.86681071568136
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1153.0, 
+        "ORIG_NUM": "ED126", 
+        "LOCATION": "Bellrock Street at Stepps Road", 
+        "CAM_NUM": 126.0, 
+        "y": 665832.0, 
+        "x": 265196.0, 
+        "CCTV_SCHEM": "Easterhouse"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.169497136398049, 
+          55.87185806578777
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1071.0, 
+        "ORIG_NUM": "ED127", 
+        "LOCATION": "Gartloch Road at Elibank Street", 
+        "CAM_NUM": 127.0, 
+        "y": 666423.0, 
+        "x": 264271.0, 
+        "CCTV_SCHEM": "Easterhouse"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.152046160121098, 
+          55.8734228641266
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1081.0, 
+        "ORIG_NUM": "ED128", 
+        "LOCATION": "Ruchazie Water Tower East", 
+        "CAM_NUM": 128.0, 
+        "y": 666563.0, 
+        "x": 265368.0, 
+        "CCTV_SCHEM": "Easterhouse"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.152461928554416, 
+          55.87342458046594
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1082.0, 
+        "ORIG_NUM": "ED129", 
+        "LOCATION": "Ruchazie Water Tower West", 
+        "CAM_NUM": 129.0, 
+        "y": 666564.0, 
+        "x": 265342.0, 
+        "CCTV_SCHEM": "Easterhouse"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.136635506084157, 
+          55.863840285344025
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1149.0, 
+        "ORIG_NUM": "ED130", 
+        "LOCATION": "Bartiebeith Road at Easter Queenslie Road", 
+        "CAM_NUM": 130.0, 
+        "y": 665467.0, 
+        "x": 266299.0, 
+        "CCTV_SCHEM": "Easterhouse"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.139619435927049, 
+          55.86142451717369
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1063.0, 
+        "ORIG_NUM": "ED131", 
+        "LOCATION": "Edinburgh Road at Inver Road", 
+        "CAM_NUM": 131.0, 
+        "y": 665204.0, 
+        "x": 266104.0, 
+        "CCTV_SCHEM": "Easterhouse"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.134950106691008, 
+          55.861379794886716
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1064.0, 
+        "ORIG_NUM": "ED133", 
+        "LOCATION": "Wellhouse Crescent at Dunan Place", 
+        "CAM_NUM": 133.0, 
+        "y": 665190.0, 
+        "x": 266396.0, 
+        "CCTV_SCHEM": "Easterhouse"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.126075721702556, 
+          55.85837859513561
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1152.0, 
+        "ORIG_NUM": "ED135", 
+        "LOCATION": "Edinburgh Road at Stepford Sports Field", 
+        "CAM_NUM": 135.0, 
+        "y": 664839.0, 
+        "x": 266941.0, 
+        "CCTV_SCHEM": "Easterhouse"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.128333518711178, 
+          55.86108996037388
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 812.0, 
+        "ORIG_NUM": "ED138", 
+        "LOCATION": "Wellhouse Road at Wardie Road", 
+        "CAM_NUM": 138.0, 
+        "y": 665145.0, 
+        "x": 266809.0, 
+        "CCTV_SCHEM": "Easterhouse"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.129049101049053, 
+          55.864529064972324
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 813.0, 
+        "ORIG_NUM": "ED139", 
+        "LOCATION": "Wellhouse Road at Baldovan Crescent", 
+        "CAM_NUM": 139.0, 
+        "y": 665529.0, 
+        "x": 266776.0, 
+        "CCTV_SCHEM": "Easterhouse"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.123643964766117, 
+          55.872972535382296
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1073.0, 
+        "ORIG_NUM": "ED140", 
+        "LOCATION": "Conisborough Road at Gardyne Street", 
+        "CAM_NUM": 140.0, 
+        "y": 666458.0, 
+        "x": 267143.0, 
+        "CCTV_SCHEM": "Easterhouse"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.163258903328451, 
+          55.87265999331457
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1044.0, 
+        "ORIG_NUM": "ED141", 
+        "LOCATION": "Gartloch Road at Blairlogie Street", 
+        "CAM_NUM": 141.0, 
+        "y": 666500.0, 
+        "x": 264664.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.113920286684781, 
+          55.86878967056869
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1006.0, 
+        "ORIG_NUM": "ED142", 
+        "LOCATION": "Westerhouse Road at Aberdalgie  Road", 
+        "CAM_NUM": 142.0, 
+        "y": 665974.0, 
+        "x": 267737.0, 
+        "CCTV_SCHEM": "Easterhouse"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.110230262569115, 
+          55.87060570639695
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1007.0, 
+        "ORIG_NUM": "ED143", 
+        "LOCATION": "Lochend Road near Baldragon Road", 
+        "CAM_NUM": 143.0, 
+        "y": 666169.0, 
+        "x": 267974.0, 
+        "CCTV_SCHEM": "Easterhouse"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.10298457214428, 
+          55.87053201081312
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1008.0, 
+        "ORIG_NUM": "ED144", 
+        "LOCATION": "Lochend Road at Drumlanrig Avenue", 
+        "CAM_NUM": 144.0, 
+        "y": 666147.0, 
+        "x": 268427.0, 
+        "CCTV_SCHEM": "Easterhouse"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.100219705326793, 
+          55.87172971797775
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1057.0, 
+        "ORIG_NUM": "ED145", 
+        "LOCATION": "Lochend Road at Dalilea Drive", 
+        "CAM_NUM": 145.0, 
+        "y": 666275.0, 
+        "x": 268604.0, 
+        "CCTV_SCHEM": "Easterhouse"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.158563105471161, 
+          55.87446820842954
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1045.0, 
+        "ORIG_NUM": "ED146", 
+        "LOCATION": "South side Mossvale Road", 
+        "CAM_NUM": 146.0, 
+        "y": 666692.0, 
+        "x": 264964.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.096111099177002, 
+          55.868761773882824
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1058.0, 
+        "ORIG_NUM": "ED147", 
+        "LOCATION": "Lochdochart Road at Drumlanrig Avenue", 
+        "CAM_NUM": 147.0, 
+        "y": 665937.0, 
+        "x": 268851.0, 
+        "CCTV_SCHEM": "Easterhouse"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.101183481392061, 
+          55.86471147536682
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1059.0, 
+        "ORIG_NUM": "ED148", 
+        "LOCATION": "Lochdochart Road at Dalswinton Street", 
+        "CAM_NUM": 148.0, 
+        "y": 665496.0, 
+        "x": 268520.0, 
+        "CCTV_SCHEM": "Easterhouse"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.10225352705427, 
+          55.86558302758235
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1061.0, 
+        "ORIG_NUM": "ED149", 
+        "LOCATION": "Dalswinton Street near Rogerfield Primary Schoo", 
+        "CAM_NUM": 149.0, 
+        "y": 665595.0, 
+        "x": 268456.0, 
+        "CCTV_SCHEM": "Easterhouse"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.105778704915749, 
+          55.864857621365125
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1062.0, 
+        "ORIG_NUM": "ED150", 
+        "LOCATION": "Easterhouse Road at Lochdochart Road", 
+        "CAM_NUM": 150.0, 
+        "y": 665521.0, 
+        "x": 268233.0, 
+        "CCTV_SCHEM": "Easterhouse"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.113068958872847, 
+          55.86753695666606
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 814.0, 
+        "ORIG_NUM": "ED151", 
+        "LOCATION": "Duntarvie Road at Duntarvie Place", 
+        "CAM_NUM": 151.0, 
+        "y": 665833.0, 
+        "x": 267786.0, 
+        "CCTV_SCHEM": "Easterhouse"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.11225621317827, 
+          55.86581618828024
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1060.0, 
+        "ORIG_NUM": "ED152", 
+        "LOCATION": "Aberdalgie Road at Boyndie Street", 
+        "CAM_NUM": 152.0, 
+        "y": 665640.0, 
+        "x": 267831.0, 
+        "CCTV_SCHEM": "Easterhouse"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.106660204099771, 
+          55.86224494376111
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 815.0, 
+        "ORIG_NUM": "ED153", 
+        "LOCATION": "Easterhouse Road at Rogerfield Road", 
+        "CAM_NUM": 153.0, 
+        "y": 665232.0, 
+        "x": 268169.0, 
+        "CCTV_SCHEM": "Easterhouse"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.123905569582653, 
+          55.86780878066651
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1254.0, 
+        "ORIG_NUM": "ED48", 
+        "LOCATION": "Fire Station at Westerhouse Road", 
+        "CAM_NUM": 48.0, 
+        "y": 665884.0, 
+        "x": 267109.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.123165108952502, 
+          55.85277525644741
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1255.0, 
+        "ORIG_NUM": "ED49", 
+        "LOCATION": "Garrowhill Park", 
+        "CAM_NUM": 49.0, 
+        "y": 664210.0, 
+        "x": 267104.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.368474260019769, 
+          55.853734781112045
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1134.0, 
+        "ORIG_NUM": "GA01", 
+        "LOCATION": "Barshaw Road at Deanfield Quadrant", 
+        "CAM_NUM": 1.0, 
+        "y": 664815.0, 
+        "x": 251756.0, 
+        "CCTV_SCHEM": "Penilee"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.368954674415193, 
+          55.85138844120671
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1133.0, 
+        "ORIG_NUM": "GA02", 
+        "LOCATION": "Gleddoch Road at Rosshill Road", 
+        "CAM_NUM": 2.0, 
+        "y": 664555.0, 
+        "x": 251717.0, 
+        "CCTV_SCHEM": "Penilee"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.373858222739692, 
+          55.85187817762221
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1132.0, 
+        "ORIG_NUM": "GA03", 
+        "LOCATION": "Gleddoch Road at Craigmuir Road", 
+        "CAM_NUM": 3.0, 
+        "y": 664620.0, 
+        "x": 251412.0, 
+        "CCTV_SCHEM": "Penilee"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.373511217888308, 
+          55.852738811323604
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1131.0, 
+        "ORIG_NUM": "GA04", 
+        "LOCATION": "Craigmuir Road at Craigmuir Place", 
+        "CAM_NUM": 4.0, 
+        "y": 664715.0, 
+        "x": 251437.0, 
+        "CCTV_SCHEM": "Penilee"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.37352137222349, 
+          55.85369142955908
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1130.0, 
+        "ORIG_NUM": "GA05", 
+        "LOCATION": "Barshaw Road at Craigmuir Road", 
+        "CAM_NUM": 5.0, 
+        "y": 664821.0, 
+        "x": 251440.0, 
+        "CCTV_SCHEM": "Penilee"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.361899067174454, 
+          55.84782074301091
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1118.0, 
+        "ORIG_NUM": "GA06", 
+        "LOCATION": "Sandwood Road at Penneld Road", 
+        "CAM_NUM": 6.0, 
+        "y": 664143.0, 
+        "x": 252145.0, 
+        "CCTV_SCHEM": "Penilee"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.368841050327448, 
+          55.848208592193885
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1246.0, 
+        "ORIG_NUM": "GA07", 
+        "LOCATION": "Opposite 78 Kelhead Avenue, Penilee", 
+        "CAM_NUM": 7.0, 
+        "y": 664201.0, 
+        "x": 251712.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.362736262036264, 
+          55.85213726095297
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1237.0, 
+        "ORIG_NUM": "GA08", 
+        "LOCATION": "Sandwood Road at Bowfield Road", 
+        "CAM_NUM": 8.0, 
+        "y": 664625.0, 
+        "x": 252109.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.344600217684127, 
+          55.84816968804076
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1257.0, 
+        "ORIG_NUM": "GA09", 
+        "LOCATION": "Redpath Drive at Belses Drive", 
+        "CAM_NUM": 9.0, 
+        "y": 664145.0, 
+        "x": 253229.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.311629892109987, 
+          55.86094641211949
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 830.0, 
+        "ORIG_NUM": "GA112", 
+        "LOCATION": "Helen St. at Robert St.", 
+        "CAM_NUM": 112.0, 
+        "y": 665497.0, 
+        "x": 255340.0, 
+        "CCTV_SCHEM": "Helen Street Corridor"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.312471516744561, 
+          55.85924072695481
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 874.0, 
+        "ORIG_NUM": "GA113", 
+        "LOCATION": "Helen St. 50m North of Harmony Row", 
+        "CAM_NUM": 113.0, 
+        "y": 665309.0, 
+        "x": 255281.0, 
+        "CCTV_SCHEM": "Helen Street Corridor"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.314275862695392, 
+          55.85840680532077
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 875.0, 
+        "ORIG_NUM": "GA114", 
+        "LOCATION": "Crossloan Rd. at Harmony Row", 
+        "CAM_NUM": 114.0, 
+        "y": 665220.0, 
+        "x": 255165.0, 
+        "CCTV_SCHEM": "Helen Street Corridor"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.313332817910128, 
+          55.85786724545598
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 876.0, 
+        "ORIG_NUM": "GA115", 
+        "LOCATION": "Helen Street at Loanbank Quad North", 
+        "CAM_NUM": 115.0, 
+        "y": 665158.0, 
+        "x": 255222.0, 
+        "CCTV_SCHEM": "Helen Street Corridor"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.314621329683136, 
+          55.85642279884075
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 877.0, 
+        "ORIG_NUM": "GA116", 
+        "LOCATION": "Helen St. at Loanbank Quad South", 
+        "CAM_NUM": 116.0, 
+        "y": 665000.0, 
+        "x": 255136.0, 
+        "CCTV_SCHEM": "Helen Street Corridor"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.316493207414143, 
+          55.854041519678354
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 878.0, 
+        "ORIG_NUM": "GA117", 
+        "LOCATION": "Helen St. at Edmidston Dr.", 
+        "CAM_NUM": 117.0, 
+        "y": 664739.0, 
+        "x": 255010.0, 
+        "CCTV_SCHEM": "Helen Street Corridor"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.297873918055464, 
+          55.8480447615534
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1262.0, 
+        "ORIG_NUM": "GA17", 
+        "LOCATION": "Corner of Gower Terrace and Hazelwood Road", 
+        "CAM_NUM": 17.0, 
+        "y": 664033.0, 
+        "x": 256153.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.317881148418614, 
+          55.863929881726804
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1090.0, 
+        "ORIG_NUM": "GA30", 
+        "LOCATION": "Govan Rd at Elder St", 
+        "CAM_NUM": 30.0, 
+        "y": 665842.0, 
+        "x": 254960.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.314716078887767, 
+          55.863926551075146
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1091.0, 
+        "ORIG_NUM": "GA31", 
+        "LOCATION": "Govan Rd at Shaw St", 
+        "CAM_NUM": 31.0, 
+        "y": 665835.0, 
+        "x": 255158.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.314803030767352, 
+          55.86243279732079
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1092.0, 
+        "ORIG_NUM": "GA32", 
+        "LOCATION": "Golspie St at Shaw St", 
+        "CAM_NUM": 32.0, 
+        "y": 665669.0, 
+        "x": 255147.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.312690887001096, 
+          55.86320060163341
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1093.0, 
+        "ORIG_NUM": "GA33", 
+        "LOCATION": "Burley St at Harmony Row", 
+        "CAM_NUM": 33.0, 
+        "y": 665750.0, 
+        "x": 255282.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.313326623402639, 
+          55.86475267555689
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1094.0, 
+        "ORIG_NUM": "GA34", 
+        "LOCATION": "Wanlock St at Wardrop St", 
+        "CAM_NUM": 34.0, 
+        "y": 665924.0, 
+        "x": 255248.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.315603038497462, 
+          55.86513231812078
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1095.0, 
+        "ORIG_NUM": "GA36", 
+        "LOCATION": "Howat St at Taransay St", 
+        "CAM_NUM": 36.0, 
+        "y": 665971.0, 
+        "x": 255107.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.309702542087158, 
+          55.86294213812808
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 829.0, 
+        "ORIG_NUM": "GA37", 
+        "LOCATION": "Govan Cross", 
+        "CAM_NUM": 37.0, 
+        "y": 665715.0, 
+        "x": 255468.0, 
+        "CCTV_SCHEM": "Helen Street Corridor"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.32390095505963, 
+          55.8520501254496
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 879.0, 
+        "ORIG_NUM": "GA38", 
+        "LOCATION": "Craigton Rd at Asda Car Park", 
+        "CAM_NUM": 38.0, 
+        "y": 664533.0, 
+        "x": 254539.0, 
+        "CCTV_SCHEM": "Helen Street Corridor"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.305635462429668, 
+          55.86335999435433
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1096.0, 
+        "ORIG_NUM": "GA39", 
+        "LOCATION": "Napier Drive at River Clyde", 
+        "CAM_NUM": 39.0, 
+        "y": 665753.0, 
+        "x": 255724.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.3062969919157, 
+          55.862385810338516
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1097.0, 
+        "ORIG_NUM": "GA41", 
+        "LOCATION": "Napier Place nr no. 20", 
+        "CAM_NUM": 41.0, 
+        "y": 665646.0, 
+        "x": 255679.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.304380070553269, 
+          55.8615947760537
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1098.0, 
+        "ORIG_NUM": "GA42", 
+        "LOCATION": "Clydebrae St at Napier Street", 
+        "CAM_NUM": 42.0, 
+        "y": 665554.0, 
+        "x": 255796.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.320976531852006, 
+          55.859817631370156
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 824.0, 
+        "ORIG_NUM": "GA43", 
+        "LOCATION": "Crossloan Rd. at Elderpark St.", 
+        "CAM_NUM": 43.0, 
+        "y": 665391.0, 
+        "x": 254751.0, 
+        "CCTV_SCHEM": "Elderpark"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.320040644719038, 
+          55.86181279357369
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 825.0, 
+        "ORIG_NUM": "GA44", 
+        "LOCATION": "Elderpark St. at Langlands Rd.", 
+        "CAM_NUM": 44.0, 
+        "y": 665611.0, 
+        "x": 254817.0, 
+        "CCTV_SCHEM": "Elderpark"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.321867548581965, 
+          55.86028620654601
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 826.0, 
+        "ORIG_NUM": "GA45", 
+        "LOCATION": "Uist St. at Crossloan Rd.", 
+        "CAM_NUM": 45.0, 
+        "y": 665445.0, 
+        "x": 254697.0, 
+        "CCTV_SCHEM": "Elderpark"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.323566483681728, 
+          55.86090131498141
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 827.0, 
+        "ORIG_NUM": "GA46", 
+        "LOCATION": "Crossloan Rd. at Arklet Rd.", 
+        "CAM_NUM": 46.0, 
+        "y": 665517.0, 
+        "x": 254593.0, 
+        "CCTV_SCHEM": "Elderpark"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.321498655329136, 
+          55.85865722832332
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 828.0, 
+        "ORIG_NUM": "GA47", 
+        "LOCATION": "Elderpark St. at Nimmo Dr.", 
+        "CAM_NUM": 47.0, 
+        "y": 665263.0, 
+        "x": 254714.0, 
+        "CCTV_SCHEM": "Elderpark"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.277953754151681, 
+          55.853844395374196
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 853.0, 
+        "ORIG_NUM": "GA48", 
+        "LOCATION": "Junction Paisley Road, Paisley Road West, Govan", 
+        "CAM_NUM": 48.0, 
+        "y": 664637.0, 
+        "x": 257421.0, 
+        "CCTV_SCHEM": "Ibrox"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.285719640726895, 
+          55.85247789077374
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 854.0, 
+        "ORIG_NUM": "GA49", 
+        "LOCATION": "Junction Paisley Road West And Cornwall Street", 
+        "CAM_NUM": 49.0, 
+        "y": 664501.0, 
+        "x": 256930.0, 
+        "CCTV_SCHEM": "Ibrox"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.292772243465801, 
+          55.85203203814949
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 856.0, 
+        "ORIG_NUM": "GA50", 
+        "LOCATION": "Junction Paisley Road West And Walmer Crescent", 
+        "CAM_NUM": 50.0, 
+        "y": 664466.0, 
+        "x": 256487.0, 
+        "CCTV_SCHEM": "Ibrox"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.290027699224889, 
+          55.85128317624946
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 855.0, 
+        "ORIG_NUM": "GA51", 
+        "LOCATION": "Junction Langshot Street And Clifford Street", 
+        "CAM_NUM": 51.0, 
+        "y": 664377.0, 
+        "x": 256656.0, 
+        "CCTV_SCHEM": "Ibrox"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.297538195593507, 
+          55.850477965189285
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 857.0, 
+        "ORIG_NUM": "GA52", 
+        "LOCATION": "Junction Clifford Street And Porter Street", 
+        "CAM_NUM": 52.0, 
+        "y": 664303.0, 
+        "x": 256183.0, 
+        "CCTV_SCHEM": "Ibrox"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.301335168463449, 
+          55.85145865709921
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1047.0, 
+        "ORIG_NUM": "GA53", 
+        "LOCATION": "Roof Top Of Msf 15 Ibroxholm Oval", 
+        "CAM_NUM": 53.0, 
+        "y": 664420.0, 
+        "x": 255949.0, 
+        "CCTV_SCHEM": "Ibrox"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.300518402748339, 
+          55.85196831047504
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1046.0, 
+        "ORIG_NUM": "GA54", 
+        "LOCATION": "Roof Top Of Msf 6 Ibroxholm Oval", 
+        "CAM_NUM": 54.0, 
+        "y": 664475.0, 
+        "x": 256002.0, 
+        "CCTV_SCHEM": "Ibrox"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.306022485352808, 
+          55.85047200752855
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1048.0, 
+        "ORIG_NUM": "GA55", 
+        "LOCATION": "Junction Paisley Road West And Copland Road", 
+        "CAM_NUM": 55.0, 
+        "y": 664320.0, 
+        "x": 255652.0, 
+        "CCTV_SCHEM": "Ibrox"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.307806584866198, 
+          55.856308140454516
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1049.0, 
+        "ORIG_NUM": "GA56", 
+        "LOCATION": "Roof Top Of Msf 59 Iona Court", 
+        "CAM_NUM": 56.0, 
+        "y": 664973.0, 
+        "x": 255562.0, 
+        "CCTV_SCHEM": "Ibrox"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.301533459717684, 
+          55.85697397282426
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1050.0, 
+        "ORIG_NUM": "GA57", 
+        "LOCATION": "Junction Copland Road And Summertown Road", 
+        "CAM_NUM": 57.0, 
+        "y": 665034.0, 
+        "x": 255957.0, 
+        "CCTV_SCHEM": "Ibrox"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.329244935440569, 
+          55.84762547828255
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1215.0, 
+        "ORIG_NUM": "GA58", 
+        "LOCATION": "Barlogan Avenue at Maryland Gardens", 
+        "CAM_NUM": 58.0, 
+        "y": 664052.0, 
+        "x": 254188.0, 
+        "CCTV_SCHEM": "Ibrox"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.340947674335972, 
+          55.852526886421025
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1216.0, 
+        "ORIG_NUM": "GA59", 
+        "LOCATION": "Queensland Gardens Multi", 
+        "CAM_NUM": 59.0, 
+        "y": 664622.0, 
+        "x": 253474.0, 
+        "CCTV_SCHEM": "Ibrox"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.297804040644835, 
+          55.85362801032446
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1217.0, 
+        "ORIG_NUM": "GA60", 
+        "LOCATION": "Brand Street at Midlock Street", 
+        "CAM_NUM": 60.0, 
+        "y": 664654.0, 
+        "x": 256178.0, 
+        "CCTV_SCHEM": "Ibrox"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.357648490053807, 
+          55.85308881740114
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1135.0, 
+        "ORIG_NUM": "GA61", 
+        "LOCATION": "Hartlaw Crescent North", 
+        "CAM_NUM": 61.0, 
+        "y": 664720.0, 
+        "x": 252431.0, 
+        "CCTV_SCHEM": "Hillington"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.357687506348428, 
+          55.85241391141106
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1136.0, 
+        "ORIG_NUM": "GA62", 
+        "LOCATION": "Hartlaw Crescent South", 
+        "CAM_NUM": 62.0, 
+        "y": 664645.0, 
+        "x": 252426.0, 
+        "CCTV_SCHEM": "Hillington"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.355632252299566, 
+          55.851194859783675
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1123.0, 
+        "ORIG_NUM": "GA63", 
+        "LOCATION": "Thirston Road/Gladsmuir Road/Renshaw Drive", 
+        "CAM_NUM": 63.0, 
+        "y": 664505.0, 
+        "x": 252550.0, 
+        "CCTV_SCHEM": "Hillington"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.333208411760694, 
+          55.84630991374562
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1122.0, 
+        "ORIG_NUM": "GA64", 
+        "LOCATION": "Paisley Road West Opp. Mosspark Boulevard", 
+        "CAM_NUM": 64.0, 
+        "y": 663914.0, 
+        "x": 253935.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.342537869022522, 
+          55.84549438149357
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1121.0, 
+        "ORIG_NUM": "GA65", 
+        "LOCATION": "Paisley Road West & Berryknowes Road", 
+        "CAM_NUM": 65.0, 
+        "y": 663843.0, 
+        "x": 253348.0, 
+        "CCTV_SCHEM": "Hillington"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.353656923709927, 
+          55.84601019723204
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1120.0, 
+        "ORIG_NUM": "GA66", 
+        "LOCATION": "Paisley Road West & Tweedsmuir Road", 
+        "CAM_NUM": 66.0, 
+        "y": 663924.0, 
+        "x": 252654.0, 
+        "CCTV_SCHEM": "Hillington"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.35866208771499, 
+          55.84555476399795
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1119.0, 
+        "ORIG_NUM": "GA67", 
+        "LOCATION": "Paisley Road West Opp. Hillington Road South", 
+        "CAM_NUM": 67.0, 
+        "y": 663884.0, 
+        "x": 252339.0, 
+        "CCTV_SCHEM": "Hillington"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.363247008591208, 
+          55.84554765231231
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1084.0, 
+        "ORIG_NUM": "GA68", 
+        "LOCATION": "Paisley Road West at  Sandwood Road", 
+        "CAM_NUM": 68.0, 
+        "y": 663893.0, 
+        "x": 252052.0, 
+        "CCTV_SCHEM": "Hillington"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.321291422029749, 
+          55.84687696725713
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 833.0, 
+        "ORIG_NUM": "GA91", 
+        "LOCATION": "Bellahouston Park at Bowling Green", 
+        "CAM_NUM": 91.0, 
+        "y": 663952.0, 
+        "x": 254683.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.311356908240099, 
+          55.848547185597525
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1228.0, 
+        "ORIG_NUM": "GA92", 
+        "LOCATION": "Bellahouston Park Play Area", 
+        "CAM_NUM": 92.0, 
+        "y": 664117.0, 
+        "x": 255311.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.313391694548859, 
+          55.84783478188252
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1229.0, 
+        "ORIG_NUM": "GA93", 
+        "LOCATION": "Bellahouston Park Play Area at Council Depot", 
+        "CAM_NUM": 93.0, 
+        "y": 664042.0, 
+        "x": 255181.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.31330621308487, 
+          55.84881615526495
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1230.0, 
+        "ORIG_NUM": "GA94", 
+        "LOCATION": "Bellahouston Park at Gate to Paisley Rd W", 
+        "CAM_NUM": 94.0, 
+        "y": 664151.0, 
+        "x": 255190.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.323754795707229, 
+          55.861913479471085
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1231.0, 
+        "ORIG_NUM": "GA96", 
+        "LOCATION": "Elder Park Statue", 
+        "CAM_NUM": 96.0, 
+        "y": 665630.0, 
+        "x": 254585.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.352919242044901, 
+          55.836711937364285
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1236.0, 
+        "ORIG_NUM": "GB10", 
+        "LOCATION": "Potterhill Road at Lyoncross Road", 
+        "CAM_NUM": 10.0, 
+        "y": 662888.0, 
+        "x": 252665.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.362804094585152, 
+          55.83903928144962
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1104.0, 
+        "ORIG_NUM": "GB100", 
+        "LOCATION": "Rosshall Park", 
+        "CAM_NUM": 100.0, 
+        "y": 663168.0, 
+        "x": 252055.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.348431410151643, 
+          55.82400668453269
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1105.0, 
+        "ORIG_NUM": "GB101", 
+        "LOCATION": "Househill Park", 
+        "CAM_NUM": 101.0, 
+        "y": 661465.0, 
+        "x": 252898.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.319190783588971, 
+          55.81133926639725
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1232.0, 
+        "ORIG_NUM": "GB102", 
+        "LOCATION": "King George's Field at Basketball Court", 
+        "CAM_NUM": 102.0, 
+        "y": 659994.0, 
+        "x": 254682.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.317074934309656, 
+          55.81146006178023
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1233.0, 
+        "ORIG_NUM": "GB103", 
+        "LOCATION": "King George's Field at Children's Play Area", 
+        "CAM_NUM": 103.0, 
+        "y": 660003.0, 
+        "x": 254815.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.361095235759268, 
+          55.811377555177415
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1200.0, 
+        "ORIG_NUM": "GB106", 
+        "LOCATION": "Woodhead Road at Weensmoor Road", 
+        "CAM_NUM": 106.0, 
+        "y": 660087.0, 
+        "x": 252057.0, 
+        "CCTV_SCHEM": "Pollok"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.342463723463424, 
+          55.811859821139414
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 884.0, 
+        "ORIG_NUM": "GB107", 
+        "LOCATION": "Kennishead Rd. at Darnley Station", 
+        "CAM_NUM": 107.0, 
+        "y": 660101.0, 
+        "x": 253226.0, 
+        "CCTV_SCHEM": "Pollok"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.356268317755452, 
+          55.811011736183346
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1203.0, 
+        "ORIG_NUM": "GB108", 
+        "LOCATION": "Wiltonburn Road at Woodhead Road", 
+        "CAM_NUM": 108.0, 
+        "y": 660036.0, 
+        "x": 252358.0, 
+        "CCTV_SCHEM": "Pollok"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.358188484599971, 
+          55.81135244843594
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1202.0, 
+        "ORIG_NUM": "GB109", 
+        "LOCATION": "Woodhead Road at Council Depot", 
+        "CAM_NUM": 109.0, 
+        "y": 660078.0, 
+        "x": 252239.0, 
+        "CCTV_SCHEM": "Pollok"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.346977128277962, 
+          55.82955356398178
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1208.0, 
+        "ORIG_NUM": "GB11", 
+        "LOCATION": "Levernside Road at shops", 
+        "CAM_NUM": 11.0, 
+        "y": 662079.0, 
+        "x": 253010.0, 
+        "CCTV_SCHEM": "Pollok"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.362080683078684, 
+          55.81104401541482
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1201.0, 
+        "ORIG_NUM": "GB110", 
+        "LOCATION": "Weensmoor Road at Whithope Terrace", 
+        "CAM_NUM": 110.0, 
+        "y": 660052.0, 
+        "x": 251994.0, 
+        "CCTV_SCHEM": "Pollok"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.362966156059444, 
+          55.811431496363774
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1009.0, 
+        "ORIG_NUM": "GB111", 
+        "LOCATION": "Woodhead Road", 
+        "CAM_NUM": 111.0, 
+        "y": 660097.0, 
+        "x": 251940.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.350304133408493, 
+          55.83043384148477
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 880.0, 
+        "ORIG_NUM": "GB12", 
+        "LOCATION": "Brockburn Rd. between 95 & 101", 
+        "CAM_NUM": 12.0, 
+        "y": 662184.0, 
+        "x": 252805.0, 
+        "CCTV_SCHEM": "Pollok"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.347812164568611, 
+          55.826184807635315
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1235.0, 
+        "ORIG_NUM": "GB13", 
+        "LOCATION": "Netherplace road at Brockburn Crescent", 
+        "CAM_NUM": 13.0, 
+        "y": 661706.0, 
+        "x": 252945.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.351380210353375, 
+          55.830269449039804
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 881.0, 
+        "ORIG_NUM": "GB14", 
+        "LOCATION": "Lethland Rd at Kempsthorn Cres.", 
+        "CAM_NUM": 14.0, 
+        "y": 662168.0, 
+        "x": 252737.0, 
+        "CCTV_SCHEM": "Pollok"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.34409149172073, 
+          55.82406253186675
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 882.0, 
+        "ORIG_NUM": "GB15", 
+        "LOCATION": "Barrhead Rd at Peat Rd.", 
+        "CAM_NUM": 15.0, 
+        "y": 661462.0, 
+        "x": 253170.0, 
+        "CCTV_SCHEM": "Pollok"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.344680356987148, 
+          55.82217264904476
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 883.0, 
+        "ORIG_NUM": "GB16", 
+        "LOCATION": "Cowglen Rd. at Househillmuir Cres.", 
+        "CAM_NUM": 16.0, 
+        "y": 661253.0, 
+        "x": 253126.0, 
+        "CCTV_SCHEM": "Pollok"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.358579783481995, 
+          55.81307079657551
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1207.0, 
+        "ORIG_NUM": "GB21", 
+        "LOCATION": "Nitshill Road at Cleeves Road", 
+        "CAM_NUM": 21.0, 
+        "y": 660270.0, 
+        "x": 252221.0, 
+        "CCTV_SCHEM": "Pollok"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.359872956134312, 
+          55.814654980375394
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1206.0, 
+        "ORIG_NUM": "GB22", 
+        "LOCATION": "Nitshill Road at Peat Road", 
+        "CAM_NUM": 22.0, 
+        "y": 660449.0, 
+        "x": 252146.0, 
+        "CCTV_SCHEM": "Pollok"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.321360143719936, 
+          55.8107769757494
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 885.0, 
+        "ORIG_NUM": "GB23", 
+        "LOCATION": "Boydstone Rd. at Crebar St.", 
+        "CAM_NUM": 23.0, 
+        "y": 659936.0, 
+        "x": 254544.0, 
+        "CCTV_SCHEM": "Pollok"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.324058116426737, 
+          55.812388919403936
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 886.0, 
+        "ORIG_NUM": "GB24", 
+        "LOCATION": "Bodystone Rd. at Kennishead Ave.", 
+        "CAM_NUM": 24.0, 
+        "y": 660121.0, 
+        "x": 254381.0, 
+        "CCTV_SCHEM": "Pollok"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.338418699759866, 
+          55.83144245489023
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1205.0, 
+        "ORIG_NUM": "GB25", 
+        "LOCATION": "Braidcraft Road at Corkerhill Road", 
+        "CAM_NUM": 25.0, 
+        "y": 662271.0, 
+        "x": 253553.0, 
+        "CCTV_SCHEM": "Pollok"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.362079853374469, 
+          55.8218306276795
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1204.0, 
+        "ORIG_NUM": "GB26", 
+        "LOCATION": "Barrhead Road at Crookston Road", 
+        "CAM_NUM": 26.0, 
+        "y": 661252.0, 
+        "x": 252035.0, 
+        "CCTV_SCHEM": "Pollok"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.362241563232277, 
+          55.82528821739095
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 889.0, 
+        "ORIG_NUM": "GB27", 
+        "LOCATION": "Crookston Rd. at Raeswood Road", 
+        "CAM_NUM": 27.0, 
+        "y": 661637.0, 
+        "x": 252038.0, 
+        "CCTV_SCHEM": "Pollok"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.329290465809249, 
+          55.80698652582964
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 888.0, 
+        "ORIG_NUM": "GB28", 
+        "LOCATION": "Kyleakin Rd. at Kilvaxter Dr.", 
+        "CAM_NUM": 28.0, 
+        "y": 659531.0, 
+        "x": 254033.0, 
+        "CCTV_SCHEM": "Pollok"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.327242551802863, 
+          55.8085084581231
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 887.0, 
+        "ORIG_NUM": "GB29", 
+        "LOCATION": "Kyleakin Rd at Hopeman Road", 
+        "CAM_NUM": 29.0, 
+        "y": 659696.0, 
+        "x": 254167.0, 
+        "CCTV_SCHEM": "Pollok"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.36098164557522, 
+          55.81187412258333
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1259.0, 
+        "ORIG_NUM": "GB97", 
+        "LOCATION": "Woodhead Path, Nitshill", 
+        "CAM_NUM": 97.0, 
+        "y": 660142.0, 
+        "x": 252066.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.211563657116981, 
+          55.80696757833424
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1085.0, 
+        "ORIG_NUM": "GD100", 
+        "LOCATION": "Tormusk Road near Hoddam Avenue", 
+        "CAM_NUM": 100.0, 
+        "y": 659287.0, 
+        "x": 261409.0, 
+        "CCTV_SCHEM": "Castlemilk"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.218788373802534, 
+          55.8054711426865
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1238.0, 
+        "ORIG_NUM": "GD101", 
+        "LOCATION": "Hoddam Avenue", 
+        "CAM_NUM": 101.0, 
+        "y": 659135.0, 
+        "x": 260951.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.232167931728593, 
+          55.80444692610504
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1099.0, 
+        "ORIG_NUM": "GD102", 
+        "LOCATION": "21 Dougrie Place, MSF", 
+        "CAM_NUM": 102.0, 
+        "y": 659048.0, 
+        "x": 260109.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.233081843948282, 
+          55.80173376368418
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1212.0, 
+        "ORIG_NUM": "GD103", 
+        "LOCATION": "Stravanan Road near Stravanan Court", 
+        "CAM_NUM": 103.0, 
+        "y": 658748.0, 
+        "x": 260042.0, 
+        "CCTV_SCHEM": "Castlemilk"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.236459284051181, 
+          55.79968589106094
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1213.0, 
+        "ORIG_NUM": "GD104", 
+        "LOCATION": "Stravanan Road at Dunagoil Road", 
+        "CAM_NUM": 104.0, 
+        "y": 658527.0, 
+        "x": 259823.0, 
+        "CCTV_SCHEM": "Castlemilk"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.213069979599103, 
+          55.808198860642804
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1214.0, 
+        "ORIG_NUM": "GD105", 
+        "LOCATION": "Ballantay Road at Ballantay Terrace", 
+        "CAM_NUM": 105.0, 
+        "y": 659427.0, 
+        "x": 261319.0, 
+        "CCTV_SCHEM": "Castlemilk"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.222745449420398, 
+          55.80909394004417
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1086.0, 
+        "ORIG_NUM": "GD106", 
+        "LOCATION": "Machrie Drive at Machrie Road", 
+        "CAM_NUM": 106.0, 
+        "y": 659546.0, 
+        "x": 260716.0, 
+        "CCTV_SCHEM": "Castlemilk"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.217826060548884, 
+          55.808194048534105
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1087.0, 
+        "ORIG_NUM": "GD107", 
+        "LOCATION": "85-87 Ballantay Road at Footpath", 
+        "CAM_NUM": 107.0, 
+        "y": 659436.0, 
+        "x": 261021.0, 
+        "CCTV_SCHEM": "Castlemilk"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.216638136673984, 
+          55.80414367962779
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1210.0, 
+        "ORIG_NUM": "GD118", 
+        "LOCATION": "Ardencraig Quadrant at Ardencraig Street", 
+        "CAM_NUM": 118.0, 
+        "y": 658983.0, 
+        "x": 261081.0, 
+        "CCTV_SCHEM": "Castlemilk"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.218876889382647, 
+          55.80394149774852
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1211.0, 
+        "ORIG_NUM": "GD119", 
+        "LOCATION": "Ardencraig Quadrant at No 16", 
+        "CAM_NUM": 119.0, 
+        "y": 658965.0, 
+        "x": 260940.0, 
+        "CCTV_SCHEM": "Castlemilk"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.216970409312705, 
+          55.81139141173755
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1051.0, 
+        "ORIG_NUM": "GD121", 
+        "LOCATION": "Tormusk Road At Croftfoot Street", 
+        "CAM_NUM": 121.0, 
+        "y": 659790.0, 
+        "x": 261086.0, 
+        "CCTV_SCHEM": "Castlemilk"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.211679585787306, 
+          55.808448594248816
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1055.0, 
+        "ORIG_NUM": "GD121", 
+        "LOCATION": "Tormusk Road At Hole-in-wall", 
+        "CAM_NUM": 121.0, 
+        "y": 659452.0, 
+        "x": 261407.0, 
+        "CCTV_SCHEM": "Castlemilk"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.239351295492339, 
+          55.831983015969385
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1056.0, 
+        "ORIG_NUM": "GD74", 
+        "LOCATION": "111 Prospecthill Circus", 
+        "CAM_NUM": 74.0, 
+        "y": 662126.0, 
+        "x": 259758.0, 
+        "CCTV_SCHEM": "Toryglen"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.235120864640168, 
+          55.83173639025849
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1166.0, 
+        "ORIG_NUM": "GD76", 
+        "LOCATION": "Junction Of Prospecthill Circus/Crossbank Ave", 
+        "CAM_NUM": 76.0, 
+        "y": 662090.0, 
+        "x": 260022.0, 
+        "CCTV_SCHEM": "Toryglen"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.236669235649802, 
+          55.82977570669351
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1167.0, 
+        "ORIG_NUM": "GD77", 
+        "LOCATION": "Junction Of Prospecthill Circus/Prospecthill Ro", 
+        "CAM_NUM": 77.0, 
+        "y": 661875.0, 
+        "x": 259918.0, 
+        "CCTV_SCHEM": "Toryglen"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.233150750456904, 
+          55.82690040626125
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1168.0, 
+        "ORIG_NUM": "GD78", 
+        "LOCATION": "Opposite Playground At Glenmore Ave", 
+        "CAM_NUM": 78.0, 
+        "y": 661548.0, 
+        "x": 260128.0, 
+        "CCTV_SCHEM": "Toryglen"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.228741354155085, 
+          55.82630626470053
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1169.0, 
+        "ORIG_NUM": "GD79", 
+        "LOCATION": "Junction Of Ardnahoe Ave/corlaich Ave", 
+        "CAM_NUM": 79.0, 
+        "y": 661473.0, 
+        "x": 260402.0, 
+        "CCTV_SCHEM": "Toryglen"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.295501734981672, 
+          55.826237651253194
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1124.0, 
+        "ORIG_NUM": "GD80", 
+        "LOCATION": "Well Green at Ashtree Road", 
+        "CAM_NUM": 80.0, 
+        "y": 661602.0, 
+        "x": 256221.0, 
+        "CCTV_SCHEM": "Pollokshaws"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.293917909324545, 
+          55.825916650240565
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1125.0, 
+        "ORIG_NUM": "GD81", 
+        "LOCATION": "Shawbridge Arcade", 
+        "CAM_NUM": 81.0, 
+        "y": 661563.0, 
+        "x": 256319.0, 
+        "CCTV_SCHEM": "Pollokshaws"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.292441539029172, 
+          55.82552171655197
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1126.0, 
+        "ORIG_NUM": "GD82", 
+        "LOCATION": "Pleasance Street at McArthur Street", 
+        "CAM_NUM": 82.0, 
+        "y": 661516.0, 
+        "x": 256410.0, 
+        "CCTV_SCHEM": "Pollokshaws"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.296143114310639, 
+          55.8238436801962
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1127.0, 
+        "ORIG_NUM": "GD84", 
+        "LOCATION": "142 Shawbridge Street", 
+        "CAM_NUM": 84.0, 
+        "y": 661337.0, 
+        "x": 256172.0, 
+        "CCTV_SCHEM": "Pollokshaws"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.298256377171697, 
+          55.82204241952032
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1128.0, 
+        "ORIG_NUM": "GD85", 
+        "LOCATION": "215 Shawbridge Street", 
+        "CAM_NUM": 85.0, 
+        "y": 661141.0, 
+        "x": 256033.0, 
+        "CCTV_SCHEM": "Pollokshaws"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.300266619990106, 
+          55.821474496535004
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1129.0, 
+        "ORIG_NUM": "GD86", 
+        "LOCATION": "Shawholm Crescent", 
+        "CAM_NUM": 86.0, 
+        "y": 661082.0, 
+        "x": 255905.0, 
+        "CCTV_SCHEM": "Pollokshaws"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.246295351412419, 
+          55.807551314850876
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1054.0, 
+        "ORIG_NUM": "GD94", 
+        "LOCATION": "Junction Raithburn Road And Drakemire Drive", 
+        "CAM_NUM": 94.0, 
+        "y": 659422.0, 
+        "x": 259235.0, 
+        "CCTV_SCHEM": "Castlemilk"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.242502615688368, 
+          55.80931939606858
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1209.0, 
+        "ORIG_NUM": "GD95", 
+        "LOCATION": "Carmunnock Road at Arnprior Road", 
+        "CAM_NUM": 95.0, 
+        "y": 659611.0, 
+        "x": 259479.0, 
+        "CCTV_SCHEM": "Castlemilk"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.242922490345101, 
+          55.81412061554781
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1025.0, 
+        "ORIG_NUM": "GD97", 
+        "LOCATION": "Kings Park", 
+        "CAM_NUM": 97.0, 
+        "y": 660146.0, 
+        "x": 259470.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.214217481578699, 
+          55.80816921003829
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1053.0, 
+        "ORIG_NUM": "GD98", 
+        "LOCATION": "Ballantay Road At Scarrel Road", 
+        "CAM_NUM": 98.0, 
+        "y": 659426.0, 
+        "x": 261247.0, 
+        "CCTV_SCHEM": "Castlemilk"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.218148450904249, 
+          55.80712758814193
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1052.0, 
+        "ORIG_NUM": "GD99", 
+        "LOCATION": "Ballantay Road At Hoddam Terrace", 
+        "CAM_NUM": 99.0, 
+        "y": 659318.0, 
+        "x": 260997.0, 
+        "CCTV_SCHEM": "Castlemilk"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.251716144804585, 
+          55.846408564835585
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1140.0, 
+        "ORIG_NUM": "GE69", 
+        "LOCATION": "Southside Crescent @ Handel Place", 
+        "CAM_NUM": 69.0, 
+        "y": 663756.0, 
+        "x": 259036.0, 
+        "CCTV_SCHEM": "Gorbals"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.253014383325428, 
+          55.84703196668655
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1139.0, 
+        "ORIG_NUM": "GE71", 
+        "LOCATION": "Laurieston Rd at Southside Cres & Alexander Cre", 
+        "CAM_NUM": 71.0, 
+        "y": 663828.0, 
+        "x": 258957.0, 
+        "CCTV_SCHEM": "Gorbals"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.252348790251632, 
+          55.848230643149485
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1138.0, 
+        "ORIG_NUM": "GE72", 
+        "LOCATION": "Cumberland Street at Thistle Terrace", 
+        "CAM_NUM": 72.0, 
+        "y": 663960.0, 
+        "x": 259003.0, 
+        "CCTV_SCHEM": "Gorbals"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.248945628760177, 
+          55.8496142249237
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1137.0, 
+        "ORIG_NUM": "GE73", 
+        "LOCATION": "Crown Street at Old Rutherglen Road", 
+        "CAM_NUM": 73.0, 
+        "y": 664107.0, 
+        "x": 259221.0, 
+        "CCTV_SCHEM": "Gorbals"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.273989496510421, 
+          55.84589093718664
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1250.0, 
+        "ORIG_NUM": "GE87", 
+        "LOCATION": "On St Andrew's Drive at Shields Road", 
+        "CAM_NUM": 87.0, 
+        "y": 663744.0, 
+        "x": 257640.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.274147594271028, 
+          55.84449478293402
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1244.0, 
+        "ORIG_NUM": "GE88", 
+        "LOCATION": "Maxwell Road at Shields road", 
+        "CAM_NUM": 88.0, 
+        "y": 663589.0, 
+        "x": 257625.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.277041293793485, 
+          55.84534909412835
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1245.0, 
+        "ORIG_NUM": "GE89", 
+        "LOCATION": "To the Rear of 14 Maxwell Drive", 
+        "CAM_NUM": 89.0, 
+        "y": 663690.0, 
+        "x": 257447.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.27028163740906, 
+          55.84477293882415
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1242.0, 
+        "ORIG_NUM": "GE90", 
+        "LOCATION": "McCulloch Street at Kenmure Street", 
+        "CAM_NUM": 90.0, 
+        "y": 663612.0, 
+        "x": 257868.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.271372437101014, 
+          55.84211015621583
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1102.0, 
+        "ORIG_NUM": "GE91", 
+        "LOCATION": "Albert Drive at Albert Cross", 
+        "CAM_NUM": 91.0, 
+        "y": 663318.0, 
+        "x": 257790.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.273015748060438, 
+          55.84125284708332
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1243.0, 
+        "ORIG_NUM": "GE92", 
+        "LOCATION": "Keir Street at Leslie Street", 
+        "CAM_NUM": 92.0, 
+        "y": 663226.0, 
+        "x": 257684.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.27317165399413, 
+          55.838724171033746
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1234.0, 
+        "ORIG_NUM": "GE93", 
+        "LOCATION": "Kenmure Street at Glencairn Drive", 
+        "CAM_NUM": 93.0, 
+        "y": 662945.0, 
+        "x": 257665.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.286978207737161, 
+          55.83935808235781
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 834.0, 
+        "ORIG_NUM": "GE98", 
+        "LOCATION": "Maxwell Park", 
+        "CAM_NUM": 98.0, 
+        "y": 663044.0, 
+        "x": 256803.0, 
+        "CCTV_SCHEM": null
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -4.258117818108069, 
+          55.83888463688557
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "OBJECTID": 1026.0, 
+        "ORIG_NUM": "GE99", 
+        "LOCATION": "Govanhill Park", 
+        "CAM_NUM": 99.0, 
+        "y": 662932.0, 
+        "x": 258608.0, 
+        "CCTV_SCHEM": null
+      }
+    }
+  ]
+}
