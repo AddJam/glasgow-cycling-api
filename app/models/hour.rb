@@ -128,6 +128,28 @@ class Hour < ActiveRecord::Base
       period
     end
 
+    if periods.count < num
+      num.times do |n|
+        time = (start_threshold + n.send(unit)).to_i
+        period_missing = periods.none? {|p| p[:time] == time}
+        if period_missing
+          periods << {
+            distance: 0,
+            avg_speed: 0,
+            min_speed: 0,
+            max_speed: 0,
+            routes_started: 0,
+            routes_completed: 0,
+            time: time
+          }
+        end
+      end
+    end
+
+    periods.sort! do |a, b|
+      a[:time] <=> b[:time]
+    end
+
     {
       :overall => Hour.stats_for_hours(hours),
       unit => periods
@@ -141,12 +163,16 @@ class Hour < ActiveRecord::Base
     end
     total_points = hours.pick(:num_points).sum
     avg_speed = total_speed / total_points
+    avg_speed = 0 if total_points == 0
+
+    min_speed = hours.pick(:min_speed).min || 0
+    max_speed = hours.pick(:max_speed).max || 0
 
     {
       distance: hours.pick(:distance).sum,
       avg_speed: avg_speed,
-      min_speed: hours.pick(:min_speed).min,
-      max_speed: hours.pick(:max_speed).max,
+      min_speed: min_speed,
+      max_speed: max_speed,
       routes_started: hours.pick(:routes_started).sum,
       routes_completed: hours.pick(:routes_completed).sum
     }
