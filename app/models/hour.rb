@@ -103,7 +103,7 @@ class Hour < ActiveRecord::Base
     end
 
     # E.g. 3.days.ago.beginning_of_hour for Hour.period(:weeks, 3)
-    start_threshold = num.to_i.send(unit).ago.send(beginning)
+    start_threshold = (num-1).to_i.send(unit).ago.send(beginning)
 
     if user.present?
       hours = Hour.where('time >= ? AND time <= ? AND user_id = ?', start_threshold, Time.now, user.id)
@@ -124,7 +124,7 @@ class Hour < ActiveRecord::Base
 
     periods = period_groups.map do |period_hours|
       period = Hour.stats_for_hours(period_hours)
-      period[:time] = period_hours.first.time.to_i
+      period[:time] = period_hours.first.time.send(beginning).to_i
       period
     end
 
@@ -146,6 +146,7 @@ class Hour < ActiveRecord::Base
       end
     end
 
+    # Oldest period first
     periods.sort! do |a, b|
       a[:time] <=> b[:time]
     end

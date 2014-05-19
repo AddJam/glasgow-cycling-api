@@ -68,7 +68,7 @@ class HourTest < ActiveSupport::TestCase
 
     hours_data = Hour.hours(5, user)
     assert_not_nil hours_data[:hours], "all hours contributing to the stats should be returned"
-    assert_equal 2, hours_data[:hours].count, "correct number of hours is returned"
+    assert_equal 5, hours_data[:hours].count, "correct number of hours is returned"
 
     #
     # Validate overall stats
@@ -102,14 +102,15 @@ class HourTest < ActiveSupport::TestCase
 
     points = route_point_params(3)
     points[0][:time] = 3.hours.ago
-    points[1][:time] = 3.hours.ago
+    # points[1][:time] = 3.hours.ago
     points[2][:time] = 1.hour.ago
     user = create(:user)
     route = Route.record(user, points)
 
     days_data = Hour.period(:days, 5, user)
+    p days_data
     assert_not_nil days_data[:days], "all days contributing to the stats should be returned"
-    assert_equal 1, days_data[:days].count, "correct number of hours is returned"
+    assert_equal 5, days_data[:days].count, "correct number of hours is returned"
 
     #
     # Validate overall stats
