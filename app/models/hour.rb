@@ -1,3 +1,21 @@
+# == Schema Information
+#
+# Table name: hours
+#
+#  id               :integer          not null, primary key
+#  user_id          :integer
+#  time             :datetime
+#  distance         :float
+#  average_speed    :float
+#  created_at       :datetime
+#  updated_at       :datetime
+#  max_speed        :float
+#  min_speed        :float
+#  num_points       :integer          default(0)
+#  routes_started   :integer          default(0)
+#  routes_completed :integer          default(0)
+#
+
 class Hour < ActiveRecord::Base
   belongs_to :user
 
@@ -102,7 +120,11 @@ class Hour < ActiveRecord::Base
       groups
     end
 
-    periods = period_groups.map { |period_hours| Hour.stats_for_hours(period_hours) }
+    periods = period_groups.map do |period_hours|
+      period = Hour.stats_for_hours(period_hours)
+      period[:time] = period_hours.first.time.to_i
+      period
+    end
 
     {
       :overall => Hour.stats_for_hours(hours),
