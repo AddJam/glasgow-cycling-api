@@ -66,7 +66,9 @@ class Hour < ActiveRecord::Base
       # Route completion / starting
       if index == 0
         hour.routes_started += 1
-      elsif index == (hours.count - 1)
+      end
+
+      if index == (hours.count - 1)
         hour.routes_completed += 1
       end
 
