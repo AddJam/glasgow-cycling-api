@@ -35,6 +35,7 @@ class RoutePoint < ActiveRecord::Base
 			Rails.logger.info "geo #{geo.inspect}"
 			if geo.data and geo.data['address'] and geo.data['address']['road']
 				obj.street_name = geo.data['address']['road']
+				Rails.logger.info "Set to #{geo.data['address']['road']}"
 			end
 		end
 	end

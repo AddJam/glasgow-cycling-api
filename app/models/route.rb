@@ -29,10 +29,9 @@ class Route < ActiveRecord::Base
 	before_validation :set_endpoints
 	before_validation :calculate_times
 	before_validation :set_maidenheads
-	before_save :set_name
 	before_create :generate_stats
+	after_save :set_name
 
-	validates :name, presence: true
 	validates :total_distance, presence: true
 	validates :lat, presence: true
 	validates :long, presence: true
@@ -70,7 +69,6 @@ class Route < ActiveRecord::Base
 		end
 		# Create the route
 		route = Route.new
-		route.name = "Glasgow City Route"
 		route.user_id = user.id
 		points.each do |point|
 			route_point = RoutePoint.create do |rp|
@@ -86,6 +84,7 @@ class Route < ActiveRecord::Base
 				rp.street_name = point[:street_name] if point[:street_name].present?
 			end
 			route.points << route_point
+			route_point.route_id = route.id
 		end
 
 		route.mode = "bike"
@@ -130,8 +129,8 @@ class Route < ActiveRecord::Base
 		route_summary = {
 			id: self.id,
 			name: self.name,
-			start_name: self.start_name,
-			end_name: self.end_name,
+			start_name: self.points.first.street_name,
+			end_name: self.points.last.street_name,
 			start_maidenhead: self.points.first.maidenhead,
 			end_maidenhead: self.points.last.maidenhead,
 			last_route_time: uses.first.created_at.to_i,
@@ -214,8 +213,8 @@ class Route < ActiveRecord::Base
 		summary = {
 			start_maidenhead: start_maidenhead,
 			end_maidenhead: end_maidenhead,
-			start_name: route.start_name,
-			end_name: route.end_name,
+			start_name: route.points.first.street_name,
+			end_name: route.points.last.street_name,
 			last_route_time: route.created_at.to_i,
 			num_instances: unique_routes.count,
 			num_reviews: routes.pick(:review).count,
@@ -283,9 +282,11 @@ class Route < ActiveRecord::Base
 	end
 
 	def set_name
-		return if self.points.count == 0
-		start_name = self.points.first.street_name
-		end_name = self.points.last.street_name
+		p "Setting name, num points: #{self.points.count}"
+		return if points.count == 0 or name.present?
+		start_name = points.first.street_name
+		end_name = points.last.street_name
+		p "Start: #{start_name}, end: #{end_name}"
 		if start_name.present? and end_name.present?
 			self.name = "#{start_name} to #{end_name}"
 		elsif start_name.present?
@@ -295,6 +296,8 @@ class Route < ActiveRecord::Base
 		else
 			self.name = "Glasgow City Route"
 		end
+		save
+		p "Name is now: #{self.name}"
 	end
 
 	def set_maidenheads
