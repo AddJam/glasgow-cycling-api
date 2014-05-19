@@ -126,11 +126,18 @@ class Route < ActiveRecord::Base
 	def summary
 		uses = self.all_uses
 
+		start_name = nil
+		end_name = nil
+		if points.count > 0
+			start_name = points.first.street_name
+			end_name = points.last.street_name
+		end
+
 		route_summary = {
 			id: self.id,
 			name: self.name,
-			start_name: self.points.first.street_name,
-			end_name: self.points.last.street_name,
+			start_name: start_name,
+			end_name: end_name,
 			start_maidenhead: self.points.first.maidenhead,
 			end_maidenhead: self.points.last.maidenhead,
 			last_route_time: uses.first.created_at.to_i,
@@ -210,11 +217,19 @@ class Route < ActiveRecord::Base
 
 		# Overview
 		route = routes.first
+
+		start_name = nil
+		end_name = nil
+		if route.points.count > 0
+			start_name = route.points.first.street_name
+			end_name = route.points.last.street_name
+		end
+
 		summary = {
 			start_maidenhead: start_maidenhead,
 			end_maidenhead: end_maidenhead,
-			start_name: route.points.first.street_name,
-			end_name: route.points.last.street_name,
+			start_name: start_name,
+			end_name: end_name,
 			last_route_time: route.created_at.to_i,
 			num_instances: unique_routes.count,
 			num_reviews: routes.pick(:review).count,

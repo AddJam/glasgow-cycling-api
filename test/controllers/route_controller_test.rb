@@ -113,6 +113,7 @@ class RouteControllerTest < ActionController::TestCase
   end
 
   test "search with no parameters returns all routes" do
+    RoutePoint.destroy_all
     user = User.last
     4.times do
       route = build(:route, user_id: user.id, lat: rand * 90, long: rand * 180)
@@ -243,6 +244,7 @@ class RouteControllerTest < ActionController::TestCase
   test "search with start and end maidenheads" do
     # Create two sets of routes between the same start and end points
     Route.destroy_all
+    RoutePoint.destroy_all
     2.times do
       route = build(:route, lat: rand * 90, long: rand * 180)
       route.points << create(:route_point, lat: 45.0, long: 150.0)
@@ -295,6 +297,7 @@ class RouteControllerTest < ActionController::TestCase
 
     route = Route.where(id: route.id).first
     assert route.flaggers.include?(user), 'route should be flagged by logged in user'
+    route.destroy
   end
 
   test "route is deletable" do

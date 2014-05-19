@@ -82,7 +82,7 @@ class RouteTest < ActiveSupport::TestCase
   test "Route points returned correctly"  do
     point_time = 3.days.ago
     route = create(:route)
-    points = create_list(:route_point, 5, is_important: false, lat: 31.0, long: 64.0, altitude: 987.0, time: point_time)
+    points = create_list(:route_point, 5, route_id: route.id, is_important: false, lat: 31.0, long: 64.0, altitude: 987.0, time: point_time)
     route.points = points
     route.save
     returned_points = route.points_data
