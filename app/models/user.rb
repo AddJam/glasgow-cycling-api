@@ -119,6 +119,7 @@ class User < ActiveRecord::Base
     user_details
   end
 
+
   private
 
   def base64_profile_pic
