@@ -1,4 +1,4 @@
-root = "/home/fcd/apps/journey_api/current"
+root = "/home/app/apps/journey_api/current"
 working_directory root
 pid "#{root}/tmp/pids/unicorn.pid"
 stderr_path "#{root}/log/unicorn.log"
