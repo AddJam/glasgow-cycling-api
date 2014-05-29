@@ -15,7 +15,7 @@ set :use_sudo, false
 set :scm, "git"
 set :repository, "git@github.com:chrissloey/journey-api.git"
 set :branch, "master"
-
+set :foreman_sudo, "rvmsudo -p 'sudo password: '"
 
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
@@ -58,7 +58,7 @@ end
 namespace :foreman do
   desc "Export the Procfile to Ubuntu's upstart scripts"
   task :export, :roles => :app do
-    run "cd #{current_path} && sudo bundle exec foreman export upstart /etc/init -a #{application} -u #{user} -l #{shared_path}/log"
+    run "cd #{current_path} && #{foreman_sudo} bundle exec foreman export upstart /etc/init -a #{application} -u #{user} -l #{shared_path}/log"
   end
 
   desc "Start the application services"
@@ -73,7 +73,7 @@ namespace :foreman do
 
   desc "Restart the application services"
   task :restart, :roles => :app do
-    run "sudo start #{application} || sudo restart #{application}"
+    run "#{foreman_sudo} start #{application} || #{foreman_sudo} restart #{application}"
   end
 end
 
