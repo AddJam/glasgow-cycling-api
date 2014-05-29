@@ -1,17 +1,19 @@
 require "bundler/capistrano"
 require "rvm/capistrano"
 
-server "188.226.184.33", :web, :app, :db, primary: true
+# server "188.226.184.33", :web, :app, :db, primary: true # Digital Ocean
+server "activetravel.cloudapp.net", :web, :app, :db, primary: true # Azure
 
 set :application, "journey_api"
-set :user, "fcd"
+# set :user, "fcd" # Digital Ocean
+set :user, "app" # Azure
 set :port, 22
 set :deploy_to, "/home/#{user}/apps/#{application}"
 set :deploy_via, :remote_cache
 set :use_sudo, false
 
 set :scm, "git"
-set :repository, "git@github.com:chrissloey/JourneyAPI.git"
+set :repository, "git@github.com:chrissloey/journey-api.git"
 set :branch, "master"
 
 
