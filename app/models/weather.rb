@@ -10,8 +10,6 @@
 #  updated_at :datetime
 #
 
-require 'Date'
-
 class Weather < ActiveRecord::Base
 	has_many :weather_periods
 end
