@@ -48,8 +48,9 @@ gem 'foreman'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-# Users + Auth
-gem 'devise'
+# Security
+gem 'symmetric-encryption'
+gem 'devise', "~> 3.2"
 
 # Image handling
 gem "paperclip", "~> 4.1"

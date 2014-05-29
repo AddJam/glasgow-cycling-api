@@ -26,10 +26,14 @@
 class User < ActiveRecord::Base
 	before_save :ensure_authentication_token
 
-  # Include default devise modules. Others available are:
+  # Devise modules (for user auth, password hashing). Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+	# Encryption of sensitive data
+	attr_encrypted :first_name
+	attr_encrypted :last_name
 
   enum gender: [:male, :female, :undisclosed]
 
