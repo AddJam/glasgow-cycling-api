@@ -109,7 +109,9 @@ class User < ActiveRecord::Base
       first_name: self.first_name,
       last_name: self.last_name,
       user_id: self.id,
-      month: month_stats
+      month: month_stats,
+      gender: self.gender,
+      email: self.email
     }
 
     if self.profile_pic.present?

@@ -121,7 +121,7 @@ class UserController < ApplicationController
     if user and user.save
 			render json: user.details
 		else
-			render status: :internal_server_error, json: {error: "Unable to save user details"}
+			render status: :internal_server_error, json: {errors: user.errors.as_json}
 		end
   end
 
