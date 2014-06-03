@@ -1,2 +1,4 @@
-redis: redis-server
 web: rails s
+redis: redis-server
+sidekiq: bundle exec sidekiq -e development
+clock: bundle exec clockwork lib/clock.rb
