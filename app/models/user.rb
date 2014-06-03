@@ -50,8 +50,8 @@ class User < ActiveRecord::Base
 
   validates :email, presence: true, uniqueness: true, length: { minimum: 5 },
       format: { with: /@/, message: "email addresses must contain @" }
-  validates :first_name, presence: true
-  validates :last_name, presence: true
+  validates :encrypted_first_name, presence: true
+  validates :encrypted_last_name, presence: true
   validates :dob, presence: true
   validates :gender, presence: true
 
