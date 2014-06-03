@@ -26,10 +26,14 @@
 class User < ActiveRecord::Base
 	before_save :ensure_authentication_token
 
-  # Include default devise modules. Others available are:
+  # Devise modules (for user auth, password hashing). Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+	# Encryption of sensitive data
+	attr_encrypted :first_name
+	attr_encrypted :last_name
 
   enum gender: [:male, :female, :undisclosed]
 
@@ -46,8 +50,8 @@ class User < ActiveRecord::Base
 
   validates :email, presence: true, uniqueness: true, length: { minimum: 5 },
       format: { with: /@/, message: "email addresses must contain @" }
-  validates :first_name, presence: true
-  validates :last_name, presence: true
+  validates :encrypted_first_name, presence: true
+  validates :encrypted_last_name, presence: true
   validates :dob, presence: true
   validates :gender, presence: true
 

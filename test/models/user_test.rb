@@ -6,7 +6,8 @@ class UserTest < ActiveSupport::TestCase
   test "registering a user should create the necessary auth fields" do
   	user_email = "testusermodel@example.com"
   	assert_nil User.where(email: user_email).first, "User shouldn't exist in db before register"
-    user_attrs = JSON.parse(attributes_for(:user, email: user_email, profile_pic:nil).to_json) #simulate json
+    user_attrs = JSON.parse(attributes_for(:user, email: user_email, profile_pic: nil,
+              first_name: "Test First Name", last_name: "Test Last Name").to_json)
   	User.register user_attrs
   	stored_user = User.where(email: user_email).first
   	assert_not_nil stored_user, "Registered user should be in database"

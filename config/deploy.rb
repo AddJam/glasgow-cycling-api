@@ -27,12 +27,14 @@ namespace :deploy do
     sudo "ln -nfs #{current_path}/config/nginx.conf /etc/nginx/sites-enabled/#{application}"
     run "mkdir -p #{shared_path}/config"
     put File.read("config/database.example.yml"), "#{shared_path}/config/database.yml"
+    put File.read("config/symmetric-encryption.yml"), "#{shared_path}/config/symmetric-encryption.yml"
     puts "Now edit the config files in #{shared_path}."
   end
   after "deploy:setup", "deploy:setup_config"
 
   task :symlink_config, roles: :app do
     run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
+    run "ln -nfs #{shared_path}/config/symmetric-encryption.yml #{release_path}/config/symmetric-encryption.yml"
   end
   after "deploy:finalize_update", "deploy:symlink_config"
 

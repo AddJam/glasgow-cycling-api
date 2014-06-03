@@ -108,7 +108,6 @@ class HourTest < ActiveSupport::TestCase
     route = Route.record(user, points)
 
     days_data = Hour.period(:days, 5, user)
-    p days_data
     assert_not_nil days_data[:days], "all days contributing to the stats should be returned"
     assert_equal 5, days_data[:days].count, "correct number of hours is returned"
 
