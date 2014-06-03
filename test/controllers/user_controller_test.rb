@@ -10,7 +10,7 @@ class UserControllerTest < ActionController::TestCase
 			password: "password",
 			first_name: "Bob",
 			last_name: "Builder",
-			dob: Date.new(1998, 11, 28),
+			year_of_birth: 1990,
 			gender: "male",
 			profile_picture: "data:image/jpeg;base64,#{base64_image}"
 		}

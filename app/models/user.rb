@@ -52,7 +52,7 @@ class User < ActiveRecord::Base
       format: { with: /@/, message: "email addresses must contain @" }
   validates :encrypted_first_name, presence: true
   validates :encrypted_last_name, presence: true
-  validates :dob, presence: true
+  validates :year_of_birth, presence: true
   validates :gender, presence: true
 
   # Registers a new user with the provided details
@@ -72,7 +72,7 @@ class User < ActiveRecord::Base
 		user.password = user_data['password']
 		user.first_name = user_data['first_name']
 		user.last_name = user_data['last_name']
-		user.dob = DateTime.parse(user_data['dob']) if user_data['dob'].present?
+		user.year_of_birth = user_data['year_of_birth'].to_i if user_data['year_of_birth'].present?
 		user.gender = user_data['gender'].downcase if user_data['gender'].present?
 
     # Decode profile pic

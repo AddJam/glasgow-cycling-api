@@ -98,7 +98,7 @@ FactoryGirl.define do
     encrypted_last_name SymmetricEncryption.encrypt("Test First Name")
     profile_pic { fixture_file_upload(Rails.root.join('public', 'images', 'medium', 'default_profile_pic.png'), 'image/png') }
     gender "male"
-    dob { 2.weeks.ago }
+    year_of_birth 1990
     # sequence(:authentication_token)
   end
 
