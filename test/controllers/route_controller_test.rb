@@ -246,7 +246,7 @@ class RouteControllerTest < ActionController::TestCase
     Route.destroy_all
     RoutePoint.destroy_all
     2.times do
-      route = build(:route, lat: rand * 90, long: rand * 180)
+      route = build(:route)
       route.points << create(:route_point, lat: 45.0, long: 150.0)
       route.points << create(:route_point, lat: 40.0, long: 150.0)
       route.points << create(:route_point, lat: 42.0, long: 33.0)
@@ -255,7 +255,7 @@ class RouteControllerTest < ActionController::TestCase
     end
 
     2.times do
-      route = build(:route, lat: rand * 90, long: rand * 180)
+      route = build(:route)
       route.points << create(:route_point, lat: 45.0, long: 150.0)
       route.points << create(:route_point, lat: 23.0, long: 120.0)
       route.points << create(:route_point, lat: 14.0, long: 45.0)
@@ -265,7 +265,7 @@ class RouteControllerTest < ActionController::TestCase
 
     # Create misc routes to/from other locations
     2.times do
-      route = build(:route, lat: rand * 90, long: rand * 180)
+      route = build(:route)
       route.points = create_list(:route_point, 2, lat: rand * 90.0, long: rand * 180.0)
       route.save
     end
