@@ -26,6 +26,13 @@ class ActiveSupport::TestCase
       new_point.merge!(point_attrs)
       points << new_point
     end
+
+    # Ensure route is long enough (Route.meets_distance_requirements)
+    unless point_attrs[:lat]
+      points.first[:lat] = 4
+      points.last[:lat] = -4
+    end
+
     points
   end
 end

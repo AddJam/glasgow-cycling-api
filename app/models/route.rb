@@ -32,12 +32,11 @@ class Route < ActiveRecord::Base
 	before_create :generate_stats
 	after_save :set_name
 
-	validates :total_distance, presence: true
+	validate :meets_distance_requirement
 	validates :lat, presence: true
 	validates :long, presence: true
 	validates :start_maidenhead, presence: true
 	validates :end_maidenhead, presence: true
-	# TODO validate at least one point exists
 
 	reverse_geocoded_by :lat, :long
 
@@ -48,9 +47,11 @@ class Route < ActiveRecord::Base
 	end
 
 	def all_uses
+		Rails.logger.debug "Getting uses for start #{start_maidenhead} and end #{end_maidenhead}"
 		return unless start_maidenhead.present? and end_maidenhead.present?
 		similar = Route.where(start_maidenhead: start_maidenhead, end_maidenhead: end_maidenhead)
-		similar.select {|route| self.is_similar? route }
+		Rails.logger.debug "Number similar: #{similar.count}"
+		similar.select { |route| self.is_similar? route }
 	end
 
 	# Records a new route for the given user
@@ -125,6 +126,8 @@ class Route < ActiveRecord::Base
 	# The route details.
 	def summary
 		uses = self.all_uses
+
+		Rails.logger.debug "USES: " + uses.inspect
 
 		start_name = nil
 		end_name = nil
@@ -257,6 +260,7 @@ class Route < ActiveRecord::Base
 	end
 
 	def is_similar?(other_route)
+		Rails.logger.debug "similarity score: #{similarity(self.maidenheads, other_route.maidenheads)}"
 		similarity(self.maidenheads, other_route.maidenheads) >= 0.9
 	end
 
@@ -319,6 +323,11 @@ class Route < ActiveRecord::Base
 	end
 
 	def similarity(route_one, route_two)
+		Rails.logger.debug "11,21,12,22"
+		Rails.logger.debug "#{route_one.first.inspect}"
+		Rails.logger.debug "#{route_two.first.inspect}"
+		Rails.logger.debug "#{route_one.last.inspect}"
+		Rails.logger.debug "#{route_two.last.inspect}"
 		if route_one.first != route_two.first or route_one.last != route_two.last
 			return 0
 		end
@@ -361,5 +370,10 @@ class Route < ActiveRecord::Base
 
 		# Create statistics from points
 		Hour.generate!(stat_points, user)
+	end
+
+	def meets_distance_requirement
+		long_enough = total_distance && total_distance >= 500
+		errors.add(:total_distance, "of #{total_distance} is not long enough - must be 500") unless long_enough
 	end
 end

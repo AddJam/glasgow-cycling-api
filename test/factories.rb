@@ -38,6 +38,8 @@ FactoryGirl.define do
     road_closure_details 'Test Road Closure Details'
   end
 
+  sequence(:lat) {|n| @random_lats ||= (1..90).to_a.shuffle; @random_lats[n] }
+  sequence(:long) {|n| @random_longs ||= (1..180).to_a.shuffle; @random_longs[n] }
   factory :route do
     # after(:create) do |user, evaluator|; FactoryGirl.create_list :route, 2; end # commented to avoid circular reference
     # after(:create) do |user, evaluator|; FactoryGirl.create_list :route_point, 2; end # commented to avoid circular reference
@@ -50,7 +52,7 @@ FactoryGirl.define do
     long 1.23
     start_maidenhead 'AA00bb11'
     end_maidenhead 'AA00bb11'
-    total_distance 1.23
+    total_distance 500
     mode 1
     start_time { 2.weeks.ago }
     end_time { 2.weeks.ago }
@@ -60,8 +62,8 @@ FactoryGirl.define do
   factory :route_point do
     route
     sequence(:id)
-    lat 1.23
-    long 1.23
+    lat { FactoryGirl.generate(:lat) }
+    long { FactoryGirl.generate(:long) }
     altitude 1.23
     on_road true
     street_name 'Test Street Name'
