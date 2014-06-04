@@ -28,7 +28,7 @@ JourneyAPI::Application.routes.draw do
   get '/stats/weeks', to: 'stats#weeks', as: 'stats_weeks'
 
   # Points of Interest
-  get 'poi/all'
+  get '/poi/all', to: 'poi#all', as: 'all_poi'
 
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
