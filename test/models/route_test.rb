@@ -2,10 +2,12 @@ require 'test_helper'
 
 class RouteTest < ActiveSupport::TestCase
   test 'route start and end points are geocoded for suitable locations' do
-    points = route_point_params(3, lat: 55.8447118, long: -4.19440029)
+    points = create_list(:route_point, 3, lat: 55.8447118, long: -4.19440029)
     points[1][:lat] = 20.0
     points[1][:long] = 0.0
-    route = Route.record(create(:user), points)
+    route = build(:route)
+    route.points = points
+    route.save
 
     assert_not_nil route, 'Route created by record'
     assert_equal route.points.count, points.count, 'all points should be recorded in route'
@@ -16,16 +18,16 @@ class RouteTest < ActiveSupport::TestCase
   end
 
   test 'recording a route should store the route and all route points' do
-    points = route_point_params(3)
+    points = route_point_params(10)
     route = Route.record(create(:user), points)
 
     assert_not_nil route, 'Route created by record'
-    assert_equal route.points.count, points.count, 'all points should be recorded in route'
+    assert_not_empty route.points 'points should be recorded in route'
   end
 
   test 'recording a route should add it to the users routes' do
     user = create(:user)
-    route_points = route_point_params(3)
+    route_points = route_point_params(10)
     route = Route.record(user, route_points)
     route_added_to_user = user.routes.include? route
     assert route_added_to_user, 'route should be added to user routes after recording'
@@ -33,7 +35,7 @@ class RouteTest < ActiveSupport::TestCase
 
   test 'recording a route should store route time' do
     user = create(:user)
-    points = route_point_params(3)
+    points = route_point_params(10)
     route = Route.record(user, points)
     total_time_seconds = route.points.last[:time] - route.points.first[:time]
     assert_equal total_time_seconds, route.total_time, 'store route time in user history'
@@ -76,7 +78,7 @@ class RouteTest < ActiveSupport::TestCase
   end
 
   test 'route created and mode default to bike enum' do
-    points = route_point_params(3)
+    points = route_point_params(10)
 
     route = Route.record(create(:user), points)
     assert_equal 'bike', route.mode, 'Route mode should default to 0 (bike)'

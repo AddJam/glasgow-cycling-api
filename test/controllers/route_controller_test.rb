@@ -14,16 +14,8 @@ class RouteControllerTest < ActionController::TestCase
       kph: (rand * 23),
       time: Time.now.to_i,
       street_name: 'Random Street'
-      },
-      {
-        lat: (rand * 45) + 45,
-        long: (rand * 90) + 90,
-        altitude: (rand * 500),
-        kph: (rand * 23),
-        time: Time.now.to_i,
-        street_name: 'Random Street'
       }
-    ]
+    ] * 10
   end
 
   test "can't record route when logged out" do

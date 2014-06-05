@@ -10,24 +10,28 @@ class HourTest < ActiveSupport::TestCase
   end
 
   test "points are split into hours" do
-    points = route_point_params(3)
-    points[0][:time] = 3.hours.ago
-    points[1][:time] = 2.hours.ago
-    points[2][:time] = 1.hour.ago
+    points = create_list(:route_point, 3)
+    points[0].time = 3.hours.ago
+    points[1].time = 2.hours.ago
+    points[2].time = 1.hour.ago
     user = create(:user)
-    route = Route.record(user, points)
+    route = build(:route, user_id: user.id)
+    route.points = points
+    route.save
 
     assert_not_nil user.stats, "user stats should exist after recording a route"
     assert_equal 3, user.stats.count, "correct number of hours should be generated"
   end
 
   test "generated hour data is accurate" do
-    points = route_point_params(3)
-    points[0][:time] = 3.hours.ago
-    points[1][:time] = 3.hours.ago
-    points[2][:time] = 1.hour.ago
+    points = create_list(:route_point, 3)
+    points[0].time = 3.hours.ago
+    points[1].time = 3.hours.ago
+    points[2].time = 1.hour.ago
     user = create(:user)
-    route = Route.record(user, points)
+    route = build(:route, user_id: user.id)
+    route.points = points
+    route.save
 
     assert_not_nil user.stats, "user stats should exist after recording a route"
     assert_equal 2, user.stats.count, "correct number of hours should be generated"
@@ -57,14 +61,14 @@ class HourTest < ActiveSupport::TestCase
   end
 
   test "hours data is accurate" do
-    Hour.destroy_all
-
-    points = route_point_params(3)
-    points[0][:time] = 3.hours.ago
-    points[1][:time] = 3.hours.ago
-    points[2][:time] = 1.hour.ago
+    points = create_list(:route_point, 3)
+    points[0].time = 3.hours.ago
+    points[1].time = 3.hours.ago
+    points[2].time = 3.hour.ago
     user = create(:user)
-    route = Route.record(user, points)
+    route = build(:route, user_id: user.id, total_distance: nil)
+    route.points = points
+    route.save
 
     hours_data = Hour.hours(5, user)
     assert_not_nil hours_data[:hours], "all hours contributing to the stats should be returned"
@@ -91,7 +95,9 @@ class HourTest < ActiveSupport::TestCase
     assert_equal 1, hours_data[:overall][:routes_started], "a single route should have been started"
     assert_equal 1, hours_data[:overall][:routes_completed], "a single route should have been completed"
 
-    Route.record(user, points)
+    route = build(:route, user_id: user.id, total_distance: nil)
+    route.points = points
+    route.save
     hours_data = Hour.hours(5, user)
     assert_equal 2, hours_data[:overall][:routes_started], "two routes should have been started"
     assert_equal 2, hours_data[:overall][:routes_completed], "two routes should have been completed"
