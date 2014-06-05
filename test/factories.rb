@@ -60,7 +60,6 @@ FactoryGirl.define do
   end
 
   factory :route_point do
-    route
     sequence(:id)
     lat { FactoryGirl.generate(:lat) }
     long { FactoryGirl.generate(:long) }

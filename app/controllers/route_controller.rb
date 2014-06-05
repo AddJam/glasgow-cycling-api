@@ -100,6 +100,7 @@ class RouteController < ApplicationController
 	#   - per_page (integer)
 	#   - page_num (integer)
 	def search
+		Rails.logger.debug "Search got params: #{params}"
 		# Pagination
 		per_page = params[:per_page] || 10
 		per_page = per_page.to_i
@@ -131,7 +132,9 @@ class RouteController < ApplicationController
 		# Group by Similarity rather than start/end points if both points provided
 		if start_maidenhead and end_maidenhead
 			# Get all uses and group into routes by similarity
+			Rails.logger.debug "Searching for routes from #{start_maidenhead} to #{end_maidenhead}"
 			all_uses = Route.where(condition).order('start_time DESC').limit(per_page).offset(offset)
+			Rails.logger.debug "Search found #{all_uses.count} uses"
 			routes = all_uses.inject([]) do |routes, use|
 				if routes.blank?
 					routes << use
@@ -141,11 +144,13 @@ class RouteController < ApplicationController
 				end
 				routes
 			end
+			Rails.logger.debug "Refined uses to #{routes.count} routes"
 
 			# Summarise routes
 			summaries = routes.inject([]) do |all_summaries, route|
 				all_summaries << route.summary
 			end
+			Rails.logger.debug "Got #{summaries.count} summaries"
 		else
 			routes = Route.where(condition).select('start_maidenhead, end_maidenhead, MAX(start_time) as start_time')
 										.group(:start_maidenhead, :end_maidenhead).order('start_time DESC')

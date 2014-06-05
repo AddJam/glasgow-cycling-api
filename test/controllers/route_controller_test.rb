@@ -113,7 +113,6 @@ class RouteControllerTest < ActionController::TestCase
   end
 
   test "search with no parameters returns all routes" do
-    RoutePoint.destroy_all
     user = User.last
     4.times do
       route = build(:route, user_id: user.id, lat: rand * 90, long: rand * 180)
@@ -135,7 +134,6 @@ class RouteControllerTest < ActionController::TestCase
 
   test "search with user_only=true" do
     user = User.last
-    Route.destroy_all
 
     # User routes
     2.times do
@@ -166,33 +164,32 @@ class RouteControllerTest < ActionController::TestCase
   test "search with start and end points" do
     # Create two sets of routes between the same start and end points
     2.times do
-      route = build(:route, lat: rand * 90, long: rand * 180)
-      route.points << create(:route_point, lat: 45.0, long: 150.0)
-      route.points << create(:route_point, lat: 40.0, long: 150.0)
-      route.points << create(:route_point, lat: 42.0, long: 33.0)
-      route.points << create(:route_point, lat: 40.0, long: 145.0)
+      route = build(:route)
+      route.points << create_list(:route_point, 2, route_id: route.id, lat: 5, long: 20)
+      route.points << create_list(:route_point, 1, route_id: route.id, lat: 5, long: 20)
+      route.points << create_list(:route_point, 2, route_id: route.id, lat: 5, long: 20)
       route.save
     end
 
     2.times do
-      route = build(:route, lat: rand * 90, long: rand * 180)
-      route.points << create(:route_point, lat: 45.0, long: 150.0)
-      route.points << create(:route_point, lat: 23.0, long: 120.0)
-      route.points << create(:route_point, lat: 14.0, long: 45.0)
-      route.points << create(:route_point, lat: 40.0, long: 145.0)
+      route = build(:route)
+      route.points << create_list(:route_point, 2, route_id: route.id, lat: 5, long: 20)
+      route.points << create_list(:route_point, 1, route_id: route.id, lat: 3, long: 20)
+      route.points << create_list(:route_point, 2, route_id: route.id, lat: 5, long: 20)
       route.save
     end
+
+    search_route = Route.first
 
     # Create misc routes to/from other locations
     2.times do
-      route = build(:route, lat: rand * 90, long: rand * 180)
-      route.points = create_list(:route_point, 2, lat: rand * 90.0, long: rand * 180.0)
+      route = build(:route)
+      route.points = create_list(:route_point, 2, lat: rand(10) + 50, long: rand(15) + 50)
       route.save
     end
 
-    route = Route.first
-    get(:search, source_lat: route.points.first.lat, source_long: route.points.first.long,
-                  dest_lat: route.points.last.lat, dest_long: route.points.last.long,
+    get(:search, source_lat: 5, source_long: 20,
+                  dest_lat: 5, dest_long: 20,
                   format: :json)
 
     assert_response :success, 'route search with start and end locations should should be successful'
@@ -209,7 +206,6 @@ class RouteControllerTest < ActionController::TestCase
 
   test "search with a start point and no end point" do
     user = User.last
-    Route.destroy_all
 
     # User routes
     2.times do
@@ -243,42 +239,46 @@ class RouteControllerTest < ActionController::TestCase
 
   test "search with start and end maidenheads" do
     # Create two sets of routes between the same start and end points
-    Route.destroy_all
-    RoutePoint.destroy_all
     2.times do
       route = build(:route)
-      route.points << create(:route_point, lat: 45.0, long: 150.0)
-      route.points << create(:route_point, lat: 40.0, long: 150.0)
-      route.points << create(:route_point, lat: 42.0, long: 33.0)
-      route.points << create(:route_point, lat: 40.0, long: 145.0)
+      route.points << create_list(:route_point, 2, route_id: route.id, lat: 5, long: 20)
+      route.points << create_list(:route_point, 1, route_id: route.id, lat: 5, long: 20)
+      route.points << create_list(:route_point, 2, route_id: route.id, lat: 5, long: 20)
       route.save
     end
 
     2.times do
       route = build(:route)
-      route.points << create(:route_point, lat: 45.0, long: 150.0)
-      route.points << create(:route_point, lat: 23.0, long: 120.0)
-      route.points << create(:route_point, lat: 14.0, long: 45.0)
-      route.points << create(:route_point, lat: 40.0, long: 145.0)
+      route.points << create_list(:route_point, 2, route_id: route.id, lat: 5, long: 20)
+      route.points << create_list(:route_point, 1, route_id: route.id, lat: 3, long: 20)
+      route.points << create_list(:route_point, 2, route_id: route.id, lat: 5, long: 20)
       route.save
     end
+
+    search_route = Route.first
 
     # Create misc routes to/from other locations
     2.times do
       route = build(:route)
-      route.points = create_list(:route_point, 2, lat: rand * 90.0, long: rand * 180.0)
+      route.points = create_list(:route_point, 2, lat: rand(10), long: rand(15))
       route.save
     end
 
-    route = Route.first
-    get(:search, start_maidenhead: route.points.first.maidenhead,
-              end_maidenhead: route.points.last.maidenhead, format: :json)
+    get(:search, start_maidenhead: search_route.points.first.maidenhead,
+              end_maidenhead: search_route.points.last.maidenhead, format: :json)
 
     assert_response :success, 'route search with start and end locations should should be successful'
     assert_not_nil response.body, 'response should have a body'
 
     results = JSON.parse response.body
     assert_not_nil results['routes'], 'result should contain routes'
+    Rails.logger.debug("Search was from #{search_route.points.first.maidenhead} to #{search_route.points.last.maidenhead}")
+    Rails.logger.debug "Results:"
+    results['routes'].each do |route|
+      route = Route.where(id: route['id'].to_i).first
+      Rails.logger.debug "Route from #{route.start_maidenhead} to #{route.end_maidenhead}"
+      Rails.logger.debug "Route points from #{route.points.first.maidenhead} to #{route.points.last.maidenhead}"
+    end
 
     # 2 routes were created, each with multiple uses
     assert_equal 2, results['routes'].length, 'there should be one result for each route'
@@ -297,7 +297,6 @@ class RouteControllerTest < ActionController::TestCase
 
     route = Route.where(id: route.id).first
     assert route.flaggers.include?(user), 'route should be flagged by logged in user'
-    route.destroy
   end
 
   test "route is deletable" do

@@ -264,6 +264,33 @@ class Route < ActiveRecord::Base
 		similarity(self.maidenheads, other_route.maidenheads) >= 0.9
 	end
 
+	def similarity(route_one, route_two)
+		Rails.logger.debug "11,21,12,22"
+		Rails.logger.debug "#{route_one.first.inspect}"
+		Rails.logger.debug "#{route_two.first.inspect}"
+		Rails.logger.debug "#{route_one.last.inspect}"
+		Rails.logger.debug "#{route_two.last.inspect}"
+		if route_one.first != route_two.first or route_one.last != route_two.last
+			return 0
+		end
+
+		route_one.uniq!
+		route_two.uniq!
+
+		matching_cells = route_two.select do |cell|
+			route_one.include? cell
+		end
+
+		points_also_in_route_one = matching_cells.length
+		non_matching_one = route_one.length - points_also_in_route_one
+		non_matching_two = route_two.length - points_also_in_route_one
+
+		longest_len = route_one.length > route_two.length ? route_one.length : route_two.length
+
+		# Similarity is ratio of matching to total unique points
+		points_also_in_route_one.to_f / (non_matching_one.to_f + non_matching_two.to_f + points_also_in_route_one.to_f)
+	end
+
 	private
 
 	def ensure_distance_exists
@@ -320,33 +347,6 @@ class Route < ActiveRecord::Base
 		return if self.points.blank?
 		self.start_maidenhead = self.points.first.maidenhead
 		self.end_maidenhead = self.points.last.maidenhead
-	end
-
-	def similarity(route_one, route_two)
-		Rails.logger.debug "11,21,12,22"
-		Rails.logger.debug "#{route_one.first.inspect}"
-		Rails.logger.debug "#{route_two.first.inspect}"
-		Rails.logger.debug "#{route_one.last.inspect}"
-		Rails.logger.debug "#{route_two.last.inspect}"
-		if route_one.first != route_two.first or route_one.last != route_two.last
-			return 0
-		end
-
-		route_one.uniq!
-		route_two.uniq!
-
-		matching_cells = route_two.select do |cell|
-			route_one.include? cell
-		end
-
-		points_also_in_route_one = matching_cells.length
-		non_matching_one = route_one.length - points_also_in_route_one
-		non_matching_two = route_two.length - points_also_in_route_one
-
-		longest_len = route_one.length > route_two.length ? route_one.length : route_two.length
-
-		# Similarity is ratio of matching to total unique points
-		points_also_in_route_one.to_f / (non_matching_one.to_f + non_matching_two.to_f + points_also_in_route_one.to_f)
 	end
 
 	def generate_stats
