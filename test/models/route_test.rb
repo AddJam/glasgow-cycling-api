@@ -43,16 +43,17 @@ class RouteTest < ActiveSupport::TestCase
     # Note - distance is calculated once for a route
     #        after this, it is assumed points wont be modified
     user = create(:user)
-    points = route_point_params(3)
-
+    route = build(:route, total_distance: nil)
+    points = create_list(:route_point, 3)
     points[0][:lat] = 0.0
     points[0][:long] = 0.0
     points[1][:lat] = 1.0
     points[1][:long] = 1.0
     points[2][:lat] = 2.0
     points[2][:long] = 2.0
+    route.points = points
+    route.save
     expected_distance = 314.4748133100169
-    route = Route.record(user, points)
     assert_not_nil route.total_distance, 'recorded route should have a distance'
     assert_equal expected_distance, route.total_distance, 'route distance should be accurate'
   end
@@ -142,6 +143,27 @@ class RouteTest < ActiveSupport::TestCase
     assert_not_nil summary[:averages][:difficulty_rating], 'summary should contain average difficulty_rating'
     assert_not_nil summary[:averages][:time], 'summary should contain average total time'
     assert_not_nil summary[:averages][:speed], 'summary should contain average speed'
+  end
 
+  test 'route is trimmed after recording' do
+    # roughly split points at 100m apart based on average 1° == 111km
+    # so 0.0009009009009° == 100m
+    point_params = route_point_params(11) # 1km of points
+    spacer = 0.0009009009009
+    lat = 55.4
+    long = -4.29
+    point_params.each do |point|
+      point[:lat] = lat
+      point[:long] = long
+      lat += spacer
+    end
+
+    # Try record
+    user = create(:user)
+    route = Route.record(user, point_params)
+    assert_not_nil route, "route should be saved"
+    assert route.points.count <= 8, "route endpoints should have been trimmed"
+    assert route.points.count >= 6, "most of the route points should still be present"
+    Rails.logger.debug "#{route.points.count} route points after trim"
   end
 end

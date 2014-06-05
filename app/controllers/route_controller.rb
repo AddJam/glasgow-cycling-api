@@ -34,7 +34,7 @@ class RouteController < ApplicationController
 			if route
 				render json: {route_id: route.id}
 			else
-				render status: :bad_request, json: {error: "Route record failure found"}
+				render status: :bad_request, json: {error: "Route failed to record"}
 			end
 		end
 	end

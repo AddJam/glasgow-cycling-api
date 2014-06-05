@@ -24,6 +24,7 @@ class Route < ActiveRecord::Base
 	has_many :flaggings
 	has_many :flaggers, :through => :flaggings, :source => :user
 	belongs_to :user
+  MIN_DISTANCE = 0.5
 
 	before_validation :ensure_distance_exists
 	before_validation :set_endpoints
@@ -67,29 +68,61 @@ class Route < ActiveRecord::Base
 			return {
 				error: "No route points"
 			}
-		end
+    end
+
+    # Randomise trim amount within range
+    trim_amount = 0.1 + (rand * 0.05)
+
+    # Calculate route distance
+    total_dist = points.each_with_index.inject(0) do |dist, (elem, index)|
+      if index >= points.length - 1
+        dist
+      else
+        next_point = points[index+1]
+        next_coords = [next_point[:lat], next_point[:long]]
+        coords = [elem[:lat], elem[:long]]
+        dist += Geocoder::Calculations.distance_between(coords, next_coords)
+      end
+    end
+
+    return unless total_dist >= MIN_DISTANCE
+
+    previous_coords = nil
+    distance_covered = 0
+    points = points.inject([]) do |acc, point|
+      coords = [point[:lat], point[:long]]
+      if previous_coords.present?
+        distance_covered += Geocoder::Calculations.distance_between(previous_coords, coords)
+        if distance_covered > trim_amount and distance_covered < (total_dist-trim_amount)
+          acc << point
+        end
+      end
+      previous_coords = coords
+      acc
+    end
+
 		# Create the route
-		route = Route.new
-		route.user_id = user.id
-		points.each do |point|
-			route_point = RoutePoint.create do |rp|
-				rp.lat = point[:lat]
-				rp.long = point[:long]
-				rp.altitude = point[:altitude]
-				rp.kph = point[:speed] if point[:speed]
-				rp.kph = point[:kph] if point[:kph]
-				rp.time = Time.at(point[:time].to_i)
-				rp.vertical_accuracy = point[:vertical_accuracy]
-				rp.horizontal_accuracy = point[:horizontal_accuracy]
-				rp.course = point[:course]
-				rp.street_name = point[:street_name] if point[:street_name].present?
-			end
-			route.points << route_point
-			route_point.route_id = route.id
-		end
+    route = Route.new
+    route.mode = "bike"
+    route.user_id = user.id
+    points.each do |point|
+      route_point = RoutePoint.create do |rp|
+        rp.lat = point[:lat]
+        rp.long = point[:long]
+        rp.altitude = point[:altitude]
+        rp.kph = point[:speed] if point[:speed]
+        rp.kph = point[:kph] if point[:kph]
+        rp.time = Time.at(point[:time].to_i)
+        rp.vertical_accuracy = point[:vertical_accuracy]
+        rp.horizontal_accuracy = point[:horizontal_accuracy]
+        rp.course = point[:course]
+        rp.street_name = point[:street_name] if point[:street_name].present?
+      end
+      route.points << route_point
+      route_point.route = route
+    end
 
-		route.mode = "bike"
-
+    # Save
 		route.save
 		route
 	end
@@ -264,33 +297,6 @@ class Route < ActiveRecord::Base
 		similarity(self.maidenheads, other_route.maidenheads) >= 0.9
 	end
 
-	def similarity(route_one, route_two)
-		Rails.logger.debug "11,21,12,22"
-		Rails.logger.debug "#{route_one.first.inspect}"
-		Rails.logger.debug "#{route_two.first.inspect}"
-		Rails.logger.debug "#{route_one.last.inspect}"
-		Rails.logger.debug "#{route_two.last.inspect}"
-		if route_one.first != route_two.first or route_one.last != route_two.last
-			return 0
-		end
-
-		route_one.uniq!
-		route_two.uniq!
-
-		matching_cells = route_two.select do |cell|
-			route_one.include? cell
-		end
-
-		points_also_in_route_one = matching_cells.length
-		non_matching_one = route_one.length - points_also_in_route_one
-		non_matching_two = route_two.length - points_also_in_route_one
-
-		longest_len = route_one.length > route_two.length ? route_one.length : route_two.length
-
-		# Similarity is ratio of matching to total unique points
-		points_also_in_route_one.to_f / (non_matching_one.to_f + non_matching_two.to_f + points_also_in_route_one.to_f)
-	end
-
 	private
 
 	def ensure_distance_exists
@@ -373,7 +379,34 @@ class Route < ActiveRecord::Base
 	end
 
 	def meets_distance_requirement
-		long_enough = total_distance && total_distance >= 500
-		errors.add(:total_distance, "of #{total_distance} is not long enough - must be 500") unless long_enough
-	end
+		long_enough = total_distance && total_distance >= MIN_DISTANCE
+		errors.add(:total_distance, "of #{total_distance} is not long enough - must be 0.5km") unless long_enough
+  end
+
+  def similarity(route_one, route_two)
+    Rails.logger.debug "11,21,12,22"
+    Rails.logger.debug "#{route_one.first.inspect}"
+    Rails.logger.debug "#{route_two.first.inspect}"
+    Rails.logger.debug "#{route_one.last.inspect}"
+    Rails.logger.debug "#{route_two.last.inspect}"
+    if route_one.first != route_two.first or route_one.last != route_two.last
+      return 0
+    end
+
+    route_one.uniq!
+    route_two.uniq!
+
+    matching_cells = route_two.select do |cell|
+      route_one.include? cell
+    end
+
+    points_also_in_route_one = matching_cells.length
+    non_matching_one = route_one.length - points_also_in_route_one
+    non_matching_two = route_two.length - points_also_in_route_one
+
+    longest_len = route_one.length > route_two.length ? route_one.length : route_two.length
+
+    # Similarity is ratio of matching to total unique points
+    points_also_in_route_one.to_f / (non_matching_one.to_f + non_matching_two.to_f + points_also_in_route_one.to_f)
+  end
 end
