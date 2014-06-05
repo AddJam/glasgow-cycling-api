@@ -13,7 +13,7 @@ class RouteReviewTest < ActiveSupport::TestCase
   	route = create(:route)
 
   	review = route.create_review(user, user_review)
-  assert_not_nil review, "review created by review method"
+    assert_not_nil review, "review created by review method"
 
     route = Route.where(id: route.id).first
     assert_not_nil route.review, "review should be associated with route"
