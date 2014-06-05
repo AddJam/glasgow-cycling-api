@@ -8,16 +8,16 @@ class RouteControllerTest < ActionController::TestCase
   def points
     [
       {
-      lat: (rand * 90),
-      long: (rand * 180),
+      lat: (rand * 45),
+      long: (rand * 90),
       altitude: (rand * 500),
       kph: (rand * 23),
       time: Time.now.to_i,
       street_name: 'Random Street'
       },
       {
-        lat: (rand * 90),
-        long: (rand * 180),
+        lat: (rand * 45) + 45,
+        long: (rand * 90) + 90,
         altitude: (rand * 500),
         kph: (rand * 23),
         time: Time.now.to_i,
@@ -166,30 +166,25 @@ class RouteControllerTest < ActionController::TestCase
     2.times do
       route = build(:route)
       route.points << create_list(:route_point, 2, route_id: route.id, lat: 5, long: 20)
+      route.save
       route.points << create_list(:route_point, 1, route_id: route.id, lat: 5, long: 20)
-      route.points << create_list(:route_point, 2, route_id: route.id, lat: 5, long: 20)
+      route.save
+      route.points << create_list(:route_point, 2, route_id: route.id, lat: 19, long: 20)
       route.save
     end
 
     2.times do
       route = build(:route)
       route.points << create_list(:route_point, 2, route_id: route.id, lat: 5, long: 20)
+      route.save
       route.points << create_list(:route_point, 1, route_id: route.id, lat: 3, long: 20)
-      route.points << create_list(:route_point, 2, route_id: route.id, lat: 5, long: 20)
       route.save
-    end
-
-    search_route = Route.first
-
-    # Create misc routes to/from other locations
-    2.times do
-      route = build(:route)
-      route.points = create_list(:route_point, 2, lat: rand(10) + 50, long: rand(15) + 50)
+      route.points << create_list(:route_point, 2, route_id: route.id, lat: 19, long: 20)
       route.save
     end
 
     get(:search, source_lat: 5, source_long: 20,
-                  dest_lat: 5, dest_long: 20,
+                  dest_lat: 19, dest_long: 20,
                   format: :json)
 
     assert_response :success, 'route search with start and end locations should should be successful'

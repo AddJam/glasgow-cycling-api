@@ -42,7 +42,7 @@ FactoryGirl.define do
   sequence(:long) {|n| @random_longs ||= (1..180).to_a.shuffle; @random_longs[n] }
   factory :route do
     # after(:create) do |user, evaluator|; FactoryGirl.create_list :route, 2; end # commented to avoid circular reference
-    # after(:create) do |user, evaluator|; FactoryGirl.create_list :route_point, 2; end # commented to avoid circular reference
+    after(:create) do |user, evaluator|; FactoryGirl.create_list :route_point, 5; end
     # after(:create) do |user, evaluator|; FactoryGirl.create_list :route_review, 2; end # commented to avoid circular reference
     # association :original, factory: :route
     user
