@@ -104,14 +104,14 @@ class HourTest < ActiveSupport::TestCase
   end
 
   test "period data is accurate" do
-    Hour.destroy_all
-
-    points = route_point_params(3)
-    points[0][:time] = 3.hours.ago
-    # points[1][:time] = 3.hours.ago
-    points[2][:time] = 1.hour.ago
+    points = create_list(:route_point, 3)
+    points[0].time = 3.hours.ago
+    points[1].time = 3.hours.ago
+    points[2].time = 3.hour.ago
     user = create(:user)
-    route = Route.record(user, points)
+    route = build(:route, user_id: user.id, total_distance: nil)
+    route.points = points
+    route.save
 
     days_data = Hour.period(:days, 5, user)
     assert_not_nil days_data[:days], "all days contributing to the stats should be returned"
@@ -138,7 +138,9 @@ class HourTest < ActiveSupport::TestCase
     assert_equal 1, days_data[:overall][:routes_started], "a single route should have been started"
     assert_equal 1, days_data[:overall][:routes_completed], "a single route should have been completed"
 
-    Route.record(user, points)
+    route = build(:route, user_id: user.id, total_distance: nil)
+    route.points = points
+    route.save
     days_data = Hour.period(:days, 5, user)
     assert_equal 2, days_data[:overall][:routes_started], "two routes should have been started"
     assert_equal 2, days_data[:overall][:routes_completed], "two routes should have been completed"

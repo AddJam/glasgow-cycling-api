@@ -6,16 +6,18 @@ class RouteControllerTest < ActionController::TestCase
   end
 
   def points
-    [
-      {
-      lat: (rand * 45),
-      long: (rand * 90),
-      altitude: (rand * 500),
-      kph: (rand * 23),
-      time: Time.now.to_i,
-      street_name: 'Random Street'
+    pnts = []
+    10.times do
+      pnts << {
+          lat: (rand * 45),
+          long: (rand * 90),
+          altitude: (rand * 500),
+          kph: (rand * 23),
+          time: Time.now.to_i,
+          street_name: 'Random Street'
       }
-    ] * 10
+    end
+    pnts
   end
 
   test "can't record route when logged out" do
@@ -45,24 +47,18 @@ class RouteControllerTest < ActionController::TestCase
 
   test "old API parameters should work for recording route" do
     # Using speed instead of kph
-    points_speed = [
-      {
-      lat: (rand * 90),
-      long: (rand * 180),
-      altitude: (rand * 500),
-      speed: (rand * 23),
-      time: Time.now.to_i,
-      street_name: 'Random Street'
-      },
-      {
-        lat: (rand * 90),
-        long: (rand * 180),
-        altitude: (rand * 500),
-        speed: (rand * 500),
-        time: Time.now.to_i,
-        street_name: 'Random Street'
+    points_speed = []
+
+    10.times do
+      points_speed << {
+          lat: (rand * 90),
+          long: (rand * 180),
+          altitude: (rand * 500),
+          speed: (rand * 23),
+          time: Time.now.to_i,
+          street_name: 'Random Street'
       }
-    ]
+    end
     post(:record, points: points_speed)
     assert_response :success
 
