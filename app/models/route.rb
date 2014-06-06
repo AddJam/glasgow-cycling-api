@@ -106,7 +106,7 @@ class Route < ActiveRecord::Base
     route.mode = "bike"
     route.user_id = user.id
     ActiveRecord::Base.transaction do # Perform all insertions in a single transaction
-      points.each do |point|
+      points.each_with_index do |point|
         route_point = RoutePoint.create do |rp|
           rp.lat = point[:lat]
           rp.long = point[:long]
@@ -122,11 +122,11 @@ class Route < ActiveRecord::Base
         end
         route.points << route_point
       end
-    end
 
-    # Save
-		route.save
-		route
+      # Save
+      route.save
+      route
+    end
 	end
 
 	# Records a new review against the route and the provided user
@@ -313,19 +313,7 @@ class Route < ActiveRecord::Base
 				dist += next_point.distance_from(elem)
 			end
 		end
-	end
-
-	def set_endpoints
-		# Ensure endpoints get geocoded
-		return if self.points.length == 0
-
-		start = self.points.first
-		start.is_important = true
-		self.lat = start.lat
-		self.long = start.long
-
-		self.points.last.is_important = true
-	end
+  end
 
 	def calculate_times
 		return if self.points.length == 0
@@ -349,6 +337,18 @@ class Route < ActiveRecord::Base
 			self.name = "Glasgow City Route"
 		end
 		save
+	end
+
+	def set_endpoints
+		# Ensure endpoints get geocoded
+		return if self.points.length == 0
+
+		start = self.points.first
+		start.is_important = true
+		self.lat = start.lat
+		self.long = start.long
+
+		self.points.last.is_important = true
 	end
 
 	def set_maidenheads
