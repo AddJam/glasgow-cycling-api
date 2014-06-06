@@ -33,7 +33,7 @@ class Route < ActiveRecord::Base
 	before_create :generate_stats
 	after_save :set_name
 
-	validate :meets_distance_requirement
+  validates :total_distance, presence: true
 	validates :lat, presence: true
 	validates :long, presence: true
 	validates :start_maidenhead, presence: true
@@ -377,11 +377,6 @@ class Route < ActiveRecord::Base
 		# Create statistics from points
 		Hour.generate!(stat_points, user)
 	end
-
-	def meets_distance_requirement
-		long_enough = total_distance && total_distance >= MIN_DISTANCE
-		errors.add(:total_distance, "of #{total_distance} is not long enough - must be 0.5km") unless long_enough
-  end
 
   def similarity(route_one, route_two)
     Rails.logger.debug "11,21,12,22"

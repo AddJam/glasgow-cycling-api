@@ -28,13 +28,17 @@ class RouteController < ApplicationController
 	#  }
 	def record
 		unless params[:points]
-			render status: :bad_request
+			render status: :bad_request, json: {errror: 'Route must contain points'}
 		else
 			route = Route.record(current_user, params[:points])
 			if route
-				render json: {route_id: route.id}
+				if route.valid?
+					render json: {route_id: route.id}
+				else
+					render status: :unprocessable_entity, json: {error: 'Invalid route data provided'}
+				end
 			else
-				render status: :bad_request, json: {error: "Route failed to record"}
+				render status: :unprocessable_entity, json: {error: 'Route must be at least 500m'}
 			end
 		end
 	end
