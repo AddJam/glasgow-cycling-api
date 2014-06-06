@@ -30,7 +30,7 @@ class Route < ActiveRecord::Base
 	before_validation :set_endpoints
 	before_validation :calculate_times
 	before_validation :set_maidenheads
-	before_create :generate_stats
+	after_save :generate_stats
 	after_save :set_name
 
   validates :total_distance, presence: true

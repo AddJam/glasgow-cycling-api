@@ -60,6 +60,13 @@ class RouteTest < ActiveSupport::TestCase
     assert_equal expected_distance, route.total_distance, 'route distance should be accurate'
   end
 
+  test 'distance exists for a recorded route' do
+    points = route_point_params(10)
+
+    route = Route.record(create(:user), points)
+    assert route.total_distance > 0, 'Route distance should be calculated when recorded'
+  end
+
   test 'summary method should return route summary json' do
     route = build(:route)
     points = create_list(:route_point, 4, route_id: route.id, is_important: false, altitude: 987.0, lat: 85, long: 172)

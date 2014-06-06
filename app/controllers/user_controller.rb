@@ -29,7 +29,7 @@ class UserController < ApplicationController
   #    gender: 0,
   #    profile_picture: "base64 encoded JPG image data"
   #  }
-  #
+  #ho
   # ==== Returns
   # Successful registration:
   #  {
