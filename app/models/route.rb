@@ -105,21 +105,23 @@ class Route < ActiveRecord::Base
     route = Route.new
     route.mode = "bike"
     route.user_id = user.id
-    points.each do |point|
-      route_point = RoutePoint.create do |rp|
-        rp.lat = point[:lat]
-        rp.long = point[:long]
-        rp.altitude = point[:altitude]
-        rp.kph = point[:speed] if point[:speed]
-        rp.kph = point[:kph] if point[:kph]
-        rp.time = Time.at(point[:time].to_i)
-        rp.vertical_accuracy = point[:vertical_accuracy]
-        rp.horizontal_accuracy = point[:horizontal_accuracy]
-        rp.course = point[:course]
-        rp.street_name = point[:street_name] if point[:street_name].present?
+    ActiveRecord::Base.transaction do # Perform all insertions in a single transaction
+      points.each do |point|
+        route_point = RoutePoint.create do |rp|
+          rp.lat = point[:lat]
+          rp.long = point[:long]
+          rp.altitude = point[:altitude]
+          rp.kph = point[:speed] if point[:speed]
+          rp.kph = point[:kph] if point[:kph]
+          rp.time = Time.at(point[:time].to_i)
+          rp.vertical_accuracy = point[:vertical_accuracy]
+          rp.horizontal_accuracy = point[:horizontal_accuracy]
+          rp.course = point[:course]
+          rp.street_name = point[:street_name] if point[:street_name].present?
+          rp.route = route
+        end
+        route.points << route_point
       end
-      route.points << route_point
-      route_point.route = route
     end
 
     # Save
