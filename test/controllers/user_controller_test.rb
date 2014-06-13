@@ -191,5 +191,19 @@ class UserControllerTest < ActionController::TestCase
 		user = User.where(email: email).first
 		Rails.logger.info "User info after password change #{user.inspect}"
 		assert user.valid_password?(first_password), "user password shouldn't have been changed"
-	end
+  end
+
+  test "changing password changes authentication token" do
+    password = "password"
+    user = build(:user)
+    user.password = password
+    user.save
+    first_token = user.authentication_token
+
+    sign_in user
+    post :reset_password, {new_password: "new_password", old_password: password}, format: :json
+    assert_response :success
+
+    assert_not_equal first_token, User.where(id: user.id).first.authentication_token
+  end
 end

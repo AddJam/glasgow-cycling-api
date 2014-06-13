@@ -153,6 +153,7 @@ class UserController < ApplicationController
   def reset_password
     if current_user.valid_password? params[:old_password]
       current_user.password = params[:new_password]
+			current_user.authentication_token = ""
       if current_user.save
         render json: {auth_token: current_user.authentication_token}
       else
