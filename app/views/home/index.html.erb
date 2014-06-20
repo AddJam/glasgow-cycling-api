@@ -1,6 +1,6 @@
 <div class="header">
   <h1>Go Cycling API</h1>
-  <p>API endpoints for the Future Cities cycling API.</p>
+  <p>Endpoints for the Future Cities Go Cycling API.</p>
   <div class="features">
     <div class="feature">
       <h3>Routes Capture</h3>
@@ -12,7 +12,7 @@
     </div>
     <div class="feature">
       <h3>Statistics</h3>
-      <p>Get statistics about distance and time travelled by a user.</p>
+      <p>Get statistics about distance and time travelled by an authenticated user.</p>
       <p class="info">Demographic stats are coming soon</p>
     </div>
   </div>
@@ -37,7 +37,11 @@
                    endpoint_url += "#{p[:name]}=#{p[:value]}"
                  end
               %>
-              <a class="test-button" href="<%=endpoint_url%>">test</a>
+              <a class="test-button" data-request-type="<%= endpoint[:type] %>" data-request-url="<%=endpoint_url%>">test</a>
+            </div>
+
+            <div class="test-output">
+
             </div>
 
             <div class="parameters">
