@@ -70,6 +70,11 @@ gem 'forecast_io'
 gem 'sidekiq'
 gem 'clockwork'
 
+# Website
+gem 'bourbon'
+gem 'neat'
+gem 'bitters'
+
 # Development
 group :development do
 	gem 'better_errors'

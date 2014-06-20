@@ -8,6 +8,17 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
- *= require_self
- *= require_tree .
  */
+
+@import "bourbon";
+@import "neat";
+@import "home";
+
+.footer {
+  @include span-columns(12);
+  margin-top: 50px;
+  padding: 50px;
+  background-color: rgb(0,161,223);
+  color: rgb(255,255,255);
+  text-align: center;
+}

@@ -1,0 +1,74 @@
+<div class="header">
+  <h1>Go Cycling API</h1>
+  <p>API endpoints for the Future Cities cycling API.</p>
+  <div class="features">
+    <div class="feature">
+      <h3>Routes Capture</h3>
+      <p>Register users and submit their route data.</p>
+    </div>
+    <div class="feature">
+      <h3>Search</h3>
+      <p><span class='info'><%= @num_routes %> routes</span> have been submitted to the API so far, which can be searched by location.</p>
+    </div>
+    <div class="feature">
+      <h3>Statistics</h3>
+      <p>Get statistics about distance and time travelled by a user.</p>
+      <p class="info">Demographic stats are coming soon</p>
+    </div>
+  </div>
+  <div class="notice">
+    <p>The Go Cycling iOS app is currently in the final stages of beta testing, and is currently the only source of route data.</p>
+    <p>Email <%= mail_to("team@codecreatedme.com") %> if you would like to try out the app.</p>
+    <p class="info">Total Routes: <%= @num_routes %></p>
+  </div>
+</div>
+<div class="sections">
+  <% @sections.each do |section| %>
+      <h2><%=section[:title]%></h2>
+      <% section[:endpoints].each do |endpoint| %>
+          <div class="endpoint">
+            <div class="route">
+              <h4>Endpoint</h4>
+              <span class="type"><%= endpoint[:type] %></span>
+              <span class="url"><%= endpoint[:route] %></span>
+              <%
+                 endpoint_url = "#{endpoint[:route]}?"
+                 endpoint[:input].each do |p|
+                   endpoint_url += "#{p[:name]}=#{p[:value]}"
+                 end
+              %>
+              <a class="test-button" href="<%=endpoint_url%>">test</a>
+            </div>
+
+            <div class="parameters">
+              <h4>Parameters</h4>
+              <ul>
+                <% endpoint[:input].each do |parameter| %>
+                    <li>
+                  <span class="key">
+                    <%= parameter[:name] %>
+                    <% if parameter[:required] %>
+                        <span class="required">required</span>
+                    <% end %>
+                  </span>
+                      <span class="value"><%= parameter[:value] %></span>
+                    </li>
+                <% end %>
+              </ul>
+            </div>
+
+            <div class="results">
+              <h4>Result</h4>
+              <ul>
+                <% endpoint[:output].each do |output| %>
+                    <li>
+                      <span class="key"><%= output[:name] %></span>
+                      <span class="value"><%= output[:value] %></span>
+                    </li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+      <% end %>
+  <% end %>
+</div>
