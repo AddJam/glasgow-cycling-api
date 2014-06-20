@@ -9,6 +9,7 @@ class HomeController < ApplicationController
                     route: '/routes.json',
                     test_endpoint: '/routes.json',
                     type: 'GET',
+                    description: "Search for routes, filterable by location",
                     input: [
                         {
                             name: 'source_maidenhead',

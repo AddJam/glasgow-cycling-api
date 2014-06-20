@@ -84,9 +84,13 @@ a {
     border-radius: 5px;
     padding: 10px;
     position: relative;
+    margin-bottom: 40px;
     h4 {
       font-size: 1.4em;
       color: rgb(180,180,180);
+    }
+    .description {
+      color: rgb(190,190,190);
     }
     .route {
       h4 {
@@ -123,9 +127,10 @@ a {
         .url-title {
           font-size: 1.2em;
           padding-right: 10px;
+          color: rgb(120,120,120);
         }
         .url {
-
+          color: rgb(160,160,160);
         }
         border-bottom: 5px dashed rgb(255,255,255);
       }
@@ -136,9 +141,6 @@ a {
     }
     .parameters {
       margin-top: 20px;
-      .description {
-        color: rgb(190,190,190);
-      }
     }
     ul {
       li {
