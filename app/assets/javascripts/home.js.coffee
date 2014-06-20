@@ -17,11 +17,11 @@ $(document).ready ->
         $(this).html('test')
 
     if buttonIsHide()
-      testOutputDiv.fadeOut()
+      testOutputDiv.slideUp()
       toggleButton();
       return
     else
-      testOutputDiv.fadeIn()
+      testOutputDiv.slideDown()
       toggleButton();
       
 
