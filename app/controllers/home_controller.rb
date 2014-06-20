@@ -7,6 +7,7 @@ class HomeController < ApplicationController
             endpoints: [
                 {
                     route: '/routes.json',
+                    test_endpoint: '/routes.json',
                     type: 'GET',
                     input: [
                         {

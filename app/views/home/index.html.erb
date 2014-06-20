@@ -32,7 +32,7 @@
               <span class="type"><%= endpoint[:type] %></span>
               <span class="url"><%= endpoint[:route] %></span>
               <%
-                 endpoint_url = "#{endpoint[:route]}?"
+                 endpoint_url = "#{endpoint[:test_endpoint]}?"
                  endpoint[:input].each do |p|
                    endpoint_url += "#{p[:name]}=#{p[:value]}"
                  end

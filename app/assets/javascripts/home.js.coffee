@@ -4,15 +4,18 @@
 
 $(document).ready ->
   $('.test-button').click ->
-    $('.test-output').html("Making request...");
+    showOutput = (text) =>
+      $(_this).parent().parent().find('.test-output').html(text);
+
+    showOutput("Making request...");
     requestType = $(this).data('request-type')
     requestUrl = document.location.href + $(this).data('request-url');
     $.ajax({
       type: requestType,
       url: requestUrl,
       success: (data) ->
-        $('.test-output').html("Request Success");
+        showOutput("Request Success");
       error: (data) ->
-        $('.test-output').html("Request Error");
+        showOutput("Request Error");
     })
     $('.test-output').fadeIn();
