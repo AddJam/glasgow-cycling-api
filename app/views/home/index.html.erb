@@ -13,7 +13,7 @@
     <div class="feature">
       <h3>Statistics</h3>
       <p>Get statistics about distance and time travelled by a user.</p>
-      <p class="info">Demographics stats are coming soon</p>
+      <p class="info">Demographic stats are coming soon</p>
     </div>
   </div>
   <div class="notice">
@@ -29,7 +29,15 @@
           <div class="endpoint">
             <div class="route">
               <h4>Endpoint</h4>
-              <span><%= endpoint[:route] %></span>
+              <span class="type"><%= endpoint[:type] %></span>
+              <span class="url"><%= endpoint[:route] %></span>
+              <%
+                 endpoint_url = "#{endpoint[:route]}?"
+                 endpoint[:input].each do |p|
+                   endpoint_url += "#{p[:name]}=#{p[:value]}"
+                 end
+              %>
+              <a class="test-button" href="<%=endpoint_url%>">test</a>
             </div>
 
             <div class="parameters">

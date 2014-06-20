@@ -6,7 +6,8 @@ class HomeController < ApplicationController
             title: "Route Search",
             endpoints: [
                 {
-                    route: '/search.json',
+                    route: '/routes.json',
+                    type: 'GET',
                     input: [
                         {
                             name: 'source_maidenhead',
