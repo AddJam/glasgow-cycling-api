@@ -1,6 +1,6 @@
 class RouteController < ApplicationController
-	before_filter :authenticate_user_from_token!, except: [:search]
-	before_filter :authenticate_user!, except: [:search]
+	before_filter :authenticate_user_from_token!, except: [:search, :find]
+	before_filter :authenticate_user!, except: [:search, :find]
 
 	# *POST* /routes
 	#
