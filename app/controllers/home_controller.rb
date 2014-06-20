@@ -7,17 +7,20 @@ class HomeController < ApplicationController
             endpoints: [
                 {
                     route: '/routes.json',
+                    test_endpoint: '/routes.json',
                     type: 'GET',
                     input: [
                         {
                             name: 'source_maidenhead',
                             value: 'FA00BD21',
-                            required: true
+                            required: true,
+                            in_request: true
                         },
                         {
                             name: 'dest_maidenhead',
                             value: 'FA00BD25',
-                            required: false
+                            required: false,
+                            in_request: true
                         }
                     ],
                     output: [
