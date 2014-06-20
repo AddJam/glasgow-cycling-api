@@ -25,19 +25,26 @@ $(document).ready ->
       toggleButton();
       
 
-    showOutput = (text) =>
+    showOutput = (url, text) =>
+      if url
+        text = "<p><span class='url-title'>URL:</span><span class='url'>#{url}</span></p>" + text
       testOutputDiv.html(text)
 
-    showOutput("Making request...")
-    requestType = $(this).data('request-type')
+    output = $(this).data('request-output')
     requestUrl = document.location.href + $(this).data('request-url')
-    $.ajax({
-      type: requestType,
-      url: requestUrl,
-      success: (data) ->
-        output = "<p><span class='url-title'>URL:</span><span class='url'>#{requestUrl}</span></p>"
-        output += "<pre>#{JSON.stringify(data, undefined, 2)}</pre>"
-        showOutput(output)
-      error: (data) ->
-        showOutput("Request Error")
-    })
+    if output
+      output = $.parseJSON(decodeURI(output))
+      output = JSON.stringify(output, undefined, 2)
+      showOutput(requestUrl, "<pre>#{output}</pre>")
+    else
+      showOutput(null, "Making request...")
+      requestType = $(this).data('request-type')
+      $.ajax({
+        type: requestType,
+        url: requestUrl,
+        success: (data) ->
+          output = "<pre>#{JSON.stringify(data, undefined, 2)}</pre>"
+          showOutput(output)
+        error: (data) ->
+          showOutput(null, "Request Error")
+      })
