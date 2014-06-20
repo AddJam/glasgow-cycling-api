@@ -12,16 +12,46 @@ class HomeController < ApplicationController
                     description: "Search for routes, filterable by location",
                     input: [
                         {
-                            name: 'source_maidenhead',
-                            value: 'FA00BD21',
-                            required: true,
-                            in_request: true
+                            name: 'user_only',
+                            value: false,
+                            required: false,
+                            in_request: false
                         },
                         {
-                            name: 'dest_maidenhead',
+                            name: 'start_maidenhead',
+                            value: 'FA00BD21',
+                            required: false,
+                            in_request: false
+                        },
+                        {
+                            name: 'end_maidenhead',
                             value: 'FA00BD25',
                             required: false,
-                            in_request: true
+                            in_request: false
+                        },
+                        {
+                            name: 'source_lat',
+                            value: '55.429',
+                            required: false,
+                            in_request: false
+                        },
+                        {
+                            name: 'source_long',
+                            value: '-4.295',
+                            required: false,
+                            in_request: false
+                        },
+                        {
+                            name: 'dest_lat',
+                            value: '55.425',
+                            required: false,
+                            in_request: false
+                        },
+                        {
+                            name: 'dest_long',
+                            value: '-4.295',
+                            required: false,
+                            in_request: false
                         }
                     ],
                 }
