@@ -73,6 +73,8 @@
 
   <ul class="link-list" role="directory">
     
+    <li ><a href="#method-i-ensure_maidenhead">#ensure_maidenhead</a>
+    
     <li ><a href="#method-i-get_street">#get_street</a>
     
   </ul>
@@ -92,20 +94,22 @@
 
 <p>Table name: route_points</p>
 
-<pre>id                       :integer          not null, primary key
-route_id                 :integer
-lat                      :float
-long                     :float
-preceding_route_point_id :integer
-next_route_point_id      :integer
-altitude                 :float
-on_road                  :boolean
-street_name              :string(255)
-street_postcode          :string(255)
-created_at               :datetime
-updated_at               :datetime
-time                     :datetime
-is_important             :boolean</pre>
+<pre>id                  :integer          not null, primary key
+route_id            :integer
+lat                 :float
+long                :float
+altitude            :float
+on_road             :boolean
+street_name         :string(255)
+created_at          :datetime
+updated_at          :datetime
+time                :datetime
+is_important        :boolean
+kph                 :float
+vertical_accuracy   :float
+horizontal_accuracy :float
+course              :float
+maidenhead          :string(255)</pre>
 
   </section>
 
@@ -128,6 +132,39 @@ is_important             :boolean</pre>
        </header>
 
     
+      <div id="method-i-ensure_maidenhead" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">ensure_maidenhead</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="ensure_maidenhead-source">
+            <pre><span class="ruby-comment"># File app/models/route_point.rb, line 52</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">ensure_maidenhead</span>
+        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">maidenhead</span> = <span class="ruby-constant">Maidenhead</span>.<span class="ruby-identifier">to_maidenhead</span>(<span class="ruby-identifier">lat</span>, <span class="ruby-identifier">long</span>, <span class="ruby-value">4</span>) <span class="ruby-keyword">unless</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">maidenhead</span>.<span class="ruby-identifier">present?</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
       <div id="method-i-get_street" class="method-detail ">
         
         <div class="method-heading">
@@ -147,7 +184,7 @@ is_important             :boolean</pre>
 
           
           <div class="method-source-code" id="get_street-source">
-            <pre><span class="ruby-comment"># File app/models/route_point.rb, line 33</span>
+            <pre><span class="ruby-comment"># File app/models/route_point.rb, line 46</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_street</span>
         <span class="ruby-keyword">unless</span> <span class="ruby-identifier">street_name</span>
                 <span class="ruby-identifier">reverse_geocode</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">is_important</span>

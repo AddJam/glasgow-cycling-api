@@ -73,15 +73,7 @@
 
   <ul class="link-list" role="directory">
     
-    <li ><a href="#method-i-all">#all</a>
-    
-    <li ><a href="#method-i-create">#create</a>
-    
-    <li ><a href="#method-i-delete">#delete</a>
-    
-    <li ><a href="#method-i-edit">#edit</a>
-    
-    <li ><a href="#method-i-find">#find</a>
+    <li ><a href="#method-i-review">#review</a>
     
   </ul>
 </div>
@@ -117,42 +109,10 @@
        </header>
 
     
-      <div id="method-i-all" class="method-detail ">
+      <div id="method-i-review" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">all</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="all-source">
-            <pre><span class="ruby-comment"># File app/controllers/review_controller.rb, line 45</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">all</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-create" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">create</span><span
+          <span class="method-name">review</span><span
             class="method-args">()</span>
           
           <span class="method-click-advice">click to toggle source</span>
@@ -169,7 +129,7 @@
 <p><strong>Requires:</strong> logged in user (provide <code>user_email</code>
 and <code>user_token</code> parameters)</p>
 
-<h4 id="method-i-create-label-Parameters">Parameters<span><a href="#method-i-create-label-Parameters">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
+<h4 id="method-i-review-label-Parameters">Parameters<span><a href="#method-i-review-label-Parameters">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
 <dl class="rdoc-list label-list"><dt><code>review</code>
 <dd>
 <p>JSON object containing review details</p>
@@ -190,129 +150,41 @@ and <code>user_token</code> parameters)</p>
 <p>Integer. The ID of the route being reviewed</p>
 </dd></dl>
 
-<h4 id="method-i-create-label-Returns">Returns<span><a href="#method-i-create-label-Returns">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
+<h4 id="method-i-review-label-Returns">Returns<span><a href="#method-i-review-label-Returns">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
 
 <p>The ID of the review which was saved</p>
 
 <pre>{
-  review_id: 10
+  review:
 }</pre>
           
           
 
           
-          <div class="method-source-code" id="create-source">
+          <div class="method-source-code" id="review-source">
             <pre><span class="ruby-comment"># File app/controllers/review_controller.rb, line 26</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
-  <span class="ruby-identifier">review</span>  = <span class="ruby-identifier">params</span>[<span class="ruby-value">:review</span>]
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">review</span>
+  <span class="ruby-identifier">review</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:review</span>]
   <span class="ruby-identifier">route_id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:route_id</span>]
-  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">review</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">route_id</span>
-    <span class="ruby-identifier">render</span> <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:bad_request</span>
-  <span class="ruby-keyword">else</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">review</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">route_id</span>
     <span class="ruby-identifier">route</span> = <span class="ruby-constant">Route</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">route_id</span>).<span class="ruby-identifier">first</span>
-    <span class="ruby-identifier">review</span> = <span class="ruby-identifier">route</span>.<span class="ruby-identifier">review</span>(<span class="ruby-identifier">review</span>)
-    <span class="ruby-keyword">if</span> <span class="ruby-identifier">review</span>
-      <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> {<span class="ruby-identifier">review_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">review</span>.<span class="ruby-identifier">id</span>}
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">route</span>.<span class="ruby-identifier">present?</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">route</span>.<span class="ruby-identifier">review</span>.<span class="ruby-identifier">present?</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">route</span>.<span class="ruby-identifier">review</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">review_params</span>)
+        <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> {<span class="ruby-identifier">review</span><span class="ruby-operator">:</span> <span class="ruby-identifier">route</span>.<span class="ruby-identifier">review</span>}
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">render</span> <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:internal_server_error</span>, <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> {<span class="ruby-identifier">error</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Review could not be saved&quot;</span>}
+      <span class="ruby-keyword">end</span>
     <span class="ruby-keyword">else</span>
-      <span class="ruby-identifier">render</span> <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:internal_server_error</span>
+      <span class="ruby-identifier">review</span> = <span class="ruby-identifier">route</span>.<span class="ruby-identifier">create_review</span>(<span class="ruby-identifier">current_user</span>, <span class="ruby-identifier">review</span>)
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">review</span>
+        <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> {<span class="ruby-identifier">review</span><span class="ruby-operator">:</span> <span class="ruby-identifier">review</span>}
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">render</span> <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:internal_server_error</span>, <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> {<span class="ruby-identifier">error</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Review could not be created&quot;</span>}
+      <span class="ruby-keyword">end</span>
     <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">render</span> <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:bad_request</span>, <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> {<span class="ruby-identifier">error</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Request should contain both a review hash and route_id&quot;</span>}
   <span class="ruby-keyword">end</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-delete" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">delete</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="delete-source">
-            <pre><span class="ruby-comment"># File app/controllers/review_controller.rb, line 48</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">delete</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-edit" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">edit</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/review_controller.rb, line 51</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-find" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">find</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="find-source">
-            <pre><span class="ruby-comment"># File app/controllers/review_controller.rb, line 42</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">find</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           

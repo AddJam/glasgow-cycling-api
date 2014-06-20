@@ -75,9 +75,21 @@
     
     <li ><a href="#method-c-record">::record</a>
     
-    <li ><a href="#method-i-record_use">#record_use</a>
+    <li ><a href="#method-c-summarise_routes">::summarise_routes</a>
     
-    <li ><a href="#method-i-review">#review</a>
+    <li ><a href="#method-i-all_uses">#all_uses</a>
+    
+    <li ><a href="#method-i-create_review">#create_review</a>
+    
+    <li ><a href="#method-i-is_similar-3F">#is_similar?</a>
+    
+    <li ><a href="#method-i-maidenheads">#maidenheads</a>
+    
+    <li ><a href="#method-i-points_data">#points_data</a>
+    
+    <li ><a href="#method-i-summary">#summary</a>
+    
+    <li ><a href="#method-i-to_coordinates">#to_coordinates</a>
     
   </ul>
 </div>
@@ -96,29 +108,20 @@
 
 <p>Table name: routes</p>
 
-<pre>id                    :integer          not null, primary key
-created_by            :integer
-name                  :string(255)
-start_lat             :float
-start_long            :float
-end_lat               :float
-end_long              :float
-calculated_total_time :integer
-total_distance        :float
-last_used             :datetime
-mode                  :integer
-safety                :integer
-difficulty            :integer
-start_picture_id      :integer
-end_picture_id        :integer
-created_at            :datetime
-updated_at            :datetime
-start_time            :datetime
-end_time              :datetime
-rating                :integer
-total_time            :integer
-route_id              :integer
-user_id               :integer</pre>
+<pre>id                 :integer          not null, primary key
+name               :string(255)
+lat                :float
+long               :float
+total_distance     :float
+mode               :integer
+start_picture_id   :integer
+end_picture_id     :integer
+created_at         :datetime
+updated_at         :datetime
+start_time         :datetime
+end_time           :datetime
+total_time         :integer
+user_id            :integer</pre>
 
   </section>
 
@@ -130,6 +133,20 @@ user_id               :integer</pre>
 
     
 
+    
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+      
+        <dt id="MIN_DISTANCE">MIN_DISTANCE
+        
+        <dd>
+        
+      
+      </dl>
+    </section>
     
 
     
@@ -173,40 +190,171 @@ user_id               :integer</pre>
 
           
           <div class="method-source-code" id="record-source">
-            <pre><span class="ruby-comment"># File app/models/route.rb, line 45</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">record</span>(<span class="ruby-identifier">user</span>, <span class="ruby-identifier">points</span>)
-        <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">points</span>.<span class="ruby-identifier">blank?</span> <span class="ruby-keyword">or</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">blank?</span>
+            <pre><span class="ruby-comment"># File app/models/route.rb, line 66</span>
+        <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">record</span>(<span class="ruby-identifier">user</span>, <span class="ruby-identifier">points</span>)
+                <span class="ruby-keyword">if</span> <span class="ruby-identifier">points</span>.<span class="ruby-identifier">blank?</span>
+                        <span class="ruby-keyword">return</span> {
+                                <span class="ruby-identifier">error</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;No route points&quot;</span>
+                        }
+                <span class="ruby-keyword">end</span>
+
+        <span class="ruby-comment"># Randomise trim amount within range</span>
+        <span class="ruby-identifier">trim_amount</span> = <span class="ruby-value">0.1</span> <span class="ruby-operator">+</span> (<span class="ruby-identifier">rand</span> <span class="ruby-operator">*</span> <span class="ruby-value">0.05</span>)
+
+        <span class="ruby-comment"># Calculate route distance</span>
+        <span class="ruby-identifier">total_dist</span> = <span class="ruby-identifier">points</span>.<span class="ruby-identifier">each_with_index</span>.<span class="ruby-identifier">inject</span>(<span class="ruby-value">0</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">dist</span>, (<span class="ruby-identifier">elem</span>, <span class="ruby-identifier">index</span>)<span class="ruby-operator">|</span>
+                <span class="ruby-keyword">if</span> <span class="ruby-identifier">index</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-identifier">points</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>
+                        <span class="ruby-identifier">dist</span>
+                <span class="ruby-keyword">else</span>
+                        <span class="ruby-identifier">next_point</span> = <span class="ruby-identifier">points</span>[<span class="ruby-identifier">index</span><span class="ruby-operator">+</span><span class="ruby-value">1</span>]
+                        <span class="ruby-identifier">next_coords</span> = [<span class="ruby-identifier">next_point</span>[<span class="ruby-value">:lat</span>], <span class="ruby-identifier">next_point</span>[<span class="ruby-value">:long</span>]]
+                        <span class="ruby-identifier">coords</span> = [<span class="ruby-identifier">elem</span>[<span class="ruby-value">:lat</span>], <span class="ruby-identifier">elem</span>[<span class="ruby-value">:long</span>]]
+                        <span class="ruby-identifier">dist</span> <span class="ruby-operator">+=</span> <span class="ruby-constant">Geocoder</span><span class="ruby-operator">::</span><span class="ruby-constant">Calculations</span>.<span class="ruby-identifier">distance_between</span>(<span class="ruby-identifier">coords</span>, <span class="ruby-identifier">next_coords</span>)
+                <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>
+
+        <span class="ruby-keyword">return</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">total_dist</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-constant">MIN_DISTANCE</span>
+
+        <span class="ruby-identifier">previous_coords</span> = <span class="ruby-keyword">nil</span>
+        <span class="ruby-identifier">distance_covered</span> = <span class="ruby-value">0</span>
+        <span class="ruby-identifier">points</span> = <span class="ruby-identifier">points</span>.<span class="ruby-identifier">inject</span>([]) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">acc</span>, <span class="ruby-identifier">point</span><span class="ruby-operator">|</span>
+                <span class="ruby-identifier">coords</span> = [<span class="ruby-identifier">point</span>[<span class="ruby-value">:lat</span>], <span class="ruby-identifier">point</span>[<span class="ruby-value">:long</span>]]
+                <span class="ruby-keyword">if</span> <span class="ruby-identifier">previous_coords</span>.<span class="ruby-identifier">present?</span>
+                        <span class="ruby-identifier">distance_covered</span> <span class="ruby-operator">+=</span> <span class="ruby-constant">Geocoder</span><span class="ruby-operator">::</span><span class="ruby-constant">Calculations</span>.<span class="ruby-identifier">distance_between</span>(<span class="ruby-identifier">previous_coords</span>, <span class="ruby-identifier">coords</span>)
+                        <span class="ruby-keyword">if</span> <span class="ruby-identifier">distance_covered</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">trim_amount</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">distance_covered</span> <span class="ruby-operator">&lt;</span> (<span class="ruby-identifier">total_dist</span><span class="ruby-operator">-</span><span class="ruby-identifier">trim_amount</span>)
+                                <span class="ruby-identifier">acc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">point</span>
+                        <span class="ruby-keyword">end</span>
+                <span class="ruby-keyword">end</span>
+                <span class="ruby-identifier">previous_coords</span> = <span class="ruby-identifier">coords</span>
+                <span class="ruby-identifier">acc</span>
+        <span class="ruby-keyword">end</span>
 
         <span class="ruby-comment"># Create the route</span>
-        <span class="ruby-identifier">route</span> = <span class="ruby-constant">Route</span>.<span class="ruby-identifier">create</span> <span class="ruby-identifier">name</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;New Route&quot;</span> <span class="ruby-comment">#TODO name properly</span>
-        <span class="ruby-identifier">points</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">point</span><span class="ruby-operator">|</span>
-                <span class="ruby-identifier">route_point</span> = <span class="ruby-constant">RoutePoint</span>.<span class="ruby-identifier">create</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">rp</span><span class="ruby-operator">|</span>
-                        <span class="ruby-identifier">rp</span>.<span class="ruby-identifier">lat</span> = <span class="ruby-identifier">point</span>[<span class="ruby-value">:lat</span>]
-                        <span class="ruby-identifier">rp</span>.<span class="ruby-identifier">long</span> = <span class="ruby-identifier">point</span>[<span class="ruby-value">:long</span>]
-                        <span class="ruby-identifier">rp</span>.<span class="ruby-identifier">altitude</span> = <span class="ruby-identifier">point</span>[<span class="ruby-value">:altitude</span>]
-                        <span class="ruby-identifier">rp</span>.<span class="ruby-identifier">time</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">at</span>(<span class="ruby-identifier">point</span>[<span class="ruby-value">:time</span>].<span class="ruby-identifier">to_i</span>)
+        <span class="ruby-identifier">route</span> = <span class="ruby-constant">Route</span>.<span class="ruby-identifier">new</span>
+        <span class="ruby-identifier">route</span>.<span class="ruby-identifier">mode</span> = <span class="ruby-string">&quot;bike&quot;</span>
+        <span class="ruby-identifier">route</span>.<span class="ruby-identifier">user_id</span> = <span class="ruby-identifier">user</span>.<span class="ruby-identifier">id</span>
+        <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">transaction</span> <span class="ruby-keyword">do</span> <span class="ruby-comment"># Perform all insertions in a single transaction</span>
+                <span class="ruby-identifier">points</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">point</span>, <span class="ruby-identifier">index</span><span class="ruby-operator">|</span>
+                        <span class="ruby-identifier">route_point</span> = <span class="ruby-constant">RoutePoint</span>.<span class="ruby-identifier">create</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">rp</span><span class="ruby-operator">|</span>
+                                <span class="ruby-identifier">rp</span>.<span class="ruby-identifier">lat</span> = <span class="ruby-identifier">point</span>[<span class="ruby-value">:lat</span>]
+                                <span class="ruby-identifier">rp</span>.<span class="ruby-identifier">long</span> = <span class="ruby-identifier">point</span>[<span class="ruby-value">:long</span>]
+                                <span class="ruby-identifier">rp</span>.<span class="ruby-identifier">altitude</span> = <span class="ruby-identifier">point</span>[<span class="ruby-value">:altitude</span>]
+                                <span class="ruby-identifier">rp</span>.<span class="ruby-identifier">kph</span> = <span class="ruby-identifier">point</span>[<span class="ruby-value">:speed</span>] <span class="ruby-keyword">if</span> <span class="ruby-identifier">point</span>[<span class="ruby-value">:speed</span>]
+                                <span class="ruby-identifier">rp</span>.<span class="ruby-identifier">kph</span> = <span class="ruby-identifier">point</span>[<span class="ruby-value">:kph</span>] <span class="ruby-keyword">if</span> <span class="ruby-identifier">point</span>[<span class="ruby-value">:kph</span>]
+                                <span class="ruby-identifier">rp</span>.<span class="ruby-identifier">time</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">at</span>(<span class="ruby-identifier">point</span>[<span class="ruby-value">:time</span>].<span class="ruby-identifier">to_i</span>)
+                                <span class="ruby-identifier">rp</span>.<span class="ruby-identifier">vertical_accuracy</span> = <span class="ruby-identifier">point</span>[<span class="ruby-value">:vertical_accuracy</span>]
+                                <span class="ruby-identifier">rp</span>.<span class="ruby-identifier">horizontal_accuracy</span> = <span class="ruby-identifier">point</span>[<span class="ruby-value">:horizontal_accuracy</span>]
+                                <span class="ruby-identifier">rp</span>.<span class="ruby-identifier">course</span> = <span class="ruby-identifier">point</span>[<span class="ruby-value">:course</span>]
+                                <span class="ruby-identifier">rp</span>.<span class="ruby-identifier">street_name</span> = <span class="ruby-identifier">point</span>[<span class="ruby-value">:street_name</span>] <span class="ruby-keyword">if</span> <span class="ruby-identifier">point</span>[<span class="ruby-value">:street_name</span>].<span class="ruby-identifier">present?</span>
+                                <span class="ruby-identifier">rp</span>.<span class="ruby-identifier">route</span> = <span class="ruby-identifier">route</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">index</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+    <span class="ruby-identifier">route</span>.<span class="ruby-identifier">lat</span> = <span class="ruby-identifier">rp</span>.<span class="ruby-identifier">lat</span>
+    <span class="ruby-identifier">route</span>.<span class="ruby-identifier">long</span> = <span class="ruby-identifier">rp</span>.<span class="ruby-identifier">long</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">index</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span> <span class="ruby-keyword">or</span> <span class="ruby-identifier">index</span> <span class="ruby-operator">==</span> (<span class="ruby-identifier">points</span>.<span class="ruby-identifier">length</span><span class="ruby-operator">-</span><span class="ruby-value">1</span>)
+    <span class="ruby-identifier">rp</span>.<span class="ruby-identifier">is_important</span> = <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">end</span>
+                        <span class="ruby-keyword">end</span>
+                        <span class="ruby-identifier">route</span>.<span class="ruby-identifier">points</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">route_point</span>
                 <span class="ruby-keyword">end</span>
-                <span class="ruby-identifier">route</span>.<span class="ruby-identifier">points</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">route_point</span>
-        <span class="ruby-keyword">end</span>
 
-        <span class="ruby-comment"># Associate with user</span>
-        <span class="ruby-identifier">user</span>.<span class="ruby-identifier">routes</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">route</span>
-
-        <span class="ruby-comment"># Calculate user route data</span>
-        <span class="ruby-identifier">route</span>.<span class="ruby-identifier">start_time</span> = <span class="ruby-identifier">route</span>.<span class="ruby-identifier">points</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">time</span>
-        <span class="ruby-identifier">route</span>.<span class="ruby-identifier">end_time</span> = <span class="ruby-identifier">route</span>.<span class="ruby-identifier">points</span>.<span class="ruby-identifier">last</span>.<span class="ruby-identifier">time</span>
-        <span class="ruby-identifier">route</span>.<span class="ruby-identifier">total_time</span> = <span class="ruby-identifier">route</span>.<span class="ruby-identifier">end_time</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">route</span>.<span class="ruby-identifier">start_time</span>
-
-        <span class="ruby-identifier">route</span>.<span class="ruby-identifier">points</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">is_important</span> = <span class="ruby-keyword">true</span>
-        <span class="ruby-identifier">route</span>.<span class="ruby-identifier">points</span>.<span class="ruby-identifier">last</span>.<span class="ruby-identifier">is_important</span> = <span class="ruby-keyword">true</span>
-
-
-        <span class="ruby-keyword">if</span> <span class="ruby-identifier">route</span>.<span class="ruby-identifier">save</span>
+                <span class="ruby-comment"># Save</span>
+                <span class="ruby-identifier">route</span>.<span class="ruby-identifier">save</span>
                 <span class="ruby-identifier">route</span>
-        <span class="ruby-keyword">else</span>
-                <span class="ruby-keyword">nil</span>
         <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-summarise_routes" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">summarise_routes</span><span
+            class="method-args">(start_maidenhead, end_maidenhead, user)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Summary of all routes between a start and end maidenhead</p>
+          
+          
+
+          
+          <div class="method-source-code" id="summarise_routes-source">
+            <pre><span class="ruby-comment"># File app/models/route.rb, line 241</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">summarise_routes</span>(<span class="ruby-identifier">start_maidenhead</span>, <span class="ruby-identifier">end_maidenhead</span>, <span class="ruby-identifier">user</span>)
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">present?</span>
+                <span class="ruby-identifier">routes</span> = <span class="ruby-constant">Route</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">start_maidenhead</span><span class="ruby-operator">:</span> <span class="ruby-identifier">start_maidenhead</span>, <span class="ruby-identifier">end_maidenhead</span><span class="ruby-operator">:</span> <span class="ruby-identifier">end_maidenhead</span>,
+                        <span class="ruby-identifier">user_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;created_at DESC&#39;</span>)
+        <span class="ruby-keyword">else</span>
+                <span class="ruby-identifier">routes</span> = <span class="ruby-constant">Route</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">start_maidenhead</span><span class="ruby-operator">:</span> <span class="ruby-identifier">start_maidenhead</span>,
+                        <span class="ruby-identifier">end_maidenhead</span><span class="ruby-operator">:</span> <span class="ruby-identifier">end_maidenhead</span>).<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;created_at DESC&#39;</span>)
+        <span class="ruby-keyword">end</span>
+
+        <span class="ruby-identifier">unique_routes</span> = <span class="ruby-identifier">routes</span>.<span class="ruby-identifier">inject</span>([]) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">uniques</span>, <span class="ruby-identifier">route</span><span class="ruby-operator">|</span>
+                <span class="ruby-identifier">should_add</span> = <span class="ruby-identifier">uniques</span>.<span class="ruby-identifier">none?</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">elem</span><span class="ruby-operator">|</span>
+                        <span class="ruby-identifier">route</span>.<span class="ruby-identifier">is_similar?</span> <span class="ruby-identifier">elem</span>
+                <span class="ruby-keyword">end</span>
+
+                <span class="ruby-identifier">uniques</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">route</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">should_add</span>
+                <span class="ruby-identifier">uniques</span>
+        <span class="ruby-keyword">end</span>
+
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">unique_routes</span>.<span class="ruby-identifier">count</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
+                <span class="ruby-keyword">return</span> <span class="ruby-identifier">unique_routes</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">summary</span>
+        <span class="ruby-keyword">end</span>
+
+                <span class="ruby-comment"># Overview</span>
+                <span class="ruby-identifier">route</span> = <span class="ruby-identifier">routes</span>.<span class="ruby-identifier">first</span>
+
+                <span class="ruby-identifier">start_name</span> = <span class="ruby-keyword">nil</span>
+                <span class="ruby-identifier">end_name</span> = <span class="ruby-keyword">nil</span>
+                <span class="ruby-keyword">if</span> <span class="ruby-identifier">route</span>.<span class="ruby-identifier">points</span>.<span class="ruby-identifier">count</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+                        <span class="ruby-identifier">start_name</span> = <span class="ruby-identifier">route</span>.<span class="ruby-identifier">points</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">street_name</span>
+                        <span class="ruby-identifier">end_name</span> = <span class="ruby-identifier">route</span>.<span class="ruby-identifier">points</span>.<span class="ruby-identifier">last</span>.<span class="ruby-identifier">street_name</span>
+                <span class="ruby-keyword">end</span>
+
+                <span class="ruby-identifier">summary</span> = {
+                        <span class="ruby-identifier">start_maidenhead</span><span class="ruby-operator">:</span> <span class="ruby-identifier">start_maidenhead</span>,
+                        <span class="ruby-identifier">end_maidenhead</span><span class="ruby-operator">:</span> <span class="ruby-identifier">end_maidenhead</span>,
+                        <span class="ruby-identifier">start_name</span><span class="ruby-operator">:</span> <span class="ruby-identifier">start_name</span>,
+                        <span class="ruby-identifier">end_name</span><span class="ruby-operator">:</span> <span class="ruby-identifier">end_name</span>,
+                        <span class="ruby-identifier">last_route_time</span><span class="ruby-operator">:</span> <span class="ruby-identifier">route</span>.<span class="ruby-identifier">created_at</span>.<span class="ruby-identifier">to_i</span>,
+                        <span class="ruby-identifier">num_instances</span><span class="ruby-operator">:</span> <span class="ruby-identifier">unique_routes</span>.<span class="ruby-identifier">count</span>,
+                        <span class="ruby-identifier">num_reviews</span><span class="ruby-operator">:</span> <span class="ruby-identifier">routes</span>.<span class="ruby-identifier">pick</span>(<span class="ruby-value">:review</span>).<span class="ruby-identifier">count</span>,
+                }
+
+                <span class="ruby-comment"># Averages</span>
+                <span class="ruby-identifier">average_distance</span> = <span class="ruby-identifier">routes</span>.<span class="ruby-identifier">pick</span>(<span class="ruby-value">:total_distance</span>).<span class="ruby-identifier">average</span>
+                <span class="ruby-identifier">average_safety_rating</span> = <span class="ruby-identifier">routes</span>.<span class="ruby-identifier">pick</span>(<span class="ruby-value">:review</span>).<span class="ruby-identifier">pick</span>(<span class="ruby-value">:safety_rating</span>).<span class="ruby-identifier">average</span>
+                <span class="ruby-identifier">average_difficulty_rating</span> = <span class="ruby-identifier">routes</span>.<span class="ruby-identifier">pick</span>(<span class="ruby-value">:review</span>).<span class="ruby-identifier">pick</span>(<span class="ruby-value">:difficulty_rating</span>).<span class="ruby-identifier">average</span>
+                <span class="ruby-identifier">average_time</span> = <span class="ruby-identifier">routes</span>.<span class="ruby-identifier">pick</span>(<span class="ruby-value">:total_time</span>).<span class="ruby-identifier">average</span>
+                <span class="ruby-identifier">average_speed</span> = (<span class="ruby-identifier">average_distance</span> <span class="ruby-operator">*</span> <span class="ruby-value">1000</span>)<span class="ruby-operator">/</span><span class="ruby-identifier">average_time</span>
+                <span class="ruby-identifier">average_environment_rating</span> = <span class="ruby-identifier">routes</span>.<span class="ruby-identifier">pick</span>(<span class="ruby-value">:review</span>).<span class="ruby-identifier">pick</span>(<span class="ruby-value">:environment_rating</span>).<span class="ruby-identifier">average</span>
+
+
+                <span class="ruby-identifier">summary</span>[<span class="ruby-value">:averages</span>] = {
+                        <span class="ruby-identifier">distance</span><span class="ruby-operator">:</span> <span class="ruby-identifier">average_distance</span>,
+                        <span class="ruby-identifier">safety_rating</span><span class="ruby-operator">:</span> <span class="ruby-identifier">average_safety_rating</span>,
+                        <span class="ruby-identifier">difficulty_rating</span><span class="ruby-operator">:</span> <span class="ruby-identifier">average_difficulty_rating</span>,
+                        <span class="ruby-identifier">environment_rating</span><span class="ruby-operator">:</span> <span class="ruby-identifier">average_difficulty_rating</span>,
+                        <span class="ruby-identifier">time</span><span class="ruby-operator">:</span> <span class="ruby-identifier">average_time</span>,
+                        <span class="ruby-identifier">speed</span><span class="ruby-operator">:</span> <span class="ruby-identifier">average_speed</span>
+                }
+
+                <span class="ruby-identifier">summary</span>
+        <span class="ruby-keyword">end</span></pre>
           </div>
           
         </div>
@@ -225,11 +373,11 @@ user_id               :integer</pre>
        </header>
 
     
-      <div id="method-i-record_use" class="method-detail ">
+      <div id="method-i-all_uses" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">record_use</span><span
-            class="method-args">(user, points)</span>
+          <span class="method-name">all_uses</span><span
+            class="method-args">()</span>
           
           <span class="method-click-advice">click to toggle source</span>
           
@@ -238,34 +386,76 @@ user_id               :integer</pre>
 
         <div class="method-description">
           
-          <p>Records a new route for the given user, with the route being called upon
-being the original.</p>
+          
+          
+          
 
-<pre>original_route.record_use(user, points)</pre>
+          
+          <div class="method-source-code" id="all_uses-source">
+            <pre><span class="ruby-comment"># File app/models/route.rb, line 50</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">all_uses</span>
+        <span class="ruby-constant">Rails</span>.<span class="ruby-identifier">logger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-node">&quot;Getting uses for start #{start_maidenhead} and end #{end_maidenhead}&quot;</span>
+        <span class="ruby-keyword">return</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">start_maidenhead</span>.<span class="ruby-identifier">present?</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">end_maidenhead</span>.<span class="ruby-identifier">present?</span>
+        <span class="ruby-identifier">similar</span> = <span class="ruby-constant">Route</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">start_maidenhead</span><span class="ruby-operator">:</span> <span class="ruby-identifier">start_maidenhead</span>, <span class="ruby-identifier">end_maidenhead</span><span class="ruby-operator">:</span> <span class="ruby-identifier">end_maidenhead</span>)
+        <span class="ruby-constant">Rails</span>.<span class="ruby-identifier">logger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-node">&quot;Number similar: #{similar.count}&quot;</span>
+        <span class="ruby-identifier">similar</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">route</span><span class="ruby-operator">|</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">is_similar?</span> <span class="ruby-identifier">route</span> }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
 
-<h4 id="method-i-record_use-label-Parameters">Parameters<span><a href="#method-i-record_use-label-Parameters">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-create_review" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create_review</span><span
+            class="method-args">(user, review_data)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Records a new review against the route and the provided user</p>
+
+<h4 id="method-i-create_review-label-Parameters">Parameters<span><a href="#method-i-create_review-label-Parameters">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
 <dl class="rdoc-list label-list"><dt><code>user</code>
 <dd>
-<p>the user who the route is being recorded against</p>
-</dd><dt><code>points</code>
+<p>user making the review</p>
+</dd><dt><code>review_data</code>
 <dd>
-<p>an array of points to be created as RoutePoints</p>
+<p>data needed to create the review</p>
 </dd></dl>
 
-<h4 id="method-i-record_use-label-Returns">Returns<span><a href="#method-i-record_use-label-Returns">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
+<h4 id="method-i-create_review-label-Returns">Returns<span><a href="#method-i-create_review-label-Returns">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
 
-<p>The recorded route, a child of the original route.</p>
+<p>The recorded review</p>
           
           
 
           
-          <div class="method-source-code" id="record_use-source">
-            <pre><span class="ruby-comment"># File app/models/route.rb, line 90</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">record_use</span>(<span class="ruby-identifier">user</span>, <span class="ruby-identifier">points</span>)
-        <span class="ruby-identifier">route_use</span> = <span class="ruby-constant">Route</span>.<span class="ruby-identifier">record</span>(<span class="ruby-identifier">user</span>, <span class="ruby-identifier">points</span>)
-        <span class="ruby-identifier">route_use</span>.<span class="ruby-identifier">route_id</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>
-        <span class="ruby-keyword">if</span> <span class="ruby-identifier">route_use</span>.<span class="ruby-identifier">save</span>
-                <span class="ruby-identifier">route_use</span>
+          <div class="method-source-code" id="create_review-source">
+            <pre><span class="ruby-comment"># File app/models/route.rb, line 147</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">create_review</span>(<span class="ruby-identifier">user</span>, <span class="ruby-identifier">review_data</span>)
+        <span class="ruby-keyword">return</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">review_data</span>[<span class="ruby-value">:safety_rating</span>] <span class="ruby-keyword">and</span> <span class="ruby-identifier">review_data</span>[<span class="ruby-value">:difficulty_rating</span>] <span class="ruby-keyword">and</span>
+        <span class="ruby-identifier">review_data</span>[<span class="ruby-value">:environment_rating</span>]
+        <span class="ruby-identifier">review</span> = <span class="ruby-constant">RouteReview</span>.<span class="ruby-identifier">create</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">review_instance</span><span class="ruby-operator">|</span>
+                <span class="ruby-identifier">review_instance</span>.<span class="ruby-identifier">safety_rating</span> = <span class="ruby-identifier">review_data</span>[<span class="ruby-value">:safety_rating</span>]
+                <span class="ruby-identifier">review_instance</span>.<span class="ruby-identifier">difficulty_rating</span> = <span class="ruby-identifier">review_data</span>[<span class="ruby-value">:difficulty_rating</span>]
+                <span class="ruby-identifier">review_instance</span>.<span class="ruby-identifier">environment_rating</span> = <span class="ruby-identifier">review_data</span>[<span class="ruby-value">:environment_rating</span>]
+                <span class="ruby-identifier">review_instance</span>.<span class="ruby-identifier">comment</span> = <span class="ruby-identifier">review_data</span>[<span class="ruby-value">:comment</span>]
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">review</span> = <span class="ruby-identifier">review</span>
+        <span class="ruby-identifier">user</span>.<span class="ruby-identifier">reviews</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">review</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">save</span> <span class="ruby-keyword">and</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">save</span>
+                <span class="ruby-identifier">review</span>
         <span class="ruby-keyword">else</span>
                 <span class="ruby-keyword">nil</span>
         <span class="ruby-keyword">end</span>
@@ -280,11 +470,11 @@ being the original.</p>
       </div>
 
     
-      <div id="method-i-review" class="method-detail ">
+      <div id="method-i-is_similar-3F" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">review</span><span
-            class="method-args">(review_data)</span>
+          <span class="method-name">is_similar?</span><span
+            class="method-args">(other_route)</span>
           
           <span class="method-click-advice">click to toggle source</span>
           
@@ -293,39 +483,212 @@ being the original.</p>
 
         <div class="method-description">
           
-          <p>Records a new review against the route and the provided user</p>
-
-<h4 id="method-i-review-label-Parameters">Parameters<span><a href="#method-i-review-label-Parameters">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
-<dl class="rdoc-list label-list"><dt><code>review_data</code>
-<dd>
-<p>data needed to create the review</p>
-</dd></dl>
-
-<h4 id="method-i-review-label-Returns">Returns<span><a href="#method-i-review-label-Returns">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
-
-<p>The recorded review</p>
+          
           
           
 
           
-          <div class="method-source-code" id="review-source">
-            <pre><span class="ruby-comment"># File app/models/route.rb, line 107</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">review</span>(<span class="ruby-identifier">review_data</span>)
-        <span class="ruby-keyword">return</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">review_data</span>[<span class="ruby-value">:safety_rating</span>] <span class="ruby-keyword">and</span> <span class="ruby-identifier">review_data</span>[<span class="ruby-value">:difficulty_rating</span>] <span class="ruby-keyword">and</span>
-                <span class="ruby-identifier">review_data</span>[<span class="ruby-value">:environment_rating</span>] <span class="ruby-keyword">and</span> <span class="ruby-identifier">review_data</span>[<span class="ruby-value">:comment</span>]
+          <div class="method-source-code" id="is_similar-3F-source">
+            <pre><span class="ruby-comment"># File app/models/route.rb, line 304</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">is_similar?</span>(<span class="ruby-identifier">other_route</span>)
+        <span class="ruby-constant">Rails</span>.<span class="ruby-identifier">logger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-node">&quot;similarity score: #{similarity(self.maidenheads, other_route.maidenheads)}&quot;</span>
+        <span class="ruby-identifier">similarity</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">maidenheads</span>, <span class="ruby-identifier">other_route</span>.<span class="ruby-identifier">maidenheads</span>) <span class="ruby-operator">&gt;=</span> <span class="ruby-value">0.9</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
 
-        <span class="ruby-identifier">review</span> = <span class="ruby-constant">RouteReview</span>.<span class="ruby-identifier">create</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">review_instance</span><span class="ruby-operator">|</span>
-                <span class="ruby-identifier">review_instance</span>.<span class="ruby-identifier">safety_rating</span> = <span class="ruby-identifier">review_data</span>[<span class="ruby-value">:safety_rating</span>]
-                <span class="ruby-identifier">review_instance</span>.<span class="ruby-identifier">difficulty_rating</span> = <span class="ruby-identifier">review_data</span>[<span class="ruby-value">:difficulty_rating</span>]
-                <span class="ruby-identifier">review_instance</span>.<span class="ruby-identifier">environment_rating</span> = <span class="ruby-identifier">review_data</span>[<span class="ruby-value">:environment_rating</span>]
-                <span class="ruby-identifier">review_instance</span>.<span class="ruby-identifier">comment</span> = <span class="ruby-identifier">review_data</span>[<span class="ruby-value">:comment</span>]
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-maidenheads" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">maidenheads</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="maidenheads-source">
+            <pre><span class="ruby-comment"># File app/models/route.rb, line 233</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">maidenheads</span>
+        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">points</span>.<span class="ruby-identifier">inject</span>([]) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">maidenhead</span>, <span class="ruby-identifier">point</span><span class="ruby-operator">|</span>
+                <span class="ruby-identifier">maidenhead</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">point</span>.<span class="ruby-identifier">maidenhead</span>
+                <span class="ruby-identifier">maidenhead</span>
         <span class="ruby-keyword">end</span>
-        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">reviews</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">review</span>
-        <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">save</span>
-                <span class="ruby-identifier">review</span>
-        <span class="ruby-keyword">else</span>
-                <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-points_data" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">points_data</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns points for a route in format required by <a
+href="Route.html">Route</a> Controller</p>
+
+<h4 id="method-i-points_data-label-Returns">Returns<span><a href="#method-i-points_data-label-Returns">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
+
+<p>The route points</p>
+          
+          
+
+          
+          <div class="method-source-code" id="points_data-source">
+            <pre><span class="ruby-comment"># File app/models/route.rb, line 220</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">points_data</span>
+        <span class="ruby-identifier">points</span> = []
+        <span class="ruby-identifier">route_points</span> = <span class="ruby-constant">RoutePoint</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">route_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">id</span>)
+        <span class="ruby-identifier">route_points</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">point</span><span class="ruby-operator">|</span>
+                <span class="ruby-identifier">points</span> <span class="ruby-operator">&lt;&lt;</span> {
+                        <span class="ruby-identifier">lat</span><span class="ruby-operator">:</span> <span class="ruby-identifier">point</span>.<span class="ruby-identifier">lat</span>,
+                        <span class="ruby-identifier">long</span><span class="ruby-operator">:</span> <span class="ruby-identifier">point</span>.<span class="ruby-identifier">long</span>,
+                        <span class="ruby-identifier">altitude</span><span class="ruby-operator">:</span> <span class="ruby-identifier">point</span>.<span class="ruby-identifier">altitude</span>,
+                        <span class="ruby-identifier">time</span><span class="ruby-operator">:</span> <span class="ruby-identifier">point</span>.<span class="ruby-identifier">time</span>
+                }
         <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-summary" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">summary</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns summary of this route and all uses</p>
+
+<h4 id="method-i-summary-label-Returns">Returns<span><a href="#method-i-summary-label-Returns">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
+
+<p>The route details.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="summary-source">
+            <pre><span class="ruby-comment"># File app/models/route.rb, line 169</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">summary</span>
+        <span class="ruby-identifier">uses</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">all_uses</span>
+
+        <span class="ruby-constant">Rails</span>.<span class="ruby-identifier">logger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-string">&quot;USES: &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">uses</span>.<span class="ruby-identifier">inspect</span>
+
+        <span class="ruby-identifier">start_name</span> = <span class="ruby-keyword">nil</span>
+        <span class="ruby-identifier">end_name</span> = <span class="ruby-keyword">nil</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">points</span>.<span class="ruby-identifier">count</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+                <span class="ruby-identifier">start_name</span> = <span class="ruby-identifier">points</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">street_name</span>
+                <span class="ruby-identifier">end_name</span> = <span class="ruby-identifier">points</span>.<span class="ruby-identifier">last</span>.<span class="ruby-identifier">street_name</span>
+        <span class="ruby-keyword">end</span>
+
+        <span class="ruby-identifier">route_summary</span> = {
+                <span class="ruby-identifier">id</span><span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>,
+                <span class="ruby-identifier">name</span><span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">name</span>,
+                <span class="ruby-identifier">start_name</span><span class="ruby-operator">:</span> <span class="ruby-identifier">start_name</span>,
+                <span class="ruby-identifier">end_name</span><span class="ruby-operator">:</span> <span class="ruby-identifier">end_name</span>,
+                <span class="ruby-identifier">start_maidenhead</span><span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">points</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">maidenhead</span>,
+                <span class="ruby-identifier">end_maidenhead</span><span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">points</span>.<span class="ruby-identifier">last</span>.<span class="ruby-identifier">maidenhead</span>,
+                <span class="ruby-identifier">last_route_time</span><span class="ruby-operator">:</span> <span class="ruby-identifier">uses</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">created_at</span>.<span class="ruby-identifier">to_i</span>,
+                <span class="ruby-identifier">num_instances</span><span class="ruby-operator">:</span> <span class="ruby-identifier">uses</span>.<span class="ruby-identifier">count</span>,
+                <span class="ruby-identifier">num_reviews</span><span class="ruby-operator">:</span> <span class="ruby-identifier">uses</span>.<span class="ruby-identifier">pick</span>(<span class="ruby-value">:review</span>).<span class="ruby-identifier">count</span>
+        }
+
+                <span class="ruby-comment"># Averages</span>
+                <span class="ruby-identifier">average_distance</span> = <span class="ruby-identifier">uses</span>.<span class="ruby-identifier">pick</span>(<span class="ruby-value">:total_distance</span>).<span class="ruby-identifier">average</span>
+                <span class="ruby-identifier">reviews</span> = <span class="ruby-identifier">uses</span>.<span class="ruby-identifier">pick</span>(<span class="ruby-value">:review</span>)
+                <span class="ruby-keyword">if</span> <span class="ruby-identifier">reviews</span>.<span class="ruby-identifier">present?</span>
+                        <span class="ruby-identifier">average_safety_rating</span> = <span class="ruby-identifier">reviews</span>.<span class="ruby-identifier">pick</span>(<span class="ruby-value">:safety_rating</span>).<span class="ruby-identifier">average</span>
+                        <span class="ruby-identifier">average_difficulty_rating</span> = <span class="ruby-identifier">reviews</span>.<span class="ruby-identifier">pick</span>(<span class="ruby-value">:difficulty_rating</span>).<span class="ruby-identifier">average</span>
+                        <span class="ruby-identifier">average_environment_rating</span> = <span class="ruby-identifier">reviews</span>.<span class="ruby-identifier">pick</span>(<span class="ruby-value">:environment_rating</span>).<span class="ruby-identifier">average</span>
+                <span class="ruby-keyword">end</span>
+                <span class="ruby-identifier">average_time</span> = <span class="ruby-identifier">uses</span>.<span class="ruby-identifier">pick</span>(<span class="ruby-value">:total_time</span>).<span class="ruby-identifier">average</span>
+                <span class="ruby-identifier">average_speed</span> = (<span class="ruby-identifier">average_distance</span> <span class="ruby-operator">*</span> <span class="ruby-value">1000</span>)<span class="ruby-operator">/</span><span class="ruby-identifier">average_time</span>
+
+                <span class="ruby-identifier">route_summary</span>[<span class="ruby-value">:averages</span>] = {
+                        <span class="ruby-identifier">distance</span><span class="ruby-operator">:</span>  <span class="ruby-identifier">average_distance</span>,
+                        <span class="ruby-identifier">time</span><span class="ruby-operator">:</span> <span class="ruby-identifier">average_time</span>,
+                        <span class="ruby-identifier">speed</span><span class="ruby-operator">:</span> <span class="ruby-identifier">average_speed</span>,
+                        <span class="ruby-identifier">safety_rating</span><span class="ruby-operator">:</span> <span class="ruby-identifier">average_safety_rating</span>,
+                        <span class="ruby-identifier">difficulty_rating</span><span class="ruby-operator">:</span> <span class="ruby-identifier">average_difficulty_rating</span>,
+                        <span class="ruby-identifier">environment_rating</span><span class="ruby-operator">:</span> <span class="ruby-identifier">average_environment_rating</span>
+                }
+
+                <span class="ruby-identifier">route_summary</span>
+        <span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-to_coordinates" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">to_coordinates</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="to_coordinates-source">
+            <pre><span class="ruby-comment"># File app/models/route.rb, line 46</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">to_coordinates</span>
+        [<span class="ruby-identifier">lat</span>, <span class="ruby-identifier">long</span>]
 <span class="ruby-keyword">end</span></pre>
           </div>
           

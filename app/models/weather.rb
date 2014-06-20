@@ -3,7 +3,7 @@
 # Table name: weathers
 #
 #  id         :integer          not null, primary key
-#  date       :date
+#  date       :datetime
 #  sunset     :datetime
 #  sunrise    :datetime
 #  created_at :datetime
