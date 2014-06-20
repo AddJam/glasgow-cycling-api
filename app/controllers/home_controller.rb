@@ -7,7 +7,7 @@ class HomeController < ApplicationController
             endpoints: [
                 {
                     route: '/routes.json',
-                    test_endpoint: '/routes.json',
+                    test_endpoint: 'routes.json',
                     type: 'GET',
                     description: "Search for routes, filterable by location",
                     input: [
@@ -32,7 +32,7 @@ class HomeController < ApplicationController
             endpoints: [
                 {
                     route: '/signup.json',
-                    test_endpoint: '/signup.json',
+                    test_endpoint: 'signup.json',
                     test_output: '{ "user_token": "zAj1U5YtPsjGefs7QB-l" }',
                     type: 'POST',
                     description: "Create a new user account.",
@@ -68,6 +68,25 @@ class HomeController < ApplicationController
                             required: true
                         }
                     ]
+                },
+                {
+                    route: '/signin.json',
+                    test_endpoint: 'signin.json',
+                    test_output: '{ "user_token": "dkf-tadUuAMrTfxjwbGl" }',
+                    type: 'GET',
+                    description: "Signin and obtain authentication token for user account",
+                    input: [
+                        {
+                            name: 'user[email]',
+                            value: 'user@example.com',
+                            required: true
+                        },
+                        {
+                            name: 'user[password]',
+                            value: 'password',
+                            required: true
+                        }
+                    ]
                 }
             ]
         },
@@ -76,7 +95,7 @@ class HomeController < ApplicationController
             endpoints: [
                 {
                     route: '/stats/hours.json',
-                    test_endpoint: '/stats/hours.json',
+                    test_endpoint: 'stats/hours.json',
                     type: 'GET',
                     description: "Stats for the authenticated user, per hour.",
                     input: [
@@ -89,7 +108,7 @@ class HomeController < ApplicationController
                 },
                 {
                     route: '/stats/days.json',
-                    test_endpoint: '/stats/days.json',
+                    test_endpoint: 'stats/days.json',
                     type: 'GET',
                     description: "Stats for the authenticated user, per day.",
                     input: [
@@ -102,7 +121,7 @@ class HomeController < ApplicationController
                 },
                 {
                     route: '/stats/weeks.json',
-                    test_endpoint: '/stats/weeks.json',
+                    test_endpoint: 'stats/weeks.json',
                     type: 'GET',
                     description: "Stats for the authenticated user, per week.",
                     input: [
@@ -120,7 +139,7 @@ class HomeController < ApplicationController
             endpoints: [
                 {
                 route: '/routes',
-                test_endpoint: '/routes',
+                test_endpoint: 'routes',
                 type: 'POST',
                 description: 'Submit a new route to the API. Route will be trimmed to conform to *fuzzy* zones. Mimumum leangth 500m',
                 input: [
@@ -172,8 +191,8 @@ class HomeController < ApplicationController
             title: "Route Details",
             endpoints: [
                 {
-                route: '/routes/find/:id',
-                test_endpoint: '/routes/find/1',
+                route: '/routes/find/:id.json',
+                test_endpoint: 'routes/find/1',
                 type: 'GET',
                 description: 'Get the full route details for a given route id. This has each route point collected by the user.',
                 input: [

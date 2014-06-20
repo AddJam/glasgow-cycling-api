@@ -44,7 +44,7 @@ $(document).ready ->
         url: requestUrl,
         success: (data) ->
           output = "<pre>#{JSON.stringify(data, undefined, 2)}</pre>"
-          showOutput(output)
+          showOutput(requestUrl, output)
         error: (data) ->
-          showOutput(null, "Request Error")
+          showOutput(requestUrl, "Request Error")
       })
