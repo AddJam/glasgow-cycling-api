@@ -22,21 +22,57 @@ class HomeController < ApplicationController
                     ],
                     output: [
                         {
-                            name: "Street",
-                            value: "Banana Road"
+
+                        }
+                    ]
+                }
+            ]
+         },
+        {
+            title: "Statistics",
+            endpoints: [
+                {
+                    route: '/stats/days.json',
+                    test_endpoint: '/stats/days.json',
+                    type: 'GET',
+                    input: [
+                        {
+                            name: "num_days",
+                            value: "5",
+                            required: true
+                        }
+                    ]
+                },
+                {
+                    route: '/stats/weeks.json',
+                    test_endpoint: '/stats/weeks.json',
+                    type: 'GET',
+                    input: [
+                        {
+                            name: "num_weeks",
+                            value: "3",
+                            required: true
+                        }
+                    ]
+                },
+                {
+                    route: '/stats/months.json',
+                    test_endpoint: '/stats/months.json',
+                    type: 'GET',
+                    input: [
+                        {
+                            name: "num_months",
+                            value: "2",
+                            required: true
                         }
                     ]
                 }
             ]
         },
         {
-            title: "Statistics",
-            endpoints: []
-        },
-        {
             title: "Route Capture",
             endpoints: []
         }
     ]
-  end
+    end
 end
