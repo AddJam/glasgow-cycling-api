@@ -89,6 +89,9 @@ a {
       font-size: 1.4em;
       color: rgb(180,180,180);
     }
+    .description {
+      color: rgb(190,190,190);
+    }
     .route {
       h4 {
         display: inline-block;
@@ -138,9 +141,6 @@ a {
     }
     .parameters {
       margin-top: 20px;
-      .description {
-        color: rgb(190,190,190);
-      }
     }
     ul {
       li {
