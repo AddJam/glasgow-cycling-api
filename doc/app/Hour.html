@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="utf-8">
+
+<title>class Hour - Rails Application Documentation</title>
+
+<link href="./fonts.css" rel="stylesheet">
+<link href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/navigation.js"></script>
+<script src="./js/search_index.js"></script>
+<script src="./js/search.js"></script>
+<script src="./js/searcher.js"></script>
+<script src="./js/darkfish.js"></script>
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link">ActiveRecord::Base
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-days">::days</a>
+    
+    <li ><a href="#method-c-generate-21">::generate!</a>
+    
+    <li ><a href="#method-c-hours">::hours</a>
+    
+    <li ><a href="#method-c-period">::period</a>
+    
+    <li ><a href="#method-c-stats_for_hours">::stats_for_hours</a>
+    
+    <li ><a href="#method-c-weeks">::weeks</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Hour">
+  <h1 id="class-Hour" class="class">
+    class Hour
+  </h1>
+
+  <section class="description">
+    
+<h2 id="class-Hour-label-Schema+Information">Schema Information<span><a href="#class-Hour-label-Schema+Information">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+
+<p>Table name: hours</p>
+
+<pre>id               :integer          not null, primary key
+user_id          :integer
+time             :datetime
+distance         :float
+average_speed    :float
+created_at       :datetime
+updated_at       :datetime
+max_speed        :float
+min_speed        :float
+num_points       :integer          default(0)
+routes_started   :integer          default(0)
+routes_completed :integer          default(0)</pre>
+
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-days" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">days</span><span
+            class="method-args">(num_days, user=nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Cumulative stats from now to num_days ago</p>
+          
+          
+
+          
+          <div class="method-source-code" id="days-source">
+            <pre><span class="ruby-comment"># File app/models/hour.rb, line 85</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">days</span>(<span class="ruby-identifier">num_days</span>, <span class="ruby-identifier">user</span>=<span class="ruby-keyword">nil</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-constant">Hour</span>.<span class="ruby-identifier">period</span>(<span class="ruby-value">:days</span>, <span class="ruby-identifier">num_days</span>, <span class="ruby-identifier">user</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-generate-21" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">generate!</span><span
+            class="method-args">(points, user=nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Generates Hours from points which contain:</p>
+
+<pre>- time
+- speed
+- distance</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="generate-21-source">
+            <pre><span class="ruby-comment"># File app/models/hour.rb, line 26</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">generate!</span>(<span class="ruby-identifier">points</span>, <span class="ruby-identifier">user</span>=<span class="ruby-keyword">nil</span>)
+  <span class="ruby-comment"># Round down times to hours to create groupings</span>
+  <span class="ruby-identifier">points</span>.<span class="ruby-identifier">map!</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">point</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">timestamp</span> = <span class="ruby-identifier">point</span>[<span class="ruby-value">:time</span>].<span class="ruby-identifier">to_i</span>
+    <span class="ruby-identifier">remainder</span> = <span class="ruby-identifier">timestamp</span> <span class="ruby-operator">%</span> <span class="ruby-value">3600</span>
+    <span class="ruby-identifier">point</span>[<span class="ruby-value">:hour</span>] = <span class="ruby-identifier">timestamp</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">remainder</span>
+    <span class="ruby-identifier">point</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-comment"># For each distinct time (hour), generate averages and distances</span>
+  <span class="ruby-identifier">hours</span> = <span class="ruby-identifier">points</span>.<span class="ruby-identifier">group_by</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">p</span><span class="ruby-operator">|</span> <span class="ruby-identifier">p</span>[<span class="ruby-value">:hour</span>]}
+  <span class="ruby-identifier">keys</span> = <span class="ruby-identifier">hours</span>.<span class="ruby-identifier">keys</span>
+  <span class="ruby-identifier">keys</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">timestamp</span>, <span class="ruby-identifier">index</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">hour_points</span> = <span class="ruby-identifier">hours</span>[<span class="ruby-identifier">timestamp</span>]
+
+    <span class="ruby-comment"># Create or find hour to update</span>
+    <span class="ruby-identifier">existing_hour_condition</span> = {
+      <span class="ruby-identifier">time</span><span class="ruby-operator">:</span> <span class="ruby-constant">Time</span>.<span class="ruby-identifier">at</span>(<span class="ruby-identifier">timestamp</span>)
+    }
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">present?</span>
+      <span class="ruby-identifier">existing_hour_condition</span>[<span class="ruby-value">:user_id</span>] = <span class="ruby-identifier">user</span>.<span class="ruby-identifier">id</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">existing_hour_condition</span>[<span class="ruby-value">:user_id</span>] = <span class="ruby-keyword">nil</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">hour</span> = <span class="ruby-constant">Hour</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">existing_hour_condition</span>).<span class="ruby-identifier">first</span>
+    <span class="ruby-identifier">hour</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Hour</span>.<span class="ruby-identifier">new</span>
+
+    <span class="ruby-comment"># Update</span>
+    <span class="ruby-identifier">hour</span>.<span class="ruby-identifier">time</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">at</span>(<span class="ruby-identifier">timestamp</span>)
+    <span class="ruby-identifier">hour</span>.<span class="ruby-identifier">user</span> = <span class="ruby-identifier">user</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">present?</span>
+    <span class="ruby-identifier">hour</span>.<span class="ruby-identifier">num_points</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">hour_points</span>.<span class="ruby-identifier">count</span>
+
+    <span class="ruby-comment"># Speed</span>
+    <span class="ruby-identifier">hour</span>.<span class="ruby-identifier">average_speed</span> = <span class="ruby-identifier">hour_points</span>.<span class="ruby-identifier">pick</span>(<span class="ruby-value">:speed</span>).<span class="ruby-identifier">average</span>
+    <span class="ruby-identifier">hour</span>.<span class="ruby-identifier">max_speed</span> = <span class="ruby-identifier">hour_points</span>.<span class="ruby-identifier">pick</span>(<span class="ruby-value">:speed</span>).<span class="ruby-identifier">max</span>
+    <span class="ruby-identifier">hour</span>.<span class="ruby-identifier">min_speed</span> = <span class="ruby-identifier">hour_points</span>.<span class="ruby-identifier">pick</span>(<span class="ruby-value">:speed</span>).<span class="ruby-identifier">min</span>
+
+    <span class="ruby-comment"># Distance from previous point</span>
+    <span class="ruby-identifier">hour</span>.<span class="ruby-identifier">distance</span> = <span class="ruby-identifier">hour_points</span>.<span class="ruby-identifier">pick</span>(<span class="ruby-value">:distance</span>).<span class="ruby-identifier">sum</span>
+
+    <span class="ruby-comment"># Route completion / starting</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">index</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+      <span class="ruby-identifier">hour</span>.<span class="ruby-identifier">routes_started</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">index</span> <span class="ruby-operator">==</span> (<span class="ruby-identifier">hours</span>.<span class="ruby-identifier">count</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>)
+      <span class="ruby-identifier">hour</span>.<span class="ruby-identifier">routes_completed</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-identifier">hour</span>.<span class="ruby-identifier">save</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-hours" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">hours</span><span
+            class="method-args">(num_hours, user=nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Cumulative stats from now to num_hours ago</p>
+          
+          
+
+          
+          <div class="method-source-code" id="hours-source">
+            <pre><span class="ruby-comment"># File app/models/hour.rb, line 80</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">hours</span>(<span class="ruby-identifier">num_hours</span>, <span class="ruby-identifier">user</span>=<span class="ruby-keyword">nil</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-constant">Hour</span>.<span class="ruby-identifier">period</span>(<span class="ruby-value">:hours</span>, <span class="ruby-identifier">num_hours</span>, <span class="ruby-identifier">user</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-period" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">period</span><span
+            class="method-args">(unit, num, user=nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="period-source">
+            <pre><span class="ruby-comment"># File app/models/hour.rb, line 94</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">period</span>(<span class="ruby-identifier">unit</span>, <span class="ruby-identifier">num</span>, <span class="ruby-identifier">user</span>=<span class="ruby-keyword">nil</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">unit</span> <span class="ruby-operator">==</span> <span class="ruby-value">:hours</span>
+    <span class="ruby-identifier">beginning</span> = <span class="ruby-value">:beginning_of_hour</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">unit</span> <span class="ruby-operator">==</span> <span class="ruby-value">:days</span>
+    <span class="ruby-identifier">beginning</span> = <span class="ruby-value">:beginning_of_day</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">unit</span> <span class="ruby-operator">==</span> <span class="ruby-value">:weeks</span>
+    <span class="ruby-identifier">beginning</span> = <span class="ruby-value">:beginning_of_week</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">return</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-comment"># E.g. 3.days.ago.beginning_of_hour for Hour.period(:weeks, 3)</span>
+  <span class="ruby-identifier">start_threshold</span> = (<span class="ruby-identifier">num</span><span class="ruby-operator">-</span><span class="ruby-value">1</span>).<span class="ruby-identifier">to_i</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">unit</span>).<span class="ruby-identifier">ago</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">beginning</span>)
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">present?</span>
+    <span class="ruby-identifier">hours</span> = <span class="ruby-constant">Hour</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;time &gt;= ? AND time &lt;= ? AND user_id = ?&#39;</span>, <span class="ruby-identifier">start_threshold</span>, <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>, <span class="ruby-identifier">user</span>.<span class="ruby-identifier">id</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">hours</span> = <span class="ruby-constant">Hour</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;time &gt;= ? AND time &lt;= ?&#39;</span>, <span class="ruby-identifier">start_threshold</span>, <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-comment"># Create array of days - group then merge</span>
+  <span class="ruby-identifier">period_groups</span> = <span class="ruby-identifier">hours</span>.<span class="ruby-identifier">inject</span>([]) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">groups</span>, <span class="ruby-identifier">hour</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">group</span> = <span class="ruby-identifier">groups</span>.<span class="ruby-identifier">find</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">g</span><span class="ruby-operator">|</span> <span class="ruby-identifier">g</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">time</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">beginning</span>).<span class="ruby-identifier">to_i</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">hour</span>.<span class="ruby-identifier">time</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">beginning</span>).<span class="ruby-identifier">to_i</span>}
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">group</span>
+      <span class="ruby-identifier">group</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">hour</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">groups</span> <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-identifier">hour</span>]
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">groups</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">periods</span> = <span class="ruby-identifier">period_groups</span>.<span class="ruby-identifier">map</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">period_hours</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">period</span> = <span class="ruby-constant">Hour</span>.<span class="ruby-identifier">stats_for_hours</span>(<span class="ruby-identifier">period_hours</span>)
+    <span class="ruby-identifier">period</span>[<span class="ruby-value">:time</span>] = <span class="ruby-identifier">period_hours</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">time</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">beginning</span>).<span class="ruby-identifier">to_i</span>
+    <span class="ruby-identifier">period</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">periods</span>.<span class="ruby-identifier">count</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">num</span>
+    <span class="ruby-identifier">num</span>.<span class="ruby-identifier">times</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">n</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">time</span> = (<span class="ruby-identifier">start_threshold</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">n</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">unit</span>)).<span class="ruby-identifier">to_i</span>
+      <span class="ruby-identifier">period_missing</span> = <span class="ruby-identifier">periods</span>.<span class="ruby-identifier">none?</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">p</span><span class="ruby-operator">|</span> <span class="ruby-identifier">p</span>[<span class="ruby-value">:time</span>] <span class="ruby-operator">==</span> <span class="ruby-identifier">time</span>}
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">period_missing</span>
+        <span class="ruby-identifier">periods</span> <span class="ruby-operator">&lt;&lt;</span> {
+          <span class="ruby-identifier">distance</span><span class="ruby-operator">:</span> <span class="ruby-value">0</span>,
+          <span class="ruby-identifier">avg_speed</span><span class="ruby-operator">:</span> <span class="ruby-value">0</span>,
+          <span class="ruby-identifier">min_speed</span><span class="ruby-operator">:</span> <span class="ruby-value">0</span>,
+          <span class="ruby-identifier">max_speed</span><span class="ruby-operator">:</span> <span class="ruby-value">0</span>,
+          <span class="ruby-identifier">routes_started</span><span class="ruby-operator">:</span> <span class="ruby-value">0</span>,
+          <span class="ruby-identifier">routes_completed</span><span class="ruby-operator">:</span> <span class="ruby-value">0</span>,
+          <span class="ruby-identifier">time</span><span class="ruby-operator">:</span> <span class="ruby-identifier">time</span>
+        }
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-comment"># Oldest period first</span>
+  <span class="ruby-identifier">periods</span>.<span class="ruby-identifier">sort!</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">a</span>, <span class="ruby-identifier">b</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">a</span>[<span class="ruby-value">:time</span>] <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-identifier">b</span>[<span class="ruby-value">:time</span>]
+  <span class="ruby-keyword">end</span>
+
+  {
+    <span class="ruby-value">:overall</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Hour</span>.<span class="ruby-identifier">stats_for_hours</span>(<span class="ruby-identifier">hours</span>),
+    <span class="ruby-identifier">unit</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">periods</span>
+  }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-stats_for_hours" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">stats_for_hours</span><span
+            class="method-args">(hours)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="stats_for_hours-source">
+            <pre><span class="ruby-comment"># File app/models/hour.rb, line 160</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">stats_for_hours</span>(<span class="ruby-identifier">hours</span>)
+  <span class="ruby-comment"># Calculate avg speed based on num points</span>
+  <span class="ruby-identifier">total_speed</span> = <span class="ruby-identifier">hours</span>.<span class="ruby-identifier">inject</span>(<span class="ruby-value">0.0</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">total</span>, <span class="ruby-identifier">hour</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">total</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">hour</span>.<span class="ruby-identifier">average_speed</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">hour</span>.<span class="ruby-identifier">num_points</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">total_points</span> = <span class="ruby-identifier">hours</span>.<span class="ruby-identifier">pick</span>(<span class="ruby-value">:num_points</span>).<span class="ruby-identifier">sum</span>
+  <span class="ruby-identifier">avg_speed</span> = <span class="ruby-identifier">total_speed</span> <span class="ruby-operator">/</span> <span class="ruby-identifier">total_points</span>
+  <span class="ruby-identifier">avg_speed</span> = <span class="ruby-value">0</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">total_points</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+
+  <span class="ruby-identifier">min_speed</span> = <span class="ruby-identifier">hours</span>.<span class="ruby-identifier">pick</span>(<span class="ruby-value">:min_speed</span>).<span class="ruby-identifier">min</span> <span class="ruby-operator">||</span> <span class="ruby-value">0</span>
+  <span class="ruby-identifier">max_speed</span> = <span class="ruby-identifier">hours</span>.<span class="ruby-identifier">pick</span>(<span class="ruby-value">:max_speed</span>).<span class="ruby-identifier">max</span> <span class="ruby-operator">||</span> <span class="ruby-value">0</span>
+
+  {
+    <span class="ruby-identifier">distance</span><span class="ruby-operator">:</span> <span class="ruby-identifier">hours</span>.<span class="ruby-identifier">pick</span>(<span class="ruby-value">:distance</span>).<span class="ruby-identifier">sum</span>,
+    <span class="ruby-identifier">avg_speed</span><span class="ruby-operator">:</span> <span class="ruby-identifier">avg_speed</span>,
+    <span class="ruby-identifier">min_speed</span><span class="ruby-operator">:</span> <span class="ruby-identifier">min_speed</span>,
+    <span class="ruby-identifier">max_speed</span><span class="ruby-operator">:</span> <span class="ruby-identifier">max_speed</span>,
+    <span class="ruby-identifier">routes_started</span><span class="ruby-operator">:</span> <span class="ruby-identifier">hours</span>.<span class="ruby-identifier">pick</span>(<span class="ruby-value">:routes_started</span>).<span class="ruby-identifier">sum</span>,
+    <span class="ruby-identifier">routes_completed</span><span class="ruby-operator">:</span> <span class="ruby-identifier">hours</span>.<span class="ruby-identifier">pick</span>(<span class="ruby-value">:routes_completed</span>).<span class="ruby-identifier">sum</span>
+  }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-weeks" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">weeks</span><span
+            class="method-args">(num_weeks, user=nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Cumulative stats from now to num_weeks ago</p>
+          
+          
+
+          
+          <div class="method-source-code" id="weeks-source">
+            <pre><span class="ruby-comment"># File app/models/hour.rb, line 90</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">weeks</span>(<span class="ruby-identifier">num_weeks</span>, <span class="ruby-identifier">user</span>=<span class="ruby-keyword">nil</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-constant">Hour</span>.<span class="ruby-identifier">period</span>(<span class="ruby-value">:weeks</span>, <span class="ruby-identifier">num_weeks</span>, <span class="ruby-identifier">user</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

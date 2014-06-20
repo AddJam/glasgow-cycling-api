@@ -73,11 +73,19 @@
 
   <ul class="link-list" role="directory">
     
+    <li ><a href="#method-i-details">#details</a>
+    
+    <li ><a href="#method-i-forgot_password">#forgot_password</a>
+    
+    <li ><a href="#method-i-reset_password">#reset_password</a>
+    
     <li ><a href="#method-i-save_responses">#save_responses</a>
     
     <li ><a href="#method-i-signin">#signin</a>
     
     <li ><a href="#method-i-signup">#signup</a>
+    
+    <li ><a href="#method-i-update_details">#update_details</a>
     
   </ul>
 </div>
@@ -113,10 +121,126 @@
        </header>
 
     
-      <div id="method-i-save_responses" class="method-detail ">
+      <div id="method-i-details" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">save_responses</span><span
+          <span class="method-name">details</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p><strong>GET</strong> /details</p>
+
+<p>Returns the user overview details for the logged in user</p>
+
+<h4 id="method-i-details-label-Parameters">Parameters<span><a href="#method-i-details-label-Parameters">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
+
+<p>Takes a user email address and EITHER a password OR an authentication
+token.</p>
+
+<p><strong>Note:</strong> The authentication token should always be used. This
+means that a user password should not have to be stored by the client.</p>
+<dl class="rdoc-list label-list"><dt><code>user_email</code>
+<dd>
+<p>Email address of a user.</p>
+</dd></dl>
+
+<p>AND</p>
+<dl class="rdoc-list label-list"><dt><code>user_token</code>
+<dd>
+<p>authentication token for a user</p>
+</dd></dl>
+
+<h4 id="method-i-details-label-Returns">Returns<span><a href="#method-i-details-label-Returns">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
+
+<p><a href="User.html">User</a> details:</p>
+
+<pre>{
+  first_name: &quot;Chris&quot;,
+ last_name: &quot;Sloey&quot;,
+  user_id: 1234,
+  month{
+      total: 12,
+      km: 69,
+      seconds: 6306
+  },
+  gender: undisclosed,
+  email: chris@chris.com,
+  profile-picture: base64img
+}</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="details-source">
+            <pre><span class="ruby-comment"># File app/controllers/user_controller.rb, line 109</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">details</span>
+              <span class="ruby-constant">Rails</span>.<span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span> <span class="ruby-string">&quot;Getting user details&quot;</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">user_signed_in?</span>
+    <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">first</span>
+    <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">details</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">render</span> <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:unauthorized</span>, <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> {<span class="ruby-identifier">error</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;No user details&quot;</span>}
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-forgot_password" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">forgot_password</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p><strong>POST</strong> /forgot_password</p>
+          
+          
+
+          
+          <div class="method-source-code" id="forgot_password-source">
+            <pre><span class="ruby-comment"># File app/controllers/user_controller.rb, line 145</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">forgot_password</span>
+  <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">email</span><span class="ruby-operator">:</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:email</span>]).<span class="ruby-identifier">first</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">present?</span>
+    <span class="ruby-identifier">user</span>.<span class="ruby-identifier">send_reset_password_instructions</span>
+    <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> {<span class="ruby-identifier">email</span><span class="ruby-operator">:</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">email</span>}
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">render</span> <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:bad_request</span>, <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> {<span class="ruby-identifier">error</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;No user with given email&quot;</span>}
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-reset_password" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">reset_password</span><span
             class="method-args">()</span>
           
           <span class="method-click-advice">click to toggle source</span>
@@ -131,17 +255,60 @@
           
 
           
-          <div class="method-source-code" id="save_responses-source">
-            <pre><span class="ruby-comment"># File app/controllers/user_controller.rb, line 79</span>
-  <span class="ruby-keyword">def</span> <span class="ruby-identifier">save_responses</span>
-    <span class="ruby-keyword">unless</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:responses</span>] <span class="ruby-keyword">and</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:user_id</span>]
-      <span class="ruby-identifier">render</span> <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:bad_request</span>
+          <div class="method-source-code" id="reset_password-source">
+            <pre><span class="ruby-comment"># File app/controllers/user_controller.rb, line 155</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">reset_password</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">valid_password?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:old_password</span>]
+    <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">password</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:new_password</span>]
+                      <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">authentication_token</span> = <span class="ruby-string">&quot;&quot;</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">save</span>
+      <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> {<span class="ruby-identifier">auth_token</span><span class="ruby-operator">:</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">authentication_token</span>}
     <span class="ruby-keyword">else</span>
-      <span class="ruby-identifier">response</span> = <span class="ruby-constant">UserResponse</span>.<span class="ruby-identifier">store</span>(<span class="ruby-value">:responses</span>, <span class="ruby-value">:user_id</span>)
-      <span class="ruby-keyword">if</span> <span class="ruby-identifier">response</span>
-        <span class="ruby-identifier">render</span> <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:success</span>
-      <span class="ruby-keyword">else</span>
-        <span class="ruby-identifier">render</span> <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:internal_server_error</span>
+      <span class="ruby-identifier">render</span> <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:bad_request</span>, <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> {<span class="ruby-identifier">error</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;New password is invalid&quot;</span>}
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">render</span> <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:unauthorized</span>, <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> {<span class="ruby-identifier">error</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Invalid password&quot;</span>}
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-save_responses" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">save_responses</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p><strong>POST</strong> /responses</p>
+          
+          
+
+          
+          <div class="method-source-code" id="save_responses-source">
+            <pre><span class="ruby-comment"># File app/controllers/user_controller.rb, line 131</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">save_responses</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:responses</span>] <span class="ruby-keyword">and</span> <span class="ruby-identifier">user_signed_in?</span>
+    <span class="ruby-identifier">render</span> <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:bad_request</span>, <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> {}
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">response</span> = <span class="ruby-constant">UserResponse</span>.<span class="ruby-identifier">store</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:responses</span>], <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">response</span>
+      <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> {}
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">render</span> <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:internal_server_error</span>, <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> {<span class="ruby-identifier">error</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Unable to save responses&quot;</span>}
     <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
@@ -209,12 +376,12 @@ the client.</p>
 
           
           <div class="method-source-code" id="signin-source">
-            <pre><span class="ruby-comment"># File app/controllers/user_controller.rb, line 71</span>
+            <pre><span class="ruby-comment"># File app/controllers/user_controller.rb, line 72</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">signin</span>
       <span class="ruby-keyword">if</span> <span class="ruby-identifier">user_signed_in?</span>
               <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> {<span class="ruby-identifier">user_token</span><span class="ruby-operator">:</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">authentication_token</span>}
       <span class="ruby-keyword">else</span>
-              <span class="ruby-identifier">render</span> <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:unauthorized</span>
+              <span class="ruby-identifier">render</span> <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:unauthorized</span>, <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> {<span class="ruby-identifier">error</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Cannot sign in user with given credentials&quot;</span>}
       <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -240,73 +407,94 @@ the client.</p>
 
         <div class="method-description">
           
-          <p><strong>POST</strong> /signup</p>
+          <pre>*POST* /signup
 
-<p>Registers a new user based on the given details.</p>
+Registers a new user based on the given details.
 
-<h4 id="method-i-signup-label-Parameters">Parameters<span><a href="#method-i-signup-label-Parameters">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
+==== Parameters
++user+ - JSON object containing user details to be registered. See example for all fields.
++user.email+:: must be an unregistered email address
++user.password+:: must be at least 8 characters long
++user.first_name+:: Required. String
++user.last_name+:: Required. String
++user.year_of_birth+:: Required. Year of birth
++user.gender+:: Required.rfemale, male or not disclosed
++user.profile_picture+:: Optional. Base64 encoding of JPG profile picture
 
-<p><code>user</code> - JSON object containing user details to be registered.
-See example for all fields.</p>
-<dl class="rdoc-list note-list"><dt><code>user.email</code>
-<dd>
-<p>must be an unregistered email address</p>
-</dd><dt><code>user.password</code>
-<dd>
-<p>must be at least 8 characters long</p>
-</dd><dt><code>user.first_name</code>
-<dd>
-<p>Required. String</p>
-</dd><dt><code>user.last_name</code>
-<dd>
-<p>Required. String</p>
-</dd><dt><code>user.dob</code>
-<dd>
-<p>Required. Unix timestamp</p>
-</dd><dt><code>user.gender</code>
-<dd>
-<p>Required. 0: female, 1: male, 2: not disclosed</p>
-</dd><dt><code>user.profile_picture</code>
-<dd>
-<p>Optional. URL of profile picture</p>
-</dd></dl>
+==== Example +user+ object
+ {
+   email: &#39;user@email.com&#39;,
+   password: &#39;user_password&#39;,
+   first_name: &#39;John&#39;,
+   last_name: &#39;Doe&#39;,
+   year_of_birth: 1990,
+   gender: 0,
+   profile_picture: &quot;base64 encoded JPG image data&quot;
+ }</pre>
 
-<h4 id="method-i-signup-label-Example+user+object">Example <code>user</code> object<span><a href="#method-i-signup-label-Example+user+object">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
+<p>ho</p>
 
-<pre>{
-  email: &#39;user@email.com&#39;,
-  password: &#39;user_password&#39;,
-  first_name: &#39;John&#39;,
-  last_name: &#39;Doe&#39;,
-  dob: 1392891658,
-  gender: 0,
-  profile_picture: &#39;http://example.com/example.jpg&#39;
-}</pre>
-
-<h4 id="method-i-signup-label-Returns">Returns<span><a href="#method-i-signup-label-Returns">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
-
-<p>Successful registration:</p>
-
-<pre>{
-  user_token: &#39;authentication_token&#39;
-}</pre>
+<pre>==== Returns
+Successful registration:
+ {
+   user_token: &#39;authentication_token&#39;
+ }</pre>
           
           
 
           
           <div class="method-source-code" id="signup-source">
-            <pre><span class="ruby-comment"># File app/controllers/user_controller.rb, line 37</span>
+            <pre><span class="ruby-comment"># File app/controllers/user_controller.rb, line 38</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">signup</span>
       <span class="ruby-keyword">unless</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:user</span>]
-              <span class="ruby-identifier">render</span> <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:bad_request</span>
+              <span class="ruby-identifier">render</span> <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:bad_request</span>, <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> {}
       <span class="ruby-keyword">else</span>
-              <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">register</span> <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:user</span>])
-              <span class="ruby-keyword">if</span> <span class="ruby-identifier">user</span>
+              <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">register</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:user</span>]
+              <span class="ruby-keyword">if</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">valid?</span>
                       <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> {<span class="ruby-identifier">user_token</span><span class="ruby-operator">:</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">authentication_token</span>}
               <span class="ruby-keyword">else</span>
-                      <span class="ruby-identifier">render</span> <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:internal_server_error</span>
+      <span class="ruby-identifier">render</span> <span class="ruby-value">:json</span> =<span class="ruby-operator">&gt;</span> { <span class="ruby-value">:errors</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">as_json</span> }, <span class="ruby-value">:status</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">422</span>
               <span class="ruby-keyword">end</span>
       <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-update_details" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">update_details</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p><strong>PUT</strong> /details</p>
+          
+          
+
+          
+          <div class="method-source-code" id="update_details-source">
+            <pre><span class="ruby-comment"># File app/controllers/user_controller.rb, line 120</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">update_details</span>
+              <span class="ruby-constant">Rails</span>.<span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span> <span class="ruby-string">&quot;Updating user details&quot;</span>
+              <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>, <span class="ruby-identifier">user_details_params</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">user</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">save</span>
+                      <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">details</span>
+              <span class="ruby-keyword">else</span>
+                      <span class="ruby-identifier">render</span> <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:internal_server_error</span>, <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> {<span class="ruby-identifier">errors</span><span class="ruby-operator">:</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">as_json</span>}
+              <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           

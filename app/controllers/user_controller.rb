@@ -15,8 +15,8 @@ class UserController < ApplicationController
   # +user.password+:: must be at least 8 characters long
   # +user.first_name+:: Required. String
   # +user.last_name+:: Required. String
-  # +user.dob+:: Required. Unix timestamp
-  # +user.gender+:: Required. 0: female, 1: male, 2: not disclosed
+  # +user.year_of_birth+:: Required. Year of birth
+  # +user.gender+:: Required.rfemale, male or not disclosed
   # +user.profile_picture+:: Optional. Base64 encoding of JPG profile picture
   #
   # ==== Example +user+ object
@@ -25,7 +25,7 @@ class UserController < ApplicationController
   #    password: 'user_password',
   #    first_name: 'John',
   #    last_name: 'Doe',
-  #    dob: 1392891658,
+  #    year_of_birth: 1990,
   #    gender: 0,
   #    profile_picture: "base64 encoded JPG image data"
   #  }
@@ -82,27 +82,29 @@ class UserController < ApplicationController
   # Returns the user overview details for the logged in user
   #
   # ==== Parameters
-  # Takes a user email address and EITHER a password OR an authentication token.
+  # Takes a user email address and an authentication token.
   #
-  # *Note:* If possible, the authentication token should always be used. This means that a user password
+  # *Note:* The authentication token should always be used. This means that a user password
   # should not have to be stored by the client.
   #
   # [+user_email+] Email address of a user.
   # AND
-  # [+user_password+] password of a user
-  # OR
   # [+user_token+] authentication token for a user
   #
   # ==== Returns
   # User details:
   #  {
-  #    first_name: 'Chris',
-  #    last_name: 'Sloey',
-  #    month: {
-  #        route: "London Road to Hope Street",
-  #        meters: 324,
-  #        seconds: 122342
-  #    }
+  #    first_name: "Chris",
+  #    last_name: "Sloey",
+  #    user_id: 1234,
+  #    month{
+  #        total: 12,
+  #        km: 69,
+  #        seconds: 6306
+  #    },
+  #    gender: undisclosed,
+  #    email: chris@chris.com,
+  #    profile-picture: base64img
   #  }
   def details
 		Rails.logger.info "Getting user details"
@@ -115,6 +117,17 @@ class UserController < ApplicationController
   end
 
   # *PUT* /details
+  #
+  # Update the user account details
+  #
+  #  # ==== Parameters
+  # Takes a updated user details and saves these against authenticated user
+  #
+  # [+user_email+] Email address of a user.
+  # AND
+  # [+user_details+] new user details
+  #
+  # ==== Returns
   def update_details
 		Rails.logger.info "Updating user details"
 		user = User.update(current_user.id, user_details_params)
@@ -126,6 +139,7 @@ class UserController < ApplicationController
   end
 
   # *POST* /responses
+  #
   def save_responses
     unless params[:responses] and user_signed_in?
       render status: :bad_request, json: {}

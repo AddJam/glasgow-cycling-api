@@ -67,7 +67,17 @@
 
     
     
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
     
+    <li ><a href="#method-c-at_hour">::at_hour</a>
+    
+  </ul>
+</div>
+
   </div>
 </nav>
 
@@ -78,22 +88,27 @@
 
   <section class="description">
     
-<h2 id="class-WeatherPeriod-label-Schema+Information">Schema Information<span><a href="#class-WeatherPeriod-label-Schema+Information">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
-
 <p>Table name: weather_periods</p>
 
-<pre>id                  :integer          not null, primary key
-weather_id          :integer
-start_time          :datetime
-end_time            :datetime
-precipitation_type  :integer
-precipitation_level :integer
-wind_speed          :integer
-wind_direction      :integer
-pollen_count        :integer
-uv_level            :integer
-created_at          :datetime
-updated_at          :datetime</pre>
+<pre>id                        :integer          not null, primary key
+weather_id                :integer
+start_time                :datetime
+precipitation_type        :string(255)
+wind_speed                :float
+created_at                :datetime
+updated_at                :datetime
+summary                   :string(255)
+icon                      :string(255)
+precipitation_intensity   :float
+precipitation_probability :float
+temperature               :float
+dew_point                 :float
+humidity                  :float
+wind_bearing              :float
+visibility                :float
+cloud_cover               :float
+pressure                  :float
+ozone                     :float</pre>
 
   </section>
 
@@ -110,6 +125,69 @@ updated_at          :datetime</pre>
     
 
     
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-at_hour" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">at_hour</span><span
+            class="method-args">(timestamp)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns weather for given hour, if no hour given return todays weather</p>
+
+<h4 id="method-c-at_hour-label-Returns">Returns<span><a href="#method-c-at_hour-label-Returns">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
+
+<p>The weather</p>
+          
+          
+
+          
+          <div class="method-source-code" id="at_hour-source">
+            <pre><span class="ruby-comment"># File app/models/weather_period.rb, line 32</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">at_hour</span>(<span class="ruby-identifier">timestamp</span>)
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">timestamp</span>.<span class="ruby-identifier">present?</span>
+                <span class="ruby-identifier">time</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">at</span>(<span class="ruby-identifier">timestamp</span>)
+                <span class="ruby-identifier">weatherperiod</span> = <span class="ruby-constant">WeatherPeriod</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">start_time</span><span class="ruby-operator">:</span> <span class="ruby-identifier">time</span>.<span class="ruby-identifier">beginning_of_hour</span>).<span class="ruby-identifier">first</span>
+        <span class="ruby-keyword">else</span>
+                <span class="ruby-identifier">weatherperiod</span> = <span class="ruby-constant">WeatherPeriod</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">start_time</span><span class="ruby-operator">:</span> <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">beginning_of_hour</span>).<span class="ruby-identifier">first</span>
+        <span class="ruby-keyword">end</span>
+
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">weatherperiod</span>
+        {
+                <span class="ruby-identifier">time</span><span class="ruby-operator">:</span> <span class="ruby-identifier">weatherperiod</span>.<span class="ruby-identifier">start_time</span>.<span class="ruby-identifier">to_i</span>,
+                <span class="ruby-identifier">icon</span><span class="ruby-operator">:</span> <span class="ruby-identifier">weatherperiod</span>.<span class="ruby-identifier">icon</span>,
+                <span class="ruby-identifier">precipitation_probability</span><span class="ruby-operator">:</span> <span class="ruby-identifier">weatherperiod</span>.<span class="ruby-identifier">precipitation_probability</span>,
+                <span class="ruby-identifier">precipitation_type</span><span class="ruby-operator">:</span> <span class="ruby-identifier">weatherperiod</span>.<span class="ruby-identifier">precipitation_type</span>,
+                <span class="ruby-identifier">temp</span><span class="ruby-operator">:</span> <span class="ruby-identifier">weatherperiod</span>.<span class="ruby-identifier">temperature</span>,
+                <span class="ruby-identifier">wind_speed</span><span class="ruby-operator">:</span> <span class="ruby-identifier">weatherperiod</span>.<span class="ruby-identifier">wind_speed</span>,
+                <span class="ruby-identifier">wind_bearing</span><span class="ruby-operator">:</span> <span class="ruby-identifier">weatherperiod</span>.<span class="ruby-identifier">wind_bearing</span>,
+                <span class="ruby-identifier">source</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Powered by forecast.io&quot;</span>
+        }
+        <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
   </section>
 </main>
 

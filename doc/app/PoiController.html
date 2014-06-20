@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8">
 
-<title>class UserResponse - Rails Application Documentation</title>
+<title>class PoiController - Rails Application Documentation</title>
 
 <link href="./fonts.css" rel="stylesheet">
 <link href="./rdoc.css" rel="stylesheet">
@@ -61,7 +61,7 @@
   <h3>Parent</h3>
 
   
-  <p class="link">ActiveRecord::Base
+  <p class="link"><a href="ApplicationController.html">ApplicationController</a>
   
 </div>
 
@@ -73,7 +73,7 @@
 
   <ul class="link-list" role="directory">
     
-    <li ><a href="#method-c-store">::store</a>
+    <li ><a href="#method-i-all">#all</a>
     
   </ul>
 </div>
@@ -81,25 +81,13 @@
   </div>
 </nav>
 
-<main role="main" aria-labelledby="class-UserResponse">
-  <h1 id="class-UserResponse" class="class">
-    class UserResponse
+<main role="main" aria-labelledby="class-PoiController">
+  <h1 id="class-PoiController" class="class">
+    class PoiController
   </h1>
 
   <section class="description">
     
-<h2 id="class-UserResponse-label-Schema+Information">Schema Information<span><a href="#class-UserResponse-label-Schema+Information">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
-
-<p>Table name: user_responses</p>
-
-<pre>id             :integer          not null, primary key
-user_id        :integer
-usage_per_week :integer
-usage_type     :integer
-usage_reason   :integer
-created_at     :datetime
-updated_at     :datetime</pre>
-
   </section>
 
   
@@ -115,17 +103,17 @@ updated_at     :datetime</pre>
     
 
     
-     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
        <header>
-         <h3>Public Class Methods</h3>
+         <h3>Public Instance Methods</h3>
        </header>
 
     
-      <div id="method-c-store" class="method-detail ">
+      <div id="method-i-all" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">store</span><span
-            class="method-args">(responses, user_id)</span>
+          <span class="method-name">all</span><span
+            class="method-args">()</span>
           
           <span class="method-click-advice">click to toggle source</span>
           
@@ -139,21 +127,13 @@ updated_at     :datetime</pre>
           
 
           
-          <div class="method-source-code" id="store-source">
-            <pre><span class="ruby-comment"># File app/models/user_response.rb, line 18</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">store</span>(<span class="ruby-identifier">responses</span>, <span class="ruby-identifier">user_id</span>)
-        <span class="ruby-identifier">response</span> = <span class="ruby-constant">UserResponse</span>.<span class="ruby-identifier">new</span>
-
-        <span class="ruby-identifier">response</span>.<span class="ruby-identifier">user_id</span> = <span class="ruby-identifier">user_id</span>
-        <span class="ruby-identifier">response</span>.<span class="ruby-identifier">usage_per_week</span> = <span class="ruby-identifier">responses</span>[<span class="ruby-string">&#39;usage_per_week&#39;</span>]
-        <span class="ruby-identifier">response</span>.<span class="ruby-identifier">usage_type</span> = <span class="ruby-identifier">responses</span>[<span class="ruby-string">&#39;usage_type&#39;</span>]
-        <span class="ruby-identifier">response</span>.<span class="ruby-identifier">usage_reason</span> = <span class="ruby-identifier">responses</span>[<span class="ruby-string">&#39;usage_reason&#39;</span>]
-
-        <span class="ruby-keyword">if</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">save</span>
-                <span class="ruby-identifier">response</span>
-        <span class="ruby-keyword">else</span>
-                <span class="ruby-keyword">nil</span>
-        <span class="ruby-keyword">end</span>
+          <div class="method-source-code" id="all-source">
+            <pre><span class="ruby-comment"># File app/controllers/poi_controller.rb, line 7</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">all</span>
+  <span class="ruby-identifier">extractor</span> = <span class="ruby-constant">PointsExtractor</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> {
+    <span class="ruby-identifier">locations</span><span class="ruby-operator">:</span> <span class="ruby-identifier">extractor</span>.<span class="ruby-identifier">extract_all_types</span>
+  }
 <span class="ruby-keyword">end</span></pre>
           </div>
           
