@@ -35,7 +35,9 @@ $(document).ready ->
       type: requestType,
       url: requestUrl,
       success: (data) ->
-        showOutput("Request Success")
+        output = "<p><span class='url-title'>URL:</span><span class='url'>#{requestUrl}</span></p>"
+        output += "<pre>#{JSON.stringify(data, undefined, 2)}</pre>"
+        showOutput(output)
       error: (data) ->
         showOutput("Request Error")
     })

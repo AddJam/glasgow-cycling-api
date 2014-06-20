@@ -86,7 +86,7 @@ a {
     position: relative;
     h4 {
       font-size: 1.4em;
-      color: rgb(195,195,195);
+      color: rgb(180,180,180);
     }
     .route {
       h4 {
@@ -117,10 +117,28 @@ a {
     }
     .test-output {
       @include span-columns(12);
+      p {
+        padding-bottom: 7px;
+        margin-bottom: 7px;
+        .url-title {
+          font-size: 1.2em;
+          padding-right: 10px;
+        }
+        .url {
+
+        }
+        border-bottom: 5px dashed rgb(255,255,255);
+      }
       display: none;
       padding: 30px;
       margin: 20px 0;
       background: rgb(245,245,245);
+    }
+    .parameters {
+      margin-top: 20px;
+      .description {
+        color: rgb(190,190,190);
+      }
     }
     ul {
       li {
