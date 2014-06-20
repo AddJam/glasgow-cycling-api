@@ -117,7 +117,74 @@ class HomeController < ApplicationController
         },
         {
             title: "Route Capture",
-            endpoints: []
+            endpoints: [
+                {
+                route: '/routes',
+                test_endpoint: '/routes',
+                type: 'POST',
+                description: 'Submit a new route to the API. Route will be trimmed to conform to *fuzzy* zones. Mimumum leangth 500m',
+                input: [
+                        {
+                            name: "points[kph]",
+                            value: "6.02",
+                            required: true
+                        },
+                        {
+                            name: "points[course]",
+                            value: "178.0",
+                            required: true
+                        },
+                        {
+                            name: "points[time]",
+                            value: "1402046642",
+                            required: true
+                        },
+                        {
+                            name: "horizontal_accuracy",
+                            value: 5,
+                            required: true
+                        },
+                        {
+                            name: "vertical_accuracy",
+                            value: 5,
+                            required: true
+                        },
+                        {
+                            name: "altitude",
+                            value: 2,
+                            required: true
+                        },
+                        {
+                            name: "long",
+                            value: 55.5,
+                            required: true
+                        },
+                        {
+                            name: "lat",
+                            value: -4.5,
+                            required: true
+                        },
+                    ]
+                }
+            ]
+        },
+        {
+            title: "Route Details",
+            endpoints: [
+                {
+                route: '/routes/find/:id',
+                test_endpoint: '/routes/find/1',
+                type: 'GET',
+                description: 'Get the full route details for a given route id. This has each route point collected by the user.',
+                input: [
+                    {
+                        name: "id",
+                        value: "1",
+                        required: true
+                    }
+                ]
+            }
+            ]
         }
     ]
     end
