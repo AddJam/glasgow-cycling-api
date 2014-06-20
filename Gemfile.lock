@@ -38,6 +38,13 @@ GEM
       erubis (>= 2.6.6)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bitters (0.10.0)
+      bourbon (>= 3.2)
+      sass (>= 3.2)
+      thor
+    bourbon (3.2.3)
+      sass (~> 3.2)
+      thor
     builder (3.2.2)
     capistrano (2.15.5)
       highline
@@ -137,6 +144,9 @@ GEM
       ruby-progressbar
     multi_json (1.10.1)
     multipart-post (2.0.0)
+    neat (1.5.1)
+      bourbon (>= 3.1)
+      sass (~> 3.2.19)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-sftp (2.1.2)
@@ -269,6 +279,8 @@ DEPENDENCIES
   annotate (>= 2.6.0)
   better_errors
   binding_of_caller
+  bitters
+  bourbon
   capistrano
   clockwork
   coffee-rails (~> 4.0.0)
@@ -285,6 +297,7 @@ DEPENDENCIES
   maidenhead
   minitest
   minitest-reporters
+  neat
   newrelic_rpm
   paperclip (~> 4.1)
   pg (~> 0.17.1)

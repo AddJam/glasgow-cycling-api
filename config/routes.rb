@@ -1,4 +1,6 @@
 JourneyAPI::Application.routes.draw do
+  root to: 'home#index'
+
   # User
   post "/signup", to: "user#signup", as: 'signup'
   get "/signin", to: "user#signin", as: 'signin'

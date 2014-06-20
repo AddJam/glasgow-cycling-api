@@ -1,0 +1,123 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.scss.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: helvetica neue, lucida grande, sans-serif;
+}
+
+a {
+  color: rgb(154,234,255);
+  text-decoration: none;
+}
+
+.info {
+  text-color: rgb(255,255,255);
+  font-weight: bold;
+  font-size: 1.15em;
+}
+
+.header {
+  @include span-columns(12);
+  padding: 50px;
+  background-color: rgb(0,161,223);
+  color: rgb(255,255,255);
+  margin-bottom: 50px;
+  h1 {
+    text-align: center;
+    font-size: 8em;
+  }
+  p {
+    text-align: center;
+    font-size: 2em;
+    color: rgb(240,240,240);
+  }
+  .features {
+    margin-top: 50px;
+    @include span-columns(3 of 5);
+    @include shift(1 of 5);
+    .feature {
+      @include span-columns(1 of 3);
+      h3 {
+        font-size: 1.5em;
+        margin-bottom: 5px;
+      }
+      p {
+        font-size: 1em;
+        text-align: left;
+      }
+    }
+  }
+  .notice {
+    @include span-columns(6 of 12);
+    @include shift(3);
+    margin-top: 40px;
+    color: rgb(255,255,255);
+    p {
+      font-size: 1.1em;
+      margin-bottom: 10px;
+    }
+    .info {
+      font-size: 1em;
+    }
+  }
+}
+
+.sections {
+  @include span-columns(8 of 10);
+  @include shift(1 of 10);
+
+  h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+
+  .endpoint {
+    @include span-columns(12);
+    border: 5px dashed rgb(240,240,240);
+    border-radius: 5px;
+    padding: 10px;
+    h4 {
+      font-size: 1.4em;
+      color: rgb(195,195,195);
+    }
+    .route {
+      h4 {
+        display: inline-block;
+      }
+      span {
+        font-size: 1.8em;
+        font-weight: 100;
+        margin-left: 10px;
+      }
+    }
+    ul {
+      li {
+        display: block;
+        padding: 7px;
+
+        .key {
+          font-size: 1.4em;
+          width: 400px;
+          display: inline-block;
+          margin-bottom: 5px;
+        }
+        .value {
+          font-size: 0.9em;
+          margin-right: 5px;
+        }
+        .required {
+          color: rgb(195,195,195);
+        }
+      }
+      li:hover {
+        background: rgb(240,240,240);
+      }
+    }
+  }
+}
