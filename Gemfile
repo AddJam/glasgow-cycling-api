@@ -80,6 +80,8 @@ group :development do
 	gem 'better_errors'
 	gem 'binding_of_caller'
 	gem 'annotate', ">=2.6.0"
+	gem 'railroady'
+
 
 	# Automation
 	gem 'guard'
