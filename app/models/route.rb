@@ -144,15 +144,9 @@ class Route < ActiveRecord::Base
 		#
 		# ==== Returns
 		# The recorded review
-		def create_review(user, review_data)
-			return unless review_data[:safety_rating] and review_data[:difficulty_rating] and
-			review_data[:environment_rating]
-			review = RouteReview.create do |review_instance|
-				review_instance.safety_rating = review_data[:safety_rating]
-				review_instance.difficulty_rating = review_data[:difficulty_rating]
-				review_instance.environment_rating = review_data[:environment_rating]
-				review_instance.comment = review_data[:comment]
-			end
+		def create_review(user, rating)
+			return unless rating.present?
+			review = RouteReview.create(rating: rating)
 			self.review = review
 			user.reviews << review
 			if user.save and self.save
@@ -193,11 +187,7 @@ class Route < ActiveRecord::Base
 				# Averages
 				average_distance = uses.pick(:total_distance).average
 				reviews = uses.pick(:review)
-				if reviews.present?
-					average_safety_rating = reviews.pick(:safety_rating).average
-					average_difficulty_rating = reviews.pick(:difficulty_rating).average
-					average_environment_rating = reviews.pick(:environment_rating).average
-				end
+				average_rating = reviews.pick(:rating).average if reviews.present?
 				average_time = uses.pick(:total_time).average
 				average_speed = (average_distance * 1000)/average_time
 
@@ -205,9 +195,7 @@ class Route < ActiveRecord::Base
 					distance:  average_distance,
 					time: average_time,
 					speed: average_speed,
-					safety_rating: average_safety_rating,
-					difficulty_rating: average_difficulty_rating,
-					environment_rating: average_environment_rating
+					rating: average_rating,
 				}
 
 				route_summary
@@ -282,18 +270,14 @@ class Route < ActiveRecord::Base
 
 				# Averages
 				average_distance = routes.pick(:total_distance).average
-				average_safety_rating = routes.pick(:review).pick(:safety_rating).average
-				average_difficulty_rating = routes.pick(:review).pick(:difficulty_rating).average
+				average_rating = routes.pick(:review).pick(:rating).average
 				average_time = routes.pick(:total_time).average
 				average_speed = (average_distance * 1000)/average_time
-				average_environment_rating = routes.pick(:review).pick(:environment_rating).average
-
 
 				summary[:averages] = {
 					distance: average_distance,
-					safety_rating: average_safety_rating,
-					difficulty_rating: average_difficulty_rating,
-					environment_rating: average_difficulty_rating,
+					rating: average_rating,
+
 					time: average_time,
 					speed: average_speed
 				}

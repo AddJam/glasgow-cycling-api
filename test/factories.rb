@@ -75,9 +75,7 @@ FactoryGirl.define do
     user
     sequence(:id)
     comment 'Test Comment'
-    safety_rating 2
-    difficulty_rating 2
-    environment_rating 2
+    rating 2
   end
 
   factory :user do
