@@ -195,7 +195,7 @@ class Route < ActiveRecord::Base
 					distance:  average_distance,
 					time: average_time,
 					speed: average_speed,
-					rating: average_rating,
+					rating: average_rating
 				}
 
 				route_summary
@@ -277,7 +277,6 @@ class Route < ActiveRecord::Base
 				summary[:averages] = {
 					distance: average_distance,
 					rating: average_rating,
-
 					time: average_time,
 					speed: average_speed
 				}

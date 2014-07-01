@@ -34,13 +34,15 @@ class ReviewController < ApplicationController
         else
           render status: :internal_server_error, json: {error: "Review could not be saved"}
         end
-      else
+      elsif route.present?
         review = route.create_review(current_user, rating)
         if review
           render json: {review: review}
         else
           render status: :internal_server_error, json: {error: "Review could not be created"}
         end
+      else
+        render status: :bad_request, json: {error: "Request should contain a valid route_id"}
       end
     else
       render status: :bad_request, json: {error: "Request should contain both a review hash and route_id"}
