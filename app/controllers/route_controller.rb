@@ -104,6 +104,11 @@ class RouteController < ApplicationController
 	#   - per_page (integer)
 	#   - page_num (integer)
 	def search
+		if params[:user_only].present?
+			authenticate_user_from_token!
+			authenticate_user!
+		end
+
 		Rails.logger.debug "Search got params: #{params}"
 		# Pagination
 		per_page = params[:per_page] || 10
