@@ -1,4 +1,5 @@
 JourneyAPI::Application.routes.draw do
+  use_doorkeeper
   root to: 'home#index'
 
   # User
