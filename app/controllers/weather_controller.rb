@@ -32,7 +32,7 @@ class WeatherController < ApplicationController
     if weather
       render json: weather
     else
-      render status: :internal_server_error, json: {error: "Weather could not be retrieved"}
+      render status: :not_acceptable, json: {error: "Weather could not be retrieved"}
     end
   end
 end
