@@ -37,9 +37,27 @@ class ActiveSupport::TestCase
   end
 end
 
+require 'mocha/mini_test'
+
+module Devise
+  module TestHelpers
+    def sign_in(user)
+      token = mock()
+      token.stubs(:accessible?).returns(true)
+      token.stubs(:resource_owner_id).returns(user.id)
+      @controller.stubs(:doorkeeper_token).returns(token)
+    end
+
+    def sign_out(user)
+      @controller.stubs(:doorkeeper_token).returns(nil)
+    end
+  end
+end
+
 class ActionController::TestCase
   include Devise::TestHelpers
 end
+
 
 require "minitest/reporters"
 reports_dir = ENV["CI_REPORTS"] || "test/results"

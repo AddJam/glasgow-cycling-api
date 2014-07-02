@@ -98,4 +98,5 @@ group :test do
 	gem "stepford"
 	gem "minitest"
 	gem "minitest-reporters"
+  gem "mocha"
 end
