@@ -37,39 +37,10 @@ class UserController < ApplicationController
   	else
   		user = User.register params[:user]
   		if user.valid?
-  			render json: {user_token: user.authentication_token}
+  			render json: {success: "user was successfully created"}
   		else
         render :json => { :errors => user.errors.as_json }, :status => 422
   		end
-  	end
-  end
-
-  # *GET* /signin
-  #
-  # Returns the authentication token for an existing user
-  #
-  # ==== Parameters
-  # Takes a user email address and EITHER a password OR an authentication token.
-  #
-  # *Note:* If possible, the authentication token should always be used. This means that a user password
-  # should not have to be stored by the client.
-  #
-  # [+user_email+] Email address of a user.
-  # AND
-  # [+user_password+] password of a user
-  # OR
-  # [+user_token+] authentication token for a user
-  #
-  # ==== Returns
-  # Successful signin:
-  #  {
-  #    user_token: 'authentication_token'
-  #  }
-  def signin
-  	if user_signed_in?
-  		render json: {user_token: current_user.authentication_token}
-  	else
-  		render status: :unauthorized, json: {error: "Cannot sign in user with given credentials"}
   	end
   end
 
@@ -162,10 +133,10 @@ class UserController < ApplicationController
 
   def reset_password
     if current_user.valid_password? params[:old_password]
-      current_user.password = params[:new_password]
-			current_user.authentication_token = ""
-      if current_user.save
-        render json: {auth_token: current_user.authentication_token}
+      user = current_user
+      user.password = params[:new_password]
+      if user.save
+        render json: {success: "password changed"}
       else
         render status: :bad_request, json: {error: "New password is invalid"}
       end

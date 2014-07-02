@@ -98,7 +98,6 @@ FactoryGirl.define do
     profile_pic { fixture_file_upload(Rails.root.join('public', 'images', 'medium', 'default_profile_pic.png'), 'image/png') }
     gender "male"
     year_of_birth 1990
-    # sequence(:authentication_token)
   end
 
   factory :user_response do
