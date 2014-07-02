@@ -37,7 +37,8 @@ class UserController < ApplicationController
   	else
   		user = User.register params[:user]
   		if user.valid?
-  			render json: {success: "user was successfully created"}
+        access_token = Doorkeeper::AccessToken.create!(:application_id => params[:client_id], :resource_owner_id => user.id)
+        render json: {access_token: access_token.token}
   		else
         render :json => { :errors => user.errors.as_json }, :status => 422
   		end
@@ -136,7 +137,8 @@ class UserController < ApplicationController
       user = current_user
       user.password = params[:new_password]
       if user.save
-        render json: {success: "password changed"}
+        access_token = Doorkeeper::AccessToken.create!(:application_id => params[:client_id], :resource_owner_id => user.id)
+        render json: {access_token: access_token.token}
       else
         render status: :bad_request, json: {error: "New password is invalid"}
       end

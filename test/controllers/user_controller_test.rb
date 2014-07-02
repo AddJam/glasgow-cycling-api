@@ -19,7 +19,7 @@ class UserControllerTest < ActionController::TestCase
 
 		store_user = User.where(email: "testuser@example.com").first
 		assert_not_nil store_user, "New user should be stored in DB"
-	end
+  end
 
 	test "signup unsuccessful with no params" do
 		post :signup
