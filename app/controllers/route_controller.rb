@@ -1,6 +1,5 @@
 class RouteController < ApplicationController
-	before_filter :authenticate_user_from_token!, except: [:search, :find]
-	before_filter :authenticate_user!, except: [:search, :find]
+  doorkeeper_for :all, except: [:search, :find]
 
 	# *POST* /routes
 	#
@@ -104,11 +103,12 @@ class RouteController < ApplicationController
 	#   - per_page (integer)
 	#   - page_num (integer)
 	def search
-		if params[:user_only].present?
-			authenticate_user_from_token!
-			authenticate_user!
-		end
-
+    if params[:user_only] and current_user.blank?
+      render json: {
+          error: "Must authenticate user for user_only route search."
+      }
+      return
+    end
 		Rails.logger.debug "Search got params: #{params}"
 		# Pagination
 		per_page = params[:per_page] || 10
