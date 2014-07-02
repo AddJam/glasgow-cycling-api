@@ -19,7 +19,7 @@ class UserControllerTest < ActionController::TestCase
 
 		store_user = User.where(email: "testuser@example.com").first
 		assert_not_nil store_user, "New user should be stored in DB"
-	end
+  end
 
 	test "signup unsuccessful with no params" do
 		post :signup
@@ -36,48 +36,17 @@ class UserControllerTest < ActionController::TestCase
 		assert_response 422
 	end
 
-	test "signin should return auth token" do
-		user = create(:user)
-		sign_in user
-
-		get :signin, format: :json
-		assert_response :success, "signin should be successful for logged in user"
-
-		json_response = JSON.parse response.body
-		assert_not_nil json_response, "json should be returned by signin"
-
-		user_token = json_response['user_token']
-		assert_not_nil user_token, "auth token should be included in successful user signin response"
-
-		assert_equal user.authentication_token, user_token, "auth token returned by signin should be for the signed in user"
-	end
-
-	test "signin should return unauthorized when unsuccessful" do
-		get :signin, format: :json
-		assert_response :unauthorized
-	end
-
-	test "signin should return unauthorized with incorrect credentials" do
-		signin_params = {
-			email: "fake@user.com",
-			password: "blahblahblah"
-		}
-
-		get :signin, format: :json
-		assert_response :unauthorized
-	end
-
 	test "user responses should work with correct responses given" do
 		user = create(:user)
-		user_id = user.id
+    sign_in user
+
 		response = {
       usage_per_week: 5,
       usage_type: 3,
       usage_reason: 4
 		}
 
-		post(:save_responses, user_token: user.authentication_token, user_email: user.email,
-			responses: response, format: :json)
+		post(:save_responses, responses: response, format: :json)
 
 		assert_response :success, "user responses should be saved successfully"
 	end
@@ -193,17 +162,17 @@ class UserControllerTest < ActionController::TestCase
 		assert user.valid_password?(first_password), "user password shouldn't have been changed"
   end
 
-  test "changing password changes authentication token" do
-    password = "password"
-    user = build(:user)
-    user.password = password
-    user.save
-    first_token = user.authentication_token
-
-    sign_in user
-    post :reset_password, {new_password: "new_password", old_password: password}, format: :json
-    assert_response :success
-
-    assert_not_equal first_token, User.where(id: user.id).first.authentication_token
-  end
+  # test "changing password changes authentication token" do
+  #   password = "password"
+  #   user = build(:user)
+  #   user.password = password
+  #   user.save
+  #   first_token = user.authentication_token
+  #
+  #   sign_in user
+  #   post :reset_password, {new_password: "new_password", old_password: password}, format: :json
+  #   assert_response :success
+  #
+  #   assert_not_equal first_token, User.where(id: user.id).first.authentication_token
+  # end
 end

@@ -12,6 +12,6 @@ class WeatherControllerTest < ActionController::TestCase
 
 	test "Retreiving hourly weather data for a bad timestamp returns error" do
 		get(:retrieve, timestamp: 2.weeks.from_now.to_i)
-		assert_response :internal_server_error, "internal server error for bad timestamp"
+		assert_response :not_acceptable, "not acceptable error for bad timestamp"
 	end
 end

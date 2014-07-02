@@ -12,7 +12,6 @@ class UserTest < ActiveSupport::TestCase
   	stored_user = User.where(email: user_email).first
   	assert_not_nil stored_user, "Registered user should be in database"
   	assert_not_nil stored_user.encrypted_password, "New user should have an encrypted password"
-  	assert_not_nil stored_user.authentication_token, "New user should have an authentication token"
   end
 
   test "user details are as expected" do

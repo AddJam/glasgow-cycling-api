@@ -4,7 +4,6 @@ class StatsControllerTest < ActionController::TestCase
   test "should get stat hours" do
     user = create(:user)
     sign_in user
-
     # Create some stats
     Hour.destroy_all
     points = route_point_params(3)
