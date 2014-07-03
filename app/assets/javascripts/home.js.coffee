@@ -46,5 +46,7 @@ $(document).ready ->
           output = "<pre>#{JSON.stringify(data, undefined, 2)}</pre>"
           showOutput(requestUrl, output)
         error: (data) ->
-          showOutput(requestUrl, "Request Error")
+          output = $.parseJSON(data.responseText)
+          output = JSON.stringify(output, undefined, 2)
+          showOutput(requestUrl, "<pre>#{output}</pre>")
       })

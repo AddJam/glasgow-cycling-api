@@ -20,12 +20,9 @@
 #  profile_picture        :string(255)
 #  gender                 :integer
 #  dob                    :date
-#  authentication_token   :string(255)
 #
 
 class User < ActiveRecord::Base
-	before_save :ensure_authentication_token
-
   # Devise modules (for user auth, password hashing). Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -131,19 +128,5 @@ class User < ActiveRecord::Base
   def base64_profile_pic
     image = open(self.profile_pic.path) { |io| io.read }
     Base64.encode64(image).gsub("\n", '')
-  end
-
-  def ensure_authentication_token
-    Rails.logger.info "Creating auth token"
-    if authentication_token.blank?
-      self.authentication_token = generate_authentication_token
-    end
-  end
-
-  def generate_authentication_token
-    loop do
-      token = Devise.friendly_token
-      break token unless User.where(authentication_token: token).first
-    end
   end
 end

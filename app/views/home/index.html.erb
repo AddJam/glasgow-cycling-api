@@ -32,10 +32,13 @@
               <span class="type"><%= endpoint[:type] %></span>
               <span class="url"><%= endpoint[:route] %></span>
               <%
-                 endpoint_url = "#{endpoint[:test_endpoint]}?"
-                 endpoint[:input].each do |p|
-                   endpoint_url += "#{p[:name]}=#{p[:value]}" if p[:in_request]
-                 end
+                request_params = endpoint[:input].select {|p| p[:in_request]}
+                endpoint_url = "#{endpoint[:test_endpoint]}"
+                endpoint_url += "?" if request_params.present?
+                request_params.each_with_index do |p, index|
+                    endpoint_url += "#{p[:name]}=#{p[:value]}"
+                    endpoint_url += "&" if index < request_params.length - 1
+                end
               %>
               <a class="test-button" data-request-type="<%= endpoint[:type] %>" data-request-url="<%=endpoint_url%>" <%= "data-request-output=#{URI::escape(endpoint[:test_output])}" if endpoint[:test_output] %>>test</a>
             </div>

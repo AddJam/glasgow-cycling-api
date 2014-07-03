@@ -17,7 +17,5 @@ class RouteReview < ActiveRecord::Base
 	belongs_to :route
 	belongs_to :user
 
-	validates :environment_rating, presence: true
-	validates :difficulty_rating, presence: true
-	validates :safety_rating, presence: true
+	validates :rating, presence: true
 end

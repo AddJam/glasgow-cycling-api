@@ -1,8 +1,5 @@
 class ReviewController < ApplicationController
-  # This is our new function that comes before Devise's one
-  before_filter :authenticate_user_from_token!
-  # This is Devise's authentication
-  before_filter :authenticate_user!
+  doorkeeper_for :all
 
   # *POST* /reviews
   #
@@ -24,32 +21,28 @@ class ReviewController < ApplicationController
   #    review:
   #  }
   def review
-    review = params[:review]
+    rating = params[:rating]
     route_id = params[:route_id]
-    if review and route_id
+    if rating and route_id
       route = Route.where(id: route_id).first
       if route.present? and route.review.present?
-        if route.review.update(review_params)
+        if route.review.update(rating: rating)
           render json: {review: route.review}
         else
           render status: :internal_server_error, json: {error: "Review could not be saved"}
         end
-      else
-        review = route.create_review(current_user, review)
+      elsif route.present?
+        review = route.create_review(current_user, rating)
         if review
           render json: {review: review}
         else
           render status: :internal_server_error, json: {error: "Review could not be created"}
         end
+      else
+        render status: :bad_request, json: {error: "Request should contain a valid route_id"}
       end
     else
       render status: :bad_request, json: {error: "Request should contain both a review hash and route_id"}
     end
-  end
-
-  private
-
-  def review_params
-    params.require(:review).permit(:safety_rating, :environment_rating, :difficulty_rating, :comment)
   end
 end

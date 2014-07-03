@@ -51,6 +51,7 @@ gem 'foreman'
 # Security
 gem 'symmetric-encryption'
 gem 'devise', "~> 3.2"
+gem 'doorkeeper'
 
 # Image handling
 gem "paperclip", "~> 4.1"
@@ -99,4 +100,5 @@ group :test do
 	gem "stepford"
 	gem "minitest"
 	gem "minitest-reporters"
+  gem "mocha"
 end

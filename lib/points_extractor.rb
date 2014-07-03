@@ -14,7 +14,6 @@ class PointsExtractor
       @types.each_key do |key|
         @locations += extract_locations(key.to_s, @types[key])
       end
-      p "#{locations.count} locations"
       @locations
     end
   end
@@ -25,8 +24,6 @@ class PointsExtractor
     file = open(file_location)
     json = file.read
     data = JSON.parse(json)
-
-    p "#{data['features'].count} features of type #{type}"
 
     type_locations = []
     features = data['features']

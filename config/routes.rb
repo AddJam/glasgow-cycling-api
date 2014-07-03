@@ -1,9 +1,9 @@
 JourneyAPI::Application.routes.draw do
+  use_doorkeeper
   root to: 'home#index'
 
   # User
   post "/signup", to: "user#signup", as: 'signup'
-  get "/signin", to: "user#signin", as: 'signin'
   post "/responses", to: "user#save_responses", as: 'responses'
   get "/details", to: "user#details", as: 'details'
   put "/details", to: "user#update_details", as: 'update_details'

@@ -75,9 +75,7 @@ FactoryGirl.define do
     user
     sequence(:id)
     comment 'Test Comment'
-    safety_rating 2
-    difficulty_rating 2
-    environment_rating 2
+    rating 2
   end
 
   factory :user do
@@ -100,7 +98,6 @@ FactoryGirl.define do
     profile_pic { fixture_file_upload(Rails.root.join('public', 'images', 'medium', 'default_profile_pic.png'), 'image/png') }
     gender "male"
     year_of_birth 1990
-    # sequence(:authentication_token)
   end
 
   factory :user_response do
