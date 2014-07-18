@@ -1,5 +1,5 @@
 class RouteController < ApplicationController
-  doorkeeper_for :all, except: [:search, :find]
+	doorkeeper_for :all, except: [:search, :find]
 
 	# *POST* /routes
 	#
