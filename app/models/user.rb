@@ -89,6 +89,10 @@ class User < ActiveRecord::Base
     true
   end
 
+  def is_admin?
+    ["chris.sloey@gmail.com", "michael@rookieoven.com"].include?(email.downcase)
+  end
+
   # Returns this users details as json
   #
   # ==== Returns
