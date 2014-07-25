@@ -10,7 +10,7 @@ class CustomMailer < Devise::Mailer
   #
   def reset_password_instructions(record, token, opts={})
   	opts[:content_type] = "text/html";
-  	@reset_password_token = token
+  	@token = token
   	devise_mail(record, :reset_password_instructions, opts)
   end
 
