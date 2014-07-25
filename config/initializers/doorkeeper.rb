@@ -9,8 +9,11 @@ Doorkeeper.configure do
   end
 
   resource_owner_from_credentials do |routes|
-    u = User.where(email: params[:email]).first
-    u if u && u.valid_password?(params[:password])
+    email = params[:email]
+    if email.present?
+      u = User.where('LOWER(email) = ?', email.downcase).first
+      u if u && u.valid_password?(params[:password])
+    end
   end
 
   # If you want to restrict access to the web interface for adding oauth authorized applications, you need to declare the block below.
