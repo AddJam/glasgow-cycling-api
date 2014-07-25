@@ -1,5 +1,5 @@
 class CustomMailer < Devise::Mailer
-  default from: "from@example.com"
+  default from: "team@codecreatedme.com"
   helper :application # gives access to all helpers defined within `application_helper`.
   include Devise::Controllers::UrlHelpers # Optional. eg. `confirmation_url`
 
@@ -10,6 +10,7 @@ class CustomMailer < Devise::Mailer
   #
   def reset_password_instructions(record, token, opts={})
   	opts[:content_type] = "text/html";
+  	@reset_password_token = token
   	devise_mail(record, :reset_password_instructions, opts)
   end
 
