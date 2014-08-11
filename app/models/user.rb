@@ -49,7 +49,6 @@ class User < ActiveRecord::Base
       format: { with: /@/, message: "email addresses must contain @" }
   validates :encrypted_first_name, presence: true
   validates :encrypted_last_name, presence: true
-  validates :year_of_birth, presence: true
   validates :gender, presence: true
 
   # Registers a new user with the provided details
@@ -88,6 +87,10 @@ class User < ActiveRecord::Base
 
   def is_accessible_by?(user)
     true
+  end
+
+  def is_admin?
+    ["chris.sloey@gmail.com", "michael@rookieoven.com"].include?(email.downcase)
   end
 
   # Returns this users details as json

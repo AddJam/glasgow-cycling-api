@@ -123,7 +123,7 @@ class UserController < ApplicationController
 
   # *POST* /forgot_password
   def forgot_password
-    user = User.where(email: params[:email]).first
+    user = User.where('LOWER(email) = ?', params[:email].downcase).first
     if user.present?
       user.send_reset_password_instructions
       render json: {email: user.email}

@@ -9,24 +9,31 @@ Doorkeeper.configure do
   end
 
   resource_owner_from_credentials do |routes|
-    u = User.where(email: params[:email]).first
-    u if u && u.valid_password?(params[:password])
+    email = params[:email]
+    if email.present?
+      u = User.where('LOWER(email) = ?', email.downcase).first
+      u if u && u.valid_password?(params[:password])
+    end
   end
 
   # If you want to restrict access to the web interface for adding oauth authorized applications, you need to declare the block below.
-  # admin_authenticator do
-  #   # Put your admin authentication logic here.
-  #   # Example implementation:
-  #   if current_user && current_user.role?
-  #   User.find_by_id(session[:admin_id]) || redirect_to(new_user_session_url)
-  # end
+  admin_authenticator do
+    # Put your admin authentication logic here.
+    # Example implementation:
+    admin = current_user if current_user.is_admin?
+    admin || redirect_to(new_user_session_url)
+  end
 
   # Authorization Code expiration time (default 10 minutes).
   # authorization_code_expires_in 10.minutes
 
   # Access token expiration time (default 2 hours).
   # If you want to disable expiration, set this to nil.
-  # access_token_expires_in 2.hours
+  if Rails.env.development?
+    access_token_expires_in 5.minutes
+  else
+    access_token_expires_in 2.hours
+  end
 
   # Reuse access token for the same resource owner within an application (disabled by default)
   # Rationale: https://github.com/doorkeeper-gem/doorkeeper/issues/383
