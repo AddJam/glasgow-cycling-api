@@ -212,8 +212,8 @@ class Route < ActiveRecord::Base
       points << {
         lat: point.lat,
         long: point.long,
-        altitude: point.altitude,
-        time: point.time
+        altitude: point.altitude || 0,
+        time: point.time || 0
       }
     end
     points
