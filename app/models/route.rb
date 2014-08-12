@@ -216,6 +216,7 @@ class Route < ActiveRecord::Base
         time: point.time
       }
     end
+    points
   end
 
   def maidenheads
