@@ -41,7 +41,7 @@ class User < ActiveRecord::Base
 	has_many :flagged_routes, :through => :flaggings, :source => :route
 	has_many :stats, class_name: 'Hour'
 
-  has_attached_file :profile_pic, :styles => { :medium => "300x300>", :thumb => "50x50>" },
+  has_attached_file :profile_pic, :styles => { :mobile => "224x224>", :medium => "300x300>", :thumb => "50x50>" },
                     :default_url => "/images/:style/default_profile_pic.png"
   validates_attachment_content_type :profile_pic, :content_type => /\Aimage\/.*\Z/
 
@@ -129,7 +129,7 @@ class User < ActiveRecord::Base
   private
 
   def base64_profile_pic
-    image = open(self.profile_pic.path) { |io| io.read }
+    image = open(self.profile_pic.path(:mobile)) { |io| io.read }
     Base64.encode64(image).gsub("\n", '')
   end
 end
