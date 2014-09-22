@@ -93,8 +93,7 @@ FactoryGirl.define do
     last_sign_in_at { 2.weeks.ago }
     current_sign_in_ip 'Test Current Sign In Ip'
     last_sign_in_ip 'Test Last Sign In Ip'
-    encrypted_first_name SymmetricEncryption.encrypt("Test First Name")
-    encrypted_last_name SymmetricEncryption.encrypt("Test First Name")
+    username "testuser"
     profile_pic { fixture_file_upload(Rails.root.join('public', 'images', 'medium', 'default_profile_pic.png'), 'image/png') }
     gender "male"
     year_of_birth 1990
