@@ -41,7 +41,7 @@ gem 'unicorn'
 gem 'newrelic_rpm'
 
 # Deployment
-gem 'capistrano'
+gem 'capistrano', '2.15.5'
 gem 'rvm-capistrano'
 gem 'foreman'
 
