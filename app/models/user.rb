@@ -44,6 +44,7 @@ class User < ActiveRecord::Base
   validates :email, presence: true, uniqueness: true, length: { minimum: 5 },
       format: { with: /@/, message: "email addresses must contain @" }
   validates :gender, presence: true
+  validates :username, uniqueness: true, presence: true
 
   # Registers a new user with the provided details
   #
@@ -60,8 +61,7 @@ class User < ActiveRecord::Base
     # Basic user data
 		user.email = user_data['email']
 		user.password = user_data['password']
-		user.first_name = user_data['first_name']
-		user.last_name = user_data['last_name']
+		user.username = user_data['username']
 		user.year_of_birth = user_data['year_of_birth'].to_i if user_data['year_of_birth'].present?
 		user.gender = user_data['gender'].downcase if user_data['gender'].present?
 
@@ -104,8 +104,7 @@ class User < ActiveRecord::Base
     }
 
     user_details = {
-      first_name: self.first_name,
-      last_name: self.last_name,
+      username: self.username,
       user_id: self.id,
       month: month_stats,
       gender: self.gender,

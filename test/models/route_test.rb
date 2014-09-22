@@ -72,7 +72,6 @@ class RouteTest < ActiveSupport::TestCase
     points = create_list(:route_point, 4, route_id: route.id, is_important: false, altitude: 987.0, lat: 85, long: 172)
     route.points = points
     route.save
-    user = create(:user, id: 2, first_name: 'test', last_name: 'McTester')
     summary = route.summary
     assert_not_nil summary, 'Route summary not null'
     assert_equal route.id, summary[:id], 'Returned route unique id is as expected'

@@ -9,8 +9,7 @@ class UserController < ApplicationController
   # +user+ - JSON object containing user details to be registered. See example for all fields.
   # +user.email+:: must be an unregistered email address
   # +user.password+:: must be at least 8 characters long
-  # +user.first_name+:: Required. String
-  # +user.last_name+:: Required. String
+  # +user.username+:: Required. String
   # +user.year_of_birth+:: Required. Year of birth
   # +user.gender+:: Required.rfemale, male or not disclosed
   # +user.profile_picture+:: Optional. Base64 encoding of JPG profile picture
@@ -19,8 +18,7 @@ class UserController < ApplicationController
   #  {
   #    email: 'user@email.com',
   #    password: 'user_password',
-  #    first_name: 'John',
-  #    last_name: 'Doe',
+  #    username: 'john',
   #    year_of_birth: 1990,
   #    gender: 0,
   #    profile_picture: "base64 encoded JPG image data"
@@ -62,8 +60,7 @@ class UserController < ApplicationController
   # ==== Returns
   # User details:
   #  {
-  #    first_name: "Chris",
-  #    last_name: "Sloey",
+  #    username: "chris",
   #    user_id: 1234,
   #    month{
   #        total: 12,
@@ -154,6 +151,6 @@ class UserController < ApplicationController
   end
 
 	def user_details_params
-		params.permit(:first_name, :last_name, :profile_pic, :gender, :email)
+		params.permit(:username, :profile_pic, :gender, :email)
 	end
 end
