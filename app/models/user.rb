@@ -118,7 +118,7 @@ class User < ActiveRecord::Base
       email: self.email
     }
 
-    if self.profile_pic.present?
+    if profile_pic.present? and File.exist? self.profile_pic.path(:mobile)
       user_details[:profile_pic] = base64_profile_pic
     end
 
