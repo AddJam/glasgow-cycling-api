@@ -49,7 +49,6 @@ gem 'foreman'
 # gem 'debugger', group: [:development, :test]
 
 # Security
-gem 'symmetric-encryption'
 gem 'devise', "~> 3.2"
 gem 'doorkeeper'
 

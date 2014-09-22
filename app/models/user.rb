@@ -28,10 +28,6 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-	# Encryption of sensitive data
-	attr_encrypted :first_name
-	attr_encrypted :last_name
-
   enum gender: [:male, :female, :undisclosed]
 
   has_many :reviews, foreign_key: 'user_id', class_name: 'RouteReview'
@@ -47,8 +43,6 @@ class User < ActiveRecord::Base
 
   validates :email, presence: true, uniqueness: true, length: { minimum: 5 },
       format: { with: /@/, message: "email addresses must contain @" }
-  validates :encrypted_first_name, presence: true
-  validates :encrypted_last_name, presence: true
   validates :gender, presence: true
 
   # Registers a new user with the provided details
