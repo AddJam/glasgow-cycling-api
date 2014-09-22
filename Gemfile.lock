@@ -288,7 +288,7 @@ DEPENDENCIES
   binding_of_caller
   bitters
   bourbon
-  capistrano
+  capistrano (= 2.15.5)
   clockwork
   coffee-rails (~> 4.0.0)
   devise (~> 3.2)
