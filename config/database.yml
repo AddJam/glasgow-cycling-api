@@ -15,7 +15,6 @@ test:
   adapter: postgresql
   database: journey_test
   host: localhost
-  user: postgres
 
 production:
   adapter: postgresql
