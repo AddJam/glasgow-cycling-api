@@ -22,53 +22,55 @@
     <p class="info">Total Routes: <%= @num_routes %></p>
   </div>
 </div>
-<div class="sections">
-  <% @sections.each do |section| %>
+<div class="main">
+  <div class="sections">
+    <% @sections.each do |section| %>
       <h2><%=section[:title]%></h2>
-      <% section[:endpoints].each do |endpoint| %>
-          <div class="endpoint">
-            <div class="route">
-              <h4>Endpoint</h4>
-              <span class="type"><%= endpoint[:type] %></span>
-              <span class="url"><%= endpoint[:route] %></span>
-              <%
-                request_params = endpoint[:input].select {|p| p[:in_request]}
-                endpoint_url = "#{endpoint[:test_endpoint]}"
-                endpoint_url += "?" if request_params.present?
-                request_params.each_with_index do |p, index|
-                    endpoint_url += "#{p[:name]}=#{p[:value]}"
-                    endpoint_url += "&" if index < request_params.length - 1
-                end
-              %>
-              <a class="test-button" data-request-type="<%= endpoint[:type] %>" data-request-url="<%=endpoint_url%>" <%= "data-request-output=#{URI::escape(endpoint[:test_output])}" if endpoint[:test_output] %>>test</a>
-            </div>
-            <div class="description">
-              <%= endpoint[:description] %>
-            </div>
+    <% section[:endpoints].each do |endpoint| %>
+      <div class="endpoint">
+      <div class="route">
+        <h4>Endpoint</h4>
+        <span class="type"><%= endpoint[:type] %></span>
+      <span class="url"><%= endpoint[:route] %></span>
+      <%
+          request_params = endpoint[:input].select {|p| p[:in_request]}
+      endpoint_url = "#{endpoint[:test_endpoint]}"
+      endpoint_url += "?" if request_params.present?
+      request_params.each_with_index do |p, index|
+        endpoint_url += "#{p[:name]}=#{p[:value]}"
+        endpoint_url += "&" if index < request_params.length - 1
+      end
+    %>
+    <a class="test-button" data-request-type="<%= endpoint[:type] %>" data-request-url="<%=endpoint_url%>" <%= "data-request-output=#{URI::escape(endpoint[:test_output])}" if endpoint[:test_output] %>>test</a>
+  </div>
+    <div class="description">
+      <%= endpoint[:description] %>
+    </div>
 
-            <div class="test-output">
+    <div class="test-output">
 
-            </div>
+    </div>
 
-            <div class="parameters">
-              <h4>Parameters</h4>
-              <p class="description">All possible parameters</p>
-              <ul>
-                <% endpoint[:input].each do |parameter| %>
-                    <li>
-                  <span class="key">
-                    <%= parameter[:name] %>
-                    <% if parameter[:required] %>
-                        <span class="required">required</span>
-                    <% end %>
-                  </span>
-                      <span class="value"><%= parameter[:value] %></span>
-                    </li>
-                <% end %>
-              </ul>
-            </div>
-
-          </div>
+    <div class="parameters">
+      <h4>Parameters</h4>
+      <p class="description">All possible parameters</p>
+      <ul>
+        <% endpoint[:input].each do |parameter| %>
+          <li>
+        <span class="key">
+          <%= parameter[:name] %>
+          <% if parameter[:required] %>
+            <span class="required">required</span>
+        <% end %>
+        </span>
+        <span class="value"><%= parameter[:value] %></span>
+        </li>
       <% end %>
-  <% end %>
+      </ul>
+    </div>
+
+  </div>
+<% end %>
+<% end %>
+</div>
 </div>

@@ -69,9 +69,16 @@ a {
   }
 }
 
+.main {
+  @include span-columns(12 of 12);
+  background-color: white;
+  padding: 40px 0;
+}
+
 .sections {
   @include span-columns(8 of 10);
   @include shift(1 of 10);
+  @include clearfix;
 
   h2 {
     font-size: 2em;
@@ -80,6 +87,7 @@ a {
 
   .endpoint {
     @include span-columns(12);
+    @include clearfix;
     border: 5px dashed rgb(240,240,240);
     border-radius: 5px;
     padding: 10px;
