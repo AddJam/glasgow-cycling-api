@@ -43,8 +43,6 @@ JourneyAPI::Application.configure do
     :domain => 'localhost', # your domain to identify your server when connecting
   }
 
-  p "Mandrill key #{Rails.application.secrets.mandrill_api_key}"
-  
   # Cache
   config.cache_store = :redis_store
 end
