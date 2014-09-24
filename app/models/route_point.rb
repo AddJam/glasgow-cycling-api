@@ -21,35 +21,35 @@
 #
 
 class RoutePoint < ActiveRecord::Base
-	belongs_to :route
+  belongs_to :route
 
-	validates :maidenhead, presence: true
-	validates :lat, presence: true
-	validates :long, presence: true
-	validates :altitude, presence: true
-	validates :time, presence: true
-	validates :kph, presence: true
+  validates :maidenhead, presence: true
+  validates :lat, presence: true
+  validates :long, presence: true
+  validates :altitude, presence: true
+  validates :time, presence: true
+  validates :kph, presence: true
 
-	reverse_geocoded_by :lat, :long do |obj, results|
-		if geo = results.first
-			Rails.logger.info "geo #{geo.inspect}"
-			if geo.data and geo.data['address'] and geo.data['address']['road']
-				obj.street_name = geo.data['address']['road']
-				Rails.logger.info "Set to #{geo.data['address']['road']}"
-			end
-		end
-	end
+  reverse_geocoded_by :lat, :long do |obj, results|
+    if geo = results.first
+      Rails.logger.info "geo #{geo.inspect}"
+      if geo.data and geo.data['address'] and geo.data['address']['road']
+        obj.street_name = geo.data['address']['road']
+        Rails.logger.info "Set to #{geo.data['address']['road']}"
+      end
+    end
+  end
 
-	before_validation :ensure_maidenhead
-	after_validation :get_street
+  before_validation :ensure_maidenhead
+  after_validation :get_street
 
-	def get_street
-		unless street_name
-			reverse_geocode if is_important
-		end
-	end
+  def get_street
+    unless street_name
+      reverse_geocode if is_important
+    end
+  end
 
-	def ensure_maidenhead
-		self.maidenhead = Maidenhead.to_maidenhead(lat, long, 4) unless self.maidenhead.present?
-	end
+  def ensure_maidenhead
+    self.maidenhead = Maidenhead.to_maidenhead(lat, long, 4) unless self.maidenhead.present?
+  end
 end
