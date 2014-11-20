@@ -80,9 +80,13 @@ class RouteController < ApplicationController
       route = Route.where(id: route_id).first
 
       if route
+        details = route.summary
+        points = Rails.cache.fetch("route-#{route_id}-points", expires_in: 3.hours) do
+          route.points_data
+        end
         render json: {
-          details: route.summary,
-          points: route.points_data,
+          details: details,
+          points: points,
         }
       else
         render status: :bad_request, json: {error: "Route not found"}
