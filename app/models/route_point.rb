@@ -33,10 +33,24 @@ class RoutePoint < ActiveRecord::Base
   reverse_geocoded_by :lat, :long do |obj, results|
     if geo = results.first
       Rails.logger.info "geo #{geo.inspect}"
-      if geo.data and geo.data['address'] and geo.data['address']['road']
-        obj.street_name = geo.data['address']['road']
-        Rails.logger.info "Set to #{geo.data['address']['road']}"
+      if geo.data and geo.data['address']
+        address_data = geo.data['address']
       end
+
+      # Look through address details starting with nicest
+      if address_data and address_data['pedestrian']
+        obj.street_name = address_data['pedestrian']
+      elsif address_data and address_data['road']
+        obj.street_name = address_data['road']
+      elsif geo.data['display_name']
+        name_parts = geo.data['display_name'].split(",")
+        if name_parts.count > 1
+          obj.street_name = name_parts[1]
+        else
+          obj.street_name = name_parts[0]
+        end
+      end
+      Rails.logger.info "Set to #{obj.street_name}"
     end
   end
 
