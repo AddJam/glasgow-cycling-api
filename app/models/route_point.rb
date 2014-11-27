@@ -45,9 +45,14 @@ class RoutePoint < ActiveRecord::Base
       elsif geo.data['display_name']
         name_parts = geo.data['display_name'].split(",")
         if name_parts.count > 1
-          obj.street_name = name_parts[1]
+          invalid_name = name_parts[1].match(/^\d+\w?$/)
+          if invalid_name
+            obj.street_name = name_parts[0]
+          else
+            obj.street_name = name_parts[1]
+          end
         else
-          obj.street_name = name_parts[0]
+          obj.street_name = geo.data['display_name']
         end
       end
       Rails.logger.info "Set to #{obj.street_name}"

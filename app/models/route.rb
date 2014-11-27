@@ -63,7 +63,7 @@ class Route < ActiveRecord::Base
   #
   # ==== Returns
   # The recorded route
-  def self.record(user, points)
+  def self.record(user, points, source=nil)
     if points.blank?
       return {
         error: "No route points"
@@ -105,6 +105,7 @@ class Route < ActiveRecord::Base
     route = Route.new
     route.mode = "bike"
     route.user_id = user.id
+    route.source = source
     ActiveRecord::Base.transaction do # Perform all insertions in a single transaction
       points.each_with_index do |point, index|
         route_point = RoutePoint.create do |rp|
@@ -183,6 +184,8 @@ class Route < ActiveRecord::Base
       num_instances: uses.count,
       num_reviews: uses.pick(:review).count
     }
+
+    route_summary['source'] = self.source if self.source.present?
 
     # Averages
     average_distance = uses.pick(:total_distance).average

@@ -304,4 +304,17 @@ class RouteControllerTest < ActionController::TestCase
     route = Route.where(id: route.id).first
     assert_not_nil route, 'route should still exist after unauthenticated deletion attempt'
   end
+
+  test "route source should be recorded" do
+    source = 'iOS'
+    post :record, format: :json, points: points, source: source
+    assert_response :success
+
+    route_data = JSON.parse response.body
+    id = route_data['route_id'].to_i
+    route = Route.find(id)
+
+    assert_not_nil route
+    assert_equal source, route.source
+  end
 end

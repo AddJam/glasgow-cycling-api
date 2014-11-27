@@ -29,7 +29,7 @@ class RouteController < ApplicationController
     unless params[:points]
       render status: :bad_request, json: {errror: 'Route must contain points'}
     else
-      route = Route.record(current_user, params[:points])
+      route = Route.record(current_user, params[:points], params[:source])
       if route
         if route.valid?
           render json: {route_id: route.id}
