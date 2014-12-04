@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141127124501) do
+ActiveRecord::Schema.define(version: 20141204150200) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(version: 20141127124501) do
     t.integer  "num_points",       default: 0
     t.integer  "routes_started",   default: 0
     t.integer  "routes_completed", default: 0
+    t.boolean  "is_city",          default: false
   end
 
   create_table "oauth_access_grants", force: true do |t|

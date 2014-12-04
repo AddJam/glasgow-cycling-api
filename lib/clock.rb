@@ -5,9 +5,14 @@ require 'clockwork'
 require 'weather_worker'
 include Clockwork
 
-p "Scheduling tasks with clockwork // env: #{Rails.env}"
+puts "Scheduling tasks with clockwork // env: #{Rails.env}"
 
 every(1.hour, 'getWeather') do
-  p "Weather Worker being used to get weather from Forecast.io - performing task"
+  puts "Weather Worker being used to get weather from Forecast.io - performing task"
   WeatherWorker.perform_async
+end
+
+every(5.minutes, 'collectStats') do
+	puts "Collecting stats for this hour"
+	StatsWorker.perform_async
 end
