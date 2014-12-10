@@ -101,3 +101,7 @@ group :test do
 	gem "minitest-reporters"
   gem "mocha"
 end
+
+group :production do
+  gem 'posix-spawn' # Prevent imagemagick/paperclip forks needing tons of RAM
+end
