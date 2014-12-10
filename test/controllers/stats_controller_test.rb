@@ -19,7 +19,7 @@ class StatsControllerTest < ActionController::TestCase
     json = JSON.parse(response.body)
     assert_not_nil json['overall'], "overall stats should be returned"
     assert_not_nil json['hours'], "a list of hours should be returned"
-    assert_equal 5, json['hours'].length, "there should be two hours returned"
+    assert_equal 5, json['hours'].length, "the requested number of hours should be returned"
   end
 
   test "should get stat days" do

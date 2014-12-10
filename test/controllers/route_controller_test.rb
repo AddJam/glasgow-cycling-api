@@ -154,9 +154,7 @@ class RouteControllerTest < ActionController::TestCase
     2.times do
       route = build(:route)
       route.points << create_list(:route_point, 2, route_id: route.id, lat: 5, long: 20)
-      route.save
       route.points << create_list(:route_point, 1, route_id: route.id, lat: 5, long: 20)
-      route.save
       route.points << create_list(:route_point, 2, route_id: route.id, lat: 19, long: 20)
       route.save
     end
@@ -164,9 +162,7 @@ class RouteControllerTest < ActionController::TestCase
     2.times do
       route = build(:route)
       route.points << create_list(:route_point, 2, route_id: route.id, lat: 5, long: 20)
-      route.save
-      route.points << create_list(:route_point, 1, route_id: route.id, lat: 3, long: 20)
-      route.save
+      route.points << create_list(:route_point, 1, route_id: route.id, lat: 3, long: 4)
       route.points << create_list(:route_point, 2, route_id: route.id, lat: 19, long: 20)
       route.save
     end

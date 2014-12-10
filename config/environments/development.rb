@@ -46,3 +46,13 @@ JourneyAPI::Application.configure do
   # Cache
   config.cache_store = :redis_store
 end
+
+silence_warnings do
+  begin
+    require 'pry'
+    IRB = Pry
+    puts "Loaded pry"
+  rescue LoadError
+    puts "Couldn't load pry..."
+  end
+end

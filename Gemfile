@@ -81,6 +81,8 @@ group :development do
 	gem 'binding_of_caller'
 	gem 'annotate', ">=2.6.0"
 	gem 'railroady'
+	gem 'pry-rails'
+	gem 'pry-byebug'
 
 
 	# Automation
@@ -89,8 +91,8 @@ group :development do
 	gem 'guard-minitest' # Auto test
 	gem 'terminal-notifier-guard'
 
-  # Easier usage of tests
-  gem 'single_test'
+	# Easier usage of tests
+	gem 'single_test'
 end
 
 # Test
@@ -99,7 +101,7 @@ group :test do
 	gem "stepford"
 	gem "minitest"
 	gem "minitest-reporters"
-  gem "mocha"
+	gem "mocha"
 end
 
 group :production do

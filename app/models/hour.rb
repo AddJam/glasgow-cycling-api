@@ -15,65 +15,52 @@
 #  routes_started   :integer          default(0)
 #  routes_completed :integer          default(0)
 #
-
 class Hour < ActiveRecord::Base
   belongs_to :user
 
-  # Generates Hours from points which contain:
-  #   - time
-  #   - speed
-  #   - distance
-  def self.generate!(points, user=nil)
-    # Round down times to hours to create groupings
-    points.map! do |point|
-      timestamp = point[:time].to_i
-      remainder = timestamp % 3600
-      point[:hour] = timestamp - remainder
-      point
+  def self.generate!(route, user=nil)
+    return if route.points.blank?
+
+    points_by_hour = route.points.group_by do |point|
+      Time.at(point.time).beginning_of_hour
     end
 
-    # For each distinct time (hour), generate averages and distances
-    hours = points.group_by {|p| p[:hour]}
-    keys = hours.keys
-    keys.each_with_index do |timestamp, index|
-      hour_points = hours[timestamp]
-
-      # Create or find hour to update
-      existing_hour_condition = {
-        time: Time.at(timestamp)
+    hours = points_by_hour.keys.inject([]) do |hours, hour|
+      condition = {
+        time: hour
       }
-      if user.present?
-        existing_hour_condition[:user_id] = user.id
-      else
-        existing_hour_condition[:user_id] = nil
-      end
-      hour = Hour.where(existing_hour_condition).first
-      hour ||= Hour.new
-
-      # Update
-      hour.time = Time.at(timestamp)
-      hour.user = user if user.present?
-      hour.num_points += hour_points.count
-
-      # Speed
-      hour.average_speed = hour_points.pick(:speed).average
-      hour.max_speed = hour_points.pick(:speed).max
-      hour.min_speed = hour_points.pick(:speed).min
-
-      # Distance from previous point
-      hour.distance = hour_points.pick(:distance).sum
-
-      # Route completion / starting
-      if index == 0
-        hour.routes_started += 1
-      end
-
-      if index == (hours.count - 1)
-        hour.routes_completed += 1
-      end
-
-      hour.save
+      condition[:user_id] = user.id if user.present?
+      condition[:is_city] = true if user.blank? # allow is_city == nil for user_id queries
+      hours << Hour.where(condition).first_or_create
+      hours
     end
+
+    # Calculate stats
+    hours.each do |hour|
+      points = points_by_hour[hour.time]
+      hour.assign_attributes({
+        num_points: hour.num_points + points.count,
+        average_speed: points.pick(:kph).average,
+        max_speed: points.pick(:kph).max,
+        min_speed: points.pick(:kph).min
+      })
+
+      hour.distance = points.each_with_index.inject(0) do |distance, (point, index)|
+        if index == 0
+          distance
+        else
+          previous_point = points[index-1]
+          distance + point.distance_from(previous_point)
+        end
+      end
+    end
+
+
+    hours.first.routes_started += 1
+    hours.last.routes_completed += 1
+
+    # Save updated stats
+    hours.each(&:save)
   end
 
   # Cumulative stats from now to num_hours ago

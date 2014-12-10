@@ -37,3 +37,12 @@ JourneyAPI::Application.configure do
   config.action_mailer.default_url_options = { :host => 'http://localhost:3000' }
 
 end
+
+silence_warnings do
+  begin
+    require 'pry'
+    IRB = Pry
+  rescue LoadError
+    puts "Couldn't load pry..."
+  end
+end

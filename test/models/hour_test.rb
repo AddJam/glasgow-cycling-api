@@ -7,6 +7,7 @@ class HourTest < ActiveSupport::TestCase
     route = Route.record(user, points)
 
     assert_not_nil user.stats, "user stats should exist after recording a route"
+    assert_equal 1, user.stats.count
   end
 
   test "points are split into hours" do
