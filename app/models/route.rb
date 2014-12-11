@@ -162,9 +162,11 @@ class Route < ActiveRecord::Base
   # ==== Returns
   # The route details.
   def summary
-    uses = self.all_uses
+    cache_key = "route-summary-#{id}-#{updated_at}"
+    route_summary = Rails.cache.read cache_key
+    return route_summary if route_summary.present?
 
-    Rails.logger.debug "USES: " + uses.inspect
+    uses = self.all_uses
 
     start_name = nil
     end_name = nil
@@ -201,6 +203,7 @@ class Route < ActiveRecord::Base
       rating: average_rating
     }
 
+    Rails.cache.write cache_key, route_summary
     route_summary
   end
 
@@ -209,23 +212,27 @@ class Route < ActiveRecord::Base
   # ==== Returns
   # The route points
   def points_data
-    points = []
-    route_points = RoutePoint.where(route_id: id)
-    route_points.each do |point|
-      points << {
-        lat: point.lat,
-        long: point.long,
-        altitude: point.altitude || 0,
-        time: point.time || 0
-      }
+    Rails.cache.fetch("route-#{id}-#{updated_at}-points", expires_in: 12.hours) do
+      points = []
+      route_points = RoutePoint.where(route_id: id)
+      route_points.each do |point|
+        points << {
+          lat: point.lat,
+          long: point.long,
+          altitude: point.altitude || 0,
+          time: point.time || 0
+        }
+      end
+      points
     end
-    points
   end
 
   def maidenheads
-    self.points.inject([]) do |maidenhead, point|
-      maidenhead << point.maidenhead
-      maidenhead
+    Rails.cache.fetch("route-#{id}-#{updated_at}-maidenheads", expires_in: 12.hours) do
+      self.points.inject([]) do |maidenhead, point|
+        maidenhead << point.maidenhead
+        maidenhead
+      end
     end
   end
 
@@ -289,8 +296,7 @@ class Route < ActiveRecord::Base
   end
 
   def is_similar?(other_route)
-    Rails.logger.debug "similarity score: #{similarity(self.maidenheads, other_route.maidenheads)}"
-    similarity(self.maidenheads, other_route.maidenheads) >= 0.9
+    similarity(self, other_route) >= 0.9
   end
 
   private
@@ -356,29 +362,32 @@ class Route < ActiveRecord::Base
   end
 
   def similarity(route_one, route_two)
-    Rails.logger.debug "11,21,12,22"
-    Rails.logger.debug "#{route_one.first.inspect}"
-    Rails.logger.debug "#{route_two.first.inspect}"
-    Rails.logger.debug "#{route_one.last.inspect}"
-    Rails.logger.debug "#{route_two.last.inspect}"
-    if route_one.first != route_two.first or route_one.last != route_two.last
+    cache_key = "similarity-#{route_one.id}-#{route_two.id}-#{route_one.updated_at}-#{route_two.updated_at}"
+    similarity = Rails.cache.read cache_key
+    return similarity if similarity.present?
+
+    route_one_maidenheads = route_one.maidenheads
+    route_two_maidenheads = route_two.maidenheads
+    if route_one_maidenheads.first != route_two_maidenheads.first or route_one_maidenheads.last != route_two_maidenheads.last
       return 0
     end
 
-    route_one.uniq!
-    route_two.uniq!
+    route_one_maidenheads.uniq!
+    route_two_maidenheads.uniq!
 
-    matching_cells = route_two.select do |cell|
-      route_one.include? cell
+    matching_cells = route_two_maidenheads.select do |cell|
+      route_one_maidenheads.include? cell
     end
 
-    points_also_in_route_one = matching_cells.length
-    non_matching_one = route_one.length - points_also_in_route_one
-    non_matching_two = route_two.length - points_also_in_route_one
+    points_also_in_route_one_maidenheads = matching_cells.length
+    non_matching_one = route_one_maidenheads.length - points_also_in_route_one_maidenheads
+    non_matching_two = route_two_maidenheads.length - points_also_in_route_one_maidenheads
 
-    longest_len = route_one.length > route_two.length ? route_one.length : route_two.length
+    longest_len = route_one_maidenheads.length > route_two_maidenheads.length ? route_one_maidenheads.length : route_two_maidenheads.length
 
     # Similarity is ratio of matching to total unique points
-    points_also_in_route_one.to_f / (non_matching_one.to_f + non_matching_two.to_f + points_also_in_route_one.to_f)
+    similarity = points_also_in_route_one_maidenheads.to_f / (non_matching_one.to_f + non_matching_two.to_f + points_also_in_route_one_maidenheads.to_f)
+    Rails.cache.write cache_key, similarity
+    similarity
   end
 end

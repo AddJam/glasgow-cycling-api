@@ -103,7 +103,7 @@ class RouteTest < ActiveSupport::TestCase
     assert_equal 31.0, returned_points.first[:lat], 'lat not as expected'
     assert_equal 64.0, returned_points.first[:long], 'long not as expected'
     assert_equal 987.0, returned_points.first[:altitude], 'altitude not as expected'
-    assert_equal point_time.to_i, returned_points.first[:time].to_i, 'return point should have the correc time'
+    assert_equal point_time.to_i, returned_points.first[:time].to_i, 'return point should have the correct time'
   end
 
   test 'similar routes are accurarely found' do

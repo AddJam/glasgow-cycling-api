@@ -81,9 +81,7 @@ class RouteController < ApplicationController
 
       if route
         details = route.summary
-        points = Rails.cache.fetch("route-#{route_id}-points", expires_in: 3.hours) do
-          route.points_data
-        end
+        points = route.points_data
         render json: {
           details: details,
           points: points,
