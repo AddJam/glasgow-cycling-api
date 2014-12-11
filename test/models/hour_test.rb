@@ -10,6 +10,23 @@ class HourTest < ActiveSupport::TestCase
     assert_equal 1, user.stats.count
   end
 
+  test "distance in Hours should match routes they were generated from" do
+    # Create a route spanning multiple hours
+    points = create_list(:route_point, 3)
+    points[0].time = 3.hours.ago
+    points[1].time = 3.hours.ago
+    points[2].time = 1.hour.ago
+    user = create(:user)
+    route = build(:route, user_id: user.id)
+    route.points = points
+    route.save
+
+    # Ensure distance of route and hour are the same
+    hour_distance = Hour.all.pick(:distance).sum
+    route_distance = Route.all.pick(:total_distance).sum
+    assert_in_delta hour_distance, route_distance, 0.001
+  end
+
   test "points are split into hours" do
     points = create_list(:route_point, 3)
     points[0].time = 3.hours.ago

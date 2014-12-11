@@ -36,7 +36,7 @@ class Hour < ActiveRecord::Base
     end
 
     # Calculate stats
-    hours.each do |hour|
+    hours.each_with_index do |hour, index|
       points = points_by_hour[hour.time]
       hour.assign_attributes({
         num_points: hour.num_points + points.count,
@@ -52,6 +52,13 @@ class Hour < ActiveRecord::Base
           previous_point = points[index-1]
           distance + point.distance_from(previous_point)
         end
+      end
+
+      # Add distance from previous hour points
+      if index > 0
+        previous_hour = hours[index - 1]
+        last_point = points_by_hour[previous_hour.time].last
+        hour.distance += points.first.distance_from(last_point)
       end
     end
 

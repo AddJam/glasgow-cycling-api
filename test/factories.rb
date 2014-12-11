@@ -52,7 +52,6 @@ FactoryGirl.define do
     long 1.23
     start_maidenhead 'AA00bb11'
     end_maidenhead 'AA00bb11'
-    total_distance 500
     mode 1
     start_time { 2.weeks.ago }
     end_time { 2.weeks.ago }
