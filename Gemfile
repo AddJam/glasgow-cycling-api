@@ -37,8 +37,8 @@ gem 'pg', '~> 0.17.1'
 # Use unicorn as the app server
 gem 'unicorn'
 
-# Analytics
-gem 'newrelic_rpm'
+# Performance
+gem "skylight"
 
 # Deployment
 gem 'capistrano', '2.15.5'
