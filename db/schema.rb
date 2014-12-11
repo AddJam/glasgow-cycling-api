@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141204150200) do
+ActiveRecord::Schema.define(version: 20141211141245) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -160,6 +160,8 @@ ActiveRecord::Schema.define(version: 20141204150200) do
     t.string   "end_maidenhead"
     t.string   "source"
   end
+
+  add_index "routes", ["start_maidenhead", "end_maidenhead"], name: "index_routes_on_start_maidenhead_and_end_maidenhead", using: :btree
 
   create_table "user_responses", force: true do |t|
     t.integer  "user_id"
