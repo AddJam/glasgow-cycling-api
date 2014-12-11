@@ -239,11 +239,17 @@ class Route < ActiveRecord::Base
   # Summary of all routes between a start and end maidenhead
   def self.summarise_routes(start_maidenhead, end_maidenhead, user)
     if user.present?
-      routes = Route.where(start_maidenhead: start_maidenhead, end_maidenhead: end_maidenhead,
-        user_id: user.id).order('created_at DESC')
+      routes = Rails.cache.fetch("summarise-user-routes-#{start_maidenhead}-#{end_maidenhead}",
+        expires_in: 2.hours) do
+          Route.where(start_maidenhead: start_maidenhead, end_maidenhead: end_maidenhead,
+            user_id: user.id).order('created_at DESC')
+      end
     else
-      routes = Route.where(start_maidenhead: start_maidenhead,
-        end_maidenhead: end_maidenhead).order('created_at DESC')
+      routes = Rails.cache.fetch("summarise-routes-#{start_maidenhead}-#{end_maidenhead}",
+        expires_in: 2.hours) do
+          routes = Route.where(start_maidenhead: start_maidenhead,
+            end_maidenhead: end_maidenhead).order('created_at DESC')
+      end
     end
 
     unique_routes = routes.inject([]) do |uniques, route|
