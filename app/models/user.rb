@@ -92,6 +92,10 @@ class User < ActiveRecord::Base
   # ==== Returns
   # The user details such as most used route, time and distance for this month
   def details
+    cache_key = "user-details-#{id}-#{username}-#{gender}-#{routes.count}"
+    user_details = Rails.cache.read cache_key
+    return user_details if user_details.present?
+
     # Past month stats
     month_distance_km = Route.where('user_id = ? AND created_at > ?', self.id, 1.month.ago).sum('total_distance')
     month_seconds = Route.where('user_id = ? AND created_at > ?', self.id, 1.month.ago).sum('total_time')
@@ -115,6 +119,7 @@ class User < ActiveRecord::Base
       user_details[:profile_pic] = base64_profile_pic
     end
 
+    Rails.cache.write cache_key, user_details
     user_details
   end
 
