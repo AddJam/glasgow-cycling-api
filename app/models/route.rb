@@ -316,7 +316,7 @@ class Route < ActiveRecord::Base
         dist
       else
         next_point = self.points[index+1]
-        dist += next_point.distance_from(elem)
+        dist + next_point.distance_from(elem)
       end
     end
   end

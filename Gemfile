@@ -7,7 +7,7 @@ gem 'rails', '~> 4.1.8'
 gem 'sass-rails', '~> 4.0.3'
 
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier', '>= 1.4.1'
 
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.0'
@@ -50,7 +50,7 @@ gem 'foreman'
 
 # Security
 gem 'devise', "~> 3.2"
-gem 'doorkeeper'
+gem 'doorkeeper', "~> 1.4.1"
 
 # Image handling
 gem "paperclip", "~> 4.1"
@@ -102,8 +102,4 @@ group :test do
 	gem "minitest"
 	gem "minitest-reporters"
 	gem "mocha"
-end
-
-group :production do
-  gem 'posix-spawn' # Prevent imagemagick/paperclip forks needing tons of RAM
 end

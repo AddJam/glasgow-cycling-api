@@ -44,6 +44,7 @@ module Devise
     def sign_in(user)
       token = mock()
       token.stubs(:accessible?).returns(true)
+      token.stubs(:acceptable?).returns(true)
       token.stubs(:resource_owner_id).returns(user.id)
       @controller.stubs(:doorkeeper_token).returns(token)
     end
