@@ -71,6 +71,8 @@ gem 'sidekiq'
 gem 'clockwork'
 
 # Website
+gem 'ember-rails'
+gem 'ember-source', '~> 1.9.0'
 gem 'bourbon'
 gem 'neat'
 gem 'bitters'
@@ -83,7 +85,6 @@ group :development do
 	gem 'railroady'
 	gem 'pry-rails'
 	gem 'pry-byebug'
-
 
 	# Automation
 	gem 'guard'
