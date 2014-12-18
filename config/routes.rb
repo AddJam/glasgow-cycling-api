@@ -28,6 +28,7 @@ JourneyAPI::Application.routes.draw do
   get '/stats/hours', to: 'stats#hours', as: 'stats_hours'
   get '/stats/days', to: 'stats#days', as: 'stats_days'
   get '/stats/weeks', to: 'stats#weeks', as: 'stats_weeks'
+  get '/overviews', to: 'stats#overview', as: 'stats_overview'
 
   # Points of Interest
   get '/poi/all', to: 'poi#all', as: 'all_poi'
