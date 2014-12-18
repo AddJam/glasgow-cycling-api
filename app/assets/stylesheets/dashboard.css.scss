@@ -1,3 +1,5 @@
+// Summary
+
 .summary {
 	background-color: #fff;
 	padding-top: 30px;
@@ -61,4 +63,48 @@
 
 .chart:last-child {
 	@include shift(2 of 20);
+}
+
+// Review
+.review {
+	@include clearfix();
+
+	padding-top: 50px;
+	padding-bottom: 50px;
+	background-color: $blue-light;
+	color: $text-light;
+}
+
+.review > h2 {
+	text-align: center;
+	color: $text-light;
+	margin-bottom: 50px;
+}
+
+.review {
+	.headline {
+		@include span-columns(3 of 12);
+		@include shift(2);
+
+		.icon {
+			display: inline-block;
+			text-align: center;
+			width: 100%;
+			margin-bottom: 27px;
+		}
+
+		.icon > img {
+			width: 172px;
+			height: 141px;
+		}
+
+		.label {
+			font-size: 2em;
+		}
+	}
+
+	.text {
+		@include span-columns(5 of 12);
+		font-size: 1.35em;
+	}
 }
