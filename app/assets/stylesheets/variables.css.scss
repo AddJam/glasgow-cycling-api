@@ -1,0 +1,11 @@
+// Colors
+$blue: #00a1df;
+$blue-light: #45baed;
+$text-light: #ffffff;
+$text-grey: #777c7f;
+$text-link-light: #b9eaff;
+
+// Breakpoints
+$small-desktop: new-breakpoint(max-width 1400px 12);
+$tablet: new-breakpoint(max-width 1024px 12);
+$mobile: new-breakpoint(max-width 480px 12);

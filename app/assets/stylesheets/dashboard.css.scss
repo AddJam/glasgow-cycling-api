@@ -8,6 +8,8 @@
 }
 
 .toggles {
+	margin-bottom: 15px;
+
 	ul {
 		list-style: none;
 		text-align: center;
@@ -48,6 +50,37 @@
 			color: $blue;
 		}
 	}
+
+	@include breakpoint($small-desktop) {
+		.stat p {
+			font-size: 3.2em;
+		}
+	}
+
+	@include breakpoint($tablet) {
+		@include span-columns(10 of 12);
+		@include shift(1);
+
+		.stat p {
+			font-size: 2.7em;
+		}
+	}
+
+	@include breakpoint($mobile) {
+		@include span-columns(12 of 12);
+		@include shift(0);
+		margin-bottom: 50px;
+
+		.stat {
+			@include span-columns(12 of 12);
+			@include omega(1n);
+			margin-bottom: 25px;
+		}
+
+		.stat:last-child {
+			margin-bottom: 0;
+		}
+	}
 }
 
 .charts {
@@ -63,6 +96,42 @@
 
 .chart:last-child {
 	@include shift(2 of 20);
+}
+
+@include breakpoint($tablet) {
+	.charts {
+		@include span-columns(10 of 12);
+		@include shift(1);
+	}
+
+	.chart {
+		@include span-columns(14 of 30);
+		@include omega(2n);
+		margin-bottom: 25px;
+	}
+
+	.chart:last-child {
+		@include shift(2 of 30);
+		margin-bottom: 0;
+	}
+}
+
+@include breakpoint($mobile) {
+	.charts {
+		@include span-columns(12 of 12);
+		@include shift(0);
+	}
+
+	.chart {
+		@include span-columns(12 of 12);
+		@include omega(1n);
+		margin-bottom: 25px;
+	}
+
+	.chart:last-child {
+		@include shift(0);
+		margin-bottom: 0;
+	}
 }
 
 // Review
@@ -105,6 +174,32 @@
 	.text {
 		@include span-columns(5 of 12);
 		font-size: 1.35em;
+	}
+
+	@include breakpoint($tablet) {
+		.headline {
+			@include span-columns(4 of 12);
+			@include shift(1);
+		}
+
+		.text {
+			@include span-columns(6 of 12);
+		}
+	}
+
+	@include breakpoint($mobile) {
+		.headline, .text {
+			@include span-columns(12 of 12);
+			@include shift(0);
+			margin: 0;
+			padding: 0 15px;
+		}
+
+		.headline {
+			padding: 0 15px;
+			margin-bottom: 20px;
+			text-align: center;
+		}
 	}
 }
 
@@ -154,6 +249,19 @@
 		p {
 			text-align: center;
 			font-size: 1.8em;
+		}
+	}
+
+	@include breakpoint($mobile) {
+		.wrapper {
+			@include span-columns(12 of 12);
+			@include shift(0);
+		}
+
+		.state {
+			@include span-columns(12 of 12);
+			@include omega(1n);
+			margin-bottom: 25px;
 		}
 	}
 }
@@ -225,6 +333,25 @@
 
 		tr:nth-child(2) > td {
 			padding-top: 10px;
+		}
+	}
+
+	@include breakpoint($mobile) {
+		.wrapper {
+			@include span-columns(12 of 12);
+			@include shift(0);
+		}
+
+		table {
+			th {
+				padding-left: 10px;
+				padding-right: 10px;
+			}
+
+			td {
+				font-size: 2em;
+				padding: 5px;
+			}
 		}
 	}
 }
