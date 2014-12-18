@@ -1,5 +1,5 @@
 class StatsController < ApplicationController
-  doorkeeper_for :all
+  doorkeeper_for :all, except: [:overview]
 
   def hours
     unless current_user and params[:num_hours]
@@ -38,5 +38,23 @@ class StatsController < ApplicationController
         render status: :bad_request, json: {error: "user stats not found for last #{params[:num_weeks]} weeks"}
       end
     end
+  end
+
+  def overview
+
+    render json: {
+      overviews: [{
+        id: params['filter'],
+        cyclists: 5,
+        newCyclists: 5,
+        distance: 5,
+        seconds: 5,
+        routes: 5,
+        longestRoute: 5,
+        furthestRoute: 5,
+        avgDistancePerUser: 5,
+        avgDistancePerRoute: 5
+      }]
+    }
   end
 end
