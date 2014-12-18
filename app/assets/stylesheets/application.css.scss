@@ -23,6 +23,11 @@
   box-sizing: border-box;
 }
 
+html, body {
+  @include span-columns(12 of 12);
+  margin: 0;
+}
+
 body {
   font-family: helvetica neue, lucida grande, sans-serif;
   background-color: $blue;
@@ -81,11 +86,20 @@ h2 {
   }
 
   @include breakpoint($mobile) {
+    padding-top: 10px;
+    height: auto;
+
     .icon {
+      @include span-columns(12 of 12);
       position: relative;
-      width: 100%;
       display: inline-block;
       text-align: center;
+      margin-left: 0;
+    }
+
+    img {
+      position: relative;
+      top: 0;
     }
   }
 }
