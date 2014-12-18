@@ -47,7 +47,7 @@ class StatsController < ApplicationController
         id: params['filter'],
         cyclists: 5,
         newCyclists: 5,
-        distance: 5,
+        distance: 5.1234235464,
         seconds: 93540,
         routes: 5,
         longestRoute: 5,
