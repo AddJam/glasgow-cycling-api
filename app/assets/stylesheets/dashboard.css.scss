@@ -1,0 +1,64 @@
+.summary {
+	background-color: #fff;
+	padding-top: 30px;
+	padding-bottom: 100px;
+	@include clearfix();
+}
+
+.toggles {
+	ul {
+		list-style: none;
+		text-align: center;
+	}
+
+	li {
+		display: inline-block;
+		font-size: 1.5em;
+		padding-left: 8px;
+		padding-right: 8px;
+	}
+
+	a {
+		color: #4faad1;
+	}
+}
+
+.tldr {
+	@include span-columns(8 of 12);
+	@include shift(2);
+	margin-bottom: 100px;
+
+	.stat {
+		@include span-columns(1 of 3);
+		@include omega(3n);
+		text-align: center;
+
+		p {
+			font-size: 4.5em;
+			color: $text-grey;
+			.small {
+				font-size: 0.2em;
+			}
+		}
+
+		h3 {
+			font-size: 1.8em;
+			color: $blue;
+		}
+	}
+}
+
+.charts {
+	@include span-columns(8 of 12);
+	@include shift(2);
+}
+
+.chart {
+	@include span-columns(9 of 20);
+	height: 223px;
+	border: 1px dashed $text-grey;
+}
+
+.chart:last-child {
+	@include shift(2 of 20);
+}
