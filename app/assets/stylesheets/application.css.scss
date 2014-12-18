@@ -12,7 +12,7 @@
 
 @import "bourbon";
 @import "neat";
-@import "colors";
+@import "variables";
 @import "dashboard";
 
 // General Styles
@@ -79,6 +79,15 @@ h2 {
     vertical-align: middle;
     text-align: center;
   }
+
+  @include breakpoint($mobile) {
+    .icon {
+      position: relative;
+      width: 100%;
+      display: inline-block;
+      text-align: center;
+    }
+  }
 }
 
 .footer {
@@ -110,5 +119,20 @@ h2 {
   .right {
     text-align: right;
     padding-right: 24px;
+  }
+
+  @include breakpoint($mobile) {
+    .left, .right, .icon {
+      @include span-columns(12 of 12);
+      @include omega(1n);
+      text-align: center;
+      padding: 0;
+    }
+  }
+
+  @include breakpoint($tablet) {
+    .left, .right {
+      font-size: 1.2em;
+    }
   }
 }
