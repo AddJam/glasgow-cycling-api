@@ -48,7 +48,7 @@ class StatsController < ApplicationController
         cyclists: 5,
         newCyclists: 5,
         distance: 5,
-        seconds: 5,
+        seconds: 93540,
         routes: 5,
         longestRoute: 5,
         furthestRoute: 5,
