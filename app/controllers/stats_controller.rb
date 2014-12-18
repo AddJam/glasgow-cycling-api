@@ -41,6 +41,17 @@ class StatsController < ApplicationController
   end
 
   def overview
+    # TODO
+    #   - Get the data (period is day/week/month, filter is now, last (e.g. yesterday) and average)
+    #   - Add images and fonts
+    #   - Remove cats - soz
+    #   - Remove Loreizzle fo Shizzle ma dizzle
+    #   - Start implementing charts - chartist, chartjs?
+    #   - Finish the page (ember.js - see app/assets/javascripts - index route used)
+    if params['period'] == 'day'
+    elsif params['period'] == 'week'
+    elsif params['period'] == 'month'
+    end
 
     render json: {
       overviews: [{
