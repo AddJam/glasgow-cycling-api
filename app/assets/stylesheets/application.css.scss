@@ -12,83 +12,97 @@
 
 @import "bourbon";
 @import "neat";
-@import "home";
+
+// Colors
+$blue: #00a1df;
+$text-light: #ffffff;
+$text-link-light: #b9eaff;
+
+// General Styles
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 body {
-  background-color: rgb(0,161,223);
+  font-family: helvetica neue, lucida grande, sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: $text-link-light;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal;
+}
+
+h1 {
+  font-size: 2.57em;
+}
+
+// Header & footer
+
+.header, .footer {
+  width: 100%;
+  height: 95px;
+  background-color: $blue;
+  color: $text-light;
+}
+
+.header {
+  position: relative;
+
+  .icon {
+    position: absolute;
+    top: 50%;
+    margin-left: 24px;
+  }
+
+  img {
+    position: absolute;
+    top: -25px;
+    height: 50px;
+    width: 50px;
+  }
+
+  h1 {
+    line-height: 95px;
+    vertical-align: middle;
+    text-align: center;
+  }
 }
 
 .footer {
-  @include span-columns(12);
-  margin-top: 50px;
-  padding: 50px;
-  background-color: rgb(0,161,223);
-  color: rgb(255,255,255);
-  text-align: center;
-}
-
-/* Reset Password */
-.reset-password {
-  @include span-columns(12);
-  padding-top: 20px;
-  padding-bottom: 50px;
-  background-color: rgb(255,255,255);
-
-  .reset-password > * {
+  .left, .right {
+    @include span-columns(5 of 12);
+    line-height: 95px;
+    vertical-align: middle;
+    font-size: 1.5em;
   }
 
-  h2 {
-    margin-bottom: 10px;
+  .left {
+    padding-left: 24px;
   }
 
-  h2, form {
-    @include span-columns(4);
-    @include shift(4);
+  .icon {
+    @include span-columns(2 of 12);
+    height: 95px;
+    line-height: 95px;
+    text-align: center;
 
-    @include media(max-width 1280px) {
-      @include span-columns(6 of 12);
-      @include shift(3);
-    }
-
-    @include media(max-width 680px) {
-      @include span-columns(10 of 12);
-      @include shift(1);
+    img {
+      width: 42px;
+      height: 47px;
+      display: inline-block;
+      vertical-align: middle;
     }
   }
 
-  #error_explanation {
-    margin-bottom: 10px;
-    h2 {
-      @include span-columns(12 of 12);
-      @include shift(0);
-      font-size: 1em;
-      color: rgb(195,0,0);
-    }
-    ul {
-      @include span-columns(12 of 12);
-      color: rgb(215,0,0);
-    }
-  }
-
-  div, input {
-    @include span-columns(12 of 12);
-  }
-
-  input {
-    margin-bottom: 10px;
-    height: 30px;
-    font-size: 1.1em;
-  }
-
-  input[type=submit] {
-    margin-top: 20px;
-    height: 40px;
-    background-color: rgb(0,161,223);
-    border: 0;
-    outline: 0;
-    border-radius: 4px;
-    color: white;
-    font-size: 1.2em;
-    cursor: pointer;
+  .right {
+    text-align: right;
+    padding-right: 24px;
   }
 }
