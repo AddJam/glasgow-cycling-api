@@ -14,7 +14,9 @@
 #  num_points       :integer          default(0)
 #  routes_started   :integer          default(0)
 #  routes_completed :integer          default(0)
+#  is_city          :boolean          default(FALSE)
 #
+
 class Hour < ActiveRecord::Base
   belongs_to :user
 

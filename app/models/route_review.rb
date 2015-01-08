@@ -2,15 +2,12 @@
 #
 # Table name: route_reviews
 #
-#  id                 :integer          not null, primary key
-#  route_id           :integer
-#  comment            :text
-#  user_id            :integer
-#  safety_rating      :integer
-#  difficulty_rating  :integer
-#  environment_rating :integer
-#  created_at         :datetime
-#  updated_at         :datetime
+#  id         :integer          not null, primary key
+#  route_id   :integer
+#  user_id    :integer
+#  created_at :datetime
+#  updated_at :datetime
+#  rating     :integer
 #
 
 class RouteReview < ActiveRecord::Base

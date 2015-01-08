@@ -1,3 +1,25 @@
+# == Schema Information
+#
+# Table name: route_points
+#
+#  id                  :integer          not null, primary key
+#  route_id            :integer
+#  lat                 :float
+#  long                :float
+#  altitude            :float
+#  on_road             :boolean
+#  street_name         :string(255)
+#  created_at          :datetime
+#  updated_at          :datetime
+#  time                :datetime
+#  is_important        :boolean
+#  kph                 :float
+#  vertical_accuracy   :float
+#  horizontal_accuracy :float
+#  course              :float
+#  maidenhead          :string(255)
+#
+
 require 'test_helper'
 
 class RoutePointTest < ActiveSupport::TestCase
