@@ -6,4 +6,12 @@ JourneyAPI.IndexController = Ember.ObjectController.extend({
 		else
 			0
 	).property('now.totalDistance')
+
+	animateMoonRider: (->
+		setTimeout(()=>
+			$('.cyclist').animate({
+				left: "#{@get('percentageToMoon')}%"
+			})
+		, 0)
+	).observes('percentageToMoon', 'now.totalDistance')
 })
