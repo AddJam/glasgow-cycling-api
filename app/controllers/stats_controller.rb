@@ -79,7 +79,6 @@ class StatsController < ApplicationController
         duration: hours.pick(:duration).sum,
         routes: hours.pick(:routes_completed).sum,
         longestRoute: routes.pick(:total_distance).max,
-        furthestRoute: -1,
         avgDistancePerUser: -1,
         avgDistancePerRoute: routes.pick(:total_distance).average
       }]
