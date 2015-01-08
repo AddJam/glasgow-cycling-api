@@ -184,6 +184,11 @@
 		font-size: 1.35em;
 	}
 
+	.data {
+		font-size: 1.3em;
+		font-weight: bold;
+	}
+
 	@include breakpoint($tablet) {
 		.headline {
 			@include span-columns(4 of 12);

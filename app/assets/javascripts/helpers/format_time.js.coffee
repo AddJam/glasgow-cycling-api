@@ -1,4 +1,4 @@
-Ember.Handlebars.helper 'format-time', (seconds, options)->
+Ember.Handlebars.helper 'format-time', (seconds, spaced)->
 	totalHours = Math.round(seconds / 3600)
 	days = Math.floor(totalHours / 24)
 	hours = Math.round(totalHours % 24)
@@ -22,13 +22,19 @@ Ember.Handlebars.helper 'format-time', (seconds, options)->
 	html = ""
 
 	if days > 0
-		html += "#{days}<span class='small'>#{dayDescriptor}</span>"
+		html += "#{days}"
+		html += " " if spaced
+		html += "<span class='small'>#{dayDescriptor}</span>"
 
 	if hours > 0
-		html += " #{hours}<span class='small'>#{hourDescriptor}</span>"
+		html += " #{hours}"
+		html += " " if spaced
+		html += "<span class='small'>#{hourDescriptor}</span>"
 
 	if minutes > 0 && days == 0
-		html += " #{minutes}<span class='small'>#{minuteDescriptor}</span>"
+		html += " #{minutes}"
+		html += " " if spaced
+		html += "<span class='small'>#{minuteDescriptor}</span>"
 
 	if days == 0 && hours == 0 && minutes == 0
 		html = "No Activity"
