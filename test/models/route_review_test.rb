@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: route_reviews
+#
+#  id         :integer          not null, primary key
+#  route_id   :integer
+#  user_id    :integer
+#  created_at :datetime
+#  updated_at :datetime
+#  rating     :integer
+#
+
 require 'test_helper'
 
 class RouteReviewTest < ActiveSupport::TestCase

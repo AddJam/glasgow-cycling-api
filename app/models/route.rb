@@ -2,20 +2,21 @@
 #
 # Table name: routes
 #
-#  id                 :integer          not null, primary key
-#  name               :string(255)
-#  lat                :float
-#  long               :float
-#  total_distance     :float
-#  mode               :integer
-#  start_picture_id   :integer
-#  end_picture_id     :integer
-#  created_at         :datetime
-#  updated_at         :datetime
-#  start_time         :datetime
-#  end_time           :datetime
-#  total_time         :integer
-#  user_id            :integer
+#  id               :integer          not null, primary key
+#  name             :string(255)
+#  lat              :float
+#  long             :float
+#  total_distance   :float
+#  mode             :integer
+#  created_at       :datetime
+#  updated_at       :datetime
+#  start_time       :datetime
+#  end_time         :datetime
+#  total_time       :integer
+#  user_id          :integer
+#  start_maidenhead :string(255)
+#  end_maidenhead   :string(255)
+#  source           :string(255)
 #
 
 class Route < ActiveRecord::Base

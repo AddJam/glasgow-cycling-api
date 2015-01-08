@@ -1,3 +1,24 @@
+# == Schema Information
+#
+# Table name: routes
+#
+#  id               :integer          not null, primary key
+#  name             :string(255)
+#  lat              :float
+#  long             :float
+#  total_distance   :float
+#  mode             :integer
+#  created_at       :datetime
+#  updated_at       :datetime
+#  start_time       :datetime
+#  end_time         :datetime
+#  total_time       :integer
+#  user_id          :integer
+#  start_maidenhead :string(255)
+#  end_maidenhead   :string(255)
+#  source           :string(255)
+#
+
 require 'test_helper'
 
 class RouteTest < ActiveSupport::TestCase
