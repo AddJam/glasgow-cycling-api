@@ -48,23 +48,32 @@ class StatsController < ApplicationController
     #   - Remove Loreizzle fo Shizzle ma dizzle
     #   - Start implementing charts - chartist, chartjs?
     #   - Finish the page (ember.js - see app/assets/javascripts - index route used)
-    if params['period'] == 'day'
-    elsif params['period'] == 'week'
-    elsif params['period'] == 'month'
+    period = params['period']
+    filter = params['filter']
+
+    if period == 'day'
+      days = 1
+    elsif period == 'week'
+      days = 7
+    elsif period == 'month'
+      days = 28
     end
+
+    stats = Hour.days(days)
+    overall_stats = stats[:overall]
 
     render json: {
       overviews: [{
-        id: params['filter'],
-        cyclists: 5,
-        newCyclists: 5,
-        distance: 5.1234235464,
-        seconds: 93540,
-        routes: 5,
-        longestRoute: 5,
-        furthestRoute: 5,
-        avgDistancePerUser: 5,
-        avgDistancePerRoute: 5
+        id: filter,
+        cyclists: -1,
+        newCyclists: -1,
+        distance: overall_stats[:distance],
+        seconds: overall_stats[:time],
+        routes: overall_stats[:routes_completed],
+        longestRoute: -1,
+        furthestRoute: -1,
+        avgDistancePerUser: -1,
+        avgDistancePerRoute: -1
       }]
     }
   end
