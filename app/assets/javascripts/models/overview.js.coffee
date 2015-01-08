@@ -1,5 +1,6 @@
 JourneyAPI.Overview = DS.Model.extend {
-	cyclists: DS.attr('number')
+	totalCyclists: DS.attr('number')
+	activeCyclists: DS.attr('number')
 	newCyclists: DS.attr('number')
 	distance: DS.attr('number')
 	duration: DS.attr('number')

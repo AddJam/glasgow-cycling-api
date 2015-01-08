@@ -59,19 +59,21 @@ class StatsController < ApplicationController
       days = 28
     end
 
-    stats = Hour.days(days)
-    overall_stats = stats[:overall]
+    start_threshold = days.days.ago.beginning_of_day
+    hours = Hour.where('time >= ? AND time <= ?', start_threshold, Time.now)
 
     new_cyclists = User.where('created_at > ?', days.days.ago.beginning_of_day).count
+    active_cyclists = hours.map {|hour| hour.user_id}.uniq.count
 
     render json: {
       overviews: [{
         id: filter,
-        cyclists: User.count,
+        totalCyclists: User.count,
+        activeCyclists: active_cyclists,
         newCyclists: new_cyclists,
-        distance: overall_stats[:distance],
-        duration: overall_stats[:duration],
-        routes: overall_stats[:routes_completed],
+        distance: hours.pick(:distance).sum,
+        duration: hours.pick(:duration).sum,
+        routes: hours.pick(:routes_completed).sum,
         longestRoute: -1,
         furthestRoute: -1,
         avgDistancePerUser: -1,
