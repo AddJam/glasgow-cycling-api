@@ -66,7 +66,7 @@ class StatsController < ApplicationController
     active_cyclists = hours.map {|hour| hour.user_id}.uniq.count
 
     routes = Route.where('start_time >= ?', period_start)
-
+    total_distance = Route.sum(:total_distance)
 
     render json: {
       overviews: [{
@@ -75,6 +75,7 @@ class StatsController < ApplicationController
         activeCyclists: active_cyclists,
         newCyclists: new_cyclists,
         distance: hours.pick(:distance).sum,
+        totalDistance: total_distance,
         duration: hours.pick(:duration).sum,
         routes: hours.pick(:routes_completed).sum,
         longestRoute: routes.pick(:total_distance).max,
