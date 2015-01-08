@@ -10,6 +10,6 @@ if Rails.env.development?
 	p "client_secret: #{app.secret}"
 
 	# Add test user
-	User.create(first_name: "John", last_name: "Smith", email: "test@user.com", password: "password", year_of_birth: 1990, gender: "male")
+	User.create(username: "JohnSmith", email: "test@user.com", password: "password", year_of_birth: 1990, gender: "male")
 	p "Added test user"
 end
