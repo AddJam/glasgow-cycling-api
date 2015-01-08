@@ -59,10 +59,10 @@ class StatsController < ApplicationController
       days = 28
     end
 
-    start_threshold = days.days.ago.beginning_of_day
+    start_threshold = (days-1).days.ago.beginning_of_day
     hours = Hour.where('time >= ? AND time <= ?', start_threshold, Time.now)
 
-    new_cyclists = User.where('created_at > ?', days.days.ago.beginning_of_day).count
+    new_cyclists = User.where('created_at > ?', (days-1).days.ago.beginning_of_day).count
     active_cyclists = hours.map {|hour| hour.user_id}.uniq.count
 
     render json: {
