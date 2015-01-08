@@ -64,9 +64,25 @@ class Hour < ActiveRecord::Base
       end
     end
 
-
+    # Num routes
     hours.first.routes_started += 1
     hours.last.routes_completed += 1
+
+    # Duration
+    hours.each_with_index do |hour, i|
+      hour[:duration] ||= 0
+      if i == 0
+        start_time = route.start_time.to_i
+        start_hour = route.start_time.beginning_of_hour.to_i
+        hour[:duration] += (start_time - start_hour)
+      elsif i == hours.count - 1
+        end_time = route.end_time.to_i
+        end_hour = route.end_time.end_of_hour.to_i
+        hour[:duration] += (end_hour - end_time)
+      else
+        hour[:duration] += (60 * 60)
+      end
+    end
 
     # Save updated stats
     hours.each(&:save)
@@ -171,7 +187,8 @@ class Hour < ActiveRecord::Base
       min_speed: min_speed,
       max_speed: max_speed,
       routes_started: hours.pick(:routes_started).sum,
-      routes_completed: hours.pick(:routes_completed).sum
+      routes_completed: hours.pick(:routes_completed).sum,
+      duration: hours.pick(:duration).sum
     }
   end
 end

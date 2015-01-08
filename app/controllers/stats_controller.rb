@@ -62,13 +62,15 @@ class StatsController < ApplicationController
     stats = Hour.days(days)
     overall_stats = stats[:overall]
 
+    new_cyclists = User.where('created_at > ?', days.days.ago.beginning_of_day).count
+
     render json: {
       overviews: [{
         id: filter,
-        cyclists: -1,
-        newCyclists: -1,
+        cyclists: User.count,
+        newCyclists: new_cyclists,
         distance: overall_stats[:distance],
-        seconds: overall_stats[:time],
+        duration: overall_stats[:duration],
         routes: overall_stats[:routes_completed],
         longestRoute: -1,
         furthestRoute: -1,
