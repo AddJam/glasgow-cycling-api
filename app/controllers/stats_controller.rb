@@ -59,11 +59,14 @@ class StatsController < ApplicationController
       days = 28
     end
 
-    start_threshold = (days-1).days.ago.beginning_of_day
-    hours = Hour.where('time >= ? AND time <= ?', start_threshold, Time.now)
+    period_start = (days-1).days.ago.beginning_of_day
+    hours = Hour.where('time >= ? AND time <= ?', period_start, Time.now)
 
-    new_cyclists = User.where('created_at > ?', (days-1).days.ago.beginning_of_day).count
+    new_cyclists = User.where('created_at > ?', period_start).count
     active_cyclists = hours.map {|hour| hour.user_id}.uniq.count
+
+    routes = Route.where('start_time >= ?', period_start)
+
 
     render json: {
       overviews: [{
@@ -74,10 +77,10 @@ class StatsController < ApplicationController
         distance: hours.pick(:distance).sum,
         duration: hours.pick(:duration).sum,
         routes: hours.pick(:routes_completed).sum,
-        longestRoute: -1,
+        longestRoute: routes.pick(:total_distance).max,
         furthestRoute: -1,
         avgDistancePerUser: -1,
-        avgDistancePerRoute: -1
+        avgDistancePerRoute: routes.pick(:total_distance).average
       }]
     }
   end
