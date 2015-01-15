@@ -1,3 +1,4 @@
+#= require chartist
 #= require jquery
 #= require handlebars
 #= require ember
