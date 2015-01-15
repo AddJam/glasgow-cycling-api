@@ -1,11 +1,18 @@
 JourneyAPI.LineChartComponent = Ember.Component.extend({
   setup: (->
     data = {
-      labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+      labels: ['6am', '9am', 'noon', '3pm', '6pm', '9pm'],
       series: [
-        [5, 2, 4, 2, 0]
+        [5, 2, 4, 2, 2, 0]
       ]
     }
-    new Chartist.Line("##{this.elementId} .ct-chart", data)
+    opts = {
+      axisY: {
+        showGrid: false
+        labelInterpolationFnc: (value)->
+          value + ' km'
+      }
+    }
+    new Chartist.Line("##{this.elementId} .ct-chart", data, opts)
   ).on('didInsertElement')
 })

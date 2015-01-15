@@ -97,18 +97,30 @@
 }
 
 .charts {
-	@include span-columns(8 of 12);
-	@include shift(2);
+	@include span-columns(10 of 12);
+	@include shift(1);
 }
 
-.chart {
+.ct-chart {
 	@include span-columns(9 of 20);
-	height: 223px;
-	border: 1px dashed $text-grey;
+	max-width: 45%;
+	padding: 10px;
+
+	line, path {
+		stroke: $blue !important;
+	}
+
+	.ct-bar {
+		stroke-width: 30px;
+	}
+
+	&.bar-chart .ct-label.ct-horizontal {
+		text-align: center !important;
+	}
 }
 
-.chart:last-child {
-	@include shift(2 of 20);
+.ct-chart:last-child {
+	margin-left: 5%;
 }
 
 @include breakpoint($tablet) {
