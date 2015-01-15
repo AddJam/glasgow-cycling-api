@@ -37,7 +37,11 @@
 		</p>
 	</div>
 	<p class='text'>
-	<span class='data'>{{now.activeCyclists}}</span> cyclists recorded <span class='data'>{{now.routes}}</span> routes today, taking a total of <span class='data'>{{format-time now.duration true}}</span> to cycle <span class='data'>{{whole-number now.distance}} kilometres</span>. The longest route was <span class='data'>{{decimal-number now.longestRoute}} kilometres</span>, while the average was <span class='data'>{{decimal-number now.avgDistancePerRoute}} kilometres</span>.
+	{{#if now.activeCyclists}}
+		<span class='data'>{{now.activeCyclists}}</span> cyclists recorded <span class='data'>{{now.routes}}</span> routes today, taking a total of <span class='data'>{{format-time now.duration true}}</span> to cycle <span class='data'>{{whole-number now.distance}} kilometres</span>. The longest route was <span class='data'>{{decimal-number now.longestRoute}} kilometres</span>, while the average was <span class='data'>{{decimal-number now.avgDistancePerRoute}} kilometres</span>.
+	{{else}}
+		<span class='data'>{{now.activeCyclists}}</span> cyclists have recorded a route today - you could be the first!
+	{{/if}}
 	<br><br>
 	<span class='data'>{{now.newCyclists}}</span> cyclists signed up to start recording routes today, bringing the total to <span class='data'>{{now.totalCyclists}}</span>.
 	</p>
