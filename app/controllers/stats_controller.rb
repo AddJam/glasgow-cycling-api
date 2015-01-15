@@ -53,7 +53,25 @@ class StatsController < ApplicationController
     end
 
     period_start = (days-1).days.ago.beginning_of_day
-    hours = Hour.where('time >= ? AND time <= ?', period_start, Time.now)
+    period_start = (8).days.ago.beginning_of_day
+    hours = Hour.where('time >= ? AND time <= ?', period_start, Time.now).order(:time)
+
+    segments = []
+    hours_in_day = 24
+    hours_in_day.times do |i|
+      seconds_in_hour = 3600
+      hour_start = period_start.to_i + (i*seconds_in_hour)
+      matching_hours = hours.select {|h| h.time == hour_start}
+      segments << matching_hours.inject({
+        time: hour_start,
+        distance: 0,
+        routes: 0
+      }) do |segment, hour|
+        hour[:distance] += hour.distance
+        hour[:routes] += hour.routes
+        segment
+      end
+    end
 
     new_cyclists = User.where('created_at > ?', period_start).count
     active_cyclists = hours.map {|hour| hour.user_id}.uniq.count
@@ -73,8 +91,9 @@ class StatsController < ApplicationController
         routes: hours.pick(:routes_completed).sum,
         longestRoute: routes.pick(:total_distance).max,
         avgDistancePerUser: -1,
-        avgDistancePerRoute: routes.pick(:total_distance).average
-      }]
+        avgDistancePerRoute: routes.pick(:total_distance).average,
+        segments: segments
+      }],
     }
   end
 end
