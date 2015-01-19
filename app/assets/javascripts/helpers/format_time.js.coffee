@@ -37,6 +37,6 @@ Ember.Handlebars.helper 'format-time', (seconds, spaced)->
 		html += "<span class='small'>#{minuteDescriptor}</span>"
 
 	if days == 0 && hours == 0 && minutes == 0
-		html = "0"
+		html = "0<span class='small'>hours</span>"
 
 	return new Ember.Handlebars.SafeString(html.trim())
