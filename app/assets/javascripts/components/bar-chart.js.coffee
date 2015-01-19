@@ -13,7 +13,7 @@ JourneyAPI.BarChartComponent = Ember.Component.extend({
       axisY: {
         labelInterpolationFnc: (value)->
           if (value % 1) == 0
-            value + ' km'
+            value
           else
             null
       }

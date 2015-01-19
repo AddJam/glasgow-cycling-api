@@ -6,8 +6,11 @@ JourneyAPI.LineChartComponent = Ember.Component.extend({
       series: [@get('segments')]
     }
     opts = {
-      axisY: {
+      axisX: {
         showGrid: false
+      }
+      axisY: {
+        showGrid: true
         labelInterpolationFnc: (value)->
           if (value % 1) == 0
             value + ' km'
