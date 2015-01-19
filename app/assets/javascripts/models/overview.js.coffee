@@ -9,4 +9,15 @@ JourneyAPI.Overview = DS.Model.extend {
 	longestRoute: DS.attr('number')
 	avgDistancePerUser: DS.attr('number')
 	avgDistancePerRoute: DS.attr('number')
+	segments: DS.hasMany('segment')
+
+	routeSegments: (->
+		@segments.map (s)->
+			s.get('routes')
+	).property('segments.@each')
+	
+	distanceSegments: (->
+		@segments.map (s)->
+			s.get('distance')
+	).property('segments.@each')
 }

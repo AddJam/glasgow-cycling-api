@@ -3,8 +3,10 @@
 
 # Override the default adapter with the `DS.ActiveModelAdapter` which
 # is built to work nicely with the ActiveModel::Serializers gem.
-JourneyAPI.ApplicationAdapter = DS.ActiveModelAdapter.extend({
-	
+JourneyAPI.ApplicationAdapter = DS.ActiveModelAdapter.extend(DS.EmbeddedRecordsMixin, {
+	attrs: {
+		segments: {embedded: 'always'}
+	}
 })
 
 # Adds X-CSRF-Token to all REST requests.

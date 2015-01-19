@@ -1,10 +1,10 @@
 JourneyAPI.BarChartComponent = Ember.Component.extend({
+  segments: []
+
   setup: (->
     data = {
-      labels: ['6am', '9am', 'noon', '3pm', '6pm', '9pm'],
-      series: [
-        [5, 2, 4, 2, 0, 0]
-      ]
+      labels: ['midnight', '6am', 'noon', '6pm', 'midnight'],
+      series: [@get('segments')]
     }
     opts = {
       axisX: {

@@ -2,7 +2,7 @@
 	<h2>Today</h2>
 	<div class='tldr'>
 		<div class='stat'>
-			<p>{{now.activeCyclists}}<span class='small'>/{{now.totalCyclists}}</span></p>
+			<p>{{now.activeCyclists}}<span class='small'>of {{now.totalCyclists}}</span></p>
 			<h3>Cyclists</h3>
 		</div>
 		<div class='stat'>
@@ -15,8 +15,8 @@
 		</div>
 	</div>
 	<div class='charts'>
-		{{bar-chart}}
-		{{line-chart}}
+		{{bar-chart segments=routes}}
+		{{line-chart segments=distances}}
 	</div>
 </div>
 
