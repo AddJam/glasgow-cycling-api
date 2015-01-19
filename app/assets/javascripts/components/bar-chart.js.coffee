@@ -9,6 +9,13 @@ JourneyAPI.BarChartComponent = Ember.Component.extend({
     opts = {
       axisX: {
         showGrid: false
+      },
+      axisY: {
+        labelInterpolationFnc: (value)->
+          if (value % 1) == 0
+            value + ' km'
+          else
+            null
       }
     }
     new Chartist.Bar("##{this.elementId} .ct-chart", data, opts)

@@ -9,7 +9,10 @@ JourneyAPI.LineChartComponent = Ember.Component.extend({
       axisY: {
         showGrid: false
         labelInterpolationFnc: (value)->
-          value + ' km'
+          if (value % 1) == 0
+            value + ' km'
+          else
+            null
       }
     }
     new Chartist.Line("##{this.elementId} .ct-chart", data, opts)
