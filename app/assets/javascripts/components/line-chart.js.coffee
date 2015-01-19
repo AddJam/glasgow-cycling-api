@@ -1,10 +1,9 @@
 JourneyAPI.LineChartComponent = Ember.Component.extend({
   setup: (->
+    console.log('setup')
     data = {
-      labels: ['6am', '9am', 'noon', '3pm', '6pm', '9pm'],
-      series: [
-        [5, 2, 4, 2, 2, 0]
-      ]
+      labels: ['midnight', '6am', 'noon', '6pm', 'midnight'],
+      series: [@get('segments')]
     }
     opts = {
       axisY: {
@@ -15,4 +14,8 @@ JourneyAPI.LineChartComponent = Ember.Component.extend({
     }
     new Chartist.Line("##{this.elementId} .ct-chart", data, opts)
   ).on('didInsertElement')
+
+  changed: (->
+    console.log('segments changed');
+  ).observes('segments.[]')
 })
