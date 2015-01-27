@@ -98,14 +98,21 @@ class HourTest < ActiveSupport::TestCase
   end
 
   test "hours data is accurate" do
-    points = create_list(:route_point, 3)
-    points[0].time = 3.hours.ago
-    points[1].time = 3.hours.ago
-    points[2].time = 3.hour.ago
     user = create(:user)
-    route = build(:route, user_id: user.id, total_distance: nil)
-    route.points = points
-    route.save
+
+    points = []
+    10.times do
+      points << {
+          lat: (rand * 45),
+          long: (rand * 90),
+          altitude: (rand * 500),
+          kph: (rand * 23),
+          time: Time.now.to_i,
+          street_name: 'Random Street'
+      }
+    end
+    Hour.destroy_all
+    route = Route.record(user, points)
 
     hours_data = Hour.hours(5, user)
     assert_not_nil hours_data[:hours], "all hours contributing to the stats should be returned"
@@ -121,9 +128,9 @@ class HourTest < ActiveSupport::TestCase
     assert_in_delta route.total_distance, hours_data[:overall][:distance], tolerance, 'total distance should be accurate'
 
     # Speed
-    avg_speed = points.pick(:kph).average
-    max_speed = points.pick(:kph).max
-    min_speed = points.pick(:kph).min
+    avg_speed = route.points.pick(:kph).average
+    max_speed = route.points.pick(:kph).max
+    min_speed = route.points.pick(:kph).min
     assert_in_delta avg_speed, hours_data[:overall][:avg_speed], tolerance, 'average speed should be accurate'
     assert_in_delta max_speed, hours_data[:overall][:max_speed], tolerance, 'max speed should be accurate'
     assert_in_delta min_speed, hours_data[:overall][:min_speed], tolerance, 'min speed should be accurate'
@@ -132,9 +139,7 @@ class HourTest < ActiveSupport::TestCase
     assert_equal 1, hours_data[:overall][:routes_started], "a single route should have been started"
     assert_equal 1, hours_data[:overall][:routes_completed], "a single route should have been completed"
 
-    route = build(:route, user_id: user.id, total_distance: nil)
-    route.points = points
-    route.save
+    route = Route.record(user, points)
     hours_data = Hour.hours(5, user)
     assert_equal 2, hours_data[:overall][:routes_started], "two routes should have been started"
     assert_equal 2, hours_data[:overall][:routes_completed], "two routes should have been completed"

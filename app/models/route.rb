@@ -103,11 +103,8 @@ class Route < ActiveRecord::Base
     end
 
     # Create the route
-    route = Route.new
-    route.mode = "bike"
-    route.user_id = user.id
-    route.source = source
     ActiveRecord::Base.transaction do # Perform all insertions in a single transaction
+      route_points = []
       points.each_with_index do |point, index|
         route_point = RoutePoint.create do |rp|
           rp.lat = point[:lat]
@@ -120,21 +117,22 @@ class Route < ActiveRecord::Base
           rp.horizontal_accuracy = point[:horizontal_accuracy]
           rp.course = point[:course]
           rp.street_name = point[:street_name] if point[:street_name].present?
-          rp.route = route
-          if index == 0
-            route.lat = rp.lat
-            route.long = rp.long
-          end
           if index == 0 or index == (points.length-1)
             rp.is_important = true
           end
         end
-        route.points << route_point
+        route_points << route_point
       end
 
       # Save
-      route.save
-      route
+      Route.create({
+        mode: "bike",
+        user_id: user.id,
+        source: source,
+        points: route_points,
+        lat: route_points.first.lat,
+        long: route_points.first.long
+      })
     end
   end
 

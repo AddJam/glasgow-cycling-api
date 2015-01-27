@@ -42,7 +42,8 @@ class RouteControllerTest < ActionController::TestCase
     assert_not_nil route_data["route_id"], "route data should contain a route id"
 
     # Check route was added
-    assert_not_nil Route.where(id: route_id).first, "route should be stored"
+    route = Route.where(id: route_id).take
+    assert_not_nil route, "route should be stored"
   end
 
   test "old API parameters should work for recording route" do
