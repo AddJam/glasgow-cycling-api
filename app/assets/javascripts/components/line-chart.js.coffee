@@ -1,6 +1,5 @@
 JourneyAPI.LineChartComponent = Ember.Component.extend({
   setup: (->
-    console.log('setup')
     data = {
       labels: ['midnight', '6am', 'noon', '6pm', 'midnight'],
       series: [@get('segments')]

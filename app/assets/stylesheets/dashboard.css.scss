@@ -129,13 +129,14 @@
 		@include shift(1);
 	}
 
-	.chart {
+	.ct-chart {
 		@include span-columns(14 of 30);
 		@include omega(2n);
 		margin-bottom: 25px;
+		max-width: 100%;
 	}
 
-	.chart:last-child {
+	.ct-chart:last-child {
 		@include shift(2 of 30);
 		margin-bottom: 0;
 	}
@@ -147,13 +148,13 @@
 		@include shift(0);
 	}
 
-	.chart {
+	.ct-chart {
 		@include span-columns(12 of 12);
 		@include omega(1n);
 		margin-bottom: 25px;
 	}
 
-	.chart:last-child {
+	.ct-chart:last-child {
 		@include shift(0);
 		margin-bottom: 0;
 	}
