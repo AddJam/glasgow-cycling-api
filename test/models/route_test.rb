@@ -189,8 +189,8 @@ class RouteTest < ActiveSupport::TestCase
     user = create(:user)
     route = Route.record(user, point_params)
     assert_not_nil route, "route should be saved"
-    assert route.points.count <= 8, "route endpoints should have been trimmed"
-    assert route.points.count >= 6, "most of the route points should still be present"
+    assert route.points.count < point_params.count, "route endpoints should have been trimmed"
+    assert route.points.count >= point_params.count/2, "most of the route points should still be present"
     Rails.logger.debug "#{route.points.count} route points after trim"
   end
 end
