@@ -139,6 +139,7 @@
 	.ct-chart:last-child {
 		@include shift(2 of 30);
 		margin-bottom: 0;
+		margin-left: 0;
 	}
 }
 
