@@ -154,17 +154,21 @@ class RouteControllerTest < ActionController::TestCase
     # Create two sets of routes between the same start and end points
     2.times do
       route = build(:route)
-      route.points << create_list(:route_point, 2, route_id: route.id, lat: 5, long: 20)
-      route.points << create_list(:route_point, 1, route_id: route.id, lat: 10, long: 40)
-      route.points << create_list(:route_point, 2, route_id: route.id, lat: 19, long: 20)
+      route.points << create(:route_point, route_id: route.id, lat: 5, long: 20)
+      route.points << create(:route_point, route_id: route.id, lat: 20, long: 50)
+      route.points << create(:route_point, route_id: route.id, lat: 10, long: 40)
+      route.points << create(:route_point, route_id: route.id, lat: 15, long: 45)
+      route.points << create(:route_point, route_id: route.id, lat: 19, long: 20)
       route.save
     end
 
     2.times do
       route = build(:route)
-      route.points << create_list(:route_point, 2, route_id: route.id, lat: 5, long: 20)
-      route.points << create_list(:route_point, 1, route_id: route.id, lat: -10, long: -40)
-      route.points << create_list(:route_point, 2, route_id: route.id, lat: 19, long: 20)
+      route.points << create(:route_point, route_id: route.id, lat: 5, long: 20)
+      route.points << create(:route_point, route_id: route.id, lat: -20, long: -50)
+      route.points << create(:route_point, route_id: route.id, lat: -10, long: -40)
+      route.points << create(:route_point, route_id: route.id, lat: -15, long: -45)
+      route.points << create(:route_point, route_id: route.id, lat: 19, long: 20)
       route.save
     end
 
