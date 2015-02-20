@@ -67,7 +67,7 @@ gem 'redis-rails'
 gem 'forecast_io'
 
 # Timed tasks and workers
-gem 'sidekiq'
+gem 'sidekiq', '~> 3.0.0'
 gem 'clockwork'
 
 # Website

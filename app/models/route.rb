@@ -287,7 +287,7 @@ class Route < ActiveRecord::Base
     average_distance = routes.pick(:total_distance).average
     average_rating = routes.pick(:review).pick(:rating).average
     average_time = routes.pick(:total_time).average
-    average_speed = (average_distance * 1000)/average_time
+    average_speed = (average_distance * 1000) / average_time
 
     summary[:averages] = {
       distance: average_distance,
@@ -306,25 +306,25 @@ class Route < ActiveRecord::Base
   private
 
   def ensure_distance_exists
-    return if self.total_distance.present? and self.total_distance > 0
+    return if total_distance.present? && total_distance > 0
 
     # Calculate route distance
-    self.total_distance = self.points.each_with_index.inject(0) do |dist, (elem, index)|
-      if index >= self.points.length - 1
+    self.total_distance = points.each_with_index.inject(0) do |dist, (elem, index)|
+      if index >= points.length - 1
         dist
       else
-        next_point = self.points[index+1]
+        next_point = points[index + 1]
         dist + next_point.distance_from(elem)
       end
     end
   end
 
   def calculate_times
-    return if self.points.length == 0
+    return if points.length == 0
 
-    self.start_time = self.points.first.time
-    self.end_time = self.points.last.time
-    self.total_time = self.end_time - self.start_time
+    self.start_time = points.first.time
+    self.end_time = points.last.time
+    self.total_time = end_time - start_time
   end
 
   def set_name

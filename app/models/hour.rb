@@ -48,11 +48,11 @@ class Hour < ActiveRecord::Base
       })
 
       hour.distance = points.each_with_index.inject(0) do |distance, (point, index)|
-        if index == 0
+        if index == points.count - 1
           distance
         else
-          previous_point = points[index-1]
-          distance + point.distance_from(previous_point)
+          next_point = points[index + 1]
+          distance + point.distance_from(next_point)
         end
       end
 

@@ -20,15 +20,6 @@
 require 'test_helper'
 
 class HourTest < ActiveSupport::TestCase
-  test "recording a route generates statistics" do
-    points = route_point_params(3)
-    user = create(:user)
-    route = Route.record(user, points)
-
-    assert_not_nil user.stats, "user stats should exist after recording a route"
-    assert_equal 1, user.stats.count
-  end
-
   test "distance in Hours should match routes they were generated from" do
     # Create a route spanning multiple hours
     points = create_list(:route_point, 3)
@@ -39,6 +30,10 @@ class HourTest < ActiveSupport::TestCase
     route = build(:route, user_id: user.id)
     route.points = points
     route.save
+
+    # Perform worker inline
+    stats_gen = StatsGenerator.new
+    stats_gen.perform(route.id, user.id)
 
     # Ensure distance of route and hour are the same
     hour_distance = Hour.all.pick(:distance).sum
@@ -56,6 +51,10 @@ class HourTest < ActiveSupport::TestCase
     route.points = points
     route.save
 
+    # Perform worker inline
+    stats_gen = StatsGenerator.new
+    stats_gen.perform(route.id, user.id)
+
     assert_not_nil user.stats, "user stats should exist after recording a route"
     assert_equal 3, user.stats.count, "correct number of hours should be generated"
   end
@@ -69,6 +68,10 @@ class HourTest < ActiveSupport::TestCase
     route = build(:route, user_id: user.id)
     route.points = points
     route.save
+
+    # Perform worker inline
+    stats_gen = StatsGenerator.new
+    stats_gen.perform(route.id, user.id)
 
     assert_not_nil user.stats, "user stats should exist after recording a route"
     assert_equal 2, user.stats.count, "correct number of hours should be generated"
@@ -114,6 +117,10 @@ class HourTest < ActiveSupport::TestCase
     Hour.destroy_all
     route = Route.record(user, points)
 
+    # Perform worker inline
+    stats_gen = StatsGenerator.new
+    stats_gen.perform(route.id, user.id)
+
     hours_data = Hour.hours(5, user)
     assert_not_nil hours_data[:hours], "all hours contributing to the stats should be returned"
     assert_equal 5, hours_data[:hours].count, "correct number of hours is returned"
@@ -140,6 +147,11 @@ class HourTest < ActiveSupport::TestCase
     assert_equal 1, hours_data[:overall][:routes_completed], "a single route should have been completed"
 
     route = Route.record(user, points)
+
+    # Perform worker inline
+    stats_gen = StatsGenerator.new
+    stats_gen.perform(route.id, user.id)
+
     hours_data = Hour.hours(5, user)
     assert_equal 2, hours_data[:overall][:routes_started], "two routes should have been started"
     assert_equal 2, hours_data[:overall][:routes_completed], "two routes should have been completed"
@@ -154,6 +166,10 @@ class HourTest < ActiveSupport::TestCase
     route = build(:route, user_id: user.id, total_distance: nil)
     route.points = points
     route.save
+
+    # Perform worker inline
+    stats_gen = StatsGenerator.new
+    stats_gen.perform(route.id, user.id)
 
     days_data = Hour.period(:days, 5, user)
     assert_not_nil days_data[:days], "all days contributing to the stats should be returned"
@@ -183,6 +199,11 @@ class HourTest < ActiveSupport::TestCase
     route = build(:route, user_id: user.id, total_distance: nil)
     route.points = points
     route.save
+
+    # Perform worker inline
+    stats_gen = StatsGenerator.new
+    stats_gen.perform(route.id, user.id)
+
     days_data = Hour.period(:days, 5, user)
     assert_equal 2, days_data[:overall][:routes_started], "two routes should have been started"
     assert_equal 2, days_data[:overall][:routes_completed], "two routes should have been completed"
