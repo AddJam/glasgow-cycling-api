@@ -18,7 +18,6 @@
 #  end_maidenhead   :string(255)
 #  source           :string(255)
 #
-
 class Route < ActiveRecord::Base
   has_one :review, :foreign_key => 'route_id', :class_name => 'RouteReview'
   has_many :points, :foreign_key => 'route_id', :class_name => 'RoutePoint'
@@ -31,7 +30,7 @@ class Route < ActiveRecord::Base
   before_validation :set_endpoints
   before_validation :calculate_times
   before_validation :set_maidenheads
-  after_create :generate_stats
+  after_commit :generate_stats
   after_save :set_name
 
   validates :total_distance, presence: true
@@ -346,9 +345,9 @@ class Route < ActiveRecord::Base
 
   def set_endpoints
     # Ensure endpoints get geocoded
-    return if self.points.length == 0
+    return if points.length == 0
 
-    start = self.points.first
+    start = points.first
     start.is_important = true
     self.lat = start.lat
     self.long = start.long
@@ -357,13 +356,13 @@ class Route < ActiveRecord::Base
   end
 
   def set_maidenheads
-    return if self.points.blank?
-    self.start_maidenhead = self.points.first.maidenhead
-    self.end_maidenhead = self.points.last.maidenhead
+    return if points.blank?
+    self.start_maidenhead = points.first.maidenhead
+    self.end_maidenhead = points.last.maidenhead
   end
 
   def generate_stats
-    Hour.generate!(self, user)
+    StatsGenerator.perform_async(id, user.id)
   end
 
   def similarity(route_one, route_two)

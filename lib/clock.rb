@@ -12,7 +12,7 @@ every(1.hour, 'getWeather') do
   WeatherWorker.perform_async
 end
 
-every(5.minutes, 'collectStats') do
-	puts "Collecting stats for this hour"
-	StatsWorker.perform_async
-end
+# every(5.minutes, 'collectStats') do
+# 	puts "Collecting stats for this hour"
+# 	StatsWorker.perform_async
+# end
