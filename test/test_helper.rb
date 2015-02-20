@@ -3,7 +3,7 @@ require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 include ActionDispatch::TestProcess
 require 'sidekiq/testing'
-Sidekiq::Testing.inline!
+Sidekiq::Testing.fake!
 
 class ActiveSupport::TestCase
   ActiveRecord::Migration.check_pending!

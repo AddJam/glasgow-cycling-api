@@ -362,7 +362,8 @@ class Route < ActiveRecord::Base
   end
 
   def generate_stats
-    StatsGenerator.perform_async(id, user.id)
+    # StatsGenerator.perform_async(id, user.id)
+    Hour.generate_stats!(self, user)
   end
 
   def similarity(route_one, route_two)
