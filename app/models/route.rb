@@ -364,7 +364,7 @@ class Route < ActiveRecord::Base
   def generate_stats
     # StatsGenerator.perform_async(id, user.id)
     ensure_distance_exists
-    Hour.generate_stats!(self, user)
+    Hour.generate!(self, user)
   end
 
   def similarity(route_one, route_two)
