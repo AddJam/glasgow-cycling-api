@@ -42,7 +42,7 @@ gem "skylight"
 
 # Deployment
 gem 'capistrano', '2.15.5'
-gem 'rvm-capistrano'
+gem 'rvm-capistrano', require: false
 gem 'foreman'
 
 # Use debugger
