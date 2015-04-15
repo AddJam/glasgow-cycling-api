@@ -1,4 +1,4 @@
 web: rails s
 redis: redis-server
-sidekiq: bundle exec sidekiq -e development
+sidekiq: bundle exec sidekiq -e development -L log/sidekiq.log
 clock: bundle exec clockwork lib/clock.rb

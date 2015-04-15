@@ -21,8 +21,11 @@ class Hour < ActiveRecord::Base
   belongs_to :user
 
   def self.generate!(route, user=nil)
+    Rails.logger.info "Generating hours for route #{route} and user #{user}"
     return if route.points.blank?
 
+    Rails.logger.info "Got #{route.points.count} route points, generating (#{route.id})"
+    Rails.logger.info "Route: #{route.inspect}"
     points_by_hour = route.points.group_by do |point|
       Time.at(point.time).beginning_of_hour
     end
@@ -83,6 +86,8 @@ class Hour < ActiveRecord::Base
         hour[:duration] += (60 * 60)
       end
     end
+
+    Rails.logger.info "Generated #{hours.count} hours: #{hours.inspect}"
 
     # Save updated stats
     hours.each(&:save)
