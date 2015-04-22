@@ -1,3 +1,5 @@
+#= require matchMedia
+#= require matchMedia.addListener
 #= require chartist
 #= require jquery
 #= require handlebars
