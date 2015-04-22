@@ -36,6 +36,7 @@ gem 'pg', '~> 0.17.1'
 
 # Use unicorn as the app server
 gem 'unicorn'
+gem 'rack-cors', :require => 'rack/cors'
 
 # Performance
 gem "skylight"

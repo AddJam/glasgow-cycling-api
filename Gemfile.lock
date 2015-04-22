@@ -198,6 +198,7 @@ GEM
     pry-rails (0.3.2)
       pry (>= 0.9.10)
     rack (1.5.2)
+    rack-cors (0.4.0)
     rack-test (0.6.2)
       rack (>= 1.0)
     railroady (1.1.1)
@@ -334,6 +335,7 @@ DEPENDENCIES
   pg (~> 0.17.1)
   pry-byebug
   pry-rails
+  rack-cors
   railroady
   rails (~> 4.1.8)
   redis
