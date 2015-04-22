@@ -23,5 +23,12 @@ module JourneyAPI
     config.generators do |g|
         g.test_framework  :test_unit, fixture: true
     end
+
+    config.middleware.insert_before 0, "Rack::Cors" do
+      allow do
+        origins '*'
+        resource '*', :headers => :any, :methods => [:get, :post, :options]
+      end
+    end
   end
 end
