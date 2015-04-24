@@ -26,14 +26,13 @@ class Route < ActiveRecord::Base
   belongs_to :user
   MIN_DISTANCE = 0.5
 
-  before_validation :ensure_distance_exists
   before_validation :set_endpoints
   before_validation :calculate_times
   before_validation :set_maidenheads
-  after_commit :generate_stats
+  before_save :ensure_distance_exists
   after_save :set_name
+  after_commit :generate_stats
 
-  validates :total_distance, presence: true
   validates :lat, presence: true
   validates :long, presence: true
   validates :start_maidenhead, presence: true
@@ -303,8 +302,6 @@ class Route < ActiveRecord::Base
     similarity(self, other_route) >= 0.9
   end
 
-  private
-
   def ensure_distance_exists
     return if total_distance.present? && total_distance > 0
 
@@ -318,6 +315,8 @@ class Route < ActiveRecord::Base
       end
     end
   end
+
+  private
 
   def calculate_times
     return if points.length == 0
