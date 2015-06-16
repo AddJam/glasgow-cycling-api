@@ -27,10 +27,12 @@ class RouteController < ApplicationController
   #  }
   def record
     unless params[:points]
-      render status: :bad_request, json: {errror: 'Route must contain points'}
+      render status: :bad_request, json: {error: 'Route must contain points'}
     else
       route = Route.record(current_user, params[:points], params[:source])
-      if route
+      if route[:error]
+        render status: :unprocessable_entity, json: route
+      elsif route
         if route.valid?
           render json: {route_id: route.id}
         else

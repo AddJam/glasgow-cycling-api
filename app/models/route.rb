@@ -100,6 +100,12 @@ class Route < ActiveRecord::Base
       acc
     end
 
+    if points.count < 2
+      return {
+        error: "Route was too sparse"
+      }
+    end
+
     # Create the route
     ActiveRecord::Base.transaction do # Perform all insertions in a single transaction
       route_points = []
