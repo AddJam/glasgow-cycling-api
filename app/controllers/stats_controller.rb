@@ -81,6 +81,12 @@ class StatsController < ApplicationController
             routes_completed: hour.routes_completed || 0
           }
 
+          data.keys.map do |key|
+            if key.to_s.index("speed") > 0 && data[key] < 0
+              data[key] = 0
+            end
+          end
+
           weather = WeatherPeriod.where(start_time: hour.time).first
           if weather.present?
             data.merge({
