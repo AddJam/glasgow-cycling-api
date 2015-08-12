@@ -43,11 +43,19 @@ class Hour < ActiveRecord::Base
     # Calculate stats
     hours.each_with_index do |hour, index|
       points = points_by_hour[hour.time]
+      speeds = points.pick(:kph)
+      speeds = speeds.map do |speed|
+        if speed < 0
+          0
+        else
+          speed
+        end
+      end
       hour.assign_attributes({
         num_points: hour.num_points + points.count,
-        average_speed: points.pick(:kph).average,
-        max_speed: points.pick(:kph).max,
-        min_speed: points.pick(:kph).min
+        average_speed: speeds.average,
+        max_speed: speeds.max,
+        min_speed: speeds.min
       })
 
       hour.distance = points.each_with_index.inject(0) do |distance, (point, index)|
