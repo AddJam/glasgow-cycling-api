@@ -99,6 +99,41 @@ class StatsController < ApplicationController
       }
     end
 
-    render json: data
+    if request.format.csv?
+      headers['Content-Disposition'] = "attachment; filename=\"stats-export.csv\""
+      headers['Content-Type'] = 'text/csv'
+
+      period_start = (days-1).days.ago.beginning_of_day
+      hours = Hour.where('time >= ? AND time <= ?', period_start, Time.now).order(:time)
+
+      export_data = hours.map do |hour|
+        weather = WeatherPeriod.where(start_time: hour.time).first
+
+        {
+          time: hour.time.strftime("%B %d %Y at %H %p"),
+          timestamp: hour.time.to_i,
+          distance: hour.distance || 0,
+          average_speed: hour.average_speed || 0,
+          max_speed: hour.max_speed || 0,
+          min_speed: hour.min_speed || 0,
+          routes_started: hour.routes_started || 0,
+          routes_completed: hour.routes_completed || 0,
+          wind_speed: weather.wind_speed,
+          precipitation_intensity: weather.precipitation_intensity,
+          precipitation_probability: weather.precipitation_probability,
+          temperature: weather.temperature,
+          humidity: weather.humidity,
+          wind_bearing: weather.wind_bearing,
+          cloud_cover: weather.cloud_cover,
+          weather_summary: weather.summary
+        }
+      end
+
+      @headers = export_data.first.keys.map { |key| key.to_s.titleize }
+      @data = export_data
+      render layout: false
+    else
+      render json: data
+    end
   end
 end
