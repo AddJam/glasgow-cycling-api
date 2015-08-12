@@ -82,7 +82,7 @@ class StatsController < ApplicationController
           }
 
           data.keys.map do |key|
-            if key.to_s.index("speed") > 0 && data[key] < 0
+            if key.to_s.index("speed").present? && data[key] < 0
               data[key] = 0
             end
           end
