@@ -89,7 +89,7 @@ class StatsController < ApplicationController
 
           weather = WeatherPeriod.where(start_time: hour.time).first
           if weather.present?
-            data.merge({
+            data = data.merge({
               wind_speed: weather.wind_speed,
               precipitation_intensity: weather.precipitation_intensity,
               precipitation_probability: weather.precipitation_probability,
