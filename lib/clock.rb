@@ -16,3 +16,10 @@ end
 # 	puts "Collecting stats for this hour"
 # 	StatsWorker.perform_async
 # end
+
+every(1.hour, 'exportGeojson') do
+  ["day", "week", "month", "all"].each do |period|
+    puts "Generating export for #{period}"
+    ExportGenerator.perform_async("period")
+  end
+end
