@@ -16,9 +16,8 @@ class ExportGenerator
     elsif period == 'day'
       routes = Route.where('created_at > ?', 1.day.ago)
     else
-      return render status: 400, json: {
-        error: "Period should be all, month, week, or day."
-      }
+      Rails.logger.info "Invalid route"
+      return
     end
 
     features = Rails.cache.fetch "export-features-#{period}", expires_in: 1.hour do
