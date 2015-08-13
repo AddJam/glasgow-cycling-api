@@ -1,5 +1,5 @@
 class RouteController < ApplicationController
-  doorkeeper_for :all, except: [:search, :find]
+  doorkeeper_for :all, except: [:search, :find, :export]
 
   # *POST* /routes
   #
@@ -227,5 +227,55 @@ class RouteController < ApplicationController
     route.destroy
 
     render nothing:true
+  end
+
+  def export
+    period = params[:period]
+
+    if period == 'all'
+      routes = Rails.cache.fetch "all-routes", expires_in: 1.hour do
+        Route.all
+      end
+    elsif period == 'month'
+      routes = Route.where('created_at > ?', 1.month.ago)
+    elsif period == 'week'
+      routes = Route.where('created_at > ?', 1.week.ago)
+    elsif period == 'day'
+      routes = Route.where('created_at > ?', 1.day.ago)
+    else
+      return render status: 400, json: {
+        error: "Period should be all, month, week, or day."
+      }
+    end
+
+    features = Rails.cache.fetch "export-features-#{period}", expires_in: 1.hour do
+      routes.map do |route|
+        coordinates = route.points.map do |point|
+          [point.long, point.lat]
+        end
+
+        {
+          type: "Feature",
+          properties: {
+            start_name: route.points.first.street_name,
+            end_name: route.points.last.street_name,
+            total_time: route.total_time,
+            start_time: route.start_time,
+            end_time: route.end_time
+          },
+          geometry: {
+            type: "LineString",
+            coordinates: coordinates
+          }
+        }
+      end
+    end
+
+    data = {
+      type: "FeatureCollection",
+      features: features
+    }
+
+    render json: data, root: nil
   end
 end

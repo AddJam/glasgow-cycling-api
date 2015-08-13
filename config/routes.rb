@@ -21,6 +21,8 @@ JourneyAPI::Application.routes.draw do
   put '/routes/flag/:route_id', to: 'route#flag', as: 'flag_route'
   delete '/routes/:route_id', to: 'route#delete', as: 'delete_route'
 
+  get '/routes/export', to: 'route#export', as: 'export_route'
+
   # Weather
   get '/weather', to: 'weather#retrieve', as: 'retrieve_weather'
 
