@@ -2,49 +2,43 @@ class ExportGenerator
   include Sidekiq::Worker
   sidekiq_options retry: 1
 
-  def perform(period)
-    Rails.logger.info "Generating export for period: #{period}"
+  def perform(start_period, end_period, file_name)
+    Rails.logger.info "Generating export"
 
-    if period == 'all'
-      routes = Rails.cache.fetch "all-routes", expires_in: 1.hour do
-        Route.all
-      end
-    elsif period == 'month'
-      routes = Route.where('created_at > ?', 1.month.ago)
-    elsif period == 'week'
-      routes = Route.where('created_at > ?', 1.week.ago)
-    elsif period == 'day'
-      routes = Route.where('created_at > ?', 1.day.ago)
+    file_name ||= "#{start_period}-#{end_period}"
+    routes = Route.where('created_at > ? AND created_at < ?', start_period, end_period)
+
+    if (end_period - start_period) > 1.week
+      sleep_period = 10
     else
-      Rails.logger.info "Invalid route"
-      return
+      sleep_period = 0
     end
 
-    features = Rails.cache.fetch "export-features-#{period}", expires_in: 1.hour do
-      routes.map do |route|
-        Rails.cache.fetch "route-feature-geojson-#{route.id}" do
-          coordinates = Rails.cache.fetch "route-point-coords-#{route.id}" do
-            route.points.map do |point|
-              [point.long, point.lat]
-            end
+    features = routes.map do |route|
+      Rails.cache.fetch "route-feature-geojson-#{route.id}" do
+        coordinates = Rails.cache.fetch "route-point-coords-#{route.id}" do
+          route.points.map do |point|
+            [point.long, point.lat]
           end
-
-          {
-            type: "Feature",
-            properties: {
-              start_name: route.points.first.street_name,
-              end_name: route.points.last.street_name,
-              total_time: route.total_time,
-              start_time: route.start_time,
-              end_time: route.end_time
-            },
-            geometry: {
-              type: "LineString",
-              coordinates: coordinates
-            }
-          }
         end
+
+        {
+          type: "Feature",
+          properties: {
+            start_name: route.points.first.street_name,
+            end_name: route.points.last.street_name,
+            total_time: route.total_time,
+            start_time: route.start_time,
+            end_time: route.end_time
+          },
+          geometry: {
+            type: "LineString",
+            coordinates: coordinates
+          }
+        }
       end
+
+      sleep sleep_period
     end
 
     data = {
@@ -52,8 +46,7 @@ class ExportGenerator
       features: features
     }
 
-    Rails.logger.info "Storing generated export for period: #{period}"
-    file_path = Rails.root.join("public", "export", "#{period}.geojson")
+    file_path = Rails.root.join("public", "export", "#{file_name}.geojson")
     File.open(file_path, "w") { |f| f << data }
   end
 end

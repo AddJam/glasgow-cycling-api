@@ -18,8 +18,7 @@ end
 # end
 
 every(1.hour, 'exportGeojson') do
-  ["day", "week", "month", "all"].each do |period|
-    puts "Generating export for #{period}"
-    ExportGenerator.perform_async(period)
-  end
+  ExportGenerator.perform_async(Time.at(0), Time.now, "all")
+  ExportGenerator.perform_async(Time.now.beginning_of_week, Time.now, "week-#{Time.now.strftime('%U')}")
+  ExportGenerator.perform_async(Time.now.beginning_of_month, Time.now, "month-#{Time.now.month}")
 end
